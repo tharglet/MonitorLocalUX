@@ -13,6 +13,7 @@ var app = angular.module('monitorLocalUxApp', [
   'ngAria',
   'scs.couch-potato',
   'ui.router',
+  'monitorLocalUxApp.Search',
   'monitorLocalUxApp.AcademicOutputs'
 ])
 .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', function($stateProvider, $urlRouterProvider) {
