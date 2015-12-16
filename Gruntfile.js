@@ -37,7 +37,8 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= appConfig.app %>/scripts/{,*/}*.js'],
+        files: ['<%= appConfig.app %>/scripts/{,*/}*.js',
+                '<%= appConfig.app %>/components/{,*/}*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -126,7 +127,8 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= appConfig.app %>/scripts/{,*/}*.js'
+          '<%= appConfig.app %>/scripts/{,*/}*.js',
+          '<%= appConfig.app %>/components/{,*/}*.js'
         ]
       },
       test: {
@@ -146,7 +148,8 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= appConfig.app %>/scripts/{,*/}*.js'
+          '<%= appConfig.app %>/scripts/{,*/}*.js',
+          '<%= appConfig.app %>/components/{,*/}*.js'
         ]
       },
       test: {
@@ -262,6 +265,7 @@ module.exports = function (grunt) {
       dist: {
         src: [
           '<%= appConfig.dist %>/scripts/{,*/}*.js',
+          '<%= appConfig.dist %>/components/{,*/}*.js',
           '<%= appConfig.dist %>/styles/{,*/}*.css',
           '<%= appConfig.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= appConfig.dist %>/styles/fonts/*'
@@ -292,7 +296,8 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= appConfig.dist %>/{,*/}*.html'],
       css: ['<%= appConfig.dist %>/styles/{,*/}*.css'],
-      js: ['<%= appConfig.dist %>/scripts/{,*/}*.js'],
+      js: ['<%= appConfig.dist %>/scripts/{,*/}*.js',
+           '<%= appConfig.dist %>/components/{,*/}*.js'],
       options: {
         assetsDirs: [
           '<%= appConfig.dist %>',
@@ -323,6 +328,9 @@ module.exports = function (grunt) {
     //     files: {
     //       '<%= appConfig.dist %>/scripts/scripts.js': [
     //         '<%= appConfig.dist %>/scripts/scripts.js'
+    //       ],
+    //       '<%= appConfig.dist %>/components/scripts.js': [
+    //         '<%= appConfig.dist %>/components/scripts.js'
     //       ]
     //     }
     //   }
@@ -392,6 +400,11 @@ module.exports = function (grunt) {
           cwd: '.tmp/concat/scripts',
           src: '*.js',
           dest: '.tmp/concat/scripts'
+        },{
+          expand: true,
+          cwd: '.tmp/concat/components',
+          src: '*.js',
+          dest: '.tmp/concat/components'
         }]
       }
     },
