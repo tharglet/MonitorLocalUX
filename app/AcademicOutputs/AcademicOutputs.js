@@ -14,7 +14,9 @@ angular.module('monitorLocalUxApp.AcademicOutputs', ['ui.router', 'monitorLocalU
           url: '/academicOutputs/edit/:id',
           templateUrl: 'edit/edit.html',
           controller: 'EditController',
-          editTemplate:'/academicOutputs/academicOutput.html'
+          data:{
+            editTemplate:'/academicOutputs/academicOutput.html'
+          }
         });
 
     }])
