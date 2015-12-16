@@ -3,7 +3,8 @@
 define(
   'app',
   [
-    'academic-output',          // JS Module dependencies, ensures the code is included.
+   'academic-output',          // JS Module dependencies, ensures the code is included.
+   'search',
   ],                
   function () {
     
@@ -12,7 +13,8 @@ define(
       'ngAria',
       'scs.couch-potato',
       'ui.router',
-      'academic-output'
+      'academic-output',
+      'search'
     ])
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', function($stateProvider, $urlRouterProvider) {
    

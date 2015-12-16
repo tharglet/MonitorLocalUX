@@ -5,6 +5,7 @@ requirejs.config({
   },
   packages: [
     "app",
+    "search",
     "academic-output",
   ]
 });
