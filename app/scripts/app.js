@@ -12,7 +12,8 @@ var app = angular.module('monitorLocalUxApp', [
   'ngAnimate',
   'ngAria',
   'scs.couch-potato',
-  'ui.router'
+  'ui.router',
+  'monitorLocalUxApp.AcademicOutputs'
 ])
 .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', function($stateProvider, $urlRouterProvider) {
   
@@ -28,7 +29,7 @@ var app = angular.module('monitorLocalUxApp', [
   });
   
   $stateProvider.state('about', {
-    url: '/',
+    url: '/about',
     templateUrl: 'scripts/partials/about.html'
   });
 }])
