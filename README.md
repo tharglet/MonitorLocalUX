@@ -5,7 +5,7 @@ Angular Based Web interface for Monitor
 You need to install the following tools onto your system in order to build the web frontend app.
 
 Install ruby
-* https://www.ruby-lang.org/en/
+* https://www.ruby-lang.org/en/ -- Consider RVM https://rvm.io/
 
 Install compass, and sass-globbing as a ruby gem
 ```
