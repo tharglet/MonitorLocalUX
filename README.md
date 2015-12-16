@@ -19,7 +19,7 @@ Install dependancies including bower and grunt using npm:
 ```
 npm install -g bower grunt-cli karma phantomjs jasmine-core sass-globber
 ```
-__note:__ If you see errors regarding permissions take a look at this script (https://github.com/glenpike/npm-g_nosudo/blob/master/npm-g-nosudo.sh) to allow global npm packages without sudo
+__note:__ If you see errors regarding permissions take a look at this script (https://github.com/glenpike/npm-g_nosudo/blob/master/npm-g-nosudo.sh) to allow global npm packages without sudo. Alternatively, use nvm and -g does something different and more sensible.
 
 
 ## Building
