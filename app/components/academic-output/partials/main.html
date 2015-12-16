@@ -1,2 +1,8 @@
-<h1>Academic output</h1>
-<div class="container" ui-view="ao"></div>
+<h1>Academic Output: {{academicOutput.name}}</h1>
+<pre>
+  value: {{academicOutput.value}}
+  tax: {{academicOutput.tax()}}
+</pre>
+<div class="container" ui-view="ao">
+  
+</div>

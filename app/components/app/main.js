@@ -1,6 +1,10 @@
+'use strict';
+
 define(
   'app',
-  ['academic-output'],                // JS Module dependencies, ensures the code is included.
+  [
+    'academic-output',          // JS Module dependencies, ensures the code is included.
+  ],                
   function () {
     
     var app = angular.module('app', [

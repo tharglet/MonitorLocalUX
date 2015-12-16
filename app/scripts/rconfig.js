@@ -1,7 +1,7 @@
 requirejs.config({
   baseUrl : "components",
   paths: {
-    "global" : "global"
+    "globals" : "../globals"
   },
   packages: [
     "app",
