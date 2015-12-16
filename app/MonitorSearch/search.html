@@ -5,7 +5,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr ng-repeat="datarow in data">
+      <td ng-repeat="col in cols">
+        <a ui-sref="AcademicOutputsEdit({id: '1', otherParam: 'barVal1'})"> {{datarow[col.colName]}} </a>
+      </td>
     </tr>
   </tbody>
 </table>

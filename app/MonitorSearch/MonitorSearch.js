@@ -11,6 +11,12 @@ angular.module('monitorLocalUxApp.Search', ['ui.router'])
         {colName:'col3'}
       ];
 
+      $scope.data=[
+        {col1:'value1.1', col2:'value1.2', col3:'value1.3' },
+        {col1:'value2.1', col2:'value2.2', col3:'value2.3' },
+        {col1:'value3.1', col2:'value3.2', col3:'value3.3' }
+      ]
+
     }])
 ;
 

@@ -12,10 +12,10 @@ angular.module('monitorLocalUxApp.AcademicOutputs', ['ui.router', 'monitorLocalU
           searchContext: 'AOSearch'
         });
 
-        // $stateProvider.state('AcademicOutputsEdit', {
-        //   url: '/academicOutputs/edit/:id',
-        //   templateUrl: 'edit/edit.html',
-        // });
+        $stateProvider.state('AcademicOutputsEdit', {
+          url: '/academicOutputs/edit/:id',
+          templateUrl: 'edit/edit.html',
+        });
 
     }])
     // .controller('Search', ["$scope", function($scope) {

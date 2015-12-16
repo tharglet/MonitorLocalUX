@@ -14,6 +14,7 @@ var app = angular.module('monitorLocalUxApp', [
   'scs.couch-potato',
   'ui.router',
   'monitorLocalUxApp.Search',
+  'monitorLocalUxApp.Edit',
   'monitorLocalUxApp.AcademicOutputs'
 ])
 .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', function($stateProvider, $urlRouterProvider) {
