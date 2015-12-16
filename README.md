@@ -13,7 +13,7 @@ gem install compass sass-globbing
 ```
 
 Install node.js and npm
-* see: https://www.npmjs.com/
+* see: https://www.npmjs.com/ -- Consider nvm
 
 Install dependancies including bower and grunt using npm:
 ```
