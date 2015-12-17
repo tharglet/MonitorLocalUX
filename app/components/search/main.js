@@ -5,9 +5,10 @@ define(
     angular.module('search', ['ui.router'])
       .config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
         $stateProvider.state('component-search', {
-          url:          '/{type:[^\/]+}/search',
+          abstract: true,
           templateUrl:  'components/search/partials/main.html',
-          controller: ['$scope', function($scope) {
+          controller: ['$scope', '$state', function($scope, $state) {
+            $state.current.data.subTitle = "Search";
             $scope['cols'] = [
              {colName:'col1'},
              {colName:'col2'},
