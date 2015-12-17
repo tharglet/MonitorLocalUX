@@ -15,7 +15,7 @@ define(
       .config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
   
         // State for search.
-        $stateProvider.state('component-search.academic-output', {
+        $stateProvider.state('app.componentSearch.academicOutput', {
           url:          '/academic-output',
           data : {
             title: "Academic Output"
@@ -23,7 +23,7 @@ define(
         });
         
         // Default config for un-named view.
-        $stateProvider.state('academic-output-view', {
+        $stateProvider.state('app.academicOutput-view', {
           url:          '^/academic-output/:id',
           templateUrl:  'components/academic-output/partials/main.html',
           data : {

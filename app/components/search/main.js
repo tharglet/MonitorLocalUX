@@ -4,7 +4,7 @@ define(
   function (finance) {
     angular.module('search', ['ui.router'])
       .config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
-        $stateProvider.state('component-search', {
+        $stateProvider.state('app.componentSearch', {
           abstract: true,
           templateUrl:  'components/search/partials/main.html',
           controller: ['$scope', '$state', function($scope, $state) {

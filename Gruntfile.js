@@ -50,7 +50,8 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
       },
       compass: {
-        files: ['<%= appConfig.app %>/styles/**/*.{scss,sass}'],
+        files: ['<%= appConfig.app %>/styles/**/*.{scss,sass}',
+                '<%= appConfig.app %>/components/*/styles.{scss,sass}'],
         tasks: ['compass:server', 'postcss:server']
       },
       gruntfile: {
@@ -226,7 +227,9 @@ module.exports = function (grunt) {
           }
       },
       sass: {
-        src: ['<%= appConfig.app %>/styles/**/*.{scss,sass}'],
+        src: [
+          '<%= appConfig.app %>/styles/**/*.{scss,sass}',
+          '<%= appConfig.app %>/components/*/styles.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     }, 

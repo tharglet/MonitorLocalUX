@@ -24,7 +24,22 @@ define(
       $urlRouterProvider.otherwise('/');
 
       // Default home state.
-      $stateProvider.state('home', {
+      $stateProvider.state('app', {
+        abstract: true,
+        views : {
+          "main" : {
+            controller: ['$rootScope', function ($rootScope) {
+              console.log ("Default controller for app state.");
+              if ($rootScope.$state.current) {
+                // Add the states ass root classes.
+                $rootScope.bodyClasses = $rootScope.$state.current.name.replace(/[\.\-]/ig, ' ').trim();
+              }
+            }],
+          },
+        },
+      });
+      
+      $stateProvider.state('app.home', {
         url: '/',
         templateUrl: 'components/app/partials/home.html'
       });

@@ -7,7 +7,7 @@
   <tbody>
     <tr ng-repeat="datarow in data" ng-init="row = $index">
       <td ng-repeat="col in cols">
-        <a ui-sref="academic-output-view({id: (row), otherParam: 'barVal1'})"> {{datarow[col.colName]}} </a>
+        <a ui-sref="app.academicOutput-view({id: (row), otherParam: 'barVal1'})"> {{datarow[col.colName]}} </a>
       </td>
     </tr>
   </tbody>
