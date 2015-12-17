@@ -1,10 +1,12 @@
 .academicOutput {
   .main {
     .title-area {
+      h1 {
+        @include special-title ($inverse-title-bg, 10px);
+      }
       .sub-title {
         .text {
-          color: $muted-text;
-          font-size: 0.8em;
+          
         }
       }
     }
