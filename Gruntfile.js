@@ -51,7 +51,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= appConfig.app %>/styles/**/*.{scss,sass}',
-                '<%= appConfig.app %>/components/*/styles.{scss,sass}'],
+                '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
         tasks: ['compass:server', 'postcss:server']
       },
       gruntfile: {
@@ -229,7 +229,7 @@ module.exports = function (grunt) {
       sass: {
         src: [
           '<%= appConfig.app %>/styles/**/*.{scss,sass}',
-          '<%= appConfig.app %>/components/*/styles.{scss,sass}'],
+          '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     }, 
