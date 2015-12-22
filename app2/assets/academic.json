@@ -1,0 +1,47 @@
+{
+  "academic":[
+    {
+      "id": 1,
+      "name": "Academic one",
+      "items": [
+        {
+          "id": "a",
+          "type": "embargo",
+          "value": "5"
+        },
+        {
+          "id": "b",
+          "type": "affiliation",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Academic two",
+      "items": [
+        {
+          "id": "a",
+          "type": "full Text",
+          "value": "http://dx.doi.org/10.1101/pdb.top070391"
+        },
+        {
+          "id": "b",
+          "type": "volume",
+          "value": "2015"
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "name": "Academic three",
+      "items": [
+        {
+          "id": "a",
+          "type": "title",
+          "value": "Techniques for the Detection of Autophagy in Primary Mammalian Cells"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- Our uiMonitorLocal module defined here -->
+<html lang="en" ng-app="uiMonitorLocal">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <!--need to redefine bulid css-->
+    <link rel="stylesheet" href="assets/styles/css/main.css">
+    <!--<link rel="stylesheet" href="../app/styles/main.css">-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-couch-potato/dist/angular-couch-potato.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+  <!-- app.routers.js declares the uiMonitorLocal module and adds items to $rootScope, and defines states -->
+  <script src="app.routers.js"></script>
+
+  <!-- academic-service.js, and utils-service.js define services for use by the
+     uiMonitorLocal.academic module.
+-->
+  <script src="app/components/academic-output/academic.dataService.js"></script>
+  <script src="app/components/academic-output/academic.utils.js"></script>
+
+  <!-- could easily use a custom property of the state here instead of 'title' -->
+  <title ng-bind="$state.current.title + ' - Monitor Local'">Monitor Local</title>
+
+  </head>
+  <body>
+    <div class="container-fluid" ui-view ></div>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!--<script src="scripts/rconfig.js"></script>-->
+    <script src="app.routers.js"></script>
+    <!--<script src="app.module.js"></script>-->
+    <script src="app/components/dashboard/dashboard.controller.js"></script>
+    <script src="app/components/academic-output/academic.controller.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

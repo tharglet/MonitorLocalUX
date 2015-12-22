@@ -1,0 +1,6 @@
+<h2>All Academic Output</h2>
+<ul>
+  <li ng-repeat="item in academic">
+    <a ui-sref="academic.detail({academicId:item.id})">{{item.name}}</a>
+  </li>
+</ul>
