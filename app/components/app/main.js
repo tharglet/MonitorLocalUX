@@ -44,17 +44,39 @@ define(
         templateUrl: 'components/app/partials/home.html'
       });
     }])
-    .run([
-     '$couchPotato', '$state', '$stateParams', '$rootScope',
-     function($couchPotato, $state, $stateParams, $rootScope) {
-       // Use lazy run-time registration.
-       app.lazy = $couchPotato;
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope',
+      function($couchPotato, $state, $stateParams, $rootScope) {
+        // Use lazy run-time registration.
+        app.lazy = $couchPotato;
 
-       // These params are used regularly. Including them within the root scope will,
-       // ensure they are available.
-       $rootScope.$state = $state;
-       $rootScope.$stateParams = $stateParams;
-     }
+        // These params are used regularly. Including them within the root scope will,
+        // ensure they are available.
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
+ 
+        $rootScope.$on('$routeChangeStart', function(ev, next, curr) {
+          $log.debug('routeChangeStart %o', next);
+          if (next) {
+            if (next.data && next.data.requireLogin) {
+              if (shared.isAuthenticated()) {
+                $log.debug('User Logged In for secured resource');
+              } else {
+                $log.debug('user not logged in for secured resource');
+                ev.preventDefault();
+                $rootScope.pendingPath = next;
+                $location.path('/login');
+              }
+            }
+            else {
+              $log.debug('Non-secured resource');
+            }
+          }
+ 
+          if (shared.isAuthenticated()) {
+            // $rootScope.currentUser = userService.currentUser();
+          }
+        });
+      }
     ]);
     
     return app;

@@ -27,7 +27,8 @@ define(
           url:          '^/academic-output/:id',
           templateUrl:  'components/academic-output/partials/main.html',
           data : {
-            title: "Academic Output"
+            title: "Academic Output",
+            requireLogin: true
           },
           controller: ['$scope', '$state', function ($scope, $state) {
             
