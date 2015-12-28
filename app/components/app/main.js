@@ -3,18 +3,21 @@
 define(
   'app',
   [
+   'auth',
    'academic-output',          // JS Module dependencies, ensures the code is included.
    'search',
   ],                
   function () {
     
     var app = angular.module('app', [
+      'satellizer',
       'ngAnimate',                    // Angular Module dependencies. This will initialise these modules too.
       'ngAria',
       'scs.couch-potato',
       'ui.router',
       'academic-output',
-      'search'
+      'search',
+      'auth'
     ])
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', function($stateProvider, $urlRouterProvider) {
    
@@ -44,8 +47,8 @@ define(
         templateUrl: 'components/app/partials/home.html'
       });
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log',
-      function($couchPotato, $state, $stateParams, $rootScope, $log) {
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared',
+      function($couchPotato, $state, $stateParams, $rootScope, $log, shared) {
         // Use lazy run-time registration.
         app.lazy = $couchPotato;
 
@@ -55,6 +58,8 @@ define(
         $rootScope.$stateParams = $stateParams;
         console.log("main run");
  
+        // Watch for state changes -- if we switch to a protected state, check that the user is authenticated. 
+        // If not - send to the login page and store the toState so we can go back to it once auth has completed.
         $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
           console.log("routeChangeStart %o", toState);
           $log.debug('routeChangeStart %o', toState);
@@ -66,7 +71,8 @@ define(
                 $log.debug('user not logged in for secured resource');
                 ev.preventDefault();
                 $rootScope.pendingPath = toState;
-                $location.path('/login');
+                $state.go('app.login');
+                // $location.path('/login');
               }
             }
             else {
@@ -74,9 +80,10 @@ define(
             }
           }
  
-          // if (shared.isAuthenticated()) {
+          // If the user is authenticated, grab the current user and stash in rootScope
+          if (shared.isAuthenticated()) {
             // $rootScope.currentUser = userService.currentUser();
-          // }
+          }
         });
       }
     ]);
