@@ -40,11 +40,14 @@ define(
         url: callback_url + "twitter"
       });
 
-      // console.log("Config UKFAN");
-      // $authProvider.ukfam({
-      //   clientId: 'monitorLocal',
-      //   url: callback_url + "monitorLocal"
-      // });
+      $authProvider.oauth2({
+        name: 'sob',  // K-int Shib-OAuth2 GW
+        url: callback_url+'sob',
+        //redirectUri: window.location.origin,
+        clientId: 'sobclientidformonitorlocal',
+        authorizationEndpoint: 'https://www.kbplus.ac.uk/token/authorize',
+      });
+
 
       console.log("OK");
 
