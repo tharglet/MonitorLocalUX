@@ -45,7 +45,7 @@ define(
         url: callback_url+'sob',
         //redirectUri: window.location.origin,
         clientId: 'sobclientidformonitorlocal',
-        authorizationEndpoint: 'https://www.kbplus.ac.uk/token/authorize',
+        authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/token/authorize',
       });
 
 

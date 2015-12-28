@@ -18,12 +18,40 @@ define(
         $stateProvider.state('app.login', {
           templateUrl:  'components/auth/partials/login.html',
           url:          '/login',
+          controller: 'LoginCtrl',
           data : {
             title: "Login",
             requireLogin: false
           }
         });
         
+      }])
+      // .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$location', '$log', 'UserService', function($scope, $auth, $rootScope, $location, $log, UserService) {
+      .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$log', function($scope, $auth, $rootScope, $log) {
+        $scope.alerts = [];
+
+        $scope.authenticate = function(provider) {
+            $log.debug("Authenticate");
+            $auth.authenticate(provider)
+            .then(function(response) {
+                $log.debug("result of auth: %o", response);
+                if (response && response.data && response.data.user) {
+                    $log.debug("Set rootScope(%o) user to %o", $rootScope, response.data.user);
+
+                    // $rootScope.currentUser = UserService.login(response.data.user);
+                    if ($rootScope.pendingPath) {
+                        $log.debug('send user back to %o', $rootScope.pendingPath);
+
+                        // $location.path($rootScope.pendingPath.originalPath);
+                        delete $rootScope.pendingPath;
+                    }
+                }
+            })
+            .catch(function(err) {
+                $scope.alerts = [{type: 'danger', message: 'Login failed'}];
+                $log.debug("login failed", err);
+            });
+        };
       }])
     ;
   }
