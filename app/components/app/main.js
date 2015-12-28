@@ -22,6 +22,25 @@ define(
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', function($stateProvider, $urlRouterProvider) {
    
       couchPotato.configureApp(app);
+
+      var callback_url = 'http://monitorLocsl.jisc.ac.uk/oauth/callback/';
+
+      console.log("Using callback URL %s",callback_url);
+
+
+      $authProvider.google({
+        clientId: 'GooglelientId',
+        // This is where google will redirect the browser after the user authenticates. For development it's localhost,
+        // for production, the live server and for test the test server
+        // redirectUri: 'http://localhost:8080/cesvc/oauth/callback/google'
+        // url: 'http://localhost:8080/cesvc/oauth/callback/google'
+        url: callback_url + "google"
+      });
+      $authProvider.twitter({
+        clientId: 'twitterClientId',
+        url: callback_url + "twitter"
+      });
+
    
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
