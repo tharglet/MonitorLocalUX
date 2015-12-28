@@ -18,7 +18,8 @@ define(
         $stateProvider.state('app.componentSearch.academicOutput', {
           url:          '/academic-output',
           data : {
-            title: "Academic Output"
+            title: "Academic Output",
+            requireLogin: true
           }
         });
         

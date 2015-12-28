@@ -44,8 +44,8 @@ define(
         templateUrl: 'components/app/partials/home.html'
       });
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope',
-      function($couchPotato, $state, $stateParams, $rootScope) {
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log',
+      function($couchPotato, $state, $stateParams, $rootScope, $log) {
         // Use lazy run-time registration.
         app.lazy = $couchPotato;
 
@@ -53,17 +53,19 @@ define(
         // ensure they are available.
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        console.log("main run");
  
-        $rootScope.$on('$routeChangeStart', function(ev, next, curr) {
-          $log.debug('routeChangeStart %o', next);
-          if (next) {
-            if (next.data && next.data.requireLogin) {
+        $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
+          console.log("routeChangeStart %o", toState);
+          $log.debug('routeChangeStart %o', toState);
+          if (toState) {
+            if (toState.data && toState.data.requireLogin) {
               if (shared.isAuthenticated()) {
                 $log.debug('User Logged In for secured resource');
               } else {
                 $log.debug('user not logged in for secured resource');
                 ev.preventDefault();
-                $rootScope.pendingPath = next;
+                $rootScope.pendingPath = toState;
                 $location.path('/login');
               }
             }
@@ -72,9 +74,9 @@ define(
             }
           }
  
-          if (shared.isAuthenticated()) {
+          // if (shared.isAuthenticated()) {
             // $rootScope.currentUser = userService.currentUser();
-          }
+          // }
         });
       }
     ]);
