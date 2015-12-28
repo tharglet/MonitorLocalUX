@@ -19,7 +19,7 @@ define(
       'search',
       'auth'
     ])
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', function($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
    
       couchPotato.configureApp(app);
 
@@ -28,18 +28,19 @@ define(
       console.log("Using callback URL %s",callback_url);
 
 
+      console.log("Config google");
       $authProvider.google({
         clientId: 'GooglelientId',
-        // This is where google will redirect the browser after the user authenticates. For development it's localhost,
-        // for production, the live server and for test the test server
-        // redirectUri: 'http://localhost:8080/cesvc/oauth/callback/google'
-        // url: 'http://localhost:8080/cesvc/oauth/callback/google'
         url: callback_url + "google"
       });
+
+      console.log("Config twitter");
       $authProvider.twitter({
         clientId: 'twitterClientId',
         url: callback_url + "twitter"
       });
+
+      console.log("OK");
 
    
       // Default to the homepage.
