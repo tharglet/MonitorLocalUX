@@ -40,6 +40,12 @@ define(
         url: callback_url + "twitter"
       });
 
+      // console.log("Config UKFAN");
+      // $authProvider.ukfam({
+      //   clientId: 'monitorLocal',
+      //   url: callback_url + "monitorLocal"
+      // });
+
       console.log("OK");
 
    
