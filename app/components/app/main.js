@@ -40,12 +40,31 @@ define(
         url: callback_url + "twitter"
       });
 
+      // Parameters that can be set for oauth2 provider
+      // $authProvider.oauth2({
+      //   url: null,
+      //   name: null,
+      //   scope: null,
+      //   scopeDelimiter: null,
+      //   clientId: null,
+      //   redirectUri: null,
+      //   popupOptions: null,
+      //   authorizationEndpoint: null,
+      //   responseParams: null,
+      //   requiredUrlParams: null,
+      //   optionalUrlParams: null,
+      //   defaultUrlParams: ['response_type', 'client_id', 'redirect_uri'],
+      //   responseType: 'code'
+      // });
+
+      // See OAuth2 RFC:: http://tools.ietf.org/html/rfc6749
       $authProvider.oauth2({
         name: 'sob',  // K-int Shib-OAuth2 GW
         url: callback_url+'sob',
         //redirectUri: window.location.origin,
-        clientId: 'sobclientidformonitorlocal',
+        clientId: 'monitorLocal',
         authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/token/authorize',
+        // response_type:'code' -- this should be the default, commented here just in case - watch the logs
       });
 
 
