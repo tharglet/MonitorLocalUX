@@ -61,10 +61,9 @@ define(
       $authProvider.oauth2({
         name: 'sob',  // K-int Shib-OAuth2 GW
         url: callback_url+'sob',
-        //redirectUri: window.location.origin,
+        redirectUri: 'http://monitorlocal.jisc.ac.uk/redirect',
         clientId: 'monitorLocal',
-        authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/token/authorize',
-        // response_type:'code' -- this should be the default, commented here just in case - watch the logs
+        authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/oauth/authorize',
       });
 
 
