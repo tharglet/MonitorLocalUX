@@ -70,6 +70,7 @@ define(
         redirectUri: 'http://localhost:9090/redirect',
         clientId: 'monitorLocalDev',
         authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/oauth/authorize',
+        scope:'read'
       });
 
 
