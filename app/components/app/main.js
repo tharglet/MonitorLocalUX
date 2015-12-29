@@ -23,7 +23,12 @@ define(
    
       couchPotato.configureApp(app);
 
-      var callback_url = 'http://monitorLocsl.jisc.ac.uk/oauth/callback/';
+
+      // Sattelizer likes us to have the host of the callback be the same origin as the site we are serving. Thats very nice when we are serving the
+      // app from //monitorlocal.jisc.ac.uk/redirect but when we're developing the odds are that we are serving from localhost:9090. So we switch the URL
+      // AND the clientId [Since the ShibOauth bridge *currently* only allows one callback URL per registered client.
+      // var callback_url = 'http://monitorlocal.jisc.ac.uk/redirect';
+      var callback_url = 'http://localhost:9090/redirect/sob';
 
       console.log("Using callback URL %s",callback_url);
 
@@ -61,8 +66,9 @@ define(
       $authProvider.oauth2({
         name: 'sob',  // K-int Shib-OAuth2 GW
         url: callback_url+'sob',
-        redirectUri: 'http://monitorlocal.jisc.ac.uk/redirect',
-        clientId: 'monitorLocal',
+        // redirectUri: 'http://monitorlocal.jisc.ac.uk/redirect',
+        redirectUri: 'http://localhost:9090/redirect',
+        clientId: 'monitorLocalDev',
         authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/oauth/authorize',
       });
 
