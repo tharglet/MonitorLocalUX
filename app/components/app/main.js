@@ -70,6 +70,9 @@ define(
         redirectUri: 'http://localhost:9090/redirect',
         clientId: 'monitorLocalDev',
         authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/oauth/authorize',
+        // Tell sattelizer about this particular endpoint -- what the required, optional and  default URL Params are
+        optionalUrlParams: ['scope'], 
+        scope:['read']
       });
 
 
