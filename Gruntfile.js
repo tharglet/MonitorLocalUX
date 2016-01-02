@@ -82,6 +82,12 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
+              // Enable CORS -- This is not working ATM??
+              connect().use('/', function (req, res, next) {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
+                next();
+              }),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -91,7 +97,7 @@ module.exports = function (grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
-              connect.static(appConfig.app)
+              connect.static(appConfig.app),
             ];
           }
         }
