@@ -28,7 +28,7 @@ define(
       // app from //monitorlocal.jisc.ac.uk/redirect but when we're developing the odds are that we are serving from localhost:9090. So we switch the URL
       // AND the clientId [Since the ShibOauth bridge *currently* only allows one callback URL per registered client.
       // var callback_url = 'http://monitorlocal.jisc.ac.uk/redirect';
-      var callback_url = 'http://localhost:9090/redirect/sob';
+      var callback_url = 'http://localhost:9090/redirect/';
 
       console.log("Using callback URL %s",callback_url);
 
@@ -65,14 +65,18 @@ define(
       // See OAuth2 RFC:: http://tools.ietf.org/html/rfc6749
       $authProvider.oauth2({
         name: 'sob',  // K-int Shib-OAuth2 GW
-        url: callback_url+'sob',
-        // redirectUri: 'http://monitorlocal.jisc.ac.uk/redirect',
-        redirectUri: 'http://localhost:9090/redirect',
+        // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
+        url: 'http://localhost:8080/jwt/callback/sob',
+        // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
         clientId: 'monitorLocalDev',
+        // OAuth2 Endpoint
         authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/oauth/authorize',
-        scope:'read',
         responseType:'token',
-        requiredUrlParams: ['scope','responseType']
+        requiredUrlParams: ['scope','responseType'],
+        // The URI that the OAuth service will redirect us to when completed.
+        redirectUri: 'http://localhost:9090/redirect',
+        // Tell sattelizer about this particular endpoint -- what the required, optional and  default URL Params are
+        scope:['read']
       });
 
 
