@@ -43,9 +43,24 @@
               <li ui-sref-active="active" ><a ui-sref="app.componentSearch.academicOutput" >Academic Outputs</a></li>
             </ul>
 
-            <ul class="nav navbar-nav pull-right">
-              <li ui-sref-active="active" ><a ui-sref="app.login">Login</a></li>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="isAuthenticated" class="profile" dropdown>
+                  <a href id="user-status" role="button" aria-haspopup="true" aria-expanded="false" dropdown-toggle>
+                      {{currentUser.displayName}}
+                      <div class="ce-profile-image">
+                          <img class="media-object" ng-src="{{currentUser.profilePic}}" alt="{{currentUser.displayName}}">
+                      </div>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="user-status">
+                      <li><a href="#/profile">Profile</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href ng-click="logout()">Sign out</a></li>
+                  </ul>
+                </li>
+                <li ng-if="isAuthenticated==false"><a ui-sref="app.login">Login</a></li>
+                <li><a href ng-click="logout()">Sign out</a></li>
             </ul>
+
 
           </div>
         </div>

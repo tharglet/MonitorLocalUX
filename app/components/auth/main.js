@@ -23,8 +23,9 @@ define(
             title: "Login",
             requireLogin: false
           }
-        });
-        
+        })
+        ;
+
       }])
       // .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$location', '$log', 'UserService', function($scope, $auth, $rootScope, $location, $log, UserService) {
       .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$log', function($scope, $auth, $rootScope, $log) {
@@ -52,6 +53,20 @@ define(
                 $log.debug("login failed", err);
             });
         };
+
+        $scope.logout = function() {
+          $auth.logout()
+            .then(function(response) {
+              // delete $rootScope.currentUser;
+              // userService.logout();
+              $log.debug('Logged out');
+            })
+            .catch(function(err) {
+              $log.error("failed to logout", err);
+            });
+
+        }
+
       }])
     ;
   }
