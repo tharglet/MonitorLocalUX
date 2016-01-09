@@ -6,6 +6,7 @@ define(
    'auth',
    'academic-output',          // JS Module dependencies, ensures the code is included.
    'search',
+   'monitor-user-services',
   ],                
   function () {
     
@@ -17,7 +18,8 @@ define(
       'ui.router',
       'academic-output',
       'search',
-      'auth'
+      'auth',
+      'monitor-user-services',
     ])
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
    

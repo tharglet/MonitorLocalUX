@@ -39,7 +39,7 @@ define(
                 if (response && response.data && response.data.user) {
                     $log.debug("Set rootScope(%o) user to %o", $rootScope, response.data.user);
 
-                    // $rootScope.currentUser = UserService.login(response.data.user);
+                    $rootScope.currentUser = UserService.login(response.data.user);
                     if ($rootScope.pendingPath) {
                         $log.debug('send user back to %o', $rootScope.pendingPath);
 

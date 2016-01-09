@@ -7,6 +7,7 @@ requirejs.config({
     "app",
     "search",
     "academic-output",
-    "auth"
+    "auth",
+    "monitor-user-services"
   ]
 });
