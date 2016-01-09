@@ -28,7 +28,7 @@ define(
 
       }])
       // .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$location', '$log', 'UserService', function($scope, $auth, $rootScope, $location, $log, UserService) {
-      .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$log', function($scope, $auth, $rootScope, $log) {
+      .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$log', 'UserService', function($scope, $auth, $rootScope, $log, Userservice) {
         $scope.alerts = [];
 
         $scope.authenticate = function(provider) {
