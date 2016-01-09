@@ -7,7 +7,7 @@
  */
 define(
   "auth",     // JS module name (not the same as the angular module name.)
-  [],   // File locations can also be used instead of named includes.
+  ['monitor-user-services'],   // File locations can also be used instead of named includes.
   function () {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
@@ -28,7 +28,7 @@ define(
 
       }])
       // .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$location', '$log', 'UserService', function($scope, $auth, $rootScope, $location, $log, UserService) {
-      .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$log', 'UserService', function($scope, $auth, $rootScope, $log, Userservice) {
+      .controller('LoginCtrl', [ '$scope', '$auth', '$rootScope', '$log', 'UserService', function($scope, $auth, $rootScope, $log, UserService) {
         $scope.alerts = [];
 
         $scope.authenticate = function(provider) {

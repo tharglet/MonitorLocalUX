@@ -94,7 +94,7 @@ define(
         abstract: true,
         views : {
           "main" : {
-            controller: ['$rootScope', '$scope', '$auth', '$log', function ($rootScope,$scope,$auth,$log) {
+            controller: ['$rootScope', '$scope', '$auth', '$log', 'UserService', function ($rootScope,$scope,$auth,$log,UserService) {
 
               console.log ("Default controller for app state.");
               if ($rootScope.$state.current) {
@@ -107,9 +107,9 @@ define(
                 $auth.logout()
                 .then(function(response) {
                     delete $rootScope.currentUser;
-                    // `userService.logout();
+                    UserService.logout();
                     $log.debug('Logged out');
-                    $location.path('/');
+                    // $location.path('/');
                 })
                 .catch(function(err) {
                     $log.error("failed to logout", err);

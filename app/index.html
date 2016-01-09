@@ -58,7 +58,7 @@
                   </ul>
                 </li>
                 <li ng-if="isAuthenticated==false"><a ui-sref="app.login">Login</a></li>
-                <li><a href ng-click="logout()">Sign out</a></li>
+                <li ng-if="isAuthenticated"><a href ng-click="logout()">Sign out2</a></li>
             </ul>
 
 
