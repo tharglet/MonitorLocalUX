@@ -7,6 +7,7 @@ define(
    'academic-output',          // JS Module dependencies, ensures the code is included.
    'search',
    'monitor-user-services',
+   'dashboard'
   ],                
   function () {
     
@@ -20,12 +21,20 @@ define(
       'search',
       'auth',
       'monitor-user-services',
+      'dashboard'
     ])
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
    
       couchPotato.configureApp(app);
-
-
+      
+//     ###    ##     ## ######## ##     ## 
+//    ## ##   ##     ##    ##    ##     ## 
+//   ##   ##  ##     ##    ##    ##     ## 
+//  ##     ## ##     ##    ##    ######### 
+//  ######### ##     ##    ##    ##     ## 
+//  ##     ## ##     ##    ##    ##     ## 
+//  ##     ##  #######     ##    ##     ## 
+       
       // Sattelizer likes us to have the host of the callback be the same origin as the site we are serving. Thats very nice when we are serving the
       // app from //monitorlocal.jisc.ac.uk/redirect but when we're developing the odds are that we are serving from localhost:9090. So we switch the URL
       // AND the clientId [Since the ShibOauth bridge *currently* only allows one callback URL per registered client.
@@ -85,6 +94,13 @@ define(
 
       console.log("OK");
 
+//    ########   #######  ##     ## ######## #### ##    ##  ######   
+//    ##     ## ##     ## ##     ##    ##     ##  ###   ## ##    ##  
+//    ##     ## ##     ## ##     ##    ##     ##  ####  ## ##        
+//    ########  ##     ## ##     ##    ##     ##  ## ## ## ##   #### 
+//    ##   ##   ##     ## ##     ##    ##     ##  ##  #### ##    ##  
+//    ##    ##  ##     ## ##     ##    ##     ##  ##   ### ##    ##  
+//    ##     ##  #######   #######     ##    #### ##    ##  ######   
    
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
@@ -94,6 +110,7 @@ define(
         abstract: true,
         views : {
           "main" : {
+        	  'templateUrl' : 'components/app/partials/template.html',
             controller: ['$rootScope', '$scope', '$auth', '$log', 'UserService', function ($rootScope,$scope,$auth,$log,UserService) {
 
               console.log ("Default controller for app state.");
@@ -120,11 +137,11 @@ define(
           },
         },
       });
-      
-      $stateProvider.state('app.home', {
-        url: '/',
-        templateUrl: 'components/app/partials/home.html'
-      });
+      // Why it isnt at main page module?
+//      $stateProvider.state('app.home', {
+//        url: '/',
+//        templateUrl: 'components/app/partials/home.html'
+//      });
     }])
     .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared',
       function($couchPotato, $state, $stateParams, $rootScope, $log, shared) {
@@ -142,23 +159,24 @@ define(
         $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
           console.log("routeChangeStart %o", toState);
           $log.debug('routeChangeStart %o', toState);
-          if (toState) {
-            console.log("toState.data:%o",toState.data);
-            if (toState.data && toState.data.requireLogin) {
-              if (shared.isAuthenticated()) {
-                $log.debug('User Logged In for secured resource');
-              } else {
-                $log.debug('user not logged in for secured resource');
-                ev.preventDefault();
-                $rootScope.pendingPath = toState;
-                $state.go('app.login');
-                // $location.path('/login');
-              }
-            }
-            else {
-              $log.debug('Non-secured resource');
-            }
-          }
+          //commented becouse i dont know how to login into grails
+//          if (toState) {
+//            console.log("toState.data:%o",toState.data);
+//            if (toState.data && toState.data.requireLogin) {
+//              if (shared.isAuthenticated()) {
+//                $log.debug('User Logged In for secured resource');
+//              } else {
+//                $log.debug('user not logged in for secured resource');
+//                ev.preventDefault();
+//                $rootScope.pendingPath = toState;
+//                $state.go('app.login');
+//                // $location.path('/login');
+//              }
+//            }
+//            else {
+//              $log.debug('Non-secured resource');
+//            }
+//          }
  
           $rootScope.isAuthenticated = shared.isAuthenticated();
 

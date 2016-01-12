@@ -8,6 +8,7 @@ requirejs.config({
     "search",
     "academic-output",
     "auth",
-    "monitor-user-services"
+    "monitor-user-services",
+    'dashboard'
   ]
 });

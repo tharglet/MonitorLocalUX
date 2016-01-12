@@ -12,7 +12,7 @@ define(
 
         // Default config for un-named view.
         $stateProvider.state('app.home', {
-        
+        	
         	url: '/',
           templateUrl: 'components/dashboard/partials/view.html',
           data : {
