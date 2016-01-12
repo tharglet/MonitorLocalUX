@@ -6,6 +6,7 @@ define(
    'auth',
    'academic-output',          // JS Module dependencies, ensures the code is included.
    'search',
+   'monitor-user-services',
   ],                
   function () {
     
@@ -17,7 +18,8 @@ define(
       'ui.router',
       'academic-output',
       'search',
-      'auth'
+      'auth',
+      'monitor-user-services',
     ])
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
    
@@ -71,10 +73,12 @@ define(
         clientId: 'monitorLocalDev',
         // OAuth2 Endpoint
         authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/oauth/authorize',
+        // responseType:'token',
+        responseType:'code',
+        requiredUrlParams: ['scope','responseType'],
         // The URI that the OAuth service will redirect us to when completed.
         redirectUri: 'http://localhost:9090/redirect',
         // Tell sattelizer about this particular endpoint -- what the required, optional and  default URL Params are
-        optionalUrlParams: ['scope'], 
         scope:['read']
       });
 
@@ -90,12 +94,28 @@ define(
         abstract: true,
         views : {
           "main" : {
-            controller: ['$rootScope', function ($rootScope) {
+            controller: ['$rootScope', '$scope', '$auth', '$log', 'UserService', function ($rootScope,$scope,$auth,$log,UserService) {
+
               console.log ("Default controller for app state.");
               if ($rootScope.$state.current) {
                 // Add the states ass root classes.
                 $rootScope.bodyClasses = $rootScope.$state.current.name.replace(/[\.\-]/ig, ' ').trim();
               }
+
+
+              $rootScope.logout = function() {
+                $auth.logout()
+                .then(function(response) {
+                    delete $rootScope.currentUser;
+                    UserService.logout();
+                    $log.debug('Logged out');
+                    // $location.path('/');
+                })
+                .catch(function(err) {
+                    $log.error("failed to logout", err);
+                 });
+              }
+
             }],
           },
         },
@@ -123,6 +143,7 @@ define(
           console.log("routeChangeStart %o", toState);
           $log.debug('routeChangeStart %o', toState);
           if (toState) {
+            console.log("toState.data:%o",toState.data);
             if (toState.data && toState.data.requireLogin) {
               if (shared.isAuthenticated()) {
                 $log.debug('User Logged In for secured resource');
@@ -139,9 +160,17 @@ define(
             }
           }
  
-          // If the user is authenticated, grab the current user and stash in rootScope
-          if (shared.isAuthenticated()) {
-            // $rootScope.currentUser = userService.currentUser();
+          $rootScope.isAuthenticated = shared.isAuthenticated();
+
+          // If the user is authenticated, grab the current user and stash in rootScope so we can access it in partials, for
+          // example 
+          if ($rootScope.isAuthenticated) {
+            // $log.debug("Set current user to %o",userService.currentUser());
+            $log.debug("user is authenticated -- payload %o",shared.getPayload());
+            $rootScope.currentUser = shared.getPayload();
+          }
+          else {
+            $rootScope.currentUser = { displayName : '', profilePic:'' };
           }
         });
       }
