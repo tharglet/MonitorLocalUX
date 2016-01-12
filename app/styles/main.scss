@@ -1,14 +1,19 @@
+// Compass includes.
+@import "compass/css3";
+@import "compass/utilities";
+
 // Custom bootstrap themeing.
 @import "../bootstrap/variables";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "font-awesome/scss/font-awesome.scss";
 // endbower
 
 // Global includes.
-@import "abstractions/**/*";
 @import "variables/**/*";
+@import "abstractions/**/*";
 @import "components/**/*";
 
 // Packaged Components styles
-@import "../components/*/styles.scss";
+@import "../components/*/_styles.scss";

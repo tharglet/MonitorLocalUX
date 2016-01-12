@@ -51,7 +51,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= appConfig.app %>/styles/**/*.{scss,sass}',
-                '<%= appConfig.app %>/components/*/styles.{scss,sass}'],
+                '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
         tasks: ['compass:server', 'postcss:server']
       },
       gruntfile: {
@@ -82,6 +82,12 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
+              // Enable CORS -- This is not working ATM??
+              connect().use('/', function (req, res, next) {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
+                next();
+              }),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -91,7 +97,7 @@ module.exports = function (grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
-              connect.static(appConfig.app)
+              connect.static(appConfig.app),
             ];
           }
         }
@@ -229,7 +235,7 @@ module.exports = function (grunt) {
       sass: {
         src: [
           '<%= appConfig.app %>/styles/**/*.{scss,sass}',
-          '<%= appConfig.app %>/components/*/styles.{scss,sass}'],
+          '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     }, 
