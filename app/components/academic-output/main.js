@@ -31,20 +31,17 @@ define(
               title: "Academic Output Details",
               requirelogin:false,
             },
-            controller: ['$scope', '$state', function ($scope, $state) {
-              console.log('INTO DETAILS');
-              $scope['academicOutput'] = {
-            	ref : '9584',
-            	title : 'Diagnosis and management of primary cliairy dyskinetia',
-            	status: 'Accepted',
-            	reason: '',
-            	route : 'Gold',
-            	awards : {NEGO16003457 : 'NE/GO16003/457', NEGO89803090 :'NE/GO89803/090'},
-            	administrator: 'Latimer Hazar'
+            controller: ['$scope', '$state', 'AOStorage', function ($scope, $state, AOStorage) {
+              
+           	$scope['academicOutput'] = AOStorage.getStorage().AOData;
+            	
+              $scope.addRow = function(){
+            	  AOStorage.addAward();
               };
+              
               }]
           });
-        
+                
         // Default config for un-named view.
         $stateProvider.state('app.academicOutput-view', {
             url:          '^/academic-output/:id',
@@ -69,8 +66,58 @@ define(
           });
         
       }])
+      
+      .directive('awardRecord', ['AOStorage',function(AOStorage) {
+    	  return {
+    		    restrict: 'CA',
+    		    templateUrl: 'components/academic-output/partials/award-record-directive.html',
+    		    link: function(scope, element, attrs){
+    		    		element.find('.remove').bind('click', function(){
+    		    			AOStorage.deleteAward(scope.key);
+    		    		});
+    	            }
+    		  }
+    		}])
+    .factory('AOStorage', function() {
+    var storage = {
+      AOData : {
+      	ref : '9584',
+    	title : 'Diagnosis and management of primary cliairy dyskinetia',
+    	status: 'Accepted',
+    	reason: '',
+    	route : 'Gold',
+    	awards : {NEGO16003457 : 'NE/GO16003/457', NEGO89803090 :'NE/GO89803/090'},
+    	administrator: 'Latimer Hazar'
+      }
+    };
+    
+    var deleteAward = function(key){
+    	delete(storage.AOData['awards'][key]);
+    }
+    
+    var addAward = function(){
+    	storage.AOData['awards'][Date.now()] = '';
+    	console.log(storage.AOData['awards']);
+    }
+    
+    var getStorage = function(){
+    	return storage;
+    }
+    
+    return {
+        deleteAward: deleteAward,
+        addAward: addAward,
+        getStorage: getStorage
+      };
+    });
+    		
+    
+    		;
       // .controller('Search', ["$scope", function($scope) {
       // }])
     ;
+    
+    
+    
   }
 );

@@ -45,23 +45,19 @@
 				<legend>
 					<span class="legend-text">Awards</span>
 				</legend>
-				<div class="col span-6">
-					<ul ng-repeat="(key,item) in academicOutput.awards">
-						<li class="form-fields__item--text"><label> <span
-								class="form-fields__label-text">Award</span> <input name="{{key}}" type="text"
-								ng-model="item">   <button id="{{key}}" class="btn btn--3d btn--primary remove">
-											              Remove
-											        </button>
-						</label></li>
+				<div class="col span-6" id="award">
+					<ul class="award-record" item='item' index="$index" key='key'
+						ng-repeat="(key,item) in academicOutput.awards">
 					</ul>
 				</div>
-				Add row
+				
+				<button class="btn btn--3d btn--primary" ng-click="addRow()">Add row</button>
 			</fieldset>
 			<div class="row">
 				<fieldset class="form__fieldset">
-								<legend>
-					<span class="legend-text">Settings</span>
-				</legend>
+					<legend>
+						<span class="legend-text">Settings</span>
+					</legend>
 					<div class="col span-6">
 						<ul class="form-fields">
 							<label> <span class="form-fields__label-text">Administrator</span>
@@ -77,9 +73,9 @@
 			</div>
 			<div class="row">
 				<div class="col span-12">
-						<div class="btn-wrap">
-							<button class="btn btn--3d btn--primary">Save</button>
-						</div>
+					<div class="btn-wrap">
+						<button class="btn btn--3d btn--primary">Save</button>
+					</div>
 				</div>
 			</div>
 		</form>
@@ -87,14 +83,13 @@
 	</div>
 </div>
 <script>
+	$('document').ready(function() {
+		$('.remove').click(function() {
+			debugger
+			console.log('dd');
+		});
 
-$('document').ready(function(){
-	$('.remove').click(function(){
-		debugger
-		console.log('dd');
 	});
-	
-});
 </script>
 
 
