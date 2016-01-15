@@ -1,0 +1,105 @@
+<div class="row cms">
+	<div class="col span-12">
+		<h2>Academic Output Details</h2>
+		<ul class="form-fields">
+			<li class="form-fields__item--textarea"><label> <span
+					class="form-fields__label-text">AO Ref</span> <input disabled
+					type="text" ng-model="academicOutput.ref">
+			</label></li>
+		</ul>
+
+		<form class="form">
+			<fieldset class="form__fieldset">
+				<legend>
+					<span class="legend-text">Academic Output Details</span>
+				</legend>
+				<div class="col span-6">
+					<ul class="form-fields">
+						<li class="form-fields__item--textarea"><label> <span
+								class="form-fields__label-text">Title</span> <textarea
+									ng-model="academicOutput.title"></textarea>
+						</label></li>
+						<li class="form-fields__item--select"><label> <span
+								class="form-fields__label-text">AO Status</span> <select
+								ng-model="academicOutput.status">
+									<option value="Rejected">Rejected</option>
+									<option value="Accepted">Accepted</option>
+							</select>
+						</label></li>
+						<li class="form-fields__item--textarea"><label> <span
+								class="form-fields__label-text">AO Status Reason</span> <textarea
+									ng-model="academicOutput.reason"></textarea>
+						</label></li>
+						<li class="form-fields__item--select"><label> <span
+								class="form-fields__label-text">Publication Route</span> <select
+								ng-model="academicOutput.route">
+									<option value="Green">Green</option>
+									<option value="Gold">Gold</option>
+							</select>
+						</label></li>
+					</ul>
+				</div>
+				<!--/ .form-fields -->
+			</fieldset>
+			<fieldset class="form__fieldset">
+				<legend>
+					<span class="legend-text">Awards</span>
+				</legend>
+				<div class="col span-6">
+					<ul ng-repeat="(key,item) in academicOutput.awards">
+						<li class="form-fields__item--text"><label> <span
+								class="form-fields__label-text">Award</span> <input name="{{key}}" type="text"
+								ng-model="item">   <button id="{{key}}" class="btn btn--3d btn--primary remove">
+											              Remove
+											        </button>
+						</label></li>
+					</ul>
+				</div>
+				Add row
+			</fieldset>
+			<div class="row">
+				<fieldset class="form__fieldset">
+								<legend>
+					<span class="legend-text">Settings</span>
+				</legend>
+					<div class="col span-6">
+						<ul class="form-fields">
+							<label> <span class="form-fields__label-text">Administrator</span>
+								<select ng-model="academicOutput.administrator">
+									<option value="Latimer Hazar">Latimer Hazar</option>
+							</select>
+							</label>
+						</ul>
+					</div>
+				</fieldset>
+
+				<div class="col span-6"></div>
+			</div>
+			<div class="row">
+				<div class="col span-12">
+						<div class="btn-wrap">
+							<button class="btn btn--3d btn--primary">Save</button>
+						</div>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</div>
+<script>
+
+$('document').ready(function(){
+	$('.remove').click(function(){
+		debugger
+		console.log('dd');
+	});
+	
+});
+</script>
+
+
+
+
+
+
+

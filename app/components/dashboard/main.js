@@ -15,10 +15,11 @@ define(
         	
         	url: '/',
           templateUrl: 'components/dashboard/partials/view.html',
+          requirelogin:false,
           data : {
               title: "Dashboard from controller",
               subtitle: 'Some dashboard subtitle suub',
-              requireLogin: true
+              requirelogin:false
           },
           controller: ['$scope', '$state', function ($scope, $state) {
         	  console.log('execute dashboard controller');

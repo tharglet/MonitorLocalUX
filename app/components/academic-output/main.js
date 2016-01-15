@@ -19,32 +19,55 @@ define(
           url:          '/academic-output',
           data : {
             title: "Academic Output",
-            requireLogin: true
+            requirelogin:false,
           }
         });
         
+        $stateProvider.state('app.academicOutput-details', {
+        	parent : 'app',
+            url:          '/academic-output-details',
+            templateUrl:  'components/academic-output/partials/details-view.html',
+            data : {
+              title: "Academic Output Details",
+              requirelogin:false,
+            },
+            controller: ['$scope', '$state', function ($scope, $state) {
+              console.log('INTO DETAILS');
+              $scope['academicOutput'] = {
+            	ref : '9584',
+            	title : 'Diagnosis and management of primary cliairy dyskinetia',
+            	status: 'Accepted',
+            	reason: '',
+            	route : 'Gold',
+            	awards : {NEGO16003457 : 'NE/GO16003/457', NEGO89803090 :'NE/GO89803/090'},
+            	administrator: 'Latimer Hazar'
+              };
+              }]
+          });
+        
         // Default config for un-named view.
         $stateProvider.state('app.academicOutput-view', {
-          url:          '^/academic-output/:id',
-          templateUrl:  'components/academic-output/partials/main.html',
-          data : {
-            title: "Academic Output",
-            requireLogin: true
-          },
-          controller: ['$scope', '$state', function ($scope, $state) {
-            
-            $scope['academicOutput'] = {
-              id    : $state.params['id'],
-              name  : "My test academic output",
-              value : 100,
-              tax : function () {
-                return Finance.calcTax(this.value);
-              }
-            };
-            
-            $state.current.data.subTitle = $scope['academicOutput']['name'] + ": " + $state.params['id'];
-          }]
-        });
+            url:          '^/academic-output/:id',
+            templateUrl:  'components/academic-output/partials/main.html',
+            data : {
+              title: "Academic Output",
+              requirelogin:false,
+            },
+            controller: ['$scope', '$state', function ($scope, $state) {
+              
+              $scope['academicOutput'] = {
+                id    : $state.params['id'],
+                name  : "My test academic output",
+                value : 100,
+                tax : function () {
+                  return Finance.calcTax(this.value);
+                }
+              };
+              
+              $state.current.data.subTitle = $scope['academicOutput']['name'] + ": " + $state.params['id'];
+            }]
+          });
+        
       }])
       // .controller('Search', ["$scope", function($scope) {
       // }])

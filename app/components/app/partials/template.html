@@ -67,12 +67,13 @@
      
      <h2>{{$state.current.data.subTitle}}</h2>
                       
-                      <div class="main" ui-view="main">
-      <div class="container-fluid title-area" ><h1><span class='sub-title' ng-if="$state.current.data.subTitle">: <span class="text"></span></span></h1></div>
-      <div class="container-fluid" ui-view ></div>
+                     
     </div>
                       
     </div>
+     <div class="main" ui-view="main">
+      <div class="container-fluid title-area" ><h1><span class='sub-title' ng-if="$state.current.data.subTitle">: <span class="text"></span></span></h1></div>
+      <div class="container-fluid" ui-view ></div>
  	</div>
 
     </div>

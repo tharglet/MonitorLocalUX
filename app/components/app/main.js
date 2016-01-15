@@ -107,6 +107,7 @@ define(
 
       // Default home state.
       $stateProvider.state('app', {
+    	  requirelogin:false,
         abstract: true,
         views : {
           "main" : {
@@ -160,23 +161,23 @@ define(
           console.log("routeChangeStart %o", toState);
           $log.debug('routeChangeStart %o', toState);
           //commented becouse i dont know how to login into grails
-//          if (toState) {
-//            console.log("toState.data:%o",toState.data);
-//            if (toState.data && toState.data.requireLogin) {
-//              if (shared.isAuthenticated()) {
-//                $log.debug('User Logged In for secured resource');
-//              } else {
-//                $log.debug('user not logged in for secured resource');
-//                ev.preventDefault();
-//                $rootScope.pendingPath = toState;
-//                $state.go('app.login');
-//                // $location.path('/login');
-//              }
-//            }
-//            else {
-//              $log.debug('Non-secured resource');
-//            }
-//          }
+          if (toState) {
+            console.log("toState.data:%o",toState.data);
+            if (toState.data && toState.data.requireLogin) {
+              if (shared.isAuthenticated()) {
+                $log.debug('User Logged In for secured resource');
+              } else {
+                $log.debug('user not logged in for secured resource');
+                ev.preventDefault();
+                $rootScope.pendingPath = toState;
+                $state.go('app.login');
+                // $location.path('/login');
+              }
+            }
+            else {
+              $log.debug('Non-secured resource');
+            }
+          }
  
           $rootScope.isAuthenticated = shared.isAuthenticated();
 

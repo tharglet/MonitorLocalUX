@@ -1,0 +1,179 @@
+// Breakpoints
+$jBreakpointMin: 465px;
+$jBreakpointInner: 565px;
+$jBreakpointMid: 630px;
+$jBreakpointOuter: 757px;
+$jBreakpointIntermediate: 850px;
+$jBreakpointMax: 950px;
+
+$gutter-width: 20px;
+
+
+// Colours
+$jBlue: #0c2931;
+$jBrightBlue: #095b83;
+$jWhite: #fff;
+$jBlack: #000;
+$jCopy: #2c3841;
+$jCopyB: #00557f;
+$jLink: $jCopyB;
+$jHover: $jLink;
+$jActive: $jLink;
+$jBgPurple: #851b63;
+$jLightContentBlue: #e4e9ec;
+$jMidContentBlue: #d5dee2;
+$jDarkContentBlue: #c4d1d7;
+$jVeryDarkContentBlue: #a6b7bf;
+$jLightGreyBackground: #e4eaec;
+$jSubMenu: #2B3840;
+$jSubMenuHover: #1b2024;
+$jSubMenuShadow: #1F282F;
+$jMidLightGrey: #d5dee3;
+$jMidGrey: #a7afb6;
+$jNavItemHover: #a92173;
+$jNavItemHoverplus25percent: #690033;//@optimise
+$primaryButtonBottom: #97b4c2;
+$primaryButtonHoverBottom: #9bbccc;
+$jTweetBackground: $jLightGreyBackground;
+$jOrange: #e85e13;
+$jOrangeDark: #cd4901;
+$jMidNoticeBlue: #dde4e7;
+$jDarkNoticeBlue: #c5cdd2;
+$jMidGreyPurple: #59656E;
+$jFormErrorRed: #c00;
+$jCarouselBackground: #f4f7f8;
+$jAudioPlayerGrey: #ededed;
+$jTableColour: #666;
+$jAudioPlayerBlue: $jDarkContentBlue;
+$jLightBlue:#d9eff7;
+$redButton:#d7224f;
+$cookieConfirmBackground: #a0bdcc;
+$cookieConfirmDark: #035780;
+$cookieHover: #88b5cc;
+$autoSuggest:#63727c;
+$notificationBackground: $jFormErrorRed;
+
+// Light colours are used for borders and markers. Dark shades are used for text
+$jProductsAndServicesLight: #8c930d;
+$jProductsAndServicesDark: #585d01;
+$jRandDPublicationsLight: #0092cb;
+$jRandDPublicationsDark: #069;
+
+// R&D colours
+$lBlue: $jLightBlue;
+$mBlue: $jRandDPublicationsLight;
+$dBlue: #12567d;
+$navyBlue: #2b383f;
+$dGrey: $jTableColour;
+$greyBlue: #85939b;
+$lgreyBlue: #d4dfe1;
+$lgreyLight: #d4dee3;
+$lgreyLighter: #c3d1da;
+$mgreyBlue: $jDarkContentBlue;
+$lBeige: #e3e8eb;
+
+// Tag colours
+$standardTag: #014161;
+$standardTagHover: #025680;
+$navyTagHover: #104757;
+
+// Alert colours
+$success-text: #3c763d;
+$success-bg: #dff0d8;
+$success-border: #d6e9c6;
+
+$info-text: #31708f;
+$info-bg: #d9edf7;
+$info-border: #bce8f1;
+
+$warning-text: #8a6d3b;
+$warning-bg: #fcf8e3;
+$warning-border: #faebcc;
+
+$danger-text: #a94442;
+$danger-bg: #f2dede;
+$danger-border: #ebccd1;
+
+
+@mixin font-weight($weight) {
+  font-weight: normal; // prevent browser attempting faux font-weights
+
+  @if $weight == 300 {
+    font-family: "Stag Sans Web Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  @if $weight == 400 {
+    font-family: "Stag Sans Web Book", "HelveticaNeue", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  @if $weight == 500 {
+    font-family: "Stag Sans Web Medium", "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+//--------------------------
+// Rem helper mixin
+
+// Use to apply a rem measurement to a certain css property
+//
+// @param $property
+//   The CSS property to apply the value to.
+//   (E.g. margin-bottom or margin)
+//
+// @param $value
+//   The measurement to apply to the property. This should be a value in pixels, but *without* the unit and can be shorthand.
+//   (E.g. 27 or 10 20)
+//
+// @TODO: Replace explicit rem and px declarations throughout stie styles with this mixin
+// @OPTIMIZE: Explore potential improvements, including how to set SASS vars to null without the use of an 'ambiguous zero'
+
+@mixin rem($property, $size_in_px) {
+  // Init shorthand variables (must use 0 for null...)
+  $shorthand_in_px: 0;
+  $shorthand_in_rem: 0;
+
+  @each $size in $size_in_px { // Loop through values and concatenate
+    $shorthand_in_px: $shorthand_in_px + ($size) + px + " ";
+    $shorthand_in_rem: $shorthand_in_rem + ($size/10) + rem + " ";
+  }
+
+  // Output styles
+  // IE8 and below don't support REMs so based on our $old-ie variable we will serve it pixels
+  // We use rems so users can resize text - (IE9 still doesnt support text resizing)
+  $old-ie: false !default;
+  @if $old-ie {
+    #{$property}: $shorthand_in_px;
+  } @else {
+    #{$property}: $shorthand_in_rem;
+  }
+}
+
+// Shorthand wrapper around the rem helper for font size
+@mixin font-size($size_in_px) {
+  @include rem(font-size, $size_in_px);
+}
+
+// Shorthand wrapper around the rem helper for line height
+@mixin line-height($size_in_px) {
+  @include rem(line-height, $size_in_px);
+}
+
+//==============================================================
+//  Clearfix
+//  Containing floats: h5bp.com/q
+//  Alternative to the Compass version (@include clearfix;)
+
+@mixin cf {
+  zoom:1;
+
+  &:before,
+  &:after {
+    content:"";
+    display:table;
+  }
+
+  &:after {
+    clear:both;
+  }
+}
+

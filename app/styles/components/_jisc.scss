@@ -1,0 +1,472 @@
+/* ==========================================================================
+   *Pattern: Forms
+   ========================================================================== */
+
+// Remove vendor-specifics for UI consistency
+
+@import "./main.scss";
+@import "./ux.jisc-1.1.0.style.min.scss";
+@import "../variables/mixins-and-variables.scss";
+
+textarea,
+select,
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+select {
+  max-width: 100%;
+
+  .lt-ie9 & {
+    max-width: 98.7%;
+  }
+}
+
+// Allow only vertical resizing of textareas.
+textarea {
+  resize: vertical;
+}
+
+// form fields have labels to the left, fields to the right at desktop size.
+// Collapse to labels above on mobile.
+
+.form {
+  @include font-weight(400);
+  @include font-size(15);
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  .legal {
+    @include font-size(13);
+    @include line-height(16);
+  }
+}
+
+.form__fieldset {
+  border: 3px solid $jMidContentBlue;
+  padding: 65px 15px 15px;
+  position: relative;
+  margin-bottom: 20px;
+  // Fix for select boxes not honouring max-width
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+
+  //On a white background, the fieldset becomes a solid box instead:
+  .featured & {
+    border-width: 0;
+    background: $jLightContentBlue;
+  }
+}
+
+.feedback {
+  padding: 15px;
+  background: $jLightContentBlue;
+}
+
+.legend-text {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  @include font-weight(300);
+  @include font-size(24);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  border: 2px solid $jMidContentBlue;
+  padding: 4px;
+  margin: 0;
+
+  &:focus {
+    border: 2px solid $jVeryDarkContentBlue;
+  }
+
+  .s-error & {
+    border-color: $jFormErrorRed;
+  }
+}
+
+.form-fields {
+  li {
+    margin-bottom: 15px;
+  }
+
+  // Nested lists for checkboxes and radio buttons
+  ul {
+    margin-top: 8px;
+
+    li {
+      margin-bottom: 8px;
+    }
+  }
+
+  // For mobile sizes, stretch input boxes wide
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    width: 90%;
+  }
+
+  select,
+  div.selector {
+    width: 86% !important;
+
+    @media screen and (max-width: $jBreakpointInner) {
+      width: 230px !important;
+    }
+  }
+}
+
+.form-fields__label-text {
+  display: block;
+
+  .s-error & {
+    color: $jFormErrorRed;
+  }
+}
+
+.form-fields__item-checkbox {
+  .s-error {
+    padding-left: 0;
+
+    .form-fields__label-text {
+      color: $jCopy;
+    }
+  }
+}
+
+.error-message {
+  display: block;
+  color: $jFormErrorRed;
+  @include font-size(15);
+  @include font-weight(500);
+
+  /* Add an asterisk for narrow screens only: */
+  @media screen and (max-width: $jBreakpointMax) {
+    &:before { content: "*"; }
+  }
+
+  @media screen and (min-width: $jBreakpointInner) {
+    @include font-weight(400);
+  }
+}
+
+/* For medium width screens, don't have inputs so wide, but still no side-by-side floating */
+@media screen and (min-width: $jBreakpointInner) {
+  .form-fields input[type="text"],
+  .form-fields input[type="email"],
+  .form-fields input[type="password"],
+  .form-fields textarea {
+    width: 280px;
+  }
+
+  .form-fields select,
+  .form-fields div.selector {
+    width: 245px !important;
+  }
+}
+
+// For wider screens, float labels and inputs side-by-side
+@media screen and (min-width: $jBreakpointMid) {
+  .form__fieldset {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .legend-text {
+    left: 25px;
+  }
+
+  .form-fields {
+    ul {
+      // Nested lists for checkboxes and radio buttons
+      margin-top: 0;
+      margin-left: 22%;
+    }
+    .form-fields__item-checkbox,
+    .form-fields__item-radio {
+     ul {
+      display: inline-block;
+      margin-left: 0px;
+     }
+    }
+
+    li {
+      @include cf;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+      width: 36%;
+    }
+
+    select,
+    div.selector {
+      width: 31% !important;
+    }
+  }
+
+  .form-fields__label-text {
+    float: left;
+    width: 20%;
+    text-align: right;
+    margin-right: 2%;
+  }
+
+  /* Small vertical alignment adjustments for labels and inputs vs. labels and radio/checkboxes */
+  .form-fields__item--text .form-fields__label-text,
+  .form-fields__item--textarea .form-fields__label-text {
+    padding-top: 5px;
+  }
+
+  .error-message {
+    float: right;
+    width: 35%;
+    position: relative;
+    background: $jWhite;
+    padding: 5px 10px;
+  }
+
+  // Position buttons nicely relative to other form elements:
+  .btn-wrap {
+    padding-left: 24%;
+    margin-bottom: 20px;
+
+    // If the button is ~inside~ a fieldset then the spacing needs to be tweaked:
+    fieldset & {
+      padding-left: 22%;
+    }
+
+    .btn {
+      margin-right: 4px;
+    }
+  }
+}
+
+.btn-wrap {
+  .btn--primary {
+    @media screen and (max-width: $jBreakpointInner) {
+      margin-bottom: 10px;
+      display: block;
+    }
+  }
+}
+
+div.selector {
+  @extend .btn;
+  @extend .btn--3d;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px $jMidContentBlue;
+
+  @media screen and (max-width: $jBreakpointInner) {
+    width: 250px !important;
+  }
+
+  .lt-ie9 & {
+    padding: 3px 7px;
+  }
+
+  span {
+    position: relative;
+    padding-right: 25px;
+
+    @media screen and (max-width: $jBreakpointInner) {
+      width: 200px !important;
+    }
+
+    &:after {
+      content: "\f107";
+      display: block;
+      position: absolute;
+      top: -1px;
+      right: 5px;
+      font-family: 'icomoon';
+      speak: none;
+      @include font-size(20);
+      font-style: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+  &.focus {
+    border-color: $jVeryDarkContentBlue;
+    box-shadow: 0 0 0 1px $jVeryDarkContentBlue;
+  }
+}
+
+.form-fields__item-select {
+  .error-message {
+    .lt-ie9 & {
+      padding-top: 0;
+    }
+  }
+  .form-fields__label-text {
+    padding-top: 3px;
+    .lt-ie9 & {
+      padding-top: 0;
+    }
+  }
+}
+
+.form-fields__item-select--large {
+  .selector {
+    width: 300px!important;
+
+    @media screen and (max-width: $jBreakpointInner) {
+      width: 100% !important;
+      box-sizing: border-box;
+    }
+  }
+  .lt-ie9 & {
+    select {
+      width: 300px!important;
+
+      @media screen and (max-width: $jBreakpointInner) {
+        width: 100% !important;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+.form-fields__item-select--medium {
+  .selector {
+    width: 200px!important;
+  }
+  .lt-ie9 & {
+    select {
+      width: 200px!important;
+    }
+  }
+}
+
+.form-fields__item-select--small {
+  .selector {
+    width: 100px!important;
+  }
+  .lt-ie9 & {
+    select {
+      width: 100px!important;
+    }
+  }
+}
+
+.input--large {
+  width: 300px;
+
+  @media screen and (max-width: $jBreakpointInner) {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.input--medium {
+  width: 200px;
+}
+
+.input--small {
+  width: 100px;
+}
+
+.form-fields__item--single {
+  @include cf;
+  .error-message {
+    clear: both;
+    padding-top: 5px;
+    margin-left: 0;
+    @media screen and (min-width: $jBreakpointInner) {
+      clear: none;
+      float: left;
+      width: auto;
+      margin-left: 10px;
+    }
+  }
+  input,
+  .selector,
+  select {
+    float: left;
+  }
+  .form-fields__label-text {
+    width: auto;
+  }
+  &.form-fields__item-checkbox {
+    input {
+      margin-right: 10px;
+    }
+    .error-message {
+      padding: 0;
+    }
+  }
+}
+
+
+
+.form-fields__item-radio {
+  @include cf;
+  .error-message {
+    padding-left: 0;
+    float: left;
+    width: auto;
+  }
+}
+
+// Uniform JS custom select fields: https://github.com/pixelmatrix/uniform
+// Heavily tweaked base styles to allow for more flexible styling (inc. CSS-only)
+
+// Keeping Uniform styling separate
+
+div.selector {
+  position: relative;
+  overflow: hidden;
+
+  select {
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    width: 100% !important;
+    height: 100%;
+    -webkit-appearance: menulist-button;
+  }
+
+  span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    width: auto !important;
+    text-align: left;
+  }
+}
