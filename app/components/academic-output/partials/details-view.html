@@ -46,8 +46,12 @@
 					<span class="legend-text">Awards</span>
 				</legend>
 				<div class="col span-6" id="award">
-					<ul class="award-record" item='item' index="$index" key='key'
-						ng-repeat="(key,item) in academicOutput.awards">
+					<ul>
+						
+						<li  class="form-fields__item--text" ng-repeat="(key,item) in academicOutput.awards">
+							<award-record item='academicOutput.awards[key]' key='key'></award-record>
+						</li>
+						
 					</ul>
 				</div>
 				

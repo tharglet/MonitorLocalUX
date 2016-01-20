@@ -69,12 +69,16 @@ define(
       
       .directive('awardRecord', ['AOStorage',function(AOStorage) {
     	  return {
-    		    restrict: 'CA',
+    		    restrict: 'E',
+    		    scope:{
+    		    	globalitem : '=item',
+    		    	key : '=key'
+    		    },
     		    templateUrl: 'components/academic-output/partials/award-record-directive.html',
     		    link: function(scope, element, attrs){
     		    		element.find('.remove').bind('click', function(){
     		    			AOStorage.deleteAward(scope.key);
-    		    		});
+    		    		});    		    		
     	            }
     		  }
     		}])
