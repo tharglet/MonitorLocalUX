@@ -16,7 +16,20 @@
     },
     "ao_publisher": {
         "status": "Accepted",
+		"published" : false,
         "date": "12/01/16",
-        "note": "Some note"
-    }
+        "note": "Some note",
+		"name" : "Matt the Publisher",
+		"cost" : 1234,
+		"payment" : "Unpaid"
+    },
+	"ao_persons" : [{
+		"name" : "Natalie Someone" ,
+		"role" : "correspondent",
+		"organisation" : "jisc",
+		"email" : "test@yahoo.com",
+		"telephone" : "515 555 555",
+		"verified" : false
+		
+	}]
 }

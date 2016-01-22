@@ -41,6 +41,21 @@ define(
               
               }]
           });
+        
+        $stateProvider.state('app.academicOutput-list', {
+        	parent : 'app',
+            url:          '/academic-output-list',
+            templateUrl:  'components/academic-output/partials/list-view.html',
+            data : {
+              title: "Academic Output List",
+              requirelogin:false,
+            },
+            controller: ['$scope', '$state', 'AOStorage', function ($scope, $state, AOStorage) {
+              
+           	$scope['academicOutputList'] = AOStorage.getStorage().AOList;
+              
+              }]
+          });
                 
         // Default config for un-named view.
         $stateProvider.state('app.academicOutput-view', {
@@ -92,7 +107,26 @@ define(
     	route : 'Gold',
     	awards : {NEGO16003457 : 'NE/GO16003/457', NEGO89803090 :'NE/GO89803/090'},
     	administrator: 'Latimer Hazar'
-      }
+      },
+	    AOList : {0:{
+	    	ID : '1234',
+	    	title : 'Some Academic article',
+	    	authors : {0:'Mateusz Kasiuba'},
+	    	publication : 'Non exist Journal',
+	    	publisher : 'famous publisher',
+	    	cost : '9999',
+	    	status : 'Unpublished',
+	    	payment : 'Unpaid'
+	    },1:{
+	    	ID : '9999',
+	    	title : 'Special Article',
+	    	authors : {0:'Famous Author'},
+	    	publication : 'Non exist Journal',
+	    	publisher : 'small publisher',
+	    	cost : '123',
+	    	status : 'Published',
+	    	payment : 'Unpaid'
+	    }}
     };
     
     var deleteAward = function(key){
