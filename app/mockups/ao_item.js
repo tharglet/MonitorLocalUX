@@ -23,7 +23,7 @@
 		"cost" : 1234,
 		"payment" : "Unpaid"
     },
-	"ao_persons" : [{
+	"ao_people" : [{
 		"name" : "Natalie Someone" ,
 		"role" : "correspondent",
 		"organisation" : "jisc",
