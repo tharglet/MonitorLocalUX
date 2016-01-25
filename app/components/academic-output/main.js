@@ -37,7 +37,6 @@ define(
             resolve: {
               // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
               deps: $couchPotatoProvider.resolveDependencies([
-                'academic-output/ao-factory-storage',
                 'academic-output/ao-directive-award',
                 'academic-output/ao-controller-view'
               ])
