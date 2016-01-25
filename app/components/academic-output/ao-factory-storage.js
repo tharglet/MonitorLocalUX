@@ -1,12 +1,11 @@
 'use strict';
 
+console.log ("Loading AO Storage Factory file!");
 define(
-    'aofactory',// Name the Javascript module.
-    ['academic-output'],
-    function () {
-      console.log ("Create a factory!");
-      return angular.module('academic-output')
-      .factory('AOStorage', function() {
+    ['app'], // We use the main module "app" to register all controllers/factories or services that we load on-the-fly.
+    function (app) {
+      return app.registerFactory('AOStorage', function() {
+        console.log ("Initialising AO Storage Factory!");
         var storage = {
             AOData : {
               id : 9584,

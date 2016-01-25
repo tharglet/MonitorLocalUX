@@ -7,12 +7,15 @@
  */
 define(
   "academic-output",     // JS module name (not the same as the angular module name.)
-  ['globals/Finance', 'search'],   // File locations can also be used instead of named includes.
+  [
+   'globals/Finance', // File locations can also be used instead of named includes.
+   'search'
+  ],
   function (Finance) {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router'])
-      .config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
+    return angular.module('academic-output', ['ui.router', 'scs.couch-potato'])
+      .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', function($stateProvider,$urlRouterProvider,$couchPotatoProvider) {
   
         // State for search.
         $stateProvider.state('app.componentSearch.academicOutput', {
@@ -31,15 +34,15 @@ define(
               title: "Academic Output Details",
               requirelogin:false,
             },
-            controller: ['$scope', '$state', 'AOStorage', function ($scope, $state, AOStorage) {
-              
-           	$scope['academicOutput'] = AOStorage.getStorage().AOData;
-            	
-              $scope.addRow = function(){
-            	  AOStorage.addAward();
-              };
-              
-              }]
+            resolve: {
+              // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
+              deps: $couchPotatoProvider.resolveDependencies([
+                'academic-output/ao-factory-storage',
+                'academic-output/ao-directive-award',
+                'academic-output/ao-controller-view'
+              ])
+            },
+            controller: 'AOViewCtrl'
           });
         
         $stateProvider.state('app.academicOutput-list', {
@@ -81,81 +84,6 @@ define(
           });
         
       }])
-      
-      .directive('awardRecord', ['AOStorage',function(AOStorage) {
-    	  return {
-    		    restrict: 'E',
-    		    scope:{
-    		    	globalitem : '=item',
-    		    	key : '=key'
-    		    },
-    		    templateUrl: 'components/academic-output/partials/award-record-directive.html',
-    		    link: function(scope, element, attrs){
-    		    		element.find('.remove').bind('click', function(){
-    		    			AOStorage.deleteAward(scope.key);
-    		    		});    		    		
-    	            }
-    		  }
-    		}])
-    .factory('AOStorage', function() {
-    var storage = {
-      AOData : {
-      	ref : '9584',
-    	title : 'Diagnosis and management of primary cliairy dyskinetia',
-    	status: 'Accepted',
-    	reason: '',
-    	route : 'Gold',
-    	awards : {NEGO16003457 : 'NE/GO16003/457', NEGO89803090 :'NE/GO89803/090'},
-    	administrator: 'Latimer Hazar'
-      },
-	    AOList : {0:{
-	    	ID : '1234',
-	    	title : 'Some Academic article',
-	    	authors : {0:'Mateusz Kasiuba'},
-	    	publication : 'Non exist Journal',
-	    	publisher : 'famous publisher',
-	    	cost : '9999',
-	    	status : 'Unpublished',
-	    	payment : 'Unpaid'
-	    },1:{
-	    	ID : '9999',
-	    	title : 'Special Article',
-	    	authors : {0:'Famous Author'},
-	    	publication : 'Non exist Journal',
-	    	publisher : 'small publisher',
-	    	cost : '123',
-	    	status : 'Published',
-	    	payment : 'Unpaid'
-	    }}
-    };
-    
-    var deleteAward = function(key){
-    	delete(storage.AOData['awards'][key]);
-    }
-    
-    var addAward = function(){
-    	storage.AOData['awards'][Date.now()] = '';
-    	console.log(storage.AOData['awards']);
-    }
-    
-    var getStorage = function(){
-    	return storage;
-    }
-    
-    return {
-        deleteAward: deleteAward,
-        addAward: addAward,
-        getStorage: getStorage
-      };
-    });
-    		
-    
-    		;
-      // .controller('Search', ["$scope", function($scope) {
-      // }])
     ;
-    
-    
-    
   }
 );
