@@ -1,13 +1,18 @@
+<div ng-click="showData()">
+
+Click here to log the scope data!
+</div>
 <div class="row cms">
 	<div class="col span-12">
 		<h2>Academic Output Details</h2>
 		<ul class="form-fields">
 			<li class="form-fields__item--textarea"><label> <span
 					class="form-fields__label-text">AO Ref</span> <input disabled
-					type="text" ng-model="academicOutput.ref">
+					type="text" ng-model="academicOutput.ao_id">
 			</label></li>
-		</ul>
-
+		</ul><pre>
+	{{academicOutput |json}}
+	</pre>
 		<form class="form">
 			<fieldset class="form__fieldset">
 				<legend>
@@ -17,18 +22,18 @@
 					<ul class="form-fields">
 						<li class="form-fields__item--textarea"><label> <span
 								class="form-fields__label-text">Title</span> <textarea
-									ng-model="academicOutput.title"></textarea>
+									ng-model="academicOutput.ao_title"></textarea>
 						</label></li>
 						<li class="form-fields__item--select"><label> <span
 								class="form-fields__label-text">AO Status</span> <select
-								ng-model="academicOutput.status">
+								ng-model="academicOutput.ao_status">
 									<option value="Rejected">Rejected</option>
 									<option value="Accepted">Accepted</option>
 							</select>
 						</label></li>
 						<li class="form-fields__item--textarea"><label> <span
 								class="form-fields__label-text">AO Status Reason</span> <textarea
-									ng-model="academicOutput.reason"></textarea>
+									ng-model="academicOutput.ao_apc_status.status_reason"></textarea>
 						</label></li>
 						<li class="form-fields__item--select"><label> <span
 								class="form-fields__label-text">Publication Route</span> <select

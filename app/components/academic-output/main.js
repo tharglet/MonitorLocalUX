@@ -20,27 +20,14 @@ define(
           data : {
             title: "Academic Output",
             requirelogin:false,
-          }
+          },
+          controller: ['$scope', '$state', 'AOStorage', function ($scope, $state, AOStorage) {
+        	 $scope.academic = AOStorage;
+        	 console.log('here loading AOStorage');
+             $scope['academicOutputList'] = AOStorage.getStorage().AOList;
+                
+          }]
         });
-        
-        $stateProvider.state('app.academicOutput-details', {
-        	parent : 'app',
-            url:          '/academic-output-details',
-            templateUrl:  'components/academic-output/partials/details-view.html',
-            data : {
-              title: "Academic Output Details",
-              requirelogin:false,
-            },
-            controller: ['$scope', '$state', 'AOStorage', function ($scope, $state, AOStorage) {
-              
-           	$scope['academicOutput'] = AOStorage.getStorage().AOData;
-            	
-              $scope.addRow = function(){
-            	  AOStorage.addAward();
-              };
-              
-              }]
-          });
         
         $stateProvider.state('app.academicOutput-list', {
         	parent : 'app',
@@ -59,25 +46,36 @@ define(
                 
         // Default config for un-named view.
         $stateProvider.state('app.academicOutput-view', {
+        	parent : 'app',
             url:          '^/academic-output/:id',
-            templateUrl:  'components/academic-output/partials/main.html',
+            templateUrl:  'components/academic-output/partials/details-view.html',
             data : {
-              title: "Academic Output",
+              title: "Academic Output Details",
               requirelogin:false,
             },
-            controller: ['$scope', '$state', function ($scope, $state) {
-              
-              $scope['academicOutput'] = {
-                id    : $state.params['id'],
-                name  : "My test academic output",
-                value : 100,
-                tax : function () {
-                  return Finance.calcTax(this.value);
-                }
+            controller: ['$scope', '$state', 'AOStorage', 'utils', function ($scope, $state, AOStorage, utils) {
+                          	
+           	console.log($scope['academicOutput']);
+           	
+           	console.log('loging the id ');
+           	console.log($state.params['id']);
+           	
+           	//This is a very very bad practice of coding! I have to put this into scope in some parent method
+           	// but Im blocked by search state to create another abstract state
+           	AOStorage.async().then(function(d) {
+           		$scope['academicOutput'] = utils.findById(d, $state.params['id']);
+                console.log($scope.data);
+              });
+           	
+           	$scope.showData = function(){
+           		console.log($scope['academicOutput']);
+           	}
+           	
+              $scope.addRow = function(){
+            	  AOStorage.addAward();
               };
               
-              $state.current.data.subTitle = $scope['academicOutput']['name'] + ": " + $state.params['id'];
-            }]
+              }]
           });
         
       }])
@@ -97,60 +95,107 @@ define(
     	            }
     		  }
     		}])
-    .factory('AOStorage', function() {
-    var storage = {
-      AOData : {
-      	ref : '9584',
-    	title : 'Diagnosis and management of primary cliairy dyskinetia',
-    	status: 'Accepted',
-    	reason: '',
-    	route : 'Gold',
-    	awards : {NEGO16003457 : 'NE/GO16003/457', NEGO89803090 :'NE/GO89803/090'},
-    	administrator: 'Latimer Hazar'
+    /**
+     * Temp factory provides us some utils
+     * 
+     * 
+     */
+  .factory('utils', function () {
+    return {
+      // Util for finding an object by its 'id' property among an array
+      findById: function findById(a, id) {
+    	  console.log('finding in:');
+    	  console.log(a);
+    	  console.log(id);
+        for (var i = 0; i < a.length; i++) {
+        	console.log(a[i]);
+        	console.log(id);
+          if (a[i].ao_id == id) return a[i];
+        }
+        console.log('null!');
+        return null;
       },
-	    AOList : {0:{
-	    	ID : '1234',
-	    	title : 'Some Academic article',
-	    	authors : {0:'Mateusz Kasiuba'},
-	    	publication : 'Non exist Journal',
-	    	publisher : 'famous publisher',
-	    	cost : '9999',
-	    	status : 'Unpublished',
-	    	payment : 'Unpaid'
-	    },1:{
-	    	ID : '9999',
-	    	title : 'Special Article',
-	    	authors : {0:'Famous Author'},
-	    	publication : 'Non exist Journal',
-	    	publisher : 'small publisher',
-	    	cost : '123',
-	    	status : 'Published',
-	    	payment : 'Unpaid'
-	    }}
     };
+  })
+    		
+    .factory('AOStorage', ['$http', 'utils', function ($http, utils) {
+    var path = '../mockups/ao_item.json';
+    var academic;
     
-    var deleteAward = function(key){
+    var factory = {
+    	async: function(){
+    		//we load data only once 
+    		if(!academic){
+    		    var academic = $http.get(path).then(function (response) {
+    	    		console.log('here is your data :)');
+    	    		console.log(response.data.list)
+    	    		return response.data.list;
+    	      }, function (response) {
+    	        console.log('something goes wrong!');
+    	        console.log(response);
+    	      });
+    		}
+    		return academic;
+    	}
+    };
+    return factory;
+    
+    var factory = {};
+    
+    /**
+     * Deleting an academic output item
+     * 
+     * TODO finish and test
+     * 
+     * var key - academic output ID
+     */
+    factory.delete = function(key){
     	delete(storage.AOData['awards'][key]);
     }
     
-    var addAward = function(){
+    /**
+     * Add a Academic output 
+     * 
+     * TODO 
+     * FINISH AND USE
+     * 
+     */
+    factory.add = function(){
     	storage.AOData['awards'][Date.now()] = '';
     	console.log(storage.AOData['awards']);
     }
     
-    var getStorage = function(){
-    	return storage;
+    /**
+     * 
+     * Get academic output by id
+     * 
+     * var id - Academic output id
+     */
+    factory.get = function(id){
+	 return academic.then(function(){
+		 console.log('inside the promise');
+		 console.log(academic);
+		 console.log(utils.findById(academic, id));
+		 return utils.findById(academic, id);
+	 },function (response) {
+	        console.log('something goes wrong!');
+	        console.log(response);
+	      })
+    }
+      
+    /**
+     * Get all list of academic output
+     * 
+     * TODO write the body and use
+     */
+    factory.getList = function(){
+    	return academic.then(function(){
+    		 utils.findById(academic, id);
+    	})
     }
     
-    return {
-        deleteAward: deleteAward,
-        addAward: addAward,
-        getStorage: getStorage
-      };
-    });
-    		
-    
-    		;
+    return factory;
+    }]);
       // .controller('Search', ["$scope", function($scope) {
       // }])
     ;
