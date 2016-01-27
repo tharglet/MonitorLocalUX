@@ -1,5 +1,4 @@
-{"list" :{ "0" :
-{
+{"list" :[{
     "ao_id": 5,
     "ao_title": "Test AO",
     "ao_apc_status": {
@@ -24,7 +23,7 @@
 		"cost" : 1234,
 		"payment" : "Unpaid"
     },
-	"ao_people" : { "0" : {
+	"ao_people" : [{
 		"name" : "Natalie Someone" ,
 		"role" : "correspondent",
 		"organisation" : "jisc",
@@ -32,8 +31,8 @@
 		"telephone" : "515 555 555",
 		"verified" : false
 		
-	}}
-}, "1" :
+	}]
+},
 {
     "ao_id": 123,
     "ao_title": "Test AO",
@@ -59,7 +58,7 @@
 		"cost" : 1234,
 		"payment" : "Unpaid"
     },
-	"ao_people" : { "0" : {
+	"ao_people" : [{
 		"name" : "Natalie Someone" ,
 		"role" : "correspondent",
 		"organisation" : "jisc",
@@ -67,5 +66,5 @@
 		"telephone" : "515 555 555",
 		"verified" : false
 		
-	}}
-}}}
+	}]
+}]}

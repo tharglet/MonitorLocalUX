@@ -20,27 +20,21 @@ define(
         // State for search.
         $stateProvider.state('app.componentSearch.academicOutput', {
           url:          '/academic-output',
+          templateUrl:  'components/academic-output/partials/list-view.html',
           data : {
             title: "Academic Output",
             requirelogin:false,
-          }
-        });
-        
-        $stateProvider.state('app.academicOutput-list', {
-        	parent : 'app',
-            url:          '/academic-output-list',
-            templateUrl:  'components/academic-output/partials/list-view.html',
-            data : {
-              title: "Academic Output List",
-              requirelogin:false,
+          },
+          resolve: {
+              // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
+              deps: $couchPotatoProvider.resolveDependencies([
+                'academic-output/ao-controller-view',
+                'academic-output/ao-factory-utils'
+              ])
             },
-            controller: ['$scope', '$state', 'AOStorage', function ($scope, $state, AOStorage) {
-              
-           	$scope['academicOutputList'] = AOStorage.getStorage().AOList;
-              
-              }]
-          });
-                
+          controller: 'AOViewCtrl'
+        });
+                        
         // Default config for un-named view.
         $stateProvider.state('app.academicOutput-view', {
             url:          '^/academic-output/:id',
@@ -58,6 +52,38 @@ define(
             },
             controller: 'AOViewCtrl'
           });
+        
+        
+        
+        
+        
+        
+     // Temp state for list - until i dont get an answer about using search
+        $stateProvider.state('app.academicOutputList', {
+          url:          '/academic-output-list',
+          templateUrl:  'components/academic-output/partials/list-view.html',
+          data : {
+            title: "Academic Output",
+            requirelogin:false,
+          },
+          resolve: {
+              // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
+              deps: $couchPotatoProvider.resolveDependencies([
+                'academic-output/ao-controller-view',
+                'academic-output/ao-factory-utils'
+              ])
+            },
+          controller: 'AOViewCtrlList'
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
       }]);
   }
