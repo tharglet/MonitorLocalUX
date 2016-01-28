@@ -1,6 +1,5 @@
 'use strict';
 
-console.log ("Loading AO Storage Factory file!");
 define(
     ['app'], // We use the main module "app" to register all controllers/factories or services that we load on-the-fly.
     function (app) {

@@ -11,7 +11,6 @@ define(
        	//This is a very very bad practice of coding! I have to put this into scope in some parent method
        	// but Im blocked by search state to create another abstract state
        	AOStorage.async().then(function(d) {
-       		console.log(d);
        		$scope['academicOutput'] = utils.findById(d, $state.params['id']);
           });
        	
@@ -26,7 +25,7 @@ define(
        	//This is a very very bad practice of coding! I have to put this into scope in some parent method
        	// but Im blocked by search state to create another abstract state
        	AOStorage.async().then(function(d) {
-       		$scope['academicOutput'] = utils.findById(d, $state.params['id']);
+       		$scope['academicOutput'] = d;
           });
        	
        	$scope.showData = function(){
