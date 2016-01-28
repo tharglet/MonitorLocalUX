@@ -1,70 +1,223 @@
-{"list" :[{
-    "ao_id": 5,
-    "ao_title": "Test AO",
-    "ao_apc_status": {
-        "code": 1,
-        "value": "Accepted",
-        "date": "12/01/16",
-        "reason": "Some reason"
-    },
-    "ao_assigned_to": "Latimer Hazal",
-    "ao_route": "Gold",
-    "ao_submitted": {
-        "status": false,
-        "date": false,
-        "note": "Some note"
-    },
-    "ao_publisher": {
-        "status": "Accepted",
-		"published" : false,
-        "date": "12/01/16",
-        "note": "Some note",
-		"name" : "Matt the Publisher",
-		"cost" : 1234,
-		"payment" : "Unpaid"
-    },
-	"ao_people" : [{
-		"name" : "Natalie Someone" ,
-		"role" : "correspondent",
-		"organisation" : "jisc",
-		"email" : "test@yahoo.com",
-		"telephone" : "515 555 555",
-		"verified" : false
-		
-	}]
-},
 {
-    "ao_id": 123,
-    "ao_title": "Test AO",
-    "ao_apc_status": {
-        "status_code": 1,
-        "status_value": "Approved",
-        "date": "12/01/16",
-        "status_reason": "Some reason"
-    },
-    "ao_assigned_to": "Latimer Hazal",
-    "ao_route": "gold",
-    "ao_submitted": {
-        "status": false,
-        "date": false,
-        "note": "Some note"
-    },
-    "ao_publisher": {
-        "status": "Accepted",
-		"published" : false,
-        "date": "12/01/16",
-        "note": "Some note",
-		"name" : "Matt the Publisher",
-		"cost" : 1234,
-		"payment" : "Unpaid"
-    },
-	"ao_people" : [{
-		"name" : "Natalie Someone" ,
-		"role" : "correspondent",
-		"organisation" : "jisc",
-		"email" : "test@yahoo.com",
-		"telephone" : "515 555 555",
-		"verified" : false
-		
-	}]
-}]}
+    "class": "monitor.local.AcademicOutput",
+    "id": 7,
+    "costs": [{
+        "class": "monitor.local.CostItem",
+        "id": 9,
+        "academicOutput": {
+            "_ref": "../..",
+            "class": "monitor.local.AcademicOutput"
+        },
+        "awards": [{
+            "class": "monitor.local.Tag",
+            "id": 51,
+            "value": "NE/G016003/1",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 7,
+                "description": "CostItem.Awards"
+            }
+        }],
+        "budget": null,
+        "category": {
+            "class": "monitor.local.RefdataValue",
+            "id": 3,
+            "value": "Basic APC Cost",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 2,
+                "description": "CostItem.Category"
+            }
+        },
+        "currency": "GBP",
+        "estimated": null,
+        "grossValue": 1989.00,
+        "grossValueGBP": null,
+        "invoice": null,
+        "name": "Basic APC Cost £1,989.00",
+        "paid": {
+            "class": "monitor.local.RefdataValue",
+            "id": 11,
+            "value": "Yes",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 4,
+                "description": "CostItem.Paid"
+            }
+        },
+        "prepay": [],
+        "status": {
+            "class": "monitor.local.RefdataValue",
+            "id": 2,
+            "value": "Actual",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 1,
+                "description": "CostItem.Status"
+            }
+        },
+        "tax": 331.50
+    }, {
+        "class": "monitor.local.CostItem",
+        "id": 10,
+        "academicOutput": {
+            "_ref": "../..",
+            "class": "monitor.local.AcademicOutput"
+        },
+        "awards": [],
+        "budget": null,
+        "category": {
+            "class": "monitor.local.RefdataValue",
+            "id": 5,
+            "value": "Admin Cost",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 2,
+                "description": "CostItem.Category"
+            }
+        },
+        "currency": "GBP",
+        "estimated": null,
+        "grossValue": 20.00,
+        "grossValueGBP": null,
+        "invoice": null,
+        "name": "Admin Cost £20.00",
+        "paid": {
+            "class": "monitor.local.RefdataValue",
+            "id": 12,
+            "value": "No",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 4,
+                "description": "CostItem.Paid"
+            }
+        },
+        "prepay": [],
+        "status": {
+            "class": "monitor.local.RefdataValue",
+            "id": 1,
+            "value": "Committed",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 1,
+                "description": "CostItem.Status"
+            }
+        },
+        "tax": null
+    }, {
+        "class": "monitor.local.CostItem",
+        "id": 23,
+        "academicOutput": {
+            "_ref": "../..",
+            "class": "monitor.local.AcademicOutput"
+        },
+        "awards": [{
+            "class": "monitor.local.Tag",
+            "id": 51,
+            "value": "NE/G016003/1",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 7,
+                "description": "CostItem.Awards"
+            }
+        }],
+        "budget": null,
+        "category": {
+            "class": "monitor.local.RefdataValue",
+            "id": 3,
+            "value": "Basic APC Cost",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 2,
+                "description": "CostItem.Category"
+            }
+        },
+        "currency": "GBP",
+        "estimated": null,
+        "grossValue": 2000.00,
+        "grossValueGBP": null,
+        "invoice": null,
+        "name": "Basic APC Cost £2,000.00",
+        "paid": {
+            "class": "monitor.local.RefdataValue",
+            "id": 12,
+            "value": "No",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 4,
+                "description": "CostItem.Paid"
+            }
+        },
+        "prepay": [],
+        "status": {
+            "class": "monitor.local.RefdataValue",
+            "id": 1,
+            "value": "Committed",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 1,
+                "description": "CostItem.Status"
+            }
+        },
+        "tax": 400.00
+    }, {
+        "class": "monitor.local.CostItem",
+        "id": 12,
+        "academicOutput": {
+            "_ref": "../..",
+            "class": "monitor.local.AcademicOutput"
+        },
+        "awards": [],
+        "budget": null,
+        "category": {
+            "class": "monitor.local.RefdataValue",
+            "id": 7,
+            "value": "Discount",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 2,
+                "description": "CostItem.Category"
+            }
+        },
+        "currency": "GBP",
+        "estimated": null,
+        "grossValue": -700.00,
+        "grossValueGBP": null,
+        "invoice": null,
+        "name": "Discount £-700.00",
+        "paid": {
+            "class": "monitor.local.RefdataValue",
+            "id": 11,
+            "value": "Yes",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 4,
+                "description": "CostItem.Paid"
+            }
+        },
+        "prepay": [],
+        "status": {
+            "class": "monitor.local.RefdataValue",
+            "id": 2,
+            "value": "Actual",
+            "owner": {
+                "class": "monitor.local.RefdataCategory",
+                "id": 1,
+                "description": "CostItem.Status"
+            }
+        },
+        "tax": -116.67
+    }],
+    "name": "Diagnosis and management of primary ciliary dyskinesia",
+    "namedRoles": [],
+    "type": {
+        "class": "monitor.local.RefdataValue",
+        "id": 16,
+        "value": "D - Journal article",
+        "owner": {
+            "class": "monitor.local.RefdataCategory",
+            "id": 5,
+            "description": "AcademicOutput.Type"
+        }
+    }
+}
