@@ -2,13 +2,13 @@
     "ao_id": 5,
     "ao_title": "Test AO",
     "ao_apc_status": {
-        "status_code": 1,
-        "status_value": "Approved",
+        "code": 1,
+        "value": "Accepted",
         "date": "12/01/16",
-        "status_reason": "Some reason"
+        "reason": "Some reason"
     },
     "ao_assigned_to": "Latimer Hazal",
-    "ao_route": "gold",
+    "ao_route": "Gold",
     "ao_submitted": {
         "status": false,
         "date": false,

@@ -12,11 +12,7 @@ define(
        	// but Im blocked by search state to create another abstract state
        	AOStorage.async().then(function(d) {
        		$scope['academicOutput'] = utils.findById(d, $state.params['id']);
-          });
-       	
-       	$scope.showData = function(){
-       		console.log($scope['academicOutput']);
-       	}      
+          });    
     }]);
     
     
@@ -27,10 +23,7 @@ define(
        	AOStorage.async().then(function(d) {
        		$scope['academicOutput'] = d;
           });
-       	
-       	$scope.showData = function(){
-       		console.log($scope['academicOutput']);
-       	}
+
        	
           $scope.addRow = function(){
         	  AOStorage.addAward();

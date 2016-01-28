@@ -1,18 +1,18 @@
-<div ng-click="showData()">
-
-Click here to log the scope data!
-</div>
 <div class="row cms">
 	<div class="col span-12">
-		<h2>Academic Output Details</h2>
-		<ul class="form-fields">
-			<li class="form-fields__item--textarea"><label> <span
-					class="form-fields__label-text">AO Ref</span> <input disabled
-					type="text" ng-model="academicOutput.ao_id">
-			</label></li>
-		</ul><pre>
-	{{academicOutput |json}}
-	</pre>
+		
+		<div
+			class="box box--padding-large box--notice box--brd-mblue box--bg-white">
+			<div class="row">
+				<div class="col span-8">
+					<strong>Ref:</strong>&nbsp;{{academicOutput.ao_id}}&nbsp;&nbsp; <strong>Publisher:</strong>
+					{{academicOutput.ao_publisher.name}}
+				</div>
+				<div class="col span-4 pull-right">
+					<a>Show more</a>
+				</div>
+			</div>
+		</div>		
 		<form class="form">
 			<fieldset class="form__fieldset">
 				<legend>
@@ -24,20 +24,34 @@ Click here to log the scope data!
 								class="form-fields__label-text">Title</span> <textarea
 									ng-model="academicOutput.ao_title"></textarea>
 						</label></li>
-						<li class="form-fields__item--select"><label> <span
-								class="form-fields__label-text">AO Status</span> <select
-								ng-model="academicOutput.ao_status">
+						<li class="form-fields__item--select"><label><span class="form-fields__label-text">Assigned to</span><select ng-model="academicOutput.ao_assigned_to">
+									<option value="{{academicOutput.ao_assigned_to}}">Latimer Hazar</option>
+							</select>
+						</label></li>
+						<li class="form-fields__item--select">
+
+						<label> <span
+								class="form-fields__label-text">APC status</span> <select
+								ng-model="academicOutput.ao_apc_status.value">
+									<option value="Pending">Pending</option>
 									<option value="Rejected">Rejected</option>
 									<option value="Accepted">Accepted</option>
 							</select>
-						</label></li>
+						</label>
+						</li>
+						<li class="form-fields__item--text">
+                        <label>
+                          <span class="form-fields__label-text">Date:</span>
+                          <input type="text" ng-model="academicOutput.ao_apc_status.date"> JS with datechooser here!
+                        </label>
+                      </li>
 						<li class="form-fields__item--textarea"><label> <span
 								class="form-fields__label-text">AO Status Reason</span> <textarea
-									ng-model="academicOutput.ao_apc_status.status_reason"></textarea>
+									ng-model="academicOutput.ao_apc_status.reason"></textarea>
 						</label></li>
 						<li class="form-fields__item--select"><label> <span
 								class="form-fields__label-text">Publication Route</span> <select
-								ng-model="academicOutput.route">
+								ng-model="academicOutput.ao_route">
 									<option value="Green">Green</option>
 									<option value="Gold">Gold</option>
 							</select>
@@ -46,21 +60,59 @@ Click here to log the scope data!
 				</div>
 				<!--/ .form-fields -->
 			</fieldset>
+			
+			
+			
 			<fieldset class="form__fieldset">
 				<legend>
-					<span class="legend-text">Awards</span>
+					<span class="legend-text">Submission lifecycle</span>
 				</legend>
-				<div class="col span-6" id="award">
+				<div class="col span-6">
 					<ul>
-						
-						<li  class="form-fields__item--text" ng-repeat="(key,item) in academicOutput.awards">
-							<award-record item='academicOutput.awards[key]' key='key'></award-record>
+						<li class="form-fields__item--select">
+
+						<label> <span
+								class="form-fields__label-text">Subbmited for publication</span> <select
+								ng-model="academicOutput.ao_apc_status.value">
+									<option value="Pending">Pending</option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+							</select>
+						</label>
 						</li>
+						<li class="form-fields__item--text">
+                        <label>
+                          <span class="form-fields__label-text">Date submited:</span>
+                          <input type="text" ng-model="academicOutput.ao_apc_status.date"> JS with datechooser here!
+                        </label>
+                      </li>
+                      <li class="form-fields__item--textarea"><label> <span
+								class="form-fields__label-text">Submission note</span> <textarea
+									ng-model="academicOutput.ao_apc_status.reason"></textarea>
+						</label></li>
 						
+						<li class="form-fields__item--select">
+
+						<label> <span
+								class="form-fields__label-text">Publisher response</span> <select
+								ng-model="academicOutput.ao_apc_status.value">
+									<option value="Accepted">Accepted</option>
+									<option value="Rejected">Rejected</option>
+							</select>
+						</label>
+						</li>
+						<li class="form-fields__item--text">
+                        <label>
+                          <span class="form-fields__label-text">Date:</span>
+                          <input type="text" ng-model="academicOutput.ao_apc_status.date"> JS with datechooser here!
+                        </label>
+                      </li>
+                      <li class="form-fields__item--textarea"><label> <span
+								class="form-fields__label-text">Response note</span> <textarea
+									ng-model="academicOutput.ao_apc_status.reason"></textarea>
+						</label></li>
 					</ul>
 				</div>
-				
-				<button class="btn btn--3d btn--primary" ng-click="addRow()">Add row</button>
 			</fieldset>
 			<div class="row">
 				<fieldset class="form__fieldset">
@@ -94,4 +146,6 @@ Click here to log the scope data!
 
 
 
-
+<pre>
+	{{academicOutput |json}}
+	</pre>
