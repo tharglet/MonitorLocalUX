@@ -7,7 +7,7 @@ define(
   ],
   function (app) {
     app.registerController("AOViewCtrl", ['$scope', '$state', 'AOStorage', 'utils', function ($scope, $state, AOStorage, utils) {
-             	
+		console.log('controller view details');
        	//This is a very very bad practice of coding! I have to put this into scope in some parent method
        	// but Im blocked by search state to create another abstract state
        	AOStorage.async().then(function(d) {
@@ -23,7 +23,7 @@ define(
        	AOStorage.async().then(function(d) {
        		$scope['academicOutput'] = d;
           });
-
+       		console.log('controller view list');
        	
           $scope.addRow = function(){
         	  AOStorage.addAward();

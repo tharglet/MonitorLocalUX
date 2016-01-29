@@ -1,4 +1,4 @@
-{
+{"list" : [{
     "class": "monitor.local.AcademicOutput",
     "id": 7,
     "costs": [{
@@ -220,4 +220,4 @@
             "description": "AcademicOutput.Type"
         }
     }
-}
+}]}
