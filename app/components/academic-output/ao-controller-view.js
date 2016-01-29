@@ -24,10 +24,6 @@ define(
        		$scope['academicOutput'] = d;
           });
        		console.log('controller view list');
-       	
-          $scope.addRow = function(){
-        	  AOStorage.addAward();
-          };
       
     }]);
     
