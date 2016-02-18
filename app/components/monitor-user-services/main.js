@@ -8,7 +8,7 @@
 
 define(
   "monitor-user-services",     // JS module name (not the same as the angular module name.)
-  [],   // File locations can also be used instead of named includes.
+  ['angular'],   // File locations can also be used instead of named includes.
   function () {   // Module instantiator. Should return an object that will be stored against the name of this module.
 
     angular.module('monitor-user-services', [])
@@ -35,7 +35,7 @@ define(
                 // TODO: this seems a little unnecessary, can probably just return user.
                 // return JSON.parse($window.localStorage.currentUser);
                 return user;
-            }
+            };
     
             /**
              * @ngDoc method
@@ -59,12 +59,12 @@ define(
             this.logout = function() {
                 $log.debug("Logout");
                 delete $window.localStorage.currentUser;
-            }
+            };
     
             this.update = function(user) {
                 $log.debug("update %o",user);
                 $window.localStorage.currentUser = JSON.stringify(user);
-            }
+            };
         }]);
   }
 );

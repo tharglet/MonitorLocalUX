@@ -2,13 +2,20 @@
 
 define(
   'app',
-  [
+  [ // Add all the dependents.
+   "angular-couch-potato",
+   "angular-animate",
+   "angular-aria",
+   "angular-mocks",
+   "angular-resource",
+   "angular-ui-router",
+   "satellizer",
    'auth',
-   'academic-output',          // JS Module dependencies, ensures the code is included.
+   'academic-output',
    'search',
    'monitor-user-services',
   ],                
-  function () {
+  function (couchPotato) {
     
     var app = angular.module('app', [
       'satellizer',
@@ -114,7 +121,7 @@ define(
                 .catch(function(err) {
                     $log.error("failed to logout", err);
                  });
-              }
+              };
 
             }],
           },

@@ -65,7 +65,7 @@ define(
               $log.error("failed to logout", err);
             });
 
-        }
+        };
 
       }])
     ;

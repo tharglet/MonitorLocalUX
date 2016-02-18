@@ -1,6 +1,7 @@
 'use strict';
 define(
   "search",
+  ['angular'],
   function (finance) {
     angular.module('search', ['ui.router'])
       .config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {

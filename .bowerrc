@@ -1,3 +1,6 @@
 {
-  "directory": "bower_components"
+  "directory": "bower_components",
+  "scripts": {
+    "postinstall": "bower-requirejs -s -c app/scripts/rconfig.js -e requirejs -e bootstrap-sass-official"
+  }
 }
