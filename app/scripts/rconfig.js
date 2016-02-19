@@ -15,8 +15,7 @@ requirejs.config({
     "app",
     "search",
     "academic-output",
-    "auth",
-    "monitor-user-services"
+    "auth"
   ],
   shim: {
     "angular-animate": {

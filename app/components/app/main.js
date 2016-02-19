@@ -13,7 +13,6 @@ define(
    'auth',
    'academic-output',
    'search',
-   'monitor-user-services',
   ],                
   function (couchPotato) {
     
@@ -26,7 +25,6 @@ define(
       'academic-output',
       'search',
       'auth',
-      'monitor-user-services',
     ])
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
    
@@ -101,30 +99,14 @@ define(
         abstract: true,
         views : {
           "main" : {
-            controller: ['$rootScope', '$scope', '$auth', '$log', 'UserService', function ($rootScope,$scope,$auth,$log,UserService) {
-
-              console.log ("Default controller for app state.");
-              if ($rootScope.$state.current) {
-                // Add the states ass root classes.
-                $rootScope.bodyClasses = $rootScope.$state.current.name.replace(/[\.\-]/ig, ' ').trim();
-              }
-
-
-              $rootScope.logout = function() {
-                $auth.logout()
-                .then(function(response) {
-                    delete $rootScope.currentUser;
-                    UserService.logout();
-                    $log.debug('Logged out');
-                    // $location.path('/');
-                })
-                .catch(function(err) {
-                    $log.error("failed to logout", err);
-                 });
-              };
-
-            }],
+            controller: 'AppController',
           },
+        },
+        resolve: {
+          // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
+          deps: $couchPotatoProvider.resolveDependencies([
+            'app/CtrlAppController'
+          ])
         },
       });
       
