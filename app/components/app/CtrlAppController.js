@@ -21,7 +21,7 @@ function(app) {
       })
       .catch(function(err) {
           $log.error("failed to logout", err);
-       });
+      });
     };
   }]);
 });
