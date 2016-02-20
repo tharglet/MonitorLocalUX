@@ -32,6 +32,7 @@ module.exports = function(config) {
       'bower_components/angular-couch-potato/dist/angular-couch-potato.js',
       'bower_components/requirejs/require.js',
       'bower_components/satellizer/satellizer.js',
+      'bower_components/html5shiv/dist/html5shiv.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

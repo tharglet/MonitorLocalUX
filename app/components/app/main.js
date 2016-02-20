@@ -13,6 +13,7 @@ define(
    'auth',
    'academic-output',
    'search',
+   'jisc-patterns'
   ],                
   function (couchPotato) {
     
@@ -24,7 +25,7 @@ define(
       'ui.router',
       'academic-output',
       'search',
-      'auth',
+      'auth'
     ])
     
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
