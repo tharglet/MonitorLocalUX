@@ -1,7 +1,7 @@
 'use strict';
 
 define (
-['app','globals/SvcUserService'],
+['app','auth/SvcUserService'],
 function(app) {
   return  app.registerController ('AppController', ['$rootScope', '$scope', '$auth', '$log', 'UserService', function ($rootScope,$scope,$auth,$log,UserService) {
 

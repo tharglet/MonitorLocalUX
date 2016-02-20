@@ -26,6 +26,10 @@ define(
       'search',
       'auth',
     ])
+    
+    // CONSTANT USED TO GLOBALLY DISABLE AUTH
+    .constant( 'NO_AUTH', true )
+    
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
    
       couchPotato.configureApp(app);
@@ -89,7 +93,6 @@ define(
 
 
       console.log("OK");
-
    
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
@@ -115,8 +118,8 @@ define(
         templateUrl: 'components/app/partials/home.html'
       });
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared',
-      function($couchPotato, $state, $stateParams, $rootScope, $log, shared) {
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'NO_AUTH',
+      function($couchPotato, $state, $stateParams, $rootScope, $log, shared, NO_AUTH) {
         // Use lazy run-time registration.
         app.lazy = $couchPotato;
 
@@ -129,11 +132,10 @@ define(
         // Watch for state changes -- if we switch to a protected state, check that the user is authenticated. 
         // If not - send to the login page and store the toState so we can go back to it once auth has completed.
         $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
-          console.log("routeChangeStart %o", toState);
           $log.debug('routeChangeStart %o', toState);
           if (toState) {
             console.log("toState.data:%o",toState.data);
-            if (toState.data && toState.data.requireLogin) {
+            if ( !NO_AUTH && toState.data && toState.data.requireLogin) {
               if (shared.isAuthenticated()) {
                 $log.debug('User Logged In for secured resource');
               } else {
