@@ -8,7 +8,8 @@ requirejs.config({
     "angular-mocks": "../../bower_components/angular-mocks/angular-mocks",
     "angular-resource": "../../bower_components/angular-resource/angular-resource",
     "angular-ui-router": "../../bower_components/angular-ui-router/release/angular-ui-router",
-    satellizer: "../../bower_components/satellizer/satellizer"
+    satellizer: "../../bower_components/satellizer/satellizer",
+    html5shiv: "../../bower_components/html5shiv/dist/html5shiv"
   },
   baseUrl: "components",
   packages: [
@@ -43,7 +44,7 @@ requirejs.config({
         "angular"
       ]
     },
-    "satellizer": {
+    satellizer: {
       deps: [
         "angular"
       ]
