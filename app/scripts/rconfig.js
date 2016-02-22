@@ -10,7 +10,10 @@ requirejs.config({
     "angular-ui-router": "../../bower_components/angular-ui-router/release/angular-ui-router",
     satellizer: "../../bower_components/satellizer/satellizer",
     html5shiv: "../../bower_components/html5shiv/dist/html5shiv",
-    'jisc-patterns': '//ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-head.min',
+    "jisc-patterns-head": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-head.min",
+    "jisc-patterns-foot": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-foot.min",
+    jquery: "../../bower_components/jquery/dist/jquery",
+    "jquery-touchswipe": "../../bower_components/jquery-touchswipe/jquery.touchSwipe"
   },
   baseUrl: "components",
   packages: [
@@ -53,6 +56,17 @@ requirejs.config({
     "angular-couch-potato": {
       deps: [
         "angular"
+      ]
+    },
+    "jquery-touchswipe" : {
+      deps: [
+        "jquery",
+      ]
+    },
+    "jisc-patterns-foot": {
+      deps: [
+        "jquery-touchswipe",
+        "jisc-patterns-head",
       ]
     }
   }

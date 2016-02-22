@@ -16,7 +16,7 @@ define(
   
         // State for Login.
         $stateProvider.state('app.login', {
-          templateUrl:  'components/auth/partials/login.html',
+          templateUrl:  './partials/login.html',
           url:          '/login',
           controller: 'LoginCtrl',
           data : {

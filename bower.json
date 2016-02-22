@@ -12,7 +12,8 @@
     "requirejs": "~2.1.22",
     "satellizer": "~0.11.3",
     "font-awesome": "~4.4.0",
-    "html5shiv": "~3.7.3"
+    "html5shiv": "~3.7.3",
+    "jquery-touchswipe": "~1.6.15"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

@@ -3,12 +3,18 @@
 @import "compass/utilities";
 
 // Custom bootstrap themeing.
-@import "../bootstrap/variables";
+@import "bootstrap/variables";
 
-// bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "font-awesome/scss/font-awesome.scss";
-// endbower
+// Official bootstrap sass includes.
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap-compass";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
+
+// Custom bridgeing of JISC class names to bootstrap. This allows for boostrap plugins to function as normal,
+// but also gives us the semantic naming convention from the JISC pattern library.
+@import "bootstrap/_jisc-bridge";
+
+// Font awesome.
+@import "font-awesome/scss/font-awesome";
 
 // Global includes.
 @import "variables/**/*";
@@ -16,4 +22,4 @@
 @import "components/**/*";
 
 // Packaged Components styles
-@import "../components/*/_styles.scss";
+@import "../components/*/_styles";

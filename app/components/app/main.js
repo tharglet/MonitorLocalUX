@@ -13,7 +13,9 @@ define(
    'auth',
    'academic-output',
    'search',
-   'jisc-patterns'
+   'jquery-touchswipe',
+   'jisc-patterns-head',
+//   'jisc-patterns-foot' SO: Commenting out for now as seems to be dependent on an unknown library
   ],                
   function (couchPotato) {
     
