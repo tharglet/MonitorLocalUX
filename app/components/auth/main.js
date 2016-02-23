@@ -7,22 +7,28 @@
  */
 define(
   "auth",
-  ['angular'],
+  ['angular-ui-router', 'angular-couch-potato'],
   function () {
     
     // Create our angular module here.
     return angular.module('auth', ['ui.router'])
-      .config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+      .config(['$stateProvider', '$couchPotatoProvider', function($stateProvider, $couchPotatoProvider) {
   
         // State for Login.
         $stateProvider.state('app.login', {
           templateUrl:  './partials/login.html',
           url:          '/login',
-          controller: 'LoginCtrl',
           data : {
             title: "Login",
             requireLogin: false
-          }
+          },
+          controller: 'LoginCtrl',
+          resolve: {
+            // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
+            deps: $couchPotatoProvider.resolveDependencies([
+              'auth/CtrlLoginController'
+            ])
+          },
         });
       }])
     ;

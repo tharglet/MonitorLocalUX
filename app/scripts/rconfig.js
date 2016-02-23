@@ -1,19 +1,19 @@
 requirejs.config({
   paths: {
     globals: "../globals",
-    angular: "../../bower_components/angular/angular",
-    "angular-animate": "../../bower_components/angular-animate/angular-animate",
-    "angular-aria": "../../bower_components/angular-aria/angular-aria",
-    "angular-couch-potato": "../../bower_components/angular-couch-potato/dist/angular-couch-potato",
-    "angular-mocks": "../../bower_components/angular-mocks/angular-mocks",
-    "angular-resource": "../../bower_components/angular-resource/angular-resource",
-    "angular-ui-router": "../../bower_components/angular-ui-router/release/angular-ui-router",
-    satellizer: "../../bower_components/satellizer/satellizer",
-    html5shiv: "../../bower_components/html5shiv/dist/html5shiv",
+    angular: "../bower_components/angular/angular",
+    "angular-animate": "../bower_components/angular-animate/angular-animate",
+    "angular-aria": "../bower_components/angular-aria/angular-aria",
+    "angular-couch-potato": "../bower_components/angular-couch-potato/dist/angular-couch-potato",
+    "angular-mocks": "../bower_components/angular-mocks/angular-mocks",
+    "angular-resource": "../bower_components/angular-resource/angular-resource",
+    "angular-ui-router": "../bower_components/angular-ui-router/release/angular-ui-router",
+    satellizer: "../bower_components/satellizer/satellizer",
+    html5shiv: "../bower_components/html5shiv/dist/html5shiv",
     "jisc-patterns-head": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-head.min",
     "jisc-patterns-foot": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-foot.min",
-    jquery: "../../bower_components/jquery/dist/jquery",
-    "jquery-touchswipe": "../../bower_components/jquery-touchswipe/jquery.touchSwipe"
+    jquery: "/bower_components/jquery/dist/jquery",
+    "jquery-touchswipe": "../bower_components/jquery-touchswipe/jquery.touchSwipe"
   },
   baseUrl: "components",
   packages: [
@@ -58,15 +58,15 @@ requirejs.config({
         "angular"
       ]
     },
-    "jquery-touchswipe" : {
+    "jquery-touchswipe": {
       deps: [
-        "jquery",
+        "jquery"
       ]
     },
     "jisc-patterns-foot": {
       deps: [
         "jquery-touchswipe",
-        "jisc-patterns-head",
+        "jisc-patterns-head"
       ]
     }
   }

@@ -7,7 +7,7 @@
  */
 define(
   "academic-output",     // JS module name (not the same as the angular module name.)
-  ['globals/Finance', 'search'],   // File locations can also be used instead of named includes.
+  ['globals/Finance', 'angular-ui-router', 'angular-couch-potato', 'search'],   // File locations can also be used instead of named includes.
   function (Finance) {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.

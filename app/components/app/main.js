@@ -3,31 +3,25 @@
 define(
   'app',
   [ // Add all the dependents.
-   "angular-couch-potato",
-   "angular-animate",
-   "angular-aria",
-   "angular-mocks",
-   "angular-resource",
-   "angular-ui-router",
-   "satellizer",
-   'auth',
-   'academic-output',
-   'search',
-   'jquery-touchswipe',
-   'jisc-patterns-head',
-//   'jisc-patterns-foot' SO: Commenting out for now as seems to be dependent on an unknown library
+    "angular-couch-potato",
+    'html5shiv',
+    "satellizer",
+    'angular-ui-router',
+    'jisc-patterns-head',
+//    'jisc-patterns-foot' SO: Commenting out for now as seems to be dependent on an unknown library
+   
+   // Component modules.
+    'auth',
+    'academic-output',
   ],                
   function (couchPotato) {
     
     var app = angular.module('app', [
-      'satellizer',
-      'ngAnimate',                    // Angular Module dependencies. This will initialise these modules too.
-      'ngAria',
       'scs.couch-potato',
+      'satellizer',
       'ui.router',
+      'auth',
       'academic-output',
-      'search',
-      'auth'
     ])
     
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
