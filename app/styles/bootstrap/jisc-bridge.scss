@@ -1,0 +1,24 @@
+// Compass includes.
+@import "compass/css3";
+@import "compass/utilities";
+
+// Custom bootstrap variables for JISC theme.
+@import "_variables";
+
+// Official bootstrap sass includes.
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap-compass";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
+
+// Custom theme file for base bootstrap themeing.
+@import "_theme";
+
+.inner {
+  @extend .container;
+}
+
+.article-full {
+  @extend .row;
+ }
+
+// Adds the jisk span notation as col-* 
+@include translate-grid ($grid-columns);

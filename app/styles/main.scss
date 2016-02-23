@@ -2,19 +2,8 @@
 @import "compass/css3";
 @import "compass/utilities";
 
-// Custom bootstrap themeing.
-@import "bootstrap/variables";
-
-// Official bootstrap sass includes.
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap-compass";
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
-
-// Custom bridgeing of JISC class names to bootstrap. This allows for boostrap plugins to function as normal,
-// but also gives us the semantic naming convention from the JISC pattern library.
-@import "bootstrap/_jisc-bridge";
-
-// Font awesome.
-@import "font-awesome/scss/font-awesome";
+// Custom bootstrap variables for JISC theme.
+@import "bootstrap/_variables";
 
 // Global includes.
 @import "variables/**/*";
