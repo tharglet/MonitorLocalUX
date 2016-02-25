@@ -1,9 +1,10 @@
 // Compass includes.
 @import "compass/css3";
 @import "compass/utilities";
+@import "compass/typography/lists/bullets";
 
-// Custom bootstrap variables.
-@import "bootstrap/_variables";
+// Custom bootstrap based on jisc patterns.
+@import "bootstrap/_jisc-bridge";
 
 // Global includes.
 @import "variables/**/*";

@@ -2,8 +2,17 @@
 @import "compass/css3";
 @import "compass/utilities";
 
+// Import our theme mixins.
+@import  "_mixins";
+
 // Custom bootstrap variables for JISC theme.
 @import "_variables";
+
+// Import the default bootstrap variables from the Flatly theme upon which we are basing our theme.
+@import  "_flatly_variables";
+
+// Import the default bootstrap variables to account for any vars not already declared in the flatly theme.
+@import  "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables";
 
 // Official bootstrap sass includes.
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap-compass";
@@ -12,12 +21,21 @@
 // Custom theme file for base bootstrap themeing.
 @import "_flatly_bootswatch";
 
+/**
+ * Default bootstrap class overrides go here.
+ */
+.btn-default {
+  @include background-image(linear-gradient($jBrightBlue, $primaryButtonBottom));
+}
+
+/**
+ * Mapping of jisc classes to BS3 classes goes here.
+ */
 .masthead {
   
   // Extend default bootstrap classes and remove rounded corners.
   @extend .navbar;
   @extend .navbar-default;
-  @include border-radius(0, 0);
   
   border-bottom: 1px solid $navbar-default-link-color;
   
@@ -37,22 +55,13 @@
   }
 }
 
-.inner {
+body > .inner,
+.masthead .inner {
   @extend .container;
-  padding-left:0;
-  padding-right:0;
-  
-  .row {
-    margin-left:0;
-    margin-right:0;
+  .inner {
+    @extend .container-fluid;
   }
 }
-
-.article-full {
-  @extend .row;
-  margin-left:0;
-  margin-right:0;
- }
 
 // Adds the jisk span notation as col-* 
 @include translate-grid ($grid-columns);
@@ -73,3 +82,4 @@
 .visuallyhidden {
   @extend .sr-only;
 }
+

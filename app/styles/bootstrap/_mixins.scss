@@ -13,9 +13,6 @@
     .span-#{$i} {
       @extend .col-md-#{$i};
       @extend .col-xs-#{$columns};
-            
-      padding-left:0;
-      padding-right:0;
     }
     
     $bs-col-sizes: 'md' 'lg';
@@ -25,4 +22,82 @@
       }
     }
   }
+}
+
+// Usually variables should be in a separate place, but for the font stack we will make an exception as we don't want to have
+// to pass the values every time we want to use the method below.
+$font-stack-light: "Stag Sans Web Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
+$font-stack-normal: "Stag Sans Web Book", "HelveticaNeue", "Helvetica Neue", Arial, sans-serif;
+$font-stack-bold: "Stag Sans Web Medium", "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Arial, sans-serif;
+
+/**
+ * The following mixins have been copied and addapted from the JISC patterns lib.
+ */
+@mixin font-weight($weight) {
+  
+  @if type-of($weight) == string {
+    // String value.
+    @if $weight == bold {
+      font-family: $font-stack-bold;
+    } @else {
+      // Assume normal.
+      font-family: $font-stack-normal;
+    }
+  } @else if type-of($weight) == number {
+    
+    // Numerical values should swap out the values.
+    @if $weight <= 300 {
+      font-family: $font-stack-light;
+    } @else if $weight >= 500 {
+      font-family: $font-stack-bold;
+    } @else {
+      font-family: $font-stack-normal;
+    }
+  } @else {
+      font-family: $font-stack-normal;
+  }
+}
+
+//--------------------------
+// Rem helper mixin
+
+// Use to apply a rem measurement to a certain css property
+//
+// @param $property
+//   The CSS property to apply the value to.
+//   (E.g. margin-bottom or margin)
+//
+// @param $value
+//   The measurement to apply to the property. This should be a value in pixels, but *without* the unit and can be shorthand.
+//   (E.g. 27 or 10 20)
+
+@mixin rem($property, $size_in_px) {
+  // Init shorthand variables (must use 0 for null...)
+  $shorthand_in_px: 0;
+  $shorthand_in_rem: 0;
+
+  @each $size in $size_in_px { // Loop through values and concatenate
+    $shorthand_in_px: $shorthand_in_px + ($size) + px + " ";
+    $shorthand_in_rem: $shorthand_in_rem + ($size/10) + rem + " ";
+  }
+
+  // Output styles
+  // IE8 and below don't support REMs so based on our $old-ie variable we will serve it pixels
+  // We use rems so users can resize text - (IE9 still doesnt support text resizing)
+  $old-ie: false !default;
+  @if $old-ie {
+    #{$property}: $shorthand_in_px;
+  } @else {
+    #{$property}: $shorthand_in_rem;
+  }
+}
+
+// Shorthand wrapper around the rem helper for font size
+@mixin font-size($size_in_px) {
+  @include rem(font-size, $size_in_px);
+}
+
+// Shorthand wrapper around the rem helper for line height
+@mixin line-height($size_in_px) {
+  @include rem(line-height, $size_in_px);
 }

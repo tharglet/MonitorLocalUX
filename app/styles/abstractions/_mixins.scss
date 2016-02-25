@@ -1,3 +1,7 @@
+/**
+ * Custom mixins.
+ */
+
 @mixin font-face($family, $path, $svg, $weight: normal, $style: normal) {
   @font-face {
     font-family: $family;

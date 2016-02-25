@@ -1,0 +1,95 @@
+// Breakpoints
+$jBreakpointMin: 465px;
+$jBreakpointInner: 565px;
+$jBreakpointMid: 630px;
+$jBreakpointOuter: 757px;
+$jBreakpointIntermediate: 850px;
+$jBreakpointMax: 950px;
+
+$gutter-width: 20px;
+
+
+// Colours
+$jBlue: #0c2931;
+$jBrightBlue: #095b83;
+$jWhite: #fff;
+$jBlack: #000;
+$jCopy: #2c3841;
+$jCopyB: #00557f;
+$jLink: $jCopyB;
+$jHover: $jLink;
+$jActive: $jLink;
+$jBgPurple: #851b63;
+$jLightContentBlue: #e4e9ec;
+$jMidContentBlue: #d5dee2;
+$jDarkContentBlue: #c4d1d7;
+$jVeryDarkContentBlue: #a6b7bf;
+$jLightGreyBackground: #e4eaec;
+$jSubMenu: #2B3840;
+$jSubMenuHover: #1b2024;
+$jSubMenuShadow: #1F282F;
+$jMidLightGrey: #d5dee3;
+$jMidGrey: #a7afb6;
+$jNavItemHover: #a92173;
+$jNavItemHoverplus25percent: #690033;//@optimise
+$primaryButtonBottom: #97b4c2;
+$primaryButtonHoverBottom: #9bbccc;
+$jTweetBackground: $jLightGreyBackground;
+$jOrange: #e85e13;
+$jOrangeDark: #cd4901;
+$jMidNoticeBlue: #dde4e7;
+$jDarkNoticeBlue: #c5cdd2;
+$jMidGreyPurple: #59656E;
+$jFormErrorRed: #c00;
+$jCarouselBackground: #f4f7f8;
+$jAudioPlayerGrey: #ededed;
+$jTableColour: #666;
+$jAudioPlayerBlue: $jDarkContentBlue;
+$jLightBlue:#d9eff7;
+$redButton:#d7224f;
+$cookieConfirmBackground: #a0bdcc;
+$cookieConfirmDark: #035780;
+$cookieHover: #88b5cc;
+$autoSuggest:#63727c;
+$notificationBackground: $jFormErrorRed;
+
+// Light colours are used for borders and markers. Dark shades are used for text
+$jProductsAndServicesLight: #8c930d;
+$jProductsAndServicesDark: #585d01;
+$jRandDPublicationsLight: #0092cb;
+$jRandDPublicationsDark: #069;
+
+// R&D colours
+$lBlue: $jLightBlue;
+$mBlue: $jRandDPublicationsLight;
+$dBlue: #12567d;
+$navyBlue: #2b383f;
+$dGrey: $jTableColour;
+$greyBlue: #85939b;
+$lgreyBlue: #d4dfe1;
+$lgreyLight: #d4dee3;
+$lgreyLighter: #c3d1da;
+$mgreyBlue: $jDarkContentBlue;
+$lBeige: #e3e8eb;
+
+// Tag colours
+$standardTag: #014161;
+$standardTagHover: #025680;
+$navyTagHover: #104757;
+
+// Alert colours
+$success-text: #3c763d;
+$success-bg: #dff0d8;
+$success-border: #d6e9c6;
+
+$info-text: #31708f;
+$info-bg: #d9edf7;
+$info-border: #bce8f1;
+
+$warning-text: #8a6d3b;
+$warning-bg: #fcf8e3;
+$warning-border: #faebcc;
+
+$danger-text: #a94442;
+$danger-bg: #f2dede;
+$danger-border: #ebccd1;

@@ -1,0 +1,48 @@
+.side-nav {
+  @extend .span-#{$side-nav-cols};
+  
+  font-family: $font-stack-light;
+  
+  a {
+    &:link,
+    &:visited {
+      text-decoration:none;
+    }
+    
+    &:active,
+    &:hover {
+      text-decoration:none;
+    }
+  }
+  
+  ul { 
+    @include no-bullets();
+    margin: 0;
+    padding:0;
+    
+    ul {
+      font-family: $font-stack-normal;
+      padding-left: ($grid-gutter-width / 2);
+      a {
+        @extend .btn;
+        @extend .btn-default;
+        @extend .btn-link;
+        
+        // Decrease the padding.
+        padding: 0 ($grid-gutter-width / 4) 0 ($grid-gutter-width / 4);
+        
+        &:link,
+        &:visited {
+          background-color:transparent;
+        }
+        
+        &:active,
+        &:hover {
+          background-color: $link-color;
+          color: $btn-primary-color;
+          text-decoration:none;
+        }
+      }
+    }
+  }
+}
