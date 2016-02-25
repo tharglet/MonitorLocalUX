@@ -25,229 +25,247 @@
     <title>{{$state.current.data.title}}</title>
   </head>
   <body class="{{bodyClasses ? bodyClasses : ''}}">
-    <div id="main" data-ui-view='main' class="inner">
-      <div class="article-full">
-        <h1 class="page=title">
-          Row/Column layout demo
-        </h1>
-        <p>
-          This is our top-level, conventional (responsive) grid system &mdash; a counterpart
-          to our region/block system.
-        </p>
-        <br>
-        <p>
-          This system is active above a certain viewport width, inert below
-        </p>
-        <p>
-          Columns are % width
-        </p>
-        <p>
-          Gutters (where used) are fixed width, by design
-        </p>
-      </div>
-      <div class="row">
-        <div class="col span-1">
-          <p>
-            <code>
-            span-1
-          </code>
-          </p>
-        </div>
-        <div class="col span-2">
-          <p>
-            <code>
-            span-2
-          </code>
-          </p>
-        </div>
-        <div class="col span-1">
-          <p>
-            <code>
-            span-1
-          </code>
-          </p>
-        </div>
-        <div class="col span-3">
-          <p>
-            <code>
-            span-3
-          </code>
-          </p>
-        </div>
-        <div class="col span-4">
-          <p>
-            <code>
-            span-4
-          </code>
-          </p>
-        </div>
-        <div class="col span-1">
-          <p>
-            <code>
-            span-1
-          </code>
-          </p>
+    <header class="site-header">
+      <div class="masthead" role="banner" >
+        <div class="inner">
+          <a class="visuallyhidden" href="#main" tabindex="1">
+            <span>Skip to main content</span>
+          </a>
+          <a class="logo" href="//jisc.ac.uk">
+            <img alt="Jisc logo" src="images/jisc-logo.png">
+          </a>
+          <div class="title-nav">
+            <a href="" >Monitor Local</a>
+          </div>
         </div>
       </div>
-      <!--/ .row -->
-      <div class="row">
-        <div class="col span-2">
+    </header>
+    <main role="main" id="main" data-ui-view='main' >
+      <div class="inner">
+        <div class="article-full">
+          <h1 class="page=title">
+            Row/Column layout demo
+          </h1>
           <p>
-            <code>
-            span-2
-          </code>
+            This is our top-level, conventional (responsive) grid system &mdash; a counterpart
+            to our region/block system.
+          </p>
+          <br>
+          <p>
+            This system is active above a certain viewport width, inert below
+          </p>
+          <p>
+            Columns are % width
+          </p>
+          <p>
+            Gutters (where used) are fixed width, by design
           </p>
         </div>
-        <div class="col span-10">
+        <div class="row">
+          <div class="col span-1">
+            <p>
+              <code>
+              span-1
+            </code>
+            </p>
+          </div>
+          <div class="col span-2">
+            <p>
+              <code>
+              span-2
+            </code>
+            </p>
+          </div>
+          <div class="col span-1">
+            <p>
+              <code>
+              span-1
+            </code>
+            </p>
+          </div>
+          <div class="col span-3">
+            <p>
+              <code>
+              span-3
+            </code>
+            </p>
+          </div>
+          <div class="col span-4">
+            <p>
+              <code>
+              span-4
+            </code>
+            </p>
+          </div>
+          <div class="col span-1">
+            <p>
+              <code>
+              span-1
+            </code>
+            </p>
+          </div>
+        </div>
+        <!--/ .row -->
+        <div class="row">
+          <div class="col span-2">
+            <p>
+              <code>
+              span-2
+            </code>
+            </p>
+          </div>
+          <div class="col span-10">
+            <p>
+              <code>
+              span-10
+            </code>
+            </p>
+          </div>
+        </div>
+        <!--/ .row -->
+        <div class="article-full">
           <p>
-            <code>
-            span-10
-          </code>
+            Column <code>.span-n</code> semantics are relative, based on 12 units
+            in each context.
+          </p>
+          <p>
+            At the top level &mdash; where the parent is usually an <code>.inner</code>          &mdash; a <code>.span-6</code> column would occupy half of its width,
+            a <code>.span-3</code> a quarter etc.
+          </p>
+          <p>
+            When nesting, the context is the parent column. So to create a column half the
+            width of a <code>.span-8</code> parent you'd use <code>.span-6</code>          (6 being half the parent's 12 units)
           </p>
         </div>
-      </div>
-      <!--/ .row -->
-      <div class="article-full">
-        <p>
-          Column <code>.span-n</code> semantics are relative, based on 12 units
-          in each context.
-        </p>
-        <p>
-          At the top level &mdash; where the parent is usually an <code>.inner</code>          &mdash; a <code>.span-6</code> column would occupy half of its width,
-          a <code>.span-3</code> a quarter etc.
-        </p>
-        <p>
-          When nesting, the context is the parent column. So to create a column half the
-          width of a <code>.span-8</code> parent you'd use <code>.span-6</code>          (6 being half the parent's 12 units)
-        </p>
-      </div>
-      <div class="row">
-        <div class="col span-4">
+        <div class="row">
+          <div class="col span-4">
+            <p>
+              <code>
+              span-4
+            </code>
+            </p>
+          </div>
+          <div class="col span-8">
+            <p>
+              <code>
+              span-8
+            </code>
+            </p>
+            <div class="row">
+              <div class="col span-6">
+                <p>
+                  <code>
+                  span-6
+                </code>
+                </p>
+              </div>
+              <div class="col span-6">
+                <p>
+                  <code>
+                  span-6
+                </code>
+                </p>
+              </div>
+            </div>
+            <!--/ .row -->
+          </div>
+        </div>
+        <!--/ .row -->
+        <div class="row">
+          <div class="col span-4">
+            <p>
+              <code>
+              span-4
+            </code>
+            </p>
+          </div>
+          <div class="col span-4">
+            <p>
+              <code>
+              span-4
+            </code>
+            </p>
+          </div>
+          <div class="col span-4">
+            <p>
+              <code>
+              span-4
+            </code>
+            </p>
+          </div>
+        </div>
+        <!--/ .row -->
+        <div class="article-full">
           <p>
-            <code>
-            span-4
-          </code>
+            Columns don't have gutters built in (calculating compound % width blocks and fixed
+            width gutters when nesting would be too painful).
+          </p>
+          <p>
+            Instead, include a nested <code>.l-gutter--foo</code> div where required
           </p>
         </div>
-        <div class="col span-8">
-          <p>
-            <code>
-            span-8
-          </code>
-          </p>
-          <div class="row">
-            <div class="col span-6">
+        <div class="row">
+          <div class="col span-4">
+            <div class="l-gutter--right">
               <p>
                 <code>
-                span-6
+                l-gutter--right
               </code>
               </p>
             </div>
-            <div class="col span-6">
+          </div>
+          <div class="col span-4">
+            <div class="l-gutter--left">
               <p>
                 <code>
-                span-6
+                l-gutter--left
               </code>
               </p>
             </div>
           </div>
-          <!--/ .row -->
+          <div class="col span-4">
+            <div class="l-gutter--both">
+              <p>
+                <code>
+                l-gutter--both
+              </code>
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-      <!--/ .row -->
-      <div class="row">
-        <div class="col span-4">
+        <!--/ .row -->
+        <div class="article-full">
           <p>
-            <code>
-            span-4
-          </code>
+            Use <code>.push-n</code> to engineer dead columns
           </p>
         </div>
-        <div class="col span-4">
-          <p>
-            <code>
-            span-4
-          </code>
-          </p>
-        </div>
-        <div class="col span-4">
-          <p>
-            <code>
-            span-4
-          </code>
-          </p>
-        </div>
-      </div>
-      <!--/ .row -->
-      <div class="article-full">
-        <p>
-          Columns don't have gutters built in (calculating compound % width blocks and fixed
-          width gutters when nesting would be too painful).
-        </p>
-        <p>
-          Instead, include a nested <code>.l-gutter--foo</code> div where required
-        </p>
-      </div>
-      <div class="row">
-        <div class="col span-4">
-          <div class="l-gutter--right">
+        <div class="row">
+          <div class="col span-3">
             <p>
               <code>
-              l-gutter--right
+              span-3
+            </code>
+            </p>
+          </div>
+          <div class="col span-4 push-1">
+            <p>
+              <code>
+              span-4 push-1
+            </code>
+            </p>
+          </div>
+          <div class="col span-4">
+            <p>
+              <code>
+              span-4
             </code>
             </p>
           </div>
         </div>
-        <div class="col span-4">
-          <div class="l-gutter--left">
-            <p>
-              <code>
-              l-gutter--left
-            </code>
-            </p>
-          </div>
-        </div>
-        <div class="col span-4">
-          <div class="l-gutter--both">
-            <p>
-              <code>
-              l-gutter--both
-            </code>
-            </p>
-          </div>
-        </div>
+        <!--/ .row -->
       </div>
-      <!--/ .row -->
-      <div class="article-full">
-        <p>
-          Use <code>.push-n</code> to engineer dead columns
-        </p>
-      </div>
-      <div class="row">
-        <div class="col span-3">
-          <p>
-            <code>
-            span-3
-          </code>
-          </p>
-        </div>
-        <div class="col span-4 push-1">
-          <p>
-            <code>
-            span-4 push-1
-          </code>
-          </p>
-        </div>
-        <div class="col span-4">
-          <p>
-            <code>
-            span-4
-          </code>
-          </p>
-        </div>
-      </div>
-      <!--/ .row -->
-    </div>
-    <!--/ .inner -->
+      <!--/ .inner -->
+    </main>
+    <!--/ main -->
   </body>
 </html>

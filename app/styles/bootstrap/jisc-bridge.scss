@@ -10,15 +10,66 @@
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
 
 // Custom theme file for base bootstrap themeing.
-@import "_theme";
+@import "_flatly_bootswatch";
+
+.masthead {
+  
+  // Extend default bootstrap classes and remove rounded corners.
+  @extend .navbar;
+  @extend .navbar-default;
+  @include border-radius(0, 0);
+  
+  border-bottom: 1px solid $navbar-default-link-color;
+  
+  .logo {
+    float: left;
+    line-height: 1;
+  }
+  
+  .title-nav {
+    @extend .navbar-header;
+    float:left;
+    padding-left: $grid-gutter-width / 2;
+    a {
+      @extend .navbar-brand;
+      font-weight: bold;
+    }
+  }
+}
 
 .inner {
   @extend .container;
+  padding-left:0;
+  padding-right:0;
+  
+  .row {
+    margin-left:0;
+    margin-right:0;
+  }
 }
 
 .article-full {
   @extend .row;
+  margin-left:0;
+  margin-right:0;
  }
 
 // Adds the jisk span notation as col-* 
 @include translate-grid ($grid-columns);
+
+.l-gutter--right {
+  margin-right: $grid-gutter-width / 2;
+}
+
+.l-gutter--left {
+  margin-left: $grid-gutter-width / 2;
+}
+
+.l-gutter--both {
+  @extend .l-gutter--left;
+  @extend .l-gutter--right;
+}
+
+.visuallyhidden {
+  @extend .sr-only;
+}

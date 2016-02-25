@@ -7,6 +7,7 @@ define(
     'html5shiv',
     "satellizer",
     'angular-ui-router',
+    'bootstrap-js',
     'jisc-patterns-head',
 //    'jisc-patterns-foot' SO: Commenting out for now as seems to be dependent on an unknown library
    

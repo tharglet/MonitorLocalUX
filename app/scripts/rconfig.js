@@ -13,7 +13,8 @@ requirejs.config({
     "jisc-patterns-head": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-head.min",
     "jisc-patterns-foot": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-foot.min",
     jquery: "/bower_components/jquery/dist/jquery",
-    "jquery-touchswipe": "../bower_components/jquery-touchswipe/jquery.touchSwipe"
+    "jquery-touchswipe": "../bower_components/jquery-touchswipe/jquery.touchSwipe",
+    "bootstrap-js": "../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min"
   },
   baseUrl: "components",
   packages: [
@@ -67,6 +68,11 @@ requirejs.config({
       deps: [
         "jquery-touchswipe",
         "jisc-patterns-head"
+      ]
+    },
+    "bootstrap-js": {
+      deps: [
+        "jquery"
       ]
     }
   }

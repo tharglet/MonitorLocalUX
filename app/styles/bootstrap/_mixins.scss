@@ -11,12 +11,17 @@
 @mixin translate-grid ($columns) {
   @for $i from 1 through $columns {
     .span-#{$i} {
-      @extend .col-lg-#{$i};
       @extend .col-md-#{$i};
-      @if $i > ceil( $columns / 2) {
-        @extend .col-xs-#{$columns};
-      } @else {
-        @extend .col-xs-#{ceil( $columns / 2)};
+      @extend .col-xs-#{$columns};
+            
+      padding-left:0;
+      padding-right:0;
+    }
+    
+    $bs-col-sizes: 'md' 'lg';
+    .push-#{$i - 1} {
+      @each $size in $bs-col-sizes {
+        @extend .col-#{$size}-offset-#{$i - 1};
       }
     }
   }
