@@ -8,7 +8,7 @@ define(
     "satellizer",
     'angular-ui-router',
     'bootstrap-js',
-    'jisc-patterns-head',
+//    'jisc-patterns-head',
 //    'jisc-patterns-foot' SO: Commenting out for now as seems to be dependent on an unknown library
    
    // Component modules.
@@ -98,15 +98,22 @@ define(
       // Default home state.
       $stateProvider.state('app', {
         abstract: true,
+        data: {
+          title: "Home",
+        },
         views : {
           "main" : {
             controller: 'AppController',
+          },
+          "breadcrumb" : {
+            controller: 'BreadcrumbController',
           },
         },
         resolve: {
           // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
           deps: $couchPotatoProvider.resolveDependencies([
-            'app/CtrlAppController'
+            'app/CtrlAppController',
+            'app/CtrlBreadcrumbController'
           ])
         },
       });

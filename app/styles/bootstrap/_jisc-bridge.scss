@@ -1,6 +1,7 @@
 // Compass includes.
 @import "compass/css3";
 @import "compass/utilities";
+@import "compass/css3/background-size";
 
 // Import our theme mixins.
 @import  "_mixins";
@@ -21,99 +22,35 @@
 // Custom theme file for base bootstrap themeing.
 @import "_flatly_bootswatch";
 
-/**
- * Default bootstrap class overrides go here.
- */
-.btn-default {
-  @include background-image(linear-gradient($jBrightBlue, $primaryButtonBottom));
-}
+// Import our files one by one.
+@import "_bootstrap_overrides";
+@import "_header";
 
 /**
  * JISC themeing using bootstrap goes here.
  */
 
-// Containers...
-body > .inner,
-.masthead .inner {
-  @extend .container;
-  .inner {
-    @extend .container-fluid;
-  }
-}
-
 // Body...
 body {
   background-color: $jLightContentBlue;
+  background-repeat: no-repeat;
+  @include background-image(linear-gradient(to right, $body-bg, $body-bg));
+  @include background-size(50% 100%);
   & > .inner {
-    background-color: $body-bg;
-    margin-top: -((12 * $grid-gutter-width) - 5px);
-  }
-}
-
-// The site header.
-.site-header {
-  padding-bottom: 12 * $grid-gutter-width;
-  background-color: $header-bg;
-  
-  h1 {
     @extend .container;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: ($grid-gutter-width * 0.75) 0 ($grid-gutter-width * 0.5) 0;
-    color: $body-bg;
-    @include font-weight(300);
-    font-size: 3em;
+    background-color: $body-bg;
+    margin-top: -((12 * $grid-gutter-width) - ($grid-gutter-width * 0.25));
+    .inner {
+      @extend .container-fluid;
+    }
   }
 }
 
 // Main content.
 #main {
   @extend .span-#{$main-cols};
-}
-
-.masthead {
-  
-  // Extend default bootstrap classes and remove rounded corners.
-  @extend .navbar;
-  @extend .navbar-default;
-  margin-bottom: 0;
-  border-bottom: 1px solid $navbar-default-link-color;
-  
-  .inner {
-    padding:0;
-  }
-  
-  .logo {
-    float: left;
-    line-height: 1;
-  }
-  
-  .title-nav {
-    @extend .navbar-header;
-    float:left;
-    padding-left: $grid-gutter-width / 2;
-    @include font-weight(300);
-  
-    .badge {
-      font-size: 0.6em;
-      margin-left: 0.5em;
-    }
-    
-    a {
-      @extend .navbar-brand;
-      font-size: 1.5em;
-    }
-  }
-}
-
-.breadcrumb {
-  @extend .push-#{$side-nav-cols};
-  pdding-right: 0;
-  padding-bottom: 0;
-  font-size: 0.85em;
-  
-  .active {
-    @include font-weight (300);
+  &> .inner > h1 {
+    margin-top: $breadcrumb-padding-vertical;
   }
 }
 

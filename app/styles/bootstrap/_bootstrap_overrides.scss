@@ -1,0 +1,23 @@
+/**
+ * Default bootstrap class overrides go here.
+ */
+.btn-default {
+  @include background-image(linear-gradient($jBrightBlue, $primaryButtonBottom));
+}
+
+.breadcrumb {
+  @extend .push-#{$side-nav-cols};
+  pdding-right: 0;
+  padding-bottom: 0;
+  font-size: 0.85em;
+  margin-bottom: 0;
+
+  & > li + li::before {
+    color: $text-color;
+  }  
+
+  .active {
+    color: $text-color;
+    @include font-weight (300);
+  }
+}

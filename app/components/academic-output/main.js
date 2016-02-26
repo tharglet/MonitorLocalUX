@@ -15,16 +15,16 @@ define(
       .config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
   
         // State for search.
-        $stateProvider.state('app.componentSearch.academicOutput', {
+        $stateProvider.state('app.academicOutput', {
           url:          '/academic-output',
           data : {
-            title: "Academic Output",
+            title: "Academic Outputs",
             requireLogin: true
           }
         });
         
         // Default config for un-named view.
-        $stateProvider.state('app.academicOutput-view', {
+        $stateProvider.state('app.academicOutput.edit', {
           url:          '^/academic-output/:id',
           templateUrl:  'components/academic-output/partials/main.html',
           data : {
@@ -45,9 +45,7 @@ define(
             $state.current.data.subTitle = $scope['academicOutput']['name'] + ": " + $state.params['id'];
           }]
         });
-      }])
-      // .controller('Search', ["$scope", function($scope) {
-      // }])
-    ;
+      }
+    ]);
   }
 );
