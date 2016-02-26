@@ -35,6 +35,8 @@ $font-stack-bold: "Stag Sans Web Medium", "HelveticaNeue-Bold", "Helvetica Neue 
  */
 @mixin font-weight($weight) {
   
+  font-weight: normal;
+  
   @if type-of($weight) == string {
     // String value.
     @if $weight == bold {

@@ -31,7 +31,7 @@
             <img alt="Jisc logo" src="images/jisc-logo.png">
           </a>
           <div class="title-nav">
-            <a href="" >Monitor Local</a>
+            <a href="" >Monitor Local <span class="badge">alpha</span></a> 
           </div>
         </div>
       </div>
@@ -40,22 +40,24 @@
       <asside class="side-nav" >
         <nav role="navigation" >
           <ul>
-            <li><span class="parent expanded" >Elem with subs</span><ul>
-              <li><a>Sub elem</a></li>
-              <li><a>Sub elem</a></li>
-              <li><a>Sub elem</a></li>
+            <li class="parent active"><span>Elem with subs</span><ul>
+              <li><a href="#">Sub elem</a></li>
+              <li class="active" ><a href="#">Sub elem</a></li>
+              <li><a href="#">Sub elem</a></li>
             </ul></li>
-            <li><a class="parent collapsed" >Elem with subs</a></li>
-            <li><a >Elem</a></li>
+            <li class="parent" ><a href="#">Elem with subs</a></li>
+            <li><a href="#" >Elem</a></li>
           </ul>
         </nav>
       </asside>
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+      </ol>
       <main role="main" id="main" data-ui-view='main' >
         <div class="inner" >
           <div class="article-full">
-            <h1>
-              Row/Column layout demo
-            </h1>
             <p>
               This is our top-level, conventional (responsive) grid system &mdash; a counterpart
               to our region/block system.

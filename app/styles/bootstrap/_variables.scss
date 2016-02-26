@@ -29,20 +29,32 @@ $grid-columns: 12;
 // Add the JISC font stack.
 $font-family-sans-serif:  $font-stack-normal;
 
+// Side nav dimensions.
+$side-nav-cols: 2;
+$main-cols: $grid-columns - $side-nav-cols;
+
+// Breadcrumb
+$breadcrumb-padding-vertical: $grid-gutter-width * 0.65;
+$breadcrumb-padding-horizontal: $grid-gutter-width;
+
 // Colours.
+$text-color: $jCopy;
 $link-color: $jLink;
 $link-hover-color: $jOrange;
 $navbar-default-link-color: $jWhite;
 $navbar-default-link-hover-color: $jOrange;
 $btn-default-bg: $primaryButtonBottom;
-
+$body-bg: $jWhite;
+$breadcrumb-bg: $body-bg;
+$breadcrumb-active-color: $text-color;
+$header-bg: $jCopyB;
 
 $gray-base: #000;
 $gray-darker: lighten($gray-base, 13.5%);
 $gray-dark: $dGrey;
 $gray: $jMidGrey;
 $gray-light: $jMidLightGrey;
-$gray-lighter: $jLightGreyBackground;
+$gray-lighter: $lgreyLighter;
 
 // Brand colours
 $brand-primary: $jSubMenu;

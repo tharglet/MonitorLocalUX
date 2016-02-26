@@ -1,7 +1,11 @@
 .side-nav {
+  margin-top: 0;
   @extend .span-#{$side-nav-cols};
   
   font-family: $font-stack-light;
+  padding: 0;
+  
+  font-size: 1.2em;
   
   a {
     &:link,
@@ -15,34 +19,107 @@
     }
   }
   
+  nav > ul {
+    
+    & > li {
+      border: 1px solid $gray-lighter;
+      border-width: 0 1px 1px 0;
+      a, span {
+        display:block;
+        padding: $nav-link-padding;
+        padding-left: 5px;
+      }
+    }
+  }
+  
   ul { 
     @include no-bullets();
     margin: 0;
-    padding:0;
+    padding: 0;
     
     ul {
       font-family: $font-stack-normal;
-      padding-left: ($grid-gutter-width / 2);
-      a {
-        @extend .btn;
-        @extend .btn-default;
-        @extend .btn-link;
-        
-        // Decrease the padding.
-        padding: 0 ($grid-gutter-width / 4) 0 ($grid-gutter-width / 4);
-        
-        &:link,
-        &:visited {
-          background-color:transparent;
+      padding: 0 0 5px ($grid-gutter-width / 2);
+      font-size: 0.7em;
+      
+      @extend .nav;
+      @extend .nav-pills;
+      @extend .nav-stacked;
+      
+      > li {
+        margin: 0;
+        @media (min-width: $screen-md-min) {
+          float:left;
+          clear:both;
         }
         
-        &:active,
-        &:hover {
-          background-color: $link-color;
-          color: $btn-primary-color;
-          text-decoration:none;
+        + li {
+          margin-top: 5px;
+        }
+      
+        > a {
+          padding: 7px 10px;
+          
+          &:link,
+          &:visited {
+            background-color:transparent;
+            color: $link-color;
+          }
+          
+          &:active,
+          &:hover,
+          &:focus {
+            background-color: $link-color;
+            color: $btn-primary-color;
+            text-decoration:none;
+          }
+        }
+        
+        &.active {
+          
+          & > a {
+            &:link,
+            &:visited {
+              background-color: $link-color;
+              color: $btn-primary-color;
+              text-decoration:none;
+            }
+          }
         }
       }
+      
+      // // li { 
+        // // a {
+          // // // @extend .btn;
+          // // // @extend .btn-default;
+          // // // @extend .btn-link;
+  // // //         
+          // // // // Decrease the padding.
+          // // // padding: 0 ($grid-gutter-width / 4) 0 ($grid-gutter-width / 4);
+// //           
+          // // &:link,
+          // // &:visited {
+            // // background-color:transparent;
+            // // color: $link-color;
+          // // }
+// //           
+          // // &:active,
+          // // &:hover,
+          // // &:focus {
+            // // background-color: $link-color;
+            // // color: $btn-primary-color;
+            // // text-decoration:none;
+          // // }
+        // // }
+// //         
+        // // &.active {
+          // // &:link,
+          // // &:visited {
+            // // background-color:transparent;
+            // // color: $link-color;
+          // // }
+        // // }
+      // // }
     }
   }
 }
