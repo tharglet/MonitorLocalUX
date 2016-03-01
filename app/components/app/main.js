@@ -91,9 +91,6 @@ define(
 
 
       console.log("OK");
-   
-      // Default to the homepage.
-      $urlRouterProvider.otherwise('/');
 
       // Default home state.
       $stateProvider.state('app', {
@@ -101,15 +98,16 @@ define(
           title: "Home",
         },
         views : {
-          "main" : {
+          "" : { // Un-named (default) view.
             controller: 'AppController',
+            templateUrl: 'components/app/partials/home.html',
           },
           "breadcrumb" : {
             controller: 'BreadcrumbController',
+            templateUrl: 'components/app/partials/crumb.html',
           },
         },
         url: '/',
-        templateUrl: 'components/app/partials/home.html',
         resolve: {
           // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
           deps: $couchPotatoProvider.resolveDependencies([
@@ -118,6 +116,9 @@ define(
           ])
         },
       });
+   
+      // Default to the homepage.
+      $urlRouterProvider.otherwise('/');
     }])
     .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'NO_AUTH',
       function($couchPotato, $state, $stateParams, $rootScope, $log, shared, NO_AUTH) {

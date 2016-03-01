@@ -41,6 +41,9 @@ define(
           // Now we have the data we need we should add the links to the scope.
           $scope.crumb_trail = crumb_titles;
           console.log(crumb_titles);
+        } else {
+          // Make sure we unset the breadcrumb.
+          delete $scope.crumb_trail;
         }
       }
       
