@@ -7,45 +7,37 @@
  */
 define(
   "academic-output",     // JS module name (not the same as the angular module name.)
-  ['globals/Finance', 'angular-ui-router', 'angular-couch-potato', 'search'],   // File locations can also be used instead of named includes.
+  [
+   'globals/Finance', // File locations can also be used instead of named includes.
+   'angular-ui-router',
+   'angular-couch-potato',
+   'search'
+  ],
   function (Finance) {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router'])
-      .config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
-  
-        // State for search.
-        $stateProvider.state('app.academicOutput', {
-          url:          '/academic-output',
-          data : {
-            title: "Academic Outputs",
-            requireLogin: true
-          }
-        });
-        
-        // Default config for un-named view.
-        $stateProvider.state('app.academicOutput.edit', {
-          url:          '^/academic-output/:id',
-          templateUrl:  'components/academic-output/partials/main.html',
-          data : {
-            title: "Academic Output",
-            requireLogin: true
-          },
-          controller: ['$scope', '$state', function ($scope, $state) {
-            
-            $scope['academicOutput'] = {
-              id    : $state.params['id'],
-              name  : "My test academic output",
-              value : 100,
-              tax : function () {
-                return Finance.calcTax(this.value);
-              }
-            };
-            
-            $state.current.data.subTitle = $scope['academicOutput']['name'] + ": " + $state.params['id'];
-          }]
-        });
-      }
-    ]);
+    return angular.module('academic-output', ['ui.router', 'scs.couch-potato', 'search'])
+    .config(['$stateProvider', '$couchPotatoProvider', function($stateProvider,$couchPotatoProvider) {
+      // State for search.
+      $stateProvider.state('app.academicOutput', {
+        parent: 'app.componentSearch',
+        url:   '^/academic-output',
+        data : {
+          title: "Academic Output",
+          requirelogin:false,
+        },
+      });
+                      
+      // Default config for un-named view.
+      $stateProvider.state('app.academicOutput.view', {
+        url:          '/:id',
+        templateUrl:  'components/academic-output/partials/main.html',
+        data : {
+          title: "Academic Output Details",
+          requirelogin:false,
+        },
+      });
+    }]);
   }
 );
+

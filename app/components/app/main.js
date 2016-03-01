@@ -97,7 +97,6 @@ define(
 
       // Default home state.
       $stateProvider.state('app', {
-        abstract: true,
         data: {
           title: "Home",
         },
@@ -109,6 +108,8 @@ define(
             controller: 'BreadcrumbController',
           },
         },
+        url: '/',
+        templateUrl: 'components/app/partials/home.html',
         resolve: {
           // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
           deps: $couchPotatoProvider.resolveDependencies([
@@ -116,11 +117,6 @@ define(
             'app/CtrlBreadcrumbController'
           ])
         },
-      });
-      
-      $stateProvider.state('app.home', {
-        url: '/',
-        templateUrl: 'components/app/partials/home.html'
       });
     }])
     .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'NO_AUTH',

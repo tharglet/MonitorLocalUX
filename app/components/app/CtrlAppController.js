@@ -10,6 +10,19 @@ function(app) {
       // Add the states ass root classes.
       $rootScope.bodyClasses = $rootScope.$state.current.name.replace(/[\.\-]/ig, ' ').trim();
     }
+    
+    function setTitle () {
+      if ($rootScope.$state.current.data && $rootScope.$state.current.data.title) {
+        $rootScope.title = $rootScope.$state.current.data.title;
+      }
+      if ($rootScope.$state.current.data && $rootScope.$state.current.data.hasOwnProperty("subTitle")) {
+        $rootScope.subTitle = $rootScope.$state.current.data.subTitle;
+      }
+    };
+    setTitle();
+    $rootScope.$on('$stateChangeSuccess', function() {
+      setTitle();
+    });
 
     $rootScope.logout = function() {
       $auth.logout()
