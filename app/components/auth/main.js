@@ -16,19 +16,14 @@ define(
   
         // State for Login.
         $stateProvider.state('app.login', {
+          deps: ['auth/CtrlLoginController'],
           templateUrl:  './partials/login.html',
           url:          '/login',
           data : {
             title: "Login",
             requireLogin: false
           },
-          controller: 'LoginCtrl',
-          resolve: {
-            // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
-            deps: $couchPotatoProvider.resolveDependencies([
-              'auth/CtrlLoginController'
-            ])
-          },
+          controller: 'LoginCtrl'
         });
       }])
     ;

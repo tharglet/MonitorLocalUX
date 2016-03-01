@@ -31,7 +31,30 @@ define(
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
    
       couchPotato.configureApp(app);
-
+      
+      // Lets add a lazy dependencies decorator to the state provider.
+      $stateProvider.decorator('deps', function (state) {
+        
+        if (state.deps) {
+          
+          var tempKey;
+          var depsResolutionKey = tempKey = 'deps';
+          var count = 1;
+          while (state.resolve && state.resolve[tempKey]) {
+            
+            tempKey = depsResolutionKey + count;
+          }
+          depsResolutionKey = tempKey;
+          
+          // Add the resolve object if necessary.
+          if (!state.resolve) {
+            state.resolve = {};
+          }
+          
+          // Now we need to add the resolve property.      
+          state.resolve[tempKey] = $couchPotatoProvider.resolveDependencies(state.deps);
+        }
+      });
 
       // Sattelizer likes us to have the host of the callback be the same origin as the site we are serving. Thats very nice when we are serving the
       // app from //monitorlocal.jisc.ac.uk/redirect but when we're developing the odds are that we are serving from localhost:9090. So we switch the URL
@@ -53,23 +76,6 @@ define(
         clientId: 'twitterClientId',
         url: callback_url + "twitter"
       });
-
-      // Parameters that can be set for oauth2 provider
-      // $authProvider.oauth2({
-      //   url: null,
-      //   name: null,
-      //   scope: null,
-      //   scopeDelimiter: null,
-      //   clientId: null,
-      //   redirectUri: null,
-      //   popupOptions: null,
-      //   authorizationEndpoint: null,
-      //   responseParams: null,
-      //   requiredUrlParams: null,
-      //   optionalUrlParams: null,
-      //   defaultUrlParams: ['response_type', 'client_id', 'redirect_uri'],
-      //   responseType: 'code'
-      // });
 
       // See OAuth2 RFC:: http://tools.ietf.org/html/rfc6749
       $authProvider.oauth2({
@@ -108,13 +114,10 @@ define(
           },
         },
         url: '/',
-        resolve: {
-          // This is the important bit that loads a file when this route is in action. These files are only loaded when needed.
-          deps: $couchPotatoProvider.resolveDependencies([
-            'app/CtrlAppController',
-            'app/CtrlBreadcrumbController'
-          ])
-        },
+        deps: [
+          'app/CtrlAppController',
+          'app/CtrlBreadcrumbController'
+        ],
       });
    
       // Default to the homepage.

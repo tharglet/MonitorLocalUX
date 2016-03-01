@@ -8,7 +8,6 @@
 define(
   "academic-output",     // JS module name (not the same as the angular module name.)
   [
-   'globals/Finance', // File locations can also be used instead of named includes.
    'angular-ui-router',
    'angular-couch-potato',
    'search'
