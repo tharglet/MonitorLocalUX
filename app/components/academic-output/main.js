@@ -9,14 +9,13 @@ define(
   "academic-output",     // JS module name (not the same as the angular module name.)
   [
    'angular-ui-router',
-   'angular-couch-potato',
    'search'
   ],
   function (Finance) {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router', 'scs.couch-potato', 'search'])
-    .config(['$stateProvider', '$couchPotatoProvider', function($stateProvider,$couchPotatoProvider) {
+    return angular.module('academic-output', ['ui.router', 'search'])
+    .config(['$stateProvider', function($stateProvider) {
       // State for search.
       $stateProvider.state('app.academicOutput', {
         parent: 'app.componentSearch',
@@ -30,7 +29,11 @@ define(
       // Default config for un-named view.
       $stateProvider.state('app.academicOutput.view', {
         url:          '/:id',
-        templateUrl:  'components/academic-output/partials/main.html',
+        views: {
+          "": {
+            templateUrl:  'components/academic-output/partials/main.html',
+          }
+        },
         data : {
           title: "Academic Output Details",
           requirelogin:false,

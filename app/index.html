@@ -20,7 +20,7 @@
     
     <title>{{$state.current.data.title}}</title>
   </head>
-  <body class="{{bodyClasses ? bodyClasses : ''}}">
+  <body class="{{bodyClasses ? bodyClasses : ''}}" data-ui-view='app' >
     <header class="site-header">
       <div class="masthead" role="banner" >
         <div class="inner">
@@ -51,7 +51,7 @@
         </nav>
       </asside>
       <div class="crumb-wrapper" data-ui-view='breadcrumb' ></div>
-      <main role="main" id="main" data-ui-view='main' >
+      <main role="main" id="main">
         <h1>{{title}}</h1>
         <div class="inner" data-ui-view>
         </div>

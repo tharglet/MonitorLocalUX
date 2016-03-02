@@ -17,13 +17,17 @@ define(
         // State for Login.
         $stateProvider.state('app.login', {
           deps: ['auth/CtrlLoginController'],
-          templateUrl:  './partials/login.html',
-          url:          '/login',
+          views : {
+            "@" : { // Un-named (default) view.
+              controller: 'LoginCtrl',
+              templateUrl: 'components/auth/partials/login.html',
+            },
+          },
+          url:          '^/login',
           data : {
             title: "Login",
             requireLogin: false
           },
-          controller: 'LoginCtrl'
         });
       }])
     ;

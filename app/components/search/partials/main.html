@@ -1,14 +1,10 @@
-<table class="table table-striped">
-  <thead>
+<div ui-view="searchBox">
+  <p>Search box goes here</p>
+</div>
+<div ui-view="searchResults">
+  <table>
     <tr>
-      <th ng-repeat="col in cols">{{col.colName}}</th>
+      <td>Search results go here.</td>
     </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="datarow in data" ng-init="row = $index">
-      <td ng-repeat="col in cols">
-        <a ui-sref="app.academicOutput-view({id: (row), otherParam: 'barVal1'})"> {{datarow[col.colName]}} </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  </table>
+</div>
