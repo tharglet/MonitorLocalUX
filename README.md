@@ -24,6 +24,8 @@ npm install -g bower grunt-cli karma phantomjs jasmine-core sass-globber
 __note:__ If you see errors regarding permissions take a look at this script (https://github.com/glenpike/npm-g_nosudo/blob/master/npm-g-nosudo.sh) to allow global npm packages without sudo. Alternatively, use nvm which will cause -g to use a user local repository for -g and allow easy switching of node environments [II Suggests this approach]
 
 
+Requires ElasticSearch version 1.6 to be installed. Uses the cluster name 'elasticsearch' by default.
+
 ## Building
 Change into root directory of this project.
 ```
