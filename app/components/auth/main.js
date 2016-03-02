@@ -7,12 +7,12 @@
  */
 define(
   "auth",
-  ['angular-ui-router', 'angular-couch-potato'],
+  ['angular-ui-router'],
   function () {
     
     // Create our angular module here.
     return angular.module('auth', ['ui.router'])
-      .config(['$stateProvider', '$couchPotatoProvider', function($stateProvider, $couchPotatoProvider) {
+      .config(['$stateProvider', function($stateProvider) {
   
         // State for Login.
         $stateProvider.state('app.login', {

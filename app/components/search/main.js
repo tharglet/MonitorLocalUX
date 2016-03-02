@@ -1,10 +1,10 @@
 'use strict';
 define(
   "search",
-  ['angular-ui-router', 'angular-couch-potato'],
+  ['angular-ui-router'],
   function () {
-    var mod = angular.module('search', ['ui.router', 'scs.couch-potato']);
-    mod.config(['$stateProvider', '$couchPotatoProvider', function($stateProvider,$couchPotatoProvider) {
+    var mod = angular.module('search', ['ui.router']);
+    mod.config(['$stateProvider', '$couchPotatoProvider', function($stateProvider) {
       $stateProvider.state('app.componentSearch', {
         abstract: true,
         data: {
