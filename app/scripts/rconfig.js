@@ -14,7 +14,8 @@ requirejs.config({
     "jisc-patterns-foot": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-foot.min",
     jquery: "/bower_components/jquery/dist/jquery",
     "jquery-touchswipe": "../bower_components/jquery-touchswipe/jquery.touchSwipe",
-    "bootstrap-js": "../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min"
+    "bootstrap-js": "../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min",
+    "deep-diff": "../bower_components/deep-diff/index"
   },
   baseUrl: "components",
   packages: [

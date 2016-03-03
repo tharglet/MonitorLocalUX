@@ -1,4 +1,4 @@
-<ol class="breadcrumb" ng-if='crumb_trail' >
+<ol class="breadcrumb" ng-if="crumb_trail && crumb_trail.length > 0" >
   <li ng-repeat="(index, crumb) in crumb_trail" ng-switch="crumb.uri" ng-class="{active: (index == (crumb_trail.length -1))}" >
     <span ng-switch-when="undefined">{{crumb.title}}</span>
     <a ng-switch-default href="{{crumb.uri}}">{{crumb.title}}</a>

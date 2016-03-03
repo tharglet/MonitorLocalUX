@@ -22,10 +22,9 @@ define(
         url:   '^/academic-output',
         data : {
           title: "Academic Output",
-          requirelogin:false,
         },
       });
-                      
+
       // Default config for un-named view.
       $stateProvider.state('app.academicOutput.view', {
         url:          '/:id',
@@ -36,7 +35,6 @@ define(
         },
         data : {
           title: "Academic Output Details",
-          requirelogin:false,
         },
       });
     }]);

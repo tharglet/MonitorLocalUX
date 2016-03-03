@@ -37,7 +37,7 @@
       </div>
     </header>
     <div class="inner">
-      <asside class="side-nav" data-ui-view='nav' >
+      <asside class="side-nav" >
         <nav role="navigation" >
           <ul>
             <li class="parent active"><span>Elem with subs</span><ul>
@@ -50,7 +50,12 @@
           </ul>
         </nav>
       </asside>
-      <div class="crumb-wrapper" data-ui-view='breadcrumb' ></div>
+      <div class="crumb-wrapper" data-ui-view='breadcrumb' ><ol class="breadcrumb" >
+        <li ng-repeat="(index, crumb) in crumb_trail" ng-switch="crumb.uri" ng-class="{active: (index == (crumb_trail.length -1))}" >
+          <span ng-switch-when="undefined">{{crumb.title}}</span>
+          <a ng-switch-default href="{{crumb.uri}}">{{crumb.title}}</a>
+        </li>
+      </ol></div>
       <main role="main" id="main">
         <h1>{{title}}</h1>
         <div class="inner" data-ui-view>

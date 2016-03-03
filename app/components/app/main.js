@@ -98,26 +98,26 @@ define(
 
       console.log("OK");
 
-      // Default home state.
+      // Default app abstract state.
       $stateProvider.state('app', {
-        data: {
-          title: "Home",
-        },
-        views : {
-          "" : { // Un-named (default) view.
-            controller: 'AppController',
-            templateUrl: 'components/app/partials/home.html',
-          },
-          "breadcrumb" : {
-            controller: 'BreadcrumbController',
-            templateUrl: 'components/app/partials/crumb.html',
-          },
-        },
-        url: '/',
+        abstract: true,
         deps: [
-          'app/CtrlAppController',
-          'app/CtrlBreadcrumbController'
+          'app/CtrlAppController'
         ],
+        views : {
+          "app": {
+            controller: 'AppController',
+          }
+        },
+      });
+      
+
+      $stateProvider.state('app.dash', {
+        url: '/',
+        data: {
+          title: "Dashboard",
+        },
+        templateUrl: 'components/app/partials/home.html',
       });
    
       // Default to the homepage.

@@ -10,11 +10,7 @@ define(
         data: {
           requirelogin:true,
         },
-        views: {
-          "@": { // Reset the main un-named view of the app.
-            templateUrl: 'components/search/partials/main.html',
-          }
-        }
+        templateUrl: 'components/search/partials/main.html',
       });
     }]);
     
