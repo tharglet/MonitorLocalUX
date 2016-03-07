@@ -31,22 +31,16 @@
             <img alt="Jisc logo" src="images/jisc-logo.png">
           </a>
           <div class="title-nav">
-            <a ui-sref="app" >Monitor Local <span class="badge">alpha</span></a>
+            <a ui-sref="app.dash" >Monitor Local <span class="badge">alpha</span></a>
           </div>
         </div>
       </div>
     </header>
     <div class="inner">
       <asside class="side-nav" >
-        <nav role="navigation" >
+        <nav role="navigation" ui-view="nav" >
           <ul>
-            <li class="parent active"><span>Elem with subs</span><ul>
-              <li><a href="#">Sub elem</a></li>
-              <li class="active" ><a href="#">Sub elem</a></li>
-              <li><a href="#">Sub elem</a></li>
-            </ul></li>
-            <li class="parent" ><a href="#">Elem with subs</a></li>
-            <li><a href="#" >Elem</a></li>
+            <li class="parent active"><a ui-sref="app.academicOutput">Academic Output</a></li>
           </ul>
         </nav>
       </asside>

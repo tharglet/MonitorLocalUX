@@ -11,7 +11,7 @@ define(
    'angular-ui-router',
    'search'
   ],
-  function (Finance) {   // Module instantiator. Should return an object that will be stored against the name of this module.
+  function () {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
     return angular.module('academic-output', ['ui.router', 'search'])
@@ -20,6 +20,11 @@ define(
       $stateProvider.state('app.academicOutput', {
         parent: 'app.componentSearch',
         url:   '^/academic-output',
+        views: {
+          "nav@app" : {
+            templateUrl: "components/academic-output/partials/_nav.html",
+          }
+        },
         data : {
           title: "Academic Output",
         },
@@ -27,14 +32,70 @@ define(
 
       // Default config for un-named view.
       $stateProvider.state('app.academicOutput.view', {
-        url:          '/:id',
+        url: '/:id',
         views: {
-          "": {
-            templateUrl:  'components/academic-output/partials/main.html',
-          }
+          "@app": {
+            templateUrl:  'components/academic-output/partials/view.html',
+          },
         },
         data : {
           title: "Academic Output Details",
+          subTitle: "Details",
+        },
+      });
+      $stateProvider.state('app.academicOutput.view.people', {
+        url:          '/people',
+        views: {
+          "": {
+            templateUrl:  'components/academic-output/partials/_tab_people.html',
+          },
+        },
+        data : {
+          subTitle: "People",
+        },
+      });
+      $stateProvider.state('app.academicOutput.view.publication', {
+        url:          '/publication',
+        views: {
+          "": {
+            templateUrl:  'components/academic-output/partials/_tab_publication.html',
+          },
+        },
+        data : {
+          subTitle: "Publication",
+        },
+      });
+      $stateProvider.state('app.academicOutput.view.finance', {
+        url:          '/finance',
+        views: {
+          "": {
+            templateUrl:  'components/academic-output/partials/_tab_finance.html',
+          },
+        },
+        data : {
+          subTitle: "Finance",
+        },
+      });
+      $stateProvider.state('app.academicOutput.view.compliance', {
+        url:          '/compliance',
+        views: {
+          "": {
+            templateUrl:  'components/academic-output/partials/_tab_compliance.html',
+          },
+        },
+        data : {
+          subTitle: "Compliance",
+        },
+      });
+      $stateProvider.state('app.academicOutput.view.all', {
+        url:          '/all',
+        views: {
+          "": {
+            templateUrl:  'components/academic-output/partials/_tab_all.html',
+          },
+        },
+        data : {
+          subTitle: "View All",
         },
       });
     }]);

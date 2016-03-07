@@ -3,7 +3,8 @@
 define(
   'app',
   [ // Add all the dependents.
-    "angular-couch-potato",
+    'angular-couch-potato',
+    './config',
     'html5shiv',
     "satellizer",
     'angular-ui-router',
@@ -15,7 +16,7 @@ define(
     'auth',
     'academic-output',
   ],                
-  function (couchPotato) {
+  function (couchPotato, conf) {
     
     var app = angular.module('app', [
       'scs.couch-potato',
@@ -27,8 +28,9 @@ define(
     
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
     .constant( 'NO_AUTH', true )
+    .constant( "config", conf )
     
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', 'config', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, config) {
    
       couchPotato.configureApp(app);
       

@@ -15,7 +15,12 @@ requirejs.config({
     jquery: "/bower_components/jquery/dist/jquery",
     "jquery-touchswipe": "../bower_components/jquery-touchswipe/jquery.touchSwipe",
     "bootstrap-js": "../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min",
-    "deep-diff": "../bower_components/deep-diff/index"
+    "deep-diff": "../bower_components/deep-diff/index",
+    "datatables.net": "../bower_components/datatables.net/js/jquery.dataTables",
+    "datatables.net-bs": "../bower_components/datatables.net-bs/js/dataTables.bootstrap",
+    ngRAMLResources: "../globals/ngRAMLResources",
+    "raml-parser": "../bower_components/raml-parser/dist/*",
+    "responsive-bootstrap-toolkit": "../bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit"
   },
   baseUrl: "components",
   packages: [
@@ -75,6 +80,27 @@ requirejs.config({
       deps: [
         "jquery"
       ]
-    }
+    },
+    "datatables.net": {
+      deps: [
+        "jquery"
+      ]
+    },
+    "datatables.net-bs": {
+      deps: [
+        "datatables.net"
+      ]
+    },
+    ngRAMLResources: {
+      deps: [
+        "angular-resource",
+        "raml-parser"
+      ]
+    },
+    "responsive-bootstrap-toolkit": {
+      deps: [
+        "bootstrap-js"
+      ]
+    },
   }
 });

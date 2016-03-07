@@ -1,16 +1,27 @@
 'use strict';
 define(
   "search",
-  ['angular-ui-router'],
+  [
+   'angular-ui-router',
+   'datatables.net-bs',
+  ],
   function () {
     var mod = angular.module('search', ['ui.router']);
-    mod.config(['$stateProvider', '$couchPotatoProvider', function($stateProvider) {
+    mod.config(['$stateProvider', function($stateProvider) {
       $stateProvider.state('app.componentSearch', {
         abstract: true,
+        deps: [
+          "components/search/CtrlSearchController.js"
+        ],
         data: {
           requirelogin:true,
         },
-        templateUrl: 'components/search/partials/main.html',
+        controller: 'SearchController',
+        views: {
+          "@app" : {
+            templateUrl: 'components/search/partials/search_results.html',
+          }
+        },        
       });
     }]);
     

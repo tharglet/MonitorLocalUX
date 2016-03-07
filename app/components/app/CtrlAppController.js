@@ -10,6 +10,7 @@ function(app) {
      * Method to set the title.
      */
     function setTitle () {
+      
       if ($stateProvider.$current.data && $stateProvider.$current.data.title) {
         $rootScope.title = $rootScope.$state.current.data.title;
       }
@@ -23,12 +24,15 @@ function(app) {
      */
     function setTrail() {
       
+      // Grab the current state object in full.
+      var current_state = $stateProvider.$current;
+      
+      // Set some body classes too.
+      $scope.bodyClasses = current_state.name.replace(/[\.\-]/ig, ' ').trim();
+      
       // Clean the crumb first
       $scope.crumb_trail = [];
-      if ($stateProvider.$current.self.url != "/") {
-      
-        // Grab the current state object in full.
-        var current_state = $stateProvider.$current;
+      if (current_state.self.url != "/") {
         
         // Active state trail is available under the path variable.
         var crumb_titles = [{
@@ -65,11 +69,6 @@ function(app) {
           console.log(crumb_titles);
         }
       }
-    }
-    
-    if ($stateProvider.$current) {
-      // Add the states ass root classes.
-      $rootScope.bodyClasses = $rootScope.$state.current.name.replace(/[\.\-]/ig, ' ').trim();
     }
     
     setTrail();
