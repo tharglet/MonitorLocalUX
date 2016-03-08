@@ -9,12 +9,13 @@ define(
   "academic-output",     // JS module name (not the same as the angular module name.)
   [
    'angular-ui-router',
-   'search'
+   'search',
+   'angular-ui-sortable',
   ],
   function () {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router', 'search'])
+    return angular.module('academic-output', ['ui.router', 'search', 'ui.sortable'])
     .config(['$stateProvider', function($stateProvider) {
       // State for search.
       $stateProvider.state('app.academicOutput', {

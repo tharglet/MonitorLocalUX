@@ -1,0 +1,21 @@
+.panel-collapsible {
+  .panel-heading *:first-child {
+    
+    &:after {
+      font-family:'Glyphicons Halflings';
+      content:"\e113";
+      float: right;
+      color: grey;      
+      cursor: pointer;
+      &:hover,
+      &:active,
+      &focus {
+        cursor: pointer;
+      }
+    }
+    
+    &.collapsed:after {
+      content:"\e114";
+    }
+  }
+}

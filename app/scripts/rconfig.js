@@ -12,7 +12,7 @@ requirejs.config({
     html5shiv: "../bower_components/html5shiv/dist/html5shiv",
     "jisc-patterns-head": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-head.min",
     "jisc-patterns-foot": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-foot.min",
-    jquery: "/bower_components/jquery/dist/jquery",
+    jquery: "../bower_components/jquery/dist/jquery",
     "jquery-touchswipe": "../bower_components/jquery-touchswipe/jquery.touchSwipe",
     "bootstrap-js": "../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min",
     "deep-diff": "../bower_components/deep-diff/index",
@@ -20,7 +20,9 @@ requirejs.config({
     "datatables.net-bs": "../bower_components/datatables.net-bs/js/dataTables.bootstrap",
     ngRAMLResources: "../globals/ngRAMLResources",
     "raml-parser": "../bower_components/raml-parser/dist/*",
-    "responsive-bootstrap-toolkit": "../bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit"
+    "responsive-bootstrap-toolkit": "../bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit",
+    "angular-ui-sortable": "../bower_components/angular-ui-sortable/sortable",
+    "jquery-ui": "../bower_components/jquery-ui/jquery-ui"
   },
   baseUrl: "components",
   packages: [
@@ -30,6 +32,11 @@ requirejs.config({
     "auth"
   ],
   shim: {
+    angular: {
+      deps: [
+        "jquery"
+      ]
+    },
     "angular-animate": {
       deps: [
         "angular"
@@ -88,7 +95,8 @@ requirejs.config({
     },
     "datatables.net-bs": {
       deps: [
-        "datatables.net"
+        "datatables.net",
+        "jquery"
       ]
     },
     ngRAMLResources: {
@@ -99,8 +107,15 @@ requirejs.config({
     },
     "responsive-bootstrap-toolkit": {
       deps: [
+        "jquery",
         "bootstrap-js"
       ]
     },
+    "angular-ui-sortable": {
+      deps: [
+        "angular",
+        "jquery-ui"
+      ]
+    }
   }
 });

@@ -9,9 +9,7 @@ define(
     "satellizer",
     'angular-ui-router',
     'bootstrap-js',
-//    'jisc-patterns-head',
-//    'jisc-patterns-foot' SO: Commenting out for now as seems to be dependent on an unknown library
-   
+    
    // Component modules.
     'auth',
     'academic-output',

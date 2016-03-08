@@ -36,6 +36,8 @@ module.exports = function(config) {
       'bower_components/jquery-touchswipe/jquery.touchSwipe.js',
       'bower_components/datatables.net/js/jquery.dataTables.js',
       'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
+      'bower_components/jquery-ui/jquery-ui.js',
+      'bower_components/angular-ui-sortable/sortable.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

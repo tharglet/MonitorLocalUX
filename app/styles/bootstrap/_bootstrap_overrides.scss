@@ -21,3 +21,14 @@
     @include font-weight (300);
   }
 }
+
+.nav-tabs > li.active > a {
+  &:link,
+  &:active,
+  &:visited,
+  &:hover,
+  &:focus {
+    outline:0;
+  }
+}
+    

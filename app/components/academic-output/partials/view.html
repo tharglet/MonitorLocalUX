@@ -6,10 +6,15 @@
   <li role="presentation" ui-sref-active-eq="active" ><a ui-sref="app.academicOutput.view.compliance" >Compliance</a></li>
   <li role="presentation" ui-sref-active-eq="active" class="pull-right" ><a ui-sref="app.academicOutput.view.all" >View all</a></li>
 </ul>
-<div class="inner tab-content" ui-view>
+<section id="ao-grid" class="inner tab-content">
    <div class="row" >
-    <div class="span-12">
-      <p>Placeholding content for All tab.</p>
-    </div>
+    <article class="span-12" ui-view>
+      <div class="panel panel-collapsible panel-default ">
+        <div class="panel-heading"><h4 data-toggle="collapse" data-target="#panelId" >Panel heading</h4></div>
+        <div id="panelId" class="panel-body in">
+          <p>This is my panel content.</p>
+        </div>
+      </div>
+    </article>
   </div>
-</div>
+</section>
