@@ -1,6 +1,10 @@
 .panel-collapsible {
   .panel-heading *:first-child {
     
+    font-size: 1.1em;
+    margin:0;
+    padding:0;
+    
     &:after {
       font-family:'Glyphicons Halflings';
       content:"\e113";

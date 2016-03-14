@@ -9,10 +9,30 @@
 <section id="ao-grid" class="inner tab-content">
    <div class="row" >
     <article class="span-12" ui-view>
-      <div class="panel panel-collapsible panel-default ">
-        <div class="panel-heading"><h4 data-toggle="collapse" data-target="#panelId" >Panel heading</h4></div>
-        <div id="panelId" class="panel-body in">
-          <p>This is my panel content.</p>
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#ao-panel-main" aria-label="Expand/Collapse the main AO content" id="ao-panel-main-heading">Academic output details</h3>
+        </div>
+        <div id="ao-panel-main" name="ao-panel-main" class="panel-body form-horizontal in" aria-labelledby="ao-panel-main-heading">
+          <div class="form-group">
+            <label id="ao-name-label" for="ao-name" class="span-3 control-label" aria-label="AO Name">Name</label>
+            <div class="span-9">
+              <input ng-model="context.name" type="text" class="form-control" id="ao-name" placeholder="Acaademic output name" aria-labelledby="ao-name-label" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label id="ao-pub-route-label" for="ao-pub-route" class="span-3 control-label" aria-label="AO Publication route">Publication route</label>
+            <div class="span-9">
+              <ui-select class="form-control" ng-model="context.type" theme="select2" ng-disabled="disabled" >
+                <ui-select-match>
+                    <span ng-bind="$select.selected.value"></span>
+                </ui-select-match>
+                <ui-select-choices repeat="item in (itemArray | filter: $select.search) track by item.id">
+                    <span ng-bind="item.name"></span>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
         </div>
       </div>
     </article>

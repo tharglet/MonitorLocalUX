@@ -4,7 +4,6 @@ define (
 ['app','auth/SvcUserService'],
 function(app) {
   return  app.registerController ('AppController', ['$rootScope', '$scope', '$state', function ($rootScope, $scope, $stateProvider) {
-    
 
     /**
      * Method to set the title.
@@ -13,9 +12,16 @@ function(app) {
       
       if ($stateProvider.$current.data && $stateProvider.$current.data.title) {
         $rootScope.title = $rootScope.$state.current.data.title;
+      } else {
+        $rootScope.title = null;
       }
       if ($stateProvider.$current.data && $stateProvider.$current.data.hasOwnProperty("subTitle")) {
         $rootScope.subTitle = $rootScope.$state.current.data.subTitle;
+      } else {
+        $rootScope.subTitle = null;
+      }
+      if ($stateProvider.$current.data && $stateProvider.$current.data.hasOwnProperty("secondaryTitle")) {
+        $rootScope.secondaryTitle = $rootScope.$state.current.data.secondaryTitle;
       }
     };
     

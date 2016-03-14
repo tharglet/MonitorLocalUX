@@ -1,10 +1,12 @@
 'use strict';
 
 define (
-  ['app', 'search/SvcSearchService'],
+  ['app'],
   function(app) {
-    app.registerController('SearchController', [ '$scope', 'SearchService', function($scope, search) {
-      console.log ("Running the controller");
+    app.registerController('SearchController', [ '$scope', function($scope) {
+      /**
+       * Code for search box will go here.
+       */
     }]);
   }
 );

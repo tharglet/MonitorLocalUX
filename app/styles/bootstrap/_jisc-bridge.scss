@@ -50,8 +50,9 @@ body {
 // Main content.
 #main {
   @extend .span-#{$main-cols};
-  &> h1 {
-    @extend .container-fluid;
+  &> h1,
+  &> h2 {
+    margin: $grid-gutter-width ($grid-gutter-width / 2) ($grid-gutter-width * 1.5) ($grid-gutter-width / 2);
     margin-top: $breadcrumb-padding-vertical;
   }
 }

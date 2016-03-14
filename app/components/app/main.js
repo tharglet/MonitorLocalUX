@@ -2,9 +2,11 @@
 
 define(
   'app',
-  [ // Add all the dependents.
+  [ // Add all the dependencies.
     'angular-couch-potato',
     './config',
+    'pnotify',
+    'angular-aria',
     'html5shiv',
     "satellizer",
     'angular-ui-router',
@@ -13,8 +15,9 @@ define(
    // Component modules.
     'auth',
     'academic-output',
+    'angular-xeditable',
   ],                
-  function (couchPotato, conf) {
+  function (couchPotato, conf, PNotify) {
     
     var app = angular.module('app', [
       'scs.couch-potato',
@@ -22,14 +25,15 @@ define(
       'ui.router',
       'auth',
       'academic-output',
+      'xeditable'
     ])
     
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
     .constant( 'NO_AUTH', true )
-    .constant( "config", conf )
+    .constant( "appConfig", conf )
     
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', 'config', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, config) {
-   
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
+      
       couchPotato.configureApp(app);
       
       // Lets add a lazy dependencies decorator to the state provider.
@@ -111,7 +115,6 @@ define(
         },
       });
       
-
       $stateProvider.state('app.dash', {
         url: '/',
         data: {
@@ -123,8 +126,15 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'NO_AUTH',
-      function($couchPotato, $state, $stateParams, $rootScope, $log, shared, NO_AUTH) {
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'editableOptions', 'NO_AUTH',
+      function($couchPotato, $state, $stateParams, $rootScope, $log, shared, editableOptions, NO_AUTH) {
+      
+        // Set the theme of the xeditable widgets to be bootstrap 3.
+        editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+        
+        // Set the theme for PNotify.
+        PNotify.prototype.options.styling = "bootstrap3";
+      
         // Use lazy run-time registration.
         app.lazy = $couchPotato;
 

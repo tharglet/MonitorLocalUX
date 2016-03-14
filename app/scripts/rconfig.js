@@ -22,13 +22,28 @@ requirejs.config({
     "raml-parser": "../bower_components/raml-parser/dist/*",
     "responsive-bootstrap-toolkit": "../bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit",
     "angular-ui-sortable": "../bower_components/angular-ui-sortable/sortable",
-    "jquery-ui": "../bower_components/jquery-ui/jquery-ui"
+    "jquery-ui": "../bower_components/jquery-ui/jquery-ui",
+    "angular-xeditable": "../bower_components/angular-xeditable/dist/js/xeditable",
+    "ui-select": "../bower_components/ui-select/dist/select",
+    select2: "../bower_components/select2/dist/js/select2",
+    "angular-sanitize": "../bower_components/angular-sanitize/angular-sanitize",
+    pnotify: "../bower_components/pnotify/dist/pnotify",
+    "pnotify.animate": "../bower_components/pnotify/dist/pnotify.animate",
+    "pnotify.desktop": "../bower_components/pnotify/dist/pnotify.desktop",
+    "pnotify.history": "../bower_components/pnotify/dist/pnotify.history",
+    "pnotify.buttons": "../bower_components/pnotify/dist/pnotify.buttons",
+    "pnotify.mobile": "../bower_components/pnotify/dist/pnotify.mobile",
+    "pnotify.confirm": "../bower_components/pnotify/dist/pnotify.confirm",
+    "pnotify.nonblock": "../bower_components/pnotify/dist/pnotify.nonblock",
+    "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks"
   },
   baseUrl: "components",
   packages: [
     "app",
+    "grails",
     "search",
     "academic-output",
+    "notifications",
     "auth"
   ],
   shim: {
@@ -116,6 +131,56 @@ requirejs.config({
         "angular",
         "jquery-ui"
       ]
-    }
+    },
+    "angular-xeditable": {
+      deps: [
+        "angular"
+      ]
+    },
+    "ui-select": {
+      deps: [
+        "angular"
+      ]
+    },
+    "angular-sanitize": {
+      deps: [
+        "angular"
+      ]
+    },
+    pnotify: {
+      deps: [
+        "jquery"
+      ]
+    },
+    "pnotify.animate": {
+      deps: [
+         "pnotify"
+      ]
+    },
+    "pnotify.desktop":  {
+      deps: [
+        "pnotify"
+      ]
+    },
+    "pnotify.buttons":  {
+      deps: [
+        "pnotify"
+      ]
+    },
+    "pnotify.confirm":  {
+      deps: [
+        "pnotify"
+      ]
+    },
+    "pnotify.nonblock":  {
+      deps: [
+        "pnotify"
+      ]
+    },
+    "pnotify.callbacks":  {
+      deps: [
+        "pnotify"
+      ]
+    },
   }
 });

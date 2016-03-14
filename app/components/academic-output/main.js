@@ -8,20 +8,28 @@
 define(
   "academic-output",     // JS module name (not the same as the angular module name.)
   [
+   'pnotify',
    'angular-ui-router',
    'search',
+   'grails',
    'angular-ui-sortable',
+   'angular-sanitize',
+   'ui-select'
   ],
-  function () {   // Module instantiator. Should return an object that will be stored against the name of this module.
+  function (notifications) {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router', 'search', 'ui.sortable'])
+    return angular.module('academic-output', ['ui.router', 'ui.sortable', 'ui.select', 'ngSanitize', 'search'])
     .config(['$stateProvider', function($stateProvider) {
       // State for search.
       $stateProvider.state('app.academicOutput', {
         parent: 'app.componentSearch',
         url:   '^/academic-output',
         views: {
+          // Unnamed view.
+          "" : {
+            controller: 'SearchResultsController',
+          },
           "nav@app" : {
             templateUrl: "components/academic-output/partials/_nav.html",
           }
@@ -36,12 +44,12 @@ define(
         url: '/:id',
         views: {
           "@app": {
-            templateUrl:  'components/academic-output/partials/view.html',
+            templateUrl: 'components/academic-output/partials/view.html',
+            controller: 'GrailsEditController'
           },
         },
         data : {
-          title: "Academic Output Details",
-          subTitle: "Details",
+          subTitle: "Main"
         },
       });
       $stateProvider.state('app.academicOutput.view.people', {
@@ -52,7 +60,7 @@ define(
           },
         },
         data : {
-          subTitle: "People",
+          subTitle: "People"
         },
       });
       $stateProvider.state('app.academicOutput.view.publication', {
@@ -63,7 +71,7 @@ define(
           },
         },
         data : {
-          subTitle: "Publication",
+          subTitle: "Publication"
         },
       });
       $stateProvider.state('app.academicOutput.view.finance', {
@@ -74,7 +82,7 @@ define(
           },
         },
         data : {
-          subTitle: "Finance",
+          subTitle: "Finance"
         },
       });
       $stateProvider.state('app.academicOutput.view.compliance', {
@@ -85,7 +93,7 @@ define(
           },
         },
         data : {
-          subTitle: "Compliance",
+          subTitle: "Compliance"
         },
       });
       $stateProvider.state('app.academicOutput.view.all', {
@@ -96,7 +104,7 @@ define(
           },
         },
         data : {
-          subTitle: "View All",
+          subTitle: "View All"
         },
       });
     }]);
