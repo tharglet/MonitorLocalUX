@@ -27,11 +27,15 @@
                 <ui-select-match>
                     <span ng-bind="$select.selected.value"></span>
                 </ui-select-match>
-                <ui-select-choices repeat="item in (itemArray | filter: $select.search) track by item.id">
-                    <span ng-bind="item.name"></span>
+                <ui-select-choices repeat="item in (typeList | filter: { value : $select.search } ) track by item.id">
+                    <span ng-bind="item.value"></span>
                 </ui-select-choices>
               </ui-select>
             </div>
+          </div>
+          <div class="form-group pull-right">
+            <button type="button" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-warning">Cancel</button>
           </div>
         </div>
       </div>

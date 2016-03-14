@@ -44,9 +44,9 @@ define (
           // We only need to watch for the first change.
           
           // Raise the notification.
-          changed = notify.showSaveNotification({
-            text: 'You have made changes to this Academic Output. Your changes will not be saved until you click save.'
-          }, saveMethod, cancelMethod);
+//          changed = notify.showSaveNotification({
+//            text: 'You have made changes to this Academic Output. Your changes will not be saved until you click save.'
+//          }, saveMethod, cancelMethod);
           
           // Remove the listener as we now have no need to watch it so closely.
           replaceWatcher();
@@ -104,10 +104,8 @@ define (
         
         // Change the title if we get a new one here.
         component.get($stateParams, function(data) {
-          
-          $(document).ready(function () {
-            updateContext (data);
-          });
+          updateContext (data);
+          $scope.typeList = data.type.owner.values; 
         });
         
         // Destroy listener to perform some cleanup on this scope.
