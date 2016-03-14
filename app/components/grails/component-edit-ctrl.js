@@ -1,66 +1,131 @@
-function ComponentEditController ($rootScope, $scope, $state, $stateParams, grails, config, notify) {
-  
-  // This boolean will be used to track the status of the context object.
-  var changed = false;
-  
-  // Listener function for watching the context. Calling the return method will remove the current watcher.
-  var watcher = null;
-  var replaceWatcher = function(observe, newWatcher) {
-    // Always remove any existing listeners.
-    if (typeof watcher === 'function') {
-      watcher();
-    }
-    
-    if (typeof observe === 'string' && typeof newWatcher === 'function') {
-      watcher = $scope.$watch(observe, newWatcher);
-    } else {
-      watcher = null;
-    }
-  };
-  
-  var updateContext = function (data) {
-    
-    $scope.context = data;
-    
-    // Bind a new listener to the returned object.
-    replaceWatcher ('context', function() {
+
+'use strict';
+
+define (
+  ['notifications'],
+  function (notify) {
+    return function ComponentEditController ($rootScope, $scope, $state, $stateParams, $timeout, grails, config) {
       
-    });
-    
-    if (data.name) {
-      $rootScope.secondaryTitle = data.name;
-    }
-    
-    // We also create a copy for reverting.
-    $scope._original = data;
-  };
-  
-  if ($stateParams.id) {
-    
-    // Grab the Grails resource interaction service.
-    var component = grails.r ( config.backend, 'AcademicOutput');
-    
-    // Change the title if we get a new one here.
-    component.get($stateParams, updateContext);
-    
-    // Destroy listener to perform some cleanup on this scope.
-    $scope.$on('$destroy', function() {
-      $rootScope.secondaryTitle = null;
-      $scope.context = null;
-      $scope._original = null;
+      // Use this to avoid catching the first model load with our watcher.
+      var initializing = true;
       
-      // Remove the watcher...
-      replaceWatcher();
-    });
+      // Hold the $scope.context_original value of the content.
+      $scope.context_original = {};
+      
+      // This boolean will be used to track the status of the context object.
+      var changed = false;
+      
+      $scope.context = {};
     
-    
-    /*** Bind some function to the scope at the end ***/
-    $scope.saveChanges = function () {
-      // Do some saving...
-    };
-    
-    $scope.cancelChanges = function () {
-      // Do some saving...
+      var watcher = null;
+      var replaceWatcher = function(observe, newWatcher) {
+        console.log ("replaceWatcher");
+        // Always remove any existing listeners.
+        if (typeof watcher === 'function') {
+          watcher();
+        }
+        
+        if (typeof observe === 'string' && typeof newWatcher === 'function') {
+          console.log ("Binding watcher");
+          watcher = $scope.$watch(observe, newWatcher, true);
+        } else {
+          watcher = null;
+        }
+      };
+      
+      // Listener function for watching the context. Calling the return method will remove the current watcher.
+      var watchingFunction = function() {
+        
+        if (initializing) {
+          console.log ("watchingFunction initial run");
+          $timeout(function() { initializing = false; });
+        } else {
+          console.log ("watchingFunction");
+          // We only need to watch for the first change.
+          
+          // Raise the notification.
+          changed = notify.showSaveNotification({
+            text: 'You have made changes to this Academic Output. Your changes will not be saved until you click save.'
+          }, saveMethod, cancelMethod);
+          
+          // Remove the listener as we now have no need to watch it so closely.
+          replaceWatcher();
+        }
+      };
+      
+      var updateContext = function (data) {
+        console.log ("UpdateContext");
+        
+        // We also create a copy for reverting.
+        $scope.context_original = angular.copy(data);
+
+        if (data) {
+          angular.copy (data, $scope.context);
+        }
+        
+        if ($scope.context.name) {
+          $rootScope.secondaryTitle = $scope.context.name;
+        }
+        
+        // Bind a new listener to the returned object.
+        replaceWatcher ('context', watchingFunction);
+        
+        // Reset the watched flag.
+        changed = false;
+      };
+      
+      var saveMethod = function() {
+        
+        // Persist any changes back to the server.
+        if (changed !== false) {
+          // Close the notification.
+          changed.close();
+        }
+        
+        $scope.context.save();
+      };
+      
+      var cancelMethod = function() {
+        // Revert the changes...
+        if ($scope.context_original) {
+          updateContext($scope.context_original);
+          if (changed !== false) {
+            // Close the notification.
+            changed.close();
+          }
+        }
+      };
+      
+      /**** First run ****/
+      if ($stateParams.id) {
+        
+        // Grab the Grails resource interaction service.
+        var component = grails.r ( config.backend, 'AcademicOutput');
+        
+        // Change the title if we get a new one here.
+        component.get($stateParams, function(data) {
+          
+          $(document).ready(function () {
+            updateContext (data);
+          });
+        });
+        
+        // Destroy listener to perform some cleanup on this scope.
+        $scope.$on('$destroy', function() {
+          $rootScope.secondaryTitle = null;
+          $scope.context = null;
+          $scope.context_original = null;
+          
+          // Remove the watcher...
+          replaceWatcher();
+        });
+        
+        
+        /*** Bind some function to the scope at the end ***/
+        $scope.saveChanges = saveMethod;
+        
+        $scope.cancelChanges = cancelMethod;
+      }
     };
   }
-}
+);

@@ -5,7 +5,6 @@ define(
   [ // Add all the dependencies.
     'angular-couch-potato',
     './config',
-    'pnotify',
     'angular-aria',
     'html5shiv',
     "satellizer",
@@ -131,9 +130,6 @@ define(
       
         // Set the theme of the xeditable widgets to be bootstrap 3.
         editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-        
-        // Set the theme for PNotify.
-        PNotify.prototype.options.styling = "bootstrap3";
       
         // Use lazy run-time registration.
         app.lazy = $couchPotato;

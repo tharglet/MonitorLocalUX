@@ -7,11 +7,11 @@
 'use strict';
 
 define (
-  ['angular-resource', './resource-manager', './component-edit-ctrl'],
-  function() {
+  ['./component-edit-ctrl', 'angular-resource', './resource-manager'],
+  function(ComponentEditController) {
     var ngGr = angular.module('grails', ['ngResource']);
     ngGr.service('GrailsService', ['$resource', ResourceManager]);
-    ngGr.controller('GrailsEditController', ['$rootScope', '$scope', '$state', '$stateParams', 'GrailsService', 'appConfig', ComponentEditController]);
+    ngGr.controller('GrailsEditController', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', 'GrailsService', 'appConfig', ComponentEditController]);
     return ngGr;
   }
 );
