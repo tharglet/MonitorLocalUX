@@ -12,11 +12,7 @@
 // Import the default bootstrap variables from the Flatly theme upon which we are basing our theme.
 @import  "_flatly_variables";
 
-// Import the default bootstrap variables to account for any vars not already declared in the flatly theme.
-@import  "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables";
-
 // Official bootstrap sass includes.
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap-compass";
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
 
 // Custom theme file for base bootstrap themeing.

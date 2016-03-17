@@ -25,7 +25,6 @@ requirejs.config({
     "jquery-ui": "../bower_components/jquery-ui/jquery-ui",
     "angular-xeditable": "../bower_components/angular-xeditable/dist/js/xeditable",
     "ui-select": "../bower_components/ui-select/dist/select",
-    select2: "../bower_components/select2/dist/js/select2",
     "angular-sanitize": "../bower_components/angular-sanitize/angular-sanitize",
     pnotify: "../bower_components/pnotify/dist/pnotify",
     "pnotify.animate": "../bower_components/pnotify/dist/pnotify.animate",

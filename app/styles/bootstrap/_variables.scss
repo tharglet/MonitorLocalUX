@@ -3,13 +3,14 @@
 @import  "_jisc_vars";
 
 // Add the JISC font.
-$jisc-font-location: "../fonts/";
+$jisc-font-location: "/fonts/";
 @include font-face("Stag Sans Web Light", "#{$jisc-font-location}StagSansWeb-Light", 'Stag Sans Web', '400');
 @include font-face("Stag Sans Web Book", "#{$jisc-font-location}StagSansWeb-Book", 'Stag Sans Web', '400');
 @include font-face("Stag Sans Web Medium", "#{$jisc-font-location}StagSansWeb-Medium", 'Stag Sans Web', '400');
+$bootstrap-sass-asset-helper: false;
 
 // Bootstraps icon path
-$icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$icon-font-path: "/fonts/bootstrap/";
 
 // Padding between columns. Gets divided in half for the left and right.
 $grid-gutter-width: $gutter-width;

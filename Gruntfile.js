@@ -96,6 +96,10 @@ module.exports = function (grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
+              connect().use(
+                '/fonts/bootstrap',
+                connect.static('./bower_components/bootstrap-sass-official/assets/fonts/bootstrap')
+              ),
               connect.static(appConfig.app),
             ];
           }
@@ -232,9 +236,7 @@ module.exports = function (grunt) {
           }
       },
       sass: {
-        src: [
-          '<%= appConfig.app %>/styles/{,**/}*.{scss,sass}',
-          '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
+        src: ['<%= appConfig.app %>/styles/{,**/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     }, 
@@ -247,11 +249,11 @@ module.exports = function (grunt) {
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= appConfig.app %>/images',
         javascriptsDir: '<%= appConfig.app %>/scripts',
-        fontsDir: '<%= appConfig.app %>/styles/fonts',
+        fontsDir: '<%= appConfig.app %>/fonts',
         importPath: './bower_components',
         httpImagesPath: '/images',
         httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
+        httpFontsPath: '/fonts',
         relativeAssets: false,
         assetCacheBuster: false,
         raw: 'Sass::Script::Number.precision = 10\n',
@@ -279,8 +281,8 @@ module.exports = function (grunt) {
 //          '<%= appConfig.dist %>/components/{,**/}*.js',
 //          '<%= appConfig.dist %>/globals/{,**/}*.js',
           '<%= appConfig.dist %>/styles/{,**/}*.css',
-          '<%= appConfig.dist %>/images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= appConfig.dist %>/styles/fonts/*'
+//          '<%= appConfig.dist %>/images/{,**/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= appConfig.dist %>/fonts/*'
         ]
       }
     },
@@ -437,7 +439,8 @@ module.exports = function (grunt) {
             'images/{,**/}*.{webp}',
             'styles/fonts/{,**/}*.*',
             'components/{,**/}*.*',
-            'globals/{,**/}*.*'
+            'globals/{,**/}*.*',
+            'fonts/{,**/}*.*'
           ]
         }, {
           expand: true,
@@ -446,9 +449,9 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: '.',
-          src: ['bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*'],
-          dest: '<%= appConfig.dist %>'
+          cwd: './bower_components/bootstrap-sass-official/assets/fonts/',
+          src: ['bootstrap/*'],
+          dest: '<%= appConfig.dist %>/fonts'
         }, {
           expand: true,
           cwd: './bower_components/font-awesome/fonts',
