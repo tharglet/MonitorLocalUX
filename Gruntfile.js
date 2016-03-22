@@ -216,7 +216,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
-        src: ['<%= appConfig.app %>/index.html'],
+        src: ['<%= appConfig.app %>/index.html','<%= appConfig.app %>/template.html'],
         ignorePath:  /\.\.\//
       },
       test: {
@@ -291,7 +291,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= appConfig.app %>/index.html',
+      html: ['<%= appConfig.app %>/index.html','<%= appConfig.app %>/template.html'],
       options: {
         dest: '<%= appConfig.dist %>',
         flow: {
@@ -540,7 +540,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+//    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
