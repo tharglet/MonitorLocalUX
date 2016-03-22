@@ -60,7 +60,7 @@ define (
         $scope.context_original = angular.copy(data);
 
         if (data) {
-          angular.copy (data, $scope.context);
+          $scope.context = data;
         }
         
         if ($scope.context.name) {
@@ -79,10 +79,18 @@ define (
         // Persist any changes back to the server.
         if (changed !== false) {
           // Close the notification.
-          changed.close();
+//          changed.close();
         }
         
-        $scope.context.save();
+        // This is current scope of the button press.
+        var res = this.context;
+        if (res.id) {
+          // Update...
+          this.context.$update();
+        } else {
+          // Save new.
+          this.context.$save();
+        }
       };
       
       var cancelMethod = function() {

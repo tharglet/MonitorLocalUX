@@ -6,7 +6,6 @@
  * We can also define states here as well as the controllers for the AcademicOuput.
  */
 define(
-  "academic-output",     // JS module name (not the same as the angular module name.)
   [
    'pnotify',
    'angular-ui-router',

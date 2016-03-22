@@ -1,0 +1,21 @@
+// Compass includes.
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/css3/background-size";
+
+// Custom bootstrap variables for JISC theme.
+@import "bootstrap-jisc/_variables";
+
+// Import the default bootstrap variables from the Flatly theme upon which we are basing our theme.
+@import  "bootstrap-jisc/_flatly_variables";
+
+// Official bootstrap sass includes.
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
+
+// Custom theme file for base bootstrap themeing.
+@import "bootstrap-jisc/_flatly_bootswatch";
+
+// Import our files one by one.
+@import "bootstrap-jisc/_bootstrap_overrides";
+
+@import "bootstrap-jisc/components/**/*";

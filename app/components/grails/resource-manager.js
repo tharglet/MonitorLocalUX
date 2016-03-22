@@ -6,11 +6,13 @@ ResourceManager.prototype.config = {
   
   "__DEFAULTS__" : {
     resourceConfig : {
+      defaults: { id: '@id' },
       actions: {
         'get'   : {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
         'list'  : {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}, isArray:true},
         'query' : {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}, isArray:false},
         'save'  : {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
+        'update': {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}, "method": "PUT"},
         'remove': {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
         'delete': {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
       }

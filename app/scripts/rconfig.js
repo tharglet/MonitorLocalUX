@@ -34,7 +34,8 @@ requirejs.config({
     "pnotify.mobile": "../bower_components/pnotify/dist/pnotify.mobile",
     "pnotify.confirm": "../bower_components/pnotify/dist/pnotify.confirm",
     "pnotify.nonblock": "../bower_components/pnotify/dist/pnotify.nonblock",
-    "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks"
+    "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks",
+    "angular-bootstrap": "../bower_components/angular-bootstrap/ui-bootstrap-tpls"
   },
   baseUrl: "components",
   packages: [
@@ -153,33 +154,38 @@ requirejs.config({
     },
     "pnotify.animate": {
       deps: [
-         "pnotify"
+        "pnotify"
       ]
     },
-    "pnotify.desktop":  {
+    "pnotify.desktop": {
       deps: [
         "pnotify"
       ]
     },
-    "pnotify.buttons":  {
+    "pnotify.buttons": {
       deps: [
         "pnotify"
       ]
     },
-    "pnotify.confirm":  {
+    "pnotify.confirm": {
       deps: [
         "pnotify"
       ]
     },
-    "pnotify.nonblock":  {
+    "pnotify.nonblock": {
       deps: [
         "pnotify"
       ]
     },
-    "pnotify.callbacks":  {
+    "pnotify.callbacks": {
       deps: [
         "pnotify"
       ]
     },
+    "angular-bootstrap": {
+      deps: [
+        "angular"
+      ]
+    }
   }
 });
