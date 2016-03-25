@@ -61,7 +61,7 @@ ResourceManager.prototype.addRefdata = function ( res, conf, type ) {
     angular.forEach(conf.refdata, function(propName) {
       res.prototype[propName + "Values"] = function() {
         return _self.http({
-          "url": _self.baseUrl + "/refdata/" + type + "/" + propName,
+          "url": _self.baseUrl + "/ref/" + type + "/" + propName,
           "headers": { "Accept": "application/json;charset=UTF-8" },
           "method": "GET"
         });
