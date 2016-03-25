@@ -1,7 +1,15 @@
-function ResourceManager ( resource ) {
+function ResourceManager ( resource, http, q, config ) {
   this.ngResource = resource;
+  this.http = http;
+  this.baseUrl = config.backend;
+  this.q = q;
+  this._initialized = this.configure();
 }
 ResourceManager.prototype.ngResource = null;
+ResourceManager.prototype.http = null;
+ResourceManager.prototype.q = null;
+ResourceManager.baseUrl = null;
+ResourceManager._initialized = false;
 ResourceManager.prototype.config = {
   
   "__DEFAULTS__" : {
@@ -17,34 +25,82 @@ ResourceManager.prototype.config = {
         'delete': {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
       }
     }
-  },
+  }
+};
+ResourceManager.prototype.configure = function() {
   
-  AcademicOutput : {
-    resourceConfig : {
-      uri : "ao/:id",
-      actions: {
-        // Add the query method for searches too.
-        query : {
-          "method" : "GET"
-        }
+  var _self = this;
+  
+  // HTTP request to grab the config.
+  return _self.http({
+    "url": this.baseUrl + "/angularHelper/resourceConfig",
+    "headers": { "Accept": "application/json;charset=UTF-8" },
+    "method": "GET"
+  }).then(function(data) {
+    angular.merge( _self.config, data.data )
+  });
+};
+ResourceManager.prototype.getConfig = function ( type ) {
+  
+  // Start by merging our defaults with the settings from the server.
+  var conf = {};
+  if ( type in this.config && 'resourceConfig' in this.config[type] ) {
+    conf = angular.merge({}, this.config['__DEFAULTS__']['resourceConfig'], this.config[type]['resourceConfig']);
+  }
+  return conf;
+};
+
+ResourceManager.prototype.addRefdata = function ( res, conf, type ) {
+  
+  var _self = this;
+  
+  // Let's bolt on methods using the resource actions config object.
+  if (res && this.baseUrl && type && conf && "refdata" in conf) {
+    
+    // Add the config. 
+    angular.forEach(conf.refdata, function(propName) {
+      res.prototype[propName + "Values"] = function() {
+        return _self.http({
+          "url": _self.baseUrl + "/refdata/" + type + "/" + propName,
+          "headers": { "Accept": "application/json;charset=UTF-8" },
+          "method": "GET"
+        });
+      };
+    });
+  }
+  return conf;
+};
+
+ResourceManager.prototype.resourceCache = {};
+ResourceManager.prototype.r = function ( type ) {
+  
+  var _self = this;
+  
+  // Need to create a deferred object.
+  var deferred = _self.q.defer();
+  
+  // Wait till initialized.
+  _self._initialized.then(function(){
+    // After initialization...
+    // Get from cache.
+    var res = _self.resourceCache[_self.baseUrl+type];
+    
+    // Lookup config and return a resource object.
+    if ( !res ) {
+      
+      // Grab the config.
+      var conf = _self.getConfig( type );
+      
+      if ( conf ) {
+        res = _self.ngResource (_self.baseUrl + conf['uri'] , conf['defaults'] || {}, conf['actions']);
+        _self.resourceCache[_self.baseUrl+type] = res;
+        _self.addRefdata(res, conf, type);
       }
     }
-  }  
-};
-  
-ResourceManager.prototype.resourceCache = {};
-ResourceManager.prototype.r = function ( baseUrl, type ) {
-  
-  // Get from cache.
-  var res = this.resourceCache[baseUrl+type];
-  
-  // Lookup config and return a resource object.
-  if ( !res && type in this.config && 'resourceConfig' in this.config[type] ) {
-    var conf = angular.merge({}, this.config['__DEFAULTS__']['resourceConfig'], this.config[type]['resourceConfig']);
-    res = this.ngResource (baseUrl + '/' + conf['uri'] , conf['defaults'] || {}, conf['actions']);
-    this.resourceCache[baseUrl+type] = res;
-  }
+    
+    deferred.resolve(res);
+  });
   
   // Null if none found.
-  return res ? res : null;
+  return deferred.promise;
 };

@@ -4,7 +4,7 @@
 define (
   ['notifications'],
   function (notify) {
-    return function ComponentEditController ($rootScope, $scope, $state, $stateParams, $timeout, grails, config) {
+    return function ($rootScope, $scope, $state, $stateParams, $timeout, resource) {
       
       // Use this to avoid catching the first model load with our watcher.
       var initializing = true;
@@ -105,15 +105,12 @@ define (
       };
       
       /**** First run ****/
-      if ($stateParams.id) {
-        
-        // Grab the Grails resource interaction service.
-        var component = grails.r ( config.backend, 'AcademicOutput');
+      if ($stateParams.id) {      
         
         // Change the title if we get a new one here.
-        component.get($stateParams, function(data) {
+        resource.get($stateParams, function(data) {
           updateContext (data);
-          $scope.typeList = data.type.owner.values; 
+          $scope.typeList = data.type.owner.values;
         });
         
         // Destroy listener to perform some cleanup on this scope.
@@ -129,7 +126,6 @@ define (
         
         /*** Bind some function to the scope at the end ***/
         $scope.saveChanges = saveMethod;
-        
         $scope.cancelChanges = cancelMethod;
       }
     };

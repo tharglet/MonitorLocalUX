@@ -9,8 +9,8 @@ define(
   [
    'pnotify',
    'angular-ui-router',
-   'search',
    'grails',
+   'search',
    'angular-ui-sortable',
    'angular-sanitize',
    'ui-select'
@@ -18,12 +18,13 @@ define(
   function (notifications) {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router', 'ui.sortable', 'ui.select', 'ngSanitize', 'search'])
+    return angular.module('academic-output', ['ui.router', 'ui.sortable', 'ui.select', 'grails', 'ngSanitize', 'search'])
     .config(['$stateProvider', function($stateProvider) {
       // State for search.
       $stateProvider.state('app.academicOutput', {
         parent: 'app.componentSearch',
         url:   '^/academic-output',
+        grailsResource: 'AcademicOutput',
         views: {
           // Unnamed view.
           "" : {
@@ -35,7 +36,7 @@ define(
         },
         data : {
           title: "Academic Output",
-        },
+        }
       });
 
       // Default config for un-named view.
@@ -49,7 +50,7 @@ define(
         },
         data : {
           subTitle: "Main"
-        },
+        }
       });
       $stateProvider.state('app.academicOutput.view.people', {
         url:          '/people',

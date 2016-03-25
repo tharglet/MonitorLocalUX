@@ -1,0 +1,8 @@
+<ui-select ng-model="object[property]" class="form-control" theme="select2" ng-disabled="disabled" >
+  <ui-select-match>
+    <span ng-bind="$select.selected.value"></span>
+  </ui-select-match>
+  <ui-select-choices repeat="item in (data | filter: { value : $select.search } ) track by item.id">
+    <span ng-bind="item.value"></span>
+  </ui-select-choices>
+</ui-select>

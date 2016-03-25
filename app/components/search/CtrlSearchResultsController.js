@@ -3,7 +3,7 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('SearchResultsController', [ '$scope', '$state', 'GrailsService', 'appConfig', function($scope, $state, grails, config) {
+    app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', function($scope, $state, resource) {
       console.log ("Running the controller");
       
       var table = $("<table class='table table-striped table-hover' width='100%' />").dataTable({
@@ -20,8 +20,7 @@ define (
         ajax : function (data, callback, settings) {
           
           // Use the grails helper to get the resource.
-          var ao = grails.r ( config.backend, 'AcademicOutput');
-          ao.list(function(data){
+          resource.list(function(data){
             callback({ 'data': data });
           });
         }
