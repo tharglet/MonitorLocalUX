@@ -30,7 +30,9 @@ define (
             // Check if this is refdata. We fetch all refdata.
             if ( typeof $scope.object.componentLookup === 'function') {
               // Push if through the lookup method on the resource.
-              $scope.object.componentLookup ($scope.property, searchParam);
+              $scope.object.componentLookup ($scope.property, searchParam).then(function( rdata ){
+                $scope.data = rdata.data;
+              });
             }
           };
 

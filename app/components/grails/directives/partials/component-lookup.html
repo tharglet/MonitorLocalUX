@@ -2,7 +2,7 @@
   <ui-select-match>
     <span ng-bind="$select.selected.name"></span>
   </ui-select-match>
-  <ui-select-choices refresh="refresh($select.search)" refresh-delay="350" repeat="item in (data | filter: { value : $select.search } ) track by item.id">
+  <ui-select-choices refresh="refresh($select.search)" refresh-delay="350" repeat="item in (data | filter: { name : $select.search } ) track by item.id">
     <span ng-bind="item.name"></span>
   </ui-select-choices>
 </ui-select>
