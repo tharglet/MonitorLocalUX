@@ -7,7 +7,7 @@
 'use strict';
 
 define (
-  ['./component-edit-ctrl', './DirectiveRefdata', 'angular-resource', './resource-manager' ],
+  ['./controllers/component-edit', './directives/val-lookup', 'angular-resource', './lib/resource-manager' ],
   function(ComponentEditController, RefdataDirective) {
     
     // Define some prefixes and var names here.
@@ -22,7 +22,7 @@ define (
     // The functions for the below are stored in different files. They are included above using
     // requirejs and they should return a method. That method can then be accessed by applied var name.
     ngGr.controller('GrailsEditController', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', grailsResourcePriovderName, ComponentEditController]);
-    ngGr.directive(directiveNamespace + 'Refdata', ['$compile', '$templateRequest', RefdataDirective]);
+    ngGr.directive(directiveNamespace + 'ValLookup', ['$compile', '$templateRequest', RefdataDirective]);
     
     // If the UI Router is present then we should add a decorator to allow for,
     // GrailsResource resolution.

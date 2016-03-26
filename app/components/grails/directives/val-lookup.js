@@ -41,7 +41,7 @@ define (
             });
 
             
-            $templateRequest("components/grails/directive-partials/refdata.html").then(function(html){
+            $templateRequest("components/grails/directives/partials/refdata.html").then(function(html){
               var template = angular.element(html);
               
               // Grab each element.
