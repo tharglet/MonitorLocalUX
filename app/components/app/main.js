@@ -31,7 +31,10 @@ define(
     .constant( 'NO_AUTH', true )
     .constant( "appConfig", conf )
     
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', 'uiSelectConfig', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, uiSelectConfig) {
+      
+      // UiSelect Globals.
+      uiSelectConfig.theme = 'select2';
       
       couchPotato.configureApp(app);
       

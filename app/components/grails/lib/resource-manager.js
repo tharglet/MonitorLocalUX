@@ -71,6 +71,19 @@ ResourceManager.prototype.addRefdata = function ( res, conf, type ) {
   return conf;
 };
 
+ResourceManager.prototype.addLookup = function ( res, type ) {
+  
+  var _self = this;
+  res.prototype.componentLookup  = function(propName, search, params) {
+    return _self.http({
+      "url": _self.baseUrl + "/ref/" + type + "/" + propName + (search ? "/" + search : ""),
+      "headers": { "Accept": "application/json;charset=UTF-8" },
+      "method": "GET",
+      "params": params || {},
+    });
+  };
+};
+
 ResourceManager.prototype.resourceCache = {};
 ResourceManager.prototype.r = function ( type ) {
   
@@ -95,6 +108,7 @@ ResourceManager.prototype.r = function ( type ) {
         res = _self.ngResource (_self.baseUrl + conf['uri'] , conf['defaults'] || {}, conf['actions']);
         _self.resourceCache[_self.baseUrl+type] = res;
         _self.addRefdata(res, conf, type);
+        _self.addLookup(res, type);
       }
     }
     

@@ -7,8 +7,8 @@
 'use strict';
 
 define (
-  ['./controllers/component-edit', './directives/val-lookup', 'angular-resource', './lib/resource-manager' ],
-  function(ComponentEditController, RefdataDirective) {
+  ['./controllers/component-edit', './directives/component-lookup', './directives/refdata-lookup', 'angular-resource', './lib/resource-manager' ],
+  function(ComponentEditController, ComponentLookupDirective, RefdataLookupDirective) {
     
     // Define some prefixes and var names here.
     var directiveNamespace = "kint";
@@ -22,7 +22,8 @@ define (
     // The functions for the below are stored in different files. They are included above using
     // requirejs and they should return a method. That method can then be accessed by applied var name.
     ngGr.controller('GrailsEditController', ['$rootScope', '$scope', '$state', '$stateParams', '$timeout', grailsResourcePriovderName, ComponentEditController]);
-    ngGr.directive(directiveNamespace + 'ValLookup', ['$compile', '$templateRequest', RefdataDirective]);
+    ngGr.directive(directiveNamespace + 'ComponentLookup', ['$compile', '$templateRequest', '$q', ComponentLookupDirective]);
+    ngGr.directive(directiveNamespace + 'RefdataLookup', ['$compile', '$templateRequest', '$q', RefdataLookupDirective]);
     
     // If the UI Router is present then we should add a decorator to allow for,
     // GrailsResource resolution.
