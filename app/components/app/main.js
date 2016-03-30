@@ -5,7 +5,6 @@ define(
   [ // Add all the dependencies.
     'angular-couch-potato',
     './config',
-    'angular-aria',
     'html5shiv',
     "satellizer",
     'angular-ui-router',
@@ -14,7 +13,6 @@ define(
    // Component modules.
     'auth',
     'academic-output',
-    'angular-xeditable',
   ],                
   function (couchPotato, conf, PNotify) {
     
@@ -23,18 +21,14 @@ define(
       'satellizer',
       'ui.router',
       'auth',
-      'academic-output',
-      'xeditable'
+      'academic-output'
     ])
     
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
     .constant( 'NO_AUTH', true )
     .constant( "appConfig", conf )
     
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', 'uiSelectConfig', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, uiSelectConfig) {
-      
-      // UiSelect Globals.
-      uiSelectConfig.theme = 'select2';
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
       
       couchPotato.configureApp(app);
       
@@ -127,11 +121,8 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'editableOptions', 'NO_AUTH',
-      function($couchPotato, $state, $stateParams, $rootScope, $log, shared, editableOptions, NO_AUTH) {
-      
-        // Set the theme of the xeditable widgets to be bootstrap 3.
-        editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'NO_AUTH',
+      function($couchPotato, $state, $stateParams, $rootScope, $log, shared, NO_AUTH) {
       
         // Use lazy run-time registration.
         app.lazy = $couchPotato;

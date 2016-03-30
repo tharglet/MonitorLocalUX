@@ -7,7 +7,7 @@
 'use strict';
 
 define (
-  ['./controllers/component-edit', './directives/component-lookup', './directives/refdata-lookup', './directives/live-validator', 'angular-resource', './lib/resource-manager' ],
+  ['./controllers/CtrlComponentEdit', './directives/DrtvComponentLookup', './directives/DrtvRefdataLookup', './directives/DrtvLiveValidator', 'angular-resource', './lib/LibResourceManager' ],
   function(ComponentEditController, ComponentLookupDirective, RefdataLookupDirective, ValidatorDirective) {
     
     // Define some prefixes and var names here.

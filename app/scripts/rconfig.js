@@ -42,6 +42,7 @@ requirejs.config({
   packages: [
     "app",
     "grails",
+    "kint-ui",
     "search",
     "academic-output",
     "notifications",

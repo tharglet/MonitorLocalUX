@@ -7,19 +7,14 @@
  */
 define(
   [
-   'pnotify',
-   'angular-ui-router',
    'grails',
    'search',
-   'angular-ui-sortable',
-   'angular-sanitize',
-   'ui-select',
-   'angular-messages'
+   'kint-ui',
   ],
-  function (notifications) {   // Module instantiator. Should return an object that will be stored against the name of this module.
+  function () {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router', 'ui.select', 'grails', 'ngSanitize', 'search', 'ngMessages'])
+    return angular.module('academic-output', ['grails', 'search', 'kintUi'])
     .config(['$stateProvider', function($stateProvider) {
       // State for search.
       $stateProvider.state('app.academicOutput', {
