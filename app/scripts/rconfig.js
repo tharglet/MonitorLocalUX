@@ -35,7 +35,8 @@ requirejs.config({
     "pnotify.confirm": "../bower_components/pnotify/dist/pnotify.confirm",
     "pnotify.nonblock": "../bower_components/pnotify/dist/pnotify.nonblock",
     "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks",
-    "angular-bootstrap": "../bower_components/angular-bootstrap/ui-bootstrap-tpls"
+    "angular-bootstrap": "../bower_components/angular-bootstrap/ui-bootstrap-tpls",
+    "angular-messages": "../bower_components/angular-messages/angular-messages"
   },
   baseUrl: "components",
   packages: [
@@ -183,6 +184,11 @@ requirejs.config({
       ]
     },
     "angular-bootstrap": {
+      deps: [
+        "angular"
+      ]
+    },
+    "angular-messages": {
       deps: [
         "angular"
       ]

@@ -46,11 +46,12 @@ define (
                 ).then(
                   function () {
                     // Valid! Just resolve the promise.
-                    def.resolve();
+                    return def.resolve();
                   },
-                  function(data) {
+                  function(response) {
                     // Invalid! Reject with our message.
-                    def.reject(data.message);
+                    ctrl.kintValidate = response.data;
+                    return def.reject(response.data);
                   }
                 );
                 

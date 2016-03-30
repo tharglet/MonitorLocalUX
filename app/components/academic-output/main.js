@@ -13,12 +13,13 @@ define(
    'search',
    'angular-ui-sortable',
    'angular-sanitize',
-   'ui-select'
+   'ui-select',
+   'angular-messages'
   ],
   function (notifications) {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router', 'ui.select', 'grails', 'ngSanitize', 'search'])
+    return angular.module('academic-output', ['ui.router', 'ui.select', 'grails', 'ngSanitize', 'search', 'ngMessages'])
     .config(['$stateProvider', function($stateProvider) {
       // State for search.
       $stateProvider.state('app.academicOutput', {
