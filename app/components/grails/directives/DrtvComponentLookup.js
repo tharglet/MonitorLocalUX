@@ -2,11 +2,7 @@
 
 define (
   function () {
-
     return function ($compile, $templateRequest) {
-
-      console.log ("Adding directive");
-
       return {
         restrict: 'E',
         scope: {

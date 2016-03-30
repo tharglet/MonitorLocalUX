@@ -6,8 +6,6 @@ define (
       return {
         require: 'ngModel',
         restrict: 'A',
-        controller : [function() {
-        }],
         link: function($scope, iElem, iAttr, ctrl) {
 
           ctrl.$asyncValidators.kintValidate = function(modelValue, viewValue) {
