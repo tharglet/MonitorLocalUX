@@ -10,7 +10,7 @@ define (
         }],
         link: function($scope, iElem, iAttr, ctrl) {
 
-          ctrl.$asyncValidators.grailsValidate = function(modelValue, viewValue) {
+          ctrl.$asyncValidators.kintValidate = function(modelValue, viewValue) {
             
             // Let's create a new deferred object.
             var def = $q.defer();
@@ -38,9 +38,6 @@ define (
                 // Data object to post.
                 var data = {};
                 data[elName] = modelValue;
-  
-                // The messages.
-                ctrl.grailsValidate = {};
   
                 // Do the validation.
                 validator.validateProperty (
