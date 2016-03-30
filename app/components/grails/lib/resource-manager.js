@@ -17,13 +17,8 @@ ResourceManager.prototype.config = {
     resourceConfig : {
       defaults: { id: '@id' },
       actions: {
-        'get'   : {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
-        'list'  : {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}, isArray:true},
-        'query' : {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}, isArray:false},
-        'save'  : {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
-        'update': {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}, "method": "PUT"},
-        'remove': {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
-        'delete': {"headers" : {"Content-Type": "application/json;charset=UTF-8", "Accept": "application/json;charset=UTF-8"}},
+        'list'  : {isArray:true},
+        'query' : {isArray:true},
       }
     }
   }
@@ -85,9 +80,18 @@ ResourceManager.prototype.addLookup = function ( res, type ) {
   };
 };
 
-ResourceManager.prototype.addBaseResource = function ( res ) {
-  res.prototype['$baseResource'] = function() {
-    return res;
+ResourceManager.prototype.addValidateProperty = function ( res, type ) {
+  
+  var _self = this;
+  res.prototype.validateProperty  = function(property, data, params) {
+        
+    return _self.http({
+      "url": _self.baseUrl + "/validate/" + type + '/' + property,
+      "headers" : { "Accept": "application/json;charset=UTF-8" },
+      "method"  : "POST",
+      "params"  : params || {},
+      "data"    : data || {}
+    });
   };
 };
 
@@ -116,7 +120,7 @@ ResourceManager.prototype.r = function ( type ) {
         _self.resourceCache[_self.baseUrl+type] = res;
         _self.addRefdata(res, conf, type);
         _self.addLookup(res, type);
-        _self.addBaseResource(res, type);
+        _self.addValidateProperty(res, type);
       }
     }
     
