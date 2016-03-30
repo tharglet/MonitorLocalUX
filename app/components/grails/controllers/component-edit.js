@@ -8,7 +8,7 @@ define (
       
       if (typeof $scope.context === 'undefined') {
         $scope.context = context;
-        $scope.orginal_context = context;
+        $scope.orginal_context = angular.copy(context);
       }
       
       // Set a couple of methods agains the scope.
