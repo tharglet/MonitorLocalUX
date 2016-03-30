@@ -40,26 +40,25 @@ define(
       
       // Lets add a lazy dependencies decorator to the state provider.
       $stateProvider.decorator('deps', function (state) {
-        
-        if (state.deps) {
           
-          var tempKey;
-          var depsResolutionKey = tempKey = 'deps';
-          var count = 1;
-          while (state.resolve && state.resolve[tempKey]) {
-            
-            tempKey = depsResolutionKey + count;
-          }
-          depsResolutionKey = tempKey;
+        var tempKey;
+        var depsResolutionKey = tempKey = 'deps';
+        var count = 1;
+        while (state.resolve && state.resolve[tempKey]) {
           
-          // Add the resolve object if necessary.
-          if (!state.resolve) {
-            state.resolve = {};
-          }
-          
-          // Now we need to add the resolve property.      
-          state.resolve[tempKey] = $couchPotatoProvider.resolveDependencies(state.deps);
+          tempKey = depsResolutionKey + count;
         }
+        depsResolutionKey = tempKey;
+        
+        // Add the resolve object if necessary.
+        if (!state.resolve) {
+          state.resolve = {};
+        }
+        
+        // Now we need to add the resolve property.      
+        state.resolve[tempKey] = $couchPotatoProvider.resolveDependencies(state.deps);
+        
+        return state.deps;
       });
 
       // Sattelizer likes us to have the host of the callback be the same origin as the site we are serving. Thats very nice when we are serving the

@@ -23,16 +23,13 @@ define (
             $scope.data = [];
           }
 
-          // Object.
-          var obj = $scope.object;
-
           // The refresh function
           $scope.refresh = function ( searchParam ) {
 
             // Refdata function name.
             var funcName = $scope.property + "Values";
             // Check if this is refdata. We fetch all refdata.
-            if ( typeof $scope.object[funcName] === 'function' ) {
+            if ( $scope.object && typeof $scope.object[funcName] === 'function' ) {
               // Grab the values...
               ($scope.object[funcName])().then(function( rdata ){
                 $scope.data = rdata.data;

@@ -42,7 +42,6 @@ define(
       // Default config for un-named view.
       $stateProvider.state('app.academicOutput.view', {
         url: '/:id',
-        grailsResource: 'AcademicOutput',
         views: {
           "@app": {
             templateUrl: 'components/academic-output/partials/view.html',

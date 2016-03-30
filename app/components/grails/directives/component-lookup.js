@@ -21,14 +21,11 @@ define (
           // Add the data and update functions here.
           $scope.data = [];
 
-          // Object.
-          var obj = $scope.object;
-
           // The refresh function
           $scope.refresh = function ( searchParam ) {
 
             // Check if this is refdata. We fetch all refdata.
-            if ( typeof $scope.object.componentLookup === 'function') {
+            if ( $scope.object && typeof $scope.object.componentLookup === 'function') {
               // Push if through the lookup method on the resource.
               $scope.object.componentLookup ($scope.property, searchParam).then(function( rdata ){
                 $scope.data = rdata.data;

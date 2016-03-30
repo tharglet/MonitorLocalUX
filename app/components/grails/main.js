@@ -41,32 +41,34 @@ define (
         // injection using the name set in 'grailsResourceProviderName' above.
         $stateProvider.decorator(grailsResourceProviderName, function (state) {
           
-          // Check if the state
+          // Add the resolve object if necessary.
+          if (!state.resolve) {
+            state.resolve = {};
+          }
+                     
+          // Now we need to add the resolve property.
           if (state[grailsResourceProviderName]) {
-            var typeName = state[grailsResourceProviderName];
-            
-            // Add the resolve object if necessary.
-            if (!state.resolve) {
-              state.resolve = {};
-            }
-            
-            // Now we need to add the resolve property.      
             state.resolve[grailsResourceProviderName] = ['GrailsService', function (grails) {
+              var typeName = state[grailsResourceProviderName];
               return grails.r (typeName);
             }];
+          }
 
-            // Now we need to add the resolve property.      
+          // Add another property that fetches a resource if the state param of ID is set.
+          if (state.ownParams && "id" in state.ownParams) {
             state.resolve[contextVariableName] = ['$stateParams', grailsResourceProviderName, function ($stateParams, resource) {
-              if ($stateParams && "id" in $stateParams && resource) {
+              if (resource) {
                 
                 // Resolves before changing the state.
                 return resource.get({id: $stateParams.id}).$promise;
               } else {
-                // Set the context to null.
+                // Set the context to empty object.
                 return null;
               }
             }];
           }
+          
+          return state[grailsResourceProviderName];
         });
       }
     }]);
