@@ -3,7 +3,7 @@
 define (
   function () {
 
-    return function ($compile, $templateRequest, $q) {
+    return function ($compile, $templateRequest) {
 
       console.log ("Adding directive");
 
@@ -19,7 +19,9 @@ define (
           var iElem  = iElement;
 
           // Add the data and update functions here.
-          $scope.data = [];
+          if (typeof $scope.data === "undefined") {
+            $scope.data = [];
+          }
 
           // Object.
           var obj = $scope.object;
@@ -39,9 +41,12 @@ define (
           };
 
           // Register a watch function to update when the module changes.
-          $scope.$watch("object", function(newVal, oldVal, scope){
-            if (!angular.equals(newVal, oldVal)) {
-              scope.refresh();
+          $scope.rdw = $scope.$watch("object", function(newVal, oldVal){
+            if (!angular.equals({}, newVal)) {
+              $scope.refresh();
+              
+              // Clear the watch until next load.
+              $scope.rdw();
             }
           });
 

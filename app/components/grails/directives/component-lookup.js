@@ -3,7 +3,7 @@
 define (
   function () {
 
-    return function ($compile, $templateRequest, $q) {
+    return function ($compile, $templateRequest) {
 
       console.log ("Adding directive");
 

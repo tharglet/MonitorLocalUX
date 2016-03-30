@@ -18,7 +18,7 @@ define(
   function (notifications) {   // Module instantiator. Should return an object that will be stored against the name of this module.
     
     // Create our angular module here.
-    return angular.module('academic-output', ['ui.router', 'ui.sortable', 'ui.select', 'grails', 'ngSanitize', 'search'])
+    return angular.module('academic-output', ['ui.router', 'ui.select', 'grails', 'ngSanitize', 'search'])
     .config(['$stateProvider', function($stateProvider) {
       // State for search.
       $stateProvider.state('app.academicOutput', {
@@ -42,6 +42,7 @@ define(
       // Default config for un-named view.
       $stateProvider.state('app.academicOutput.view', {
         url: '/:id',
+        grailsResource: 'AcademicOutput',
         views: {
           "@app": {
             templateUrl: 'components/academic-output/partials/view.html',

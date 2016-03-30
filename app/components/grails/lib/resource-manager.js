@@ -1,3 +1,4 @@
+/** TODO: Really need to modularise this class. Make work with requirejs (if present) and add flesh out the comments **/
 function ResourceManager ( resource, http, q, config ) {
   this.ngResource = resource;
   this.http = http;
@@ -84,6 +85,12 @@ ResourceManager.prototype.addLookup = function ( res, type ) {
   };
 };
 
+ResourceManager.prototype.addBaseResource = function ( res ) {
+  res.prototype['$baseResource'] = function() {
+    return res;
+  };
+};
+
 ResourceManager.prototype.resourceCache = {};
 ResourceManager.prototype.r = function ( type ) {
   
@@ -109,6 +116,7 @@ ResourceManager.prototype.r = function ( type ) {
         _self.resourceCache[_self.baseUrl+type] = res;
         _self.addRefdata(res, conf, type);
         _self.addLookup(res, type);
+        _self.addBaseResource(res, type);
       }
     }
     
