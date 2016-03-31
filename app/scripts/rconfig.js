@@ -139,6 +139,11 @@ requirejs.config({
         "angular"
       ]
     },
+    "ui-select": {
+      deps: [
+        "angular"
+      ]
+    },
     "angular-sanitize": {
       deps: [
         "angular"
