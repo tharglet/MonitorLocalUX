@@ -1,4 +1,5 @@
 /** TODO: Really need to modularise this class. Make work with requirejs (if present) and add flesh out the comments **/
+'use strict';
 function ResourceManager ( resource, http, q, config ) {
   this.ngResource = resource;
   this.http = http;

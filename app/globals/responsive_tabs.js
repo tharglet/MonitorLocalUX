@@ -1,3 +1,4 @@
+'use strict';
 define (
   ['responsive-bootstrap-toolkit'],
   function(){
