@@ -23,8 +23,7 @@ requirejs.config({
     "responsive-bootstrap-toolkit": "../bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit",
     "angular-ui-sortable": "../bower_components/angular-ui-sortable/sortable",
     "jquery-ui": "../bower_components/jquery-ui/jquery-ui",
-    "angular-xeditable": "../bower_components/angular-xeditable/dist/js/xeditable",
-    "ui-select": "../bower_components/ui-select/dist/select",
+    "angular-xeditable": "../bower_components/angular-xeditable/dist/js/xeditable"
     "angular-sanitize": "../bower_components/angular-sanitize/angular-sanitize",
     pnotify: "../bower_components/pnotify/dist/pnotify",
     "pnotify.animate": "../bower_components/pnotify/dist/pnotify.animate",
@@ -135,11 +134,6 @@ requirejs.config({
       ]
     },
     "angular-xeditable": {
-      deps: [
-        "angular"
-      ]
-    },
-    "ui-select": {
       deps: [
         "angular"
       ]
