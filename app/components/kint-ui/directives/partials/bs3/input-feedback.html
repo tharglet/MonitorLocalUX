@@ -1,0 +1,2 @@
+<span data-ng-if="component.$dirty" class="glyphicon form-control-feedback" data-ng-class="{'glyphicon-ok': (component.$valid), 'glyphicon-remove': (component.$invalid)}" aria-hidden="true" ></span>
+<span data-ng-if="component.$dirty"  id="{{component.$name}}Status" class="sr-only">{{component.$invalid ? 'invalid' : 'valid' }}</span>

@@ -14,7 +14,7 @@ define(
     'auth',
     'academic-output',
   ],                
-  function (couchPotato, conf, PNotify) {
+  function (couchPotato, conf) {
     
     var app = angular.module('app', [
       'scs.couch-potato',
