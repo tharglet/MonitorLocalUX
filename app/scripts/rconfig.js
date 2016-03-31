@@ -23,7 +23,8 @@ requirejs.config({
     "responsive-bootstrap-toolkit": "../bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit",
     "angular-ui-sortable": "../bower_components/angular-ui-sortable/sortable",
     "jquery-ui": "../bower_components/jquery-ui/jquery-ui",
-    "angular-xeditable": "../bower_components/angular-xeditable/dist/js/xeditable"
+    "angular-xeditable": "../bower_components/angular-xeditable/dist/js/xeditable",
+    "ui-select": "../bower_components/ui-select/dist/select",
     "angular-sanitize": "../bower_components/angular-sanitize/angular-sanitize",
     pnotify: "../bower_components/pnotify/dist/pnotify",
     "pnotify.animate": "../bower_components/pnotify/dist/pnotify.animate",
@@ -35,7 +36,7 @@ requirejs.config({
     "pnotify.nonblock": "../bower_components/pnotify/dist/pnotify.nonblock",
     "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks",
     "angular-bootstrap": "../bower_components/angular-bootstrap/ui-bootstrap-tpls",
-    "angular-messages": "../bower_components/angular-messages/angular-messages"
+    "angular-messages": "../bower_components/angular-messages/angular-messages",
   },
   baseUrl: "components",
   packages: [
@@ -187,6 +188,6 @@ requirejs.config({
       deps: [
         "angular"
       ]
-    }
+    },
   }
 });
