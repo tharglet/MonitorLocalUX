@@ -40,7 +40,6 @@
     }
   },
   "resolutions": {
-    "angular": "^1.4.0",
-    "ui-select": "~0.14"
+    "angular": "^1.4.0"
   }
 }
