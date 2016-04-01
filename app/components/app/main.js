@@ -40,10 +40,9 @@ define(
             
             switch (error.status) {
               case -1:
-                console.log("Catching validation error.")
                 $notifications.showError ({
-                  'title': "Service Unreachable",
-                  'text': "The Monitor Local service is unreachable.",
+                  'title':  "Service Unreachable",
+                  'text':   "The Monitor Local service is unreachable.",
                   buttons: {
                     closer: false,
                   }
