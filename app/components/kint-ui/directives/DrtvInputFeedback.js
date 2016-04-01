@@ -6,7 +6,7 @@ define (
       return {
         require: 'ngModel',
         restrict: 'A',
-        scope : {},
+        scope : false,
         link: function($scope, iElem, iAttr, ngModelCtrl) {
           $scope.component = ngModelCtrl;
           $templateRequest("components/kint-ui/directives/partials/" + theme + "/input-feedback.html").then(function(html){

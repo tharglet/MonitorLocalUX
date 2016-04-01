@@ -9,6 +9,7 @@ define (
           object:   "=",
           property: "@",
           template: "@",
+          required: "@"
         },
         link: function ($scope, iElement, iAttr) {
 
@@ -26,6 +27,12 @@ define (
               $scope.object.componentLookup ($scope.property, searchParam).then(function( rdata ){
                 $scope.data = rdata.data;
               });
+            }
+          };
+          
+          $scope.checkUndefined = function (item, model) {
+            if (item === undefined) {
+              $scope.object[$scope.property] = null;
             }
           };
 
@@ -51,6 +58,10 @@ define (
 
           $templateRequest("components/grails/directives/partials/component-lookup.html").then(function(html){
             var template = angular.element(html);
+            
+            if (typeof $scope.required === 'undefined') {
+              $('ui-select-match', template).attr("allow-clear", "true");
+            }
 
             // Grab each element.
             addAttributes(iAttr, template);

@@ -14,7 +14,7 @@
           <h3 data-toggle="collapse" data-target="#ao-main" aria-label="Expand/Collapse the main AO content" id="ao-main-heading">Academic output details</h3>
         </div>
         <form id="aoMain" name="aoMain" class="panel-body form-horizontal in" aria-labelledby="ao-main-heading">
-          <div class="form-group">
+          <div class="form-group" data-ng-class="{'has-error': (aoMain.aoName.$dirty && aoMain.aoName.$invalid), 'has-success': (aoMain.aoName.$dirty && aoMain.aoName.$valid)}" >
             <label id="ao-name-label" for="ao-name" class="span-3 control-label" aria-label="AO Name" >Name</label>
             <div class="span-9">
               <input type="text" class="form-control" id="aoName" name="aoName" placeholder="Academic output name" aria-labelledby="ao-name-label" 
@@ -28,15 +28,15 @@
             </div>
           </div>
           <div class="form-group">
-            <label id="ao-pub-route-label" for="ao-pub-route" class="span-3 control-label" aria-label="AO Publication route">Publication route</label>
+            <label id="aoPubRouteLabel" for="aoPubRoute" class="span-3 control-label" aria-label="AO Publication route">Publication route</label>
             <div class="span-9">
-              <kint-refdata-lookup name="ao-pub-route" id="ao-pub-route" data-object="context" data-property="type" class="form-control" theme="select2" >
+              <kint-refdata-lookup name="aoPubRoute" id="aoPubRoute" data-object="context" data-property="type" class="form-control" required >
             </div>
           </div>
-          <div class="form-group">
-            <label id="ao-test-lookup-label" for="ao-test-lookup" class="span-3 control-label" aria-label="AO Test lookup">Test Lookup</label>
+          <div class="form-group" >
+            <label id="aoTestLookupLabel" for="aoTestLookup" class="span-3 control-label" aria-label="AO Test lookup">Test Lookup</label>
             <div class="span-9">
-              <kint-component-lookup name="ao-test-lookup" id="ao-test-lookup" data-object="context" data-property="relatedTo" class="form-control" >
+              <kint-component-lookup name="aoTestLookup" id="aoTestLookup" data-object="context" data-property="relatedTo" class="form-control" >
             </div>
           </div>
           <div class="form-group pull-right">

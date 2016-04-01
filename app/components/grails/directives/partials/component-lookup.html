@@ -1,4 +1,4 @@
-<ui-select data-ng-model="object[property]" >
+<ui-select data-ng-model="object[property]" on-select="checkUndefined($item, $model)" >
   <ui-select-match>
     <span data-ng-bind="$select.selected.name"></span>
   </ui-select-match>
