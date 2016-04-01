@@ -5,6 +5,7 @@ define(
   [ // Add all the dependencies.
     'angular-couch-potato',
     './config',
+    'notifications',
     'html5shiv',
     "satellizer",
     'angular-ui-router',
@@ -13,22 +14,44 @@ define(
    // Component modules.
     'auth',
     'academic-output',
+    'organisation'
   ],                
-  function (couchPotato, conf) {
+  function (couchPotato, conf, notify) {
     
     var app = angular.module('app', [
       'scs.couch-potato',
       'satellizer',
       'ui.router',
       'auth',
-      'academic-output'
+      'academic-output',
+      'organisation'
     ])
     
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
     .constant( 'NO_AUTH', true )
     .constant( "appConfig", conf )
+    .constant( '$notifications', notify)
     
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider) {
+      
+      $httpProvider.interceptors.push(['$q', '$notifications', function($q, $notifications) {
+        return {
+          responseError: function(error) {
+            
+            switch (error.status) {
+              case -1:
+                $notifications.showError ({
+                  'title': "Service Unreachable",
+                  'text': "The Monitor Local service is unreachable."
+                });
+                break;
+            }
+            
+            // We should still reject the request.
+            return $q.reject(error);
+          }
+        };
+      }]);
       
       couchPotato.configureApp(app);
       

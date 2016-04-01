@@ -44,9 +44,12 @@ requirejs.config({
     "grails",
     "kint-ui",
     "search",
-    "academic-output",
     "notifications",
-    "auth"
+    "auth",
+    
+
+    "academic-output",
+    "organisation"
   ],
   shim: {
     angular: {

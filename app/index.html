@@ -49,9 +49,12 @@
     </header>
     <div class="inner">
       <asside class="side-nav" >
-        <nav role="navigation" data-ui-view="nav" >
-          <ul>
+        <nav role="navigation" >
+          <ul data-ui-view="ao-nav">
             <li class="parent active"><a data-ui-sref="app.academicOutput">Academic Output</a></li>
+          </ul>
+          <ul data-ui-view="org-nav">
+            <li class="parent active"><a data-ui-sref="app.organisation">Organisation</a></li>
           </ul>
         </nav>
       </asside>
@@ -64,9 +67,9 @@
       <main role="main" id="main">
         <h1>{{title}}<span data-ng-if="!secondaryTitle && subTitle">: <small>{{subTitle}}</small></span></h1>
         <h2 data-ng-if="secondaryTitle" >{{secondaryTitle}}<span data-ng-if="subTitle">: <small>{{subTitle}}</small></span></h2>
-        <div class="notifications" ></div>
         <div class="inner" data-ui-view>
         </div>
+        <div class="notifications" ></div>
         <!-- .inner -->
       </main>
       <!--/ main -->
