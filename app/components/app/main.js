@@ -14,7 +14,8 @@ define(
     // Component modules.
     'auth',
     'academic-output',
-    'organisation'
+    'organisation',
+    'invoice'
   ],                
   function (couchPotato, conf, notify) {
     
@@ -25,7 +26,8 @@ define(
       'notify',
       'auth',
       'academic-output',
-      'organisation'
+      'organisation',
+      'invoice'
     ])
     
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
