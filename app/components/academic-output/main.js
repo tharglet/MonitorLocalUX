@@ -26,7 +26,7 @@ define(
           "" : {
             controller: 'SearchResultsController',
           },
-          "nav@app" : {
+          "ao-nav@app" : {
             templateUrl: "components/academic-output/partials/_nav.html",
           }
         },
