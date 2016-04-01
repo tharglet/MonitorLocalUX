@@ -58,13 +58,20 @@ define (
           if (state.ownParams && "id" in state.ownParams) {
             state.resolve[contextVariableName] = ['$stateParams', grailsResourceProviderName, function ($stateParams, resource) {
               if (resource) {
+                var id = $stateParams.id;
+                if (id == "create") {
+                  
+                  return resource.create().$promise;
+                  
+                } else {
                 
-                // Resolves before changing the state.
-                return resource.get({id: $stateParams.id}).$promise;
-              } else {
-                // Set the context to empty object.
-                return null;
+                  // Resolves before changing the state.
+                  return resource.get({id: id}).$promise;
+                }
               }
+              
+              // Set the context to empty object.
+              return null;
             }];
           }
           

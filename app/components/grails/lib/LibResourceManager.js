@@ -34,7 +34,19 @@ ResourceManager.prototype.configure = function() {
     "headers": { "Accept": "application/json;charset=UTF-8" },
     "method": "GET"
   }).then(function(data) {
-    angular.merge( _self.config, data.data )
+    // Build URLs from URIs.
+    angular.forEach (data.data, function (value, key){
+      if ("resourceConfig" in value && "actions" in value.resourceConfig) {
+        angular.forEach (value.resourceConfig.actions, function (action){
+          if ("uri" in action) {
+            action.url = _self.baseUrl + action.uri;
+          }
+        });
+      }
+    });
+    
+    // Merge in the config.
+    angular.merge( _self.config, data.data );
   });
 };
 ResourceManager.prototype.getConfig = function ( type ) {
