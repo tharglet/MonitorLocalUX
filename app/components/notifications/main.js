@@ -15,56 +15,89 @@ define (
     "pnotify.callbacks"
   ],
   function(notify) {
-    var mainContent = {
-      _defaults : {
-        addclass: "notification-stack-bar-bottom",
-        styling: 'bootstrap3',
-        width: '100%',
-        height: 125,
-        stack : {
-          "dir1":"up",
-          "dir2":"right",
-          "width": "100%",
-          "spacing1": 0,
-          "spacing2": 0
-        }
+
+    notify.prototype.options.styling = "bootstrap3";
+    notify.prototype.options.opacity = "0.65";
+
+  // Define some pre-defined stacks.
+    var stacks = {
+      'bottom-right' : {
+        "dir1":"left",
+        "dir2":"up",
+        "firstpos1": 25,
+        "firstpos2": 0,
+        context: $('#notifications')
+      },
+      'bottom-left' : {
+        "dir1":"right",
+        "dir2":"up",
+        "firstpos1": 25,
+        "firstpos2": 0,
+        context: $('#notifications')
+      },
+      'top-left' : {
+        "dir1":"right",
+        "dir2":"down",
+        "firstpos1": 25,
+        "firstpos2": 25,
+        context: $('#notifications')
+      },
+      'top-right' : {
+        "dir1":"left",
+        "dir2":"down",
+        "firstpos1": 25,
+        "firstpos2": 25,
+        context: $('#notifications')
       }
     };
     
-    return {
-      showSaveNotification : function (notice, onConfirm, onCancel) {
-        var n = $.extend(true,
+    // Message defaults.
+    var mainMessages = {
+      'defaults-error' : {
+        type: "error",
+        hide: false,
+        buttons: {
+          closer: true,
+          sticker: false
+        },
+        opacity: "0.65",
+        stack : stacks['bottom-right'],
+      }
+    };
+    
+    // The api to expose.
+    var public_api = {
+      
+      showError : function (notice) {
+        var n = $.extend(
+          true,
           {},
-          mainContent._defaults,
-          {
-            title: 'Save Changes',
-            text: 'You have made changes to this component. Your changes will not be saved until you click save.',
-            hide: false,
-            confirm: {
-                confirm: true
-            },
-            hide: false,
-            buttons: {
-              closer: false,
-              sticker: false
-            }
-          },
+          mainMessages['defaults-error'],
           notice
         );
         
-        n.stack.context = $('body');
-        
+        // Create the Pnofity instance.
         n = new notify(n);
         
-        if (typeof onConfirm === 'function') {
-          n.get().on('pnotify.confirm', onConfirm);
-        }
-        if (typeof onCancel === 'function') {
-          n.get().on('pnotify.cancel', onCancel);
-        }
-        
+        // Return it so it can be extended by the caller.
         return n;
       }
     };
+    
+    // Register a provider here that will return the api.
+    if (angular !== 'undefined') {
+      // Let's add a module and register the provider..
+      angular.module('notify', [])
+      .provider('$notifications', [ function() {
+        this.$get = [ function() {
+          
+          return public_api;
+        }];
+      }]);
+    }
+    
+    
+    // Return directly for direct injection.
+    return public_api;
   }
 );

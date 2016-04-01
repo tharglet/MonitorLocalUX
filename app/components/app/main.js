@@ -11,7 +11,7 @@ define(
     'angular-ui-router',
     'bootstrap-js',
     
-   // Component modules.
+    // Component modules.
     'auth',
     'academic-output',
     'organisation'
@@ -22,6 +22,7 @@ define(
       'scs.couch-potato',
       'satellizer',
       'ui.router',
+      'notify',
       'auth',
       'academic-output',
       'organisation'
@@ -30,7 +31,6 @@ define(
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
     .constant( 'NO_AUTH', true )
     .constant( "appConfig", conf )
-    .constant( '$notifications', notify)
     
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider) {
       
@@ -40,9 +40,13 @@ define(
             
             switch (error.status) {
               case -1:
+                console.log("Catching validation error.")
                 $notifications.showError ({
                   'title': "Service Unreachable",
-                  'text': "The Monitor Local service is unreachable."
+                  'text': "The Monitor Local service is unreachable.",
+                  buttons: {
+                    closer: false,
+                  }
                 });
                 break;
             }
