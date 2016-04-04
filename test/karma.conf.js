@@ -51,6 +51,7 @@ module.exports = function(config) {
       'bower_components/pnotify/dist/pnotify.nonblock.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/ui-select/dist/select.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

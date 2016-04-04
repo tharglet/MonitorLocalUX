@@ -37,6 +37,7 @@ requirejs.config({
     "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks",
     "angular-bootstrap": "../bower_components/angular-bootstrap/ui-bootstrap-tpls",
     "angular-messages": "../bower_components/angular-messages/angular-messages",
+    "angular-pnotify": "../bower_components/angular-pnotify/src/angular-pnotify"
   },
   baseUrl: "components",
   packages: [
@@ -46,8 +47,6 @@ requirejs.config({
     "search",
     "notifications",
     "auth",
-    
-
     "academic-output",
     "organisation",
     "invoice"
@@ -198,5 +197,12 @@ requirejs.config({
         "angular"
       ]
     },
+    "angular-pnotify": {
+      deps: [
+        "angular",
+        "jquery",
+        "pnotify"
+      ]
+    }
   }
 });

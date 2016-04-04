@@ -14,6 +14,8 @@ define (
    'angular-ui-router',
    'angular-ui-sortable',
    'angular-sanitize',
+   'angular-bootstrap',
+   'bootstrap-js',
    'ui-select',
    'angular-messages',
   ],
@@ -25,8 +27,7 @@ define (
     var constPrefix = directiveNamespace.toUpperCase() + "_";
 
     // The module and the service.
-    var kintUi = angular.module(directiveNamespace, ['xeditable', 'ngAria', 'ui.router', 'ui.sortable', 'ngSanitize', 'ui.select', 'ngMessages'])
-
+    var kintUi = angular.module(directiveNamespace, ['xeditable', 'ngAria', 'ui.router', 'ui.sortable', 'ui.bootstrap', 'ngSanitize', 'ui.select', 'ngMessages'])
     
     // Register the theme here.
     .constant(constPrefix + "THEME", theme)

@@ -1,7 +1,37 @@
-<section id="invoice-grid" class="inner tab-content">
+<section id="invoice-grid" class="inner ">
    <div class="row" >
-    <article class="span-12" data-ui-view>
-      
+    <article data-ui-view>
+      <form id="invoiceMain" name="invoiceMain">
+        <div class="form-group form-group-sm span-2" data-ng-class="{'has-error': (invoiceMain.name.$dirty && invoiceMain.name.$invalid), 'has-success': (invoiceMain.name.$dirty && invoiceMain.name.$valid)}" >
+          <label id="nameLabel" for="name" class="control-label span-12" aria-label="Invoice Name" >Invoice ref</label>
+          <div class="span-12" >
+            <input type="text" class="form-control" id="name" name="name" placeholder="Invoice Ref" aria-labelledby="nameLabel" 
+              data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
+              data-kint-ui-input-feedback data-kint-validate required />
+              
+            <div data-ng-if="invoiceMain.name.$dirty" data-ng-messages="invoiceMain.name.$error" class="help-block" role="alert">
+              <p data-ng-message="required">Please enter a reference</p>
+              <p data-ng-message="kintValidate">{{invoiceMain.name.kintValidate.message}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm span-3" data-ng-class="{'has-error': (invoiceMain.date.$dirty && invoiceMain.date.$invalid), 'has-success': (invoiceMain.date.$dirty && invoiceMain.date.$valid)}" >
+          <label id="dateLabel" for="date" class="control-label span-12" aria-label="Invoice date" >Invoice Date</label>
+          <div class="span-12">
+            <div class="input-group input-group-sm" >
+              <input type="date" class="form-control" id="date" name="date" aria-labelledby="dateLabel" 
+                data-ng-model="context.date" data-ng-model-options="{ debounce: 650 }"
+                placeholder="yyyy-mm-dd" data-uib-datepicker-popup data-is-open="dateOpened" data-ng-click="dateOpened=true"
+                data-kint-ui-input-feedback data-kint-validate required />
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+            <div data-ng-if="invoiceMain.date.$dirty" data-ng-messages="invoiceMain.date.$error" class="help-block" role="alert">
+              <p data-ng-message="required">Please enter a valid tax date</p>
+              <p data-ng-message="kintValidate">{{invoiceMain.date.kintValidate.message}}</p>
+            </div>
+          </div>
+        </div>
+      </form>
     </article>
   </div>
 </section>

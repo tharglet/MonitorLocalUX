@@ -1,9 +1,9 @@
 /**
  * Default bootstrap class overrides go here.
  */
-.btn-default {
-  @include background-image(linear-gradient($jBrightBlue, $primaryButtonBottom));
-}
+// .btn-default {
+  // @include background-image(linear-gradient($jBrightBlue, $primaryButtonBottom));
+// }
 
 .breadcrumb {
   @extend .push-#{$side-nav-cols};
