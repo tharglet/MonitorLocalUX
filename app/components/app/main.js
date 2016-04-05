@@ -52,13 +52,23 @@ define(
                 });
                 break;
               case 422 :
-                $notifications.showError ({
-                  'title':  "Service Unreachable",
-                  'text':   "The Monitor Local service is unreachable.",
-                  buttons: {
-                    closer: false,
-                  }
-                });
+                
+                if ("_embedded" in error && "errors" in error['_embedded']) {
+                  
+                  var messages = "";
+                  angular.forEach(error['_embedded'].errors, function( error_entry ){
+                    message += angular.element('<p />').text(error_entry.message).html();
+                  });
+                  
+                  $notifications.showError ({
+                    'title':  "There were errors in your submission.",
+                    'text':   messages,
+                    buttons: {
+                      closer: false,
+                    }
+                  });
+                }
+                break;
             }
             
             // We should still reject the request.
