@@ -32,5 +32,34 @@
   }
 }
 
+.pagination {
+  &>li {
+    a:link,
+    a:active,
+    a:visited,
+    a:hover,
+    a:focus,
+    span {
+      border: 1px solid $pagination-active-bg;
+      margin-left: 0.4em;
+    }
+    
+    &.first,
+    &.previous,
+    &.last,
+    &.next {
+      a:link,
+      a:active,
+      a:visited,
+      a:hover,
+      a:focus,
+      span {
+        border-color: transparent;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
 // Adds the jisk span notation as col-* 
 @include translate-grid ($grid-columns);

@@ -39,6 +39,7 @@ $breadcrumb-padding-vertical: $grid-gutter-width * 0.65;
 $breadcrumb-padding-horizontal: $grid-gutter-width;
 
 // Colours.
+$brand-primary: $jBlue;
 $text-color: $jCopy;
 $link-color: $jLink;
 $link-hover-color: $jOrange;
@@ -56,6 +57,15 @@ $gray-dark: $dGrey;
 $gray: $jMidGrey;
 $gray-light: $jMidLightGrey;
 $gray-lighter: $lgreyLighter;
+
+$pagination-bg: $jWhite;
+$pagination-color: $jCopyB;
+$pagination-hover-bg: $jWhite;
+$pagination-hover-color: $jOrange;
+$pagination-active-bg: $jMidContentBlue;
+$pagination-active-color: $jCopy;
+$pagination-disabled-bg: $jWhite;
+$pagination-disabled-color: $gray-light;
 
 // Brand colours
 // $brand-primary: $jSubMenu;
