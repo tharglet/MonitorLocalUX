@@ -1,7 +1,65 @@
-<section id="ao-grid" class="inner tab-content">
+<section id="org-grid" class="inner tab-content">
    <div class="row" >
     <article class="span-12" data-ui-view>
-      
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#mainPanel" aria-label="Expand/Collapse the main Org content" id="org-main-heading">Organisation details</h3>
+        </div>
+        <form id="mainPanel" name="mainPanel" class="panel-body form-horizontal in" aria-labelledby="mainPanelHeading">
+
+          <div class="form-group">
+            <label id="orgIdLabel" for="orgId" class="span-3 control-label" aria-label="Org ID">Organisation ID</label>
+            <div class="span-2">
+              <input type="text" class="form-control" id="orgId" name="orgId" aria-labelledby="orgIdLabel" disabled="true"
+                     data-ng-model="context.id" data-kint-validate required />
+            </div>
+          </div>
+
+          <div class="form-group" data-ng-class="{'has-error': (orgMain.orgName.$dirty && orgMain.orgName.$invalid), 'has-success': (orgMain.orgName.$dirty && orgMain.orgName.$valid)}" >
+            <label id="orgNameLabel" for="orgName" class="span-3 control-label" aria-label="Org Name" >Organisation Name</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="orgName" name="orgName" placeholder="Organisation name" aria-labelledby="orgNameLabel"
+                     data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate required />
+              <div data-ng-if="orgMain.orgName.$dirty" data-ng-messages="orgMain.orgName.$error" class="help-block" role="alert">
+                <p data-ng-message="required">Please enter a name</p>
+                <p data-ng-message="kintValidate">{{orgMain.orgName.kintValidate.message}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label id="orgAddressLabel" for="orgAddress" class="span-3 control-label" aria-label="Org Address">Organisation Address</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="orgAddress" name="orgAddress" placeholder="Address" aria-labelledby="orgAddressLabel"
+                     data-ng-model="context.address" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label id="orgTaxCodeLabel" for="orgTaxCode" class="span-3 control-label" aria-label="Org Tax Code">Organisation VAT/Tax Code</label>
+            <div class="span-5">
+              <input type="text" class="form-control" id="orgTaxCode" name="orgTaxCode" placeholder="Tax Code" aria-labelledby="orgTaxCodeLabel"
+                     data-ng-model="context.taxCode" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate required />
+            </div>
+          </div>
+
+          <div class="form-group" >
+            <label id="orgTypeLabel" for="orgType" class="span-3 control-label" aria-label="Org Type">Organisation Type</label>
+            <div class="span-9">
+              <kint-component-lookup name="orgType" id="orgType" data-object="context" data-property="relatedTo" class="form-control" ></kint-component-lookup>
+            </div>
+          </div>
+
+          <div class="form-group pull-right">
+            <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="mainPanel.$invalid" >Save</button>
+            <button type="button" class="btn btn-link" >Cancel</button>
+          </div>
+
+        </form>
+      </div>
     </article>
   </div>
 </section>
