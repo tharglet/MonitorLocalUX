@@ -45,11 +45,20 @@ define(
                 $notifications.showError ({
                   'title':  "Service Unreachable",
                   'text':   "The Monitor Local service is unreachable.",
+                  hide: false,
                   buttons: {
                     closer: false,
                   }
                 });
                 break;
+              case 422 :
+                $notifications.showError ({
+                  'title':  "Service Unreachable",
+                  'text':   "The Monitor Local service is unreachable.",
+                  buttons: {
+                    closer: false,
+                  }
+                });
             }
             
             // We should still reject the request.

@@ -19,11 +19,19 @@ define (
         ],
         ajax : function (data, callback, settings) {
           
-          // Use the grails helper to get the resource.
+          // Use the grails helper to get the resources.
           resource.list(function(data){
             callback({ 'data': data });
           });
-        }
+        },
+        buttons: [
+          {
+            text: 'Add New',
+            action: function ( e, dt, node, config ) {
+              $state.go(".view", {id: 'create'}, {inherit: true});
+            }
+          }
+        ]
       });
       
       // Fill the results.

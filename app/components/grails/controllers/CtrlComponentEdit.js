@@ -26,6 +26,7 @@ define (
       };
       
       $scope.cancelChanges = function() {
+        $scope.context = angular.copy(orginal_context);
       };
     };
   }

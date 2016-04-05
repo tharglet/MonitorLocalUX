@@ -9,9 +9,9 @@ define (
   [
     "pnotify",
     "pnotify.animate",
-    "pnotify.desktop",
+//    "pnotify.desktop",
     "pnotify.buttons",
-    "pnotify.confirm",
+//    "pnotify.confirm",
     "pnotify.callbacks"
   ],
   function(notify) {
@@ -48,14 +48,14 @@ define (
         "firstpos1": 25,
         "firstpos2": 25,
         context: $('#notifications')
-      }
+      },
     };
     
     // Message defaults.
     var mainMessages = {
       'defaults-error' : {
         type: "error",
-        hide: false,
+        delay: 6000,
         buttons: {
           closer: true,
           sticker: false
@@ -75,6 +75,9 @@ define (
           mainMessages['defaults-error'],
           notice
         );
+        
+        // Remove other notifications in the stack.
+        notify.removeStack(n.stack);
         
         // Create the Pnofity instance.
         n = new notify(n);
