@@ -4,6 +4,7 @@ define(
   [
    'angular-ui-router',
    'datatables.net-bs',
+   'datatables.net-buttons-bs',
    'grails'
   ],
   function () {

@@ -37,7 +37,13 @@ requirejs.config({
     "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks",
     "angular-bootstrap": "../bower_components/angular-bootstrap/ui-bootstrap-tpls",
     "angular-messages": "../bower_components/angular-messages/angular-messages",
-    "angular-pnotify": "../bower_components/angular-pnotify/src/angular-pnotify"
+    "angular-pnotify": "../bower_components/angular-pnotify/src/angular-pnotify",
+    "datatables.net-buttons": "../bower_components/datatables.net-buttons/js/dataTables.buttons",
+    "buttons.colVis": "../bower_components/datatables.net-buttons/js/buttons.colVis",
+    "datatables.net-buttons-bs": "../bower_components/datatables.net-buttons-bs/js/buttons.bootstrap",
+    "buttons.html5": "../bower_components/datatables.net-buttons/js/buttons.html5",
+    "buttons.flash": "../bower_components/datatables.net-buttons/js/buttons.flash",
+    "buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print"
   },
   baseUrl: "components",
   packages: [
@@ -202,6 +208,19 @@ requirejs.config({
         "angular",
         "jquery",
         "pnotify"
+      ]
+    },
+    "datatables.net-buttons": {
+      deps: [
+        "datatables.net",
+        "jquery"
+      ]
+    },
+    "datatables.net-buttons-bs": {
+      deps: [
+        "datatables.net-bs",
+        "datatables.net-buttons",
+        "jquery"
       ]
     }
   }

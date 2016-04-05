@@ -6,7 +6,16 @@ define (
     app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', function($scope, $state, resource) {
       console.log ("Running the controller");
       
-      var table = $("<table class='table table-striped table-hover' width='100%' />").dataTable({
+      // Create a table container, and add to the DOM first.
+      var table = $("<table class='table table-striped table-hover' width='100%' />");
+      $('.search-results' ).html("").append(table);
+      table.dataTable({
+        pagingType: "full_numbers",
+        processing: true,
+        serverSide: true,
+        searching: false,
+        stateSave: true,
+        localStorage: 60 * 60 * 72,
         columns: [
           { 'data' : 'id', title: "#" },
           { 
@@ -20,8 +29,8 @@ define (
         ajax : function (data, callback, settings) {
           
           // Use the grails helper to get the resources.
-          resource.list(function(data){
-            callback({ 'data': data });
+          return resource.query(data, function(response){
+            callback(response);
           });
         },
         buttons: [
@@ -35,7 +44,7 @@ define (
       });
       
       // Fill the results.
-      $('.search-results' ).html (table);
+      ;
     }]);
   }
 );

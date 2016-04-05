@@ -52,6 +52,12 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/ui-select/dist/select.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/datatables.net-buttons/js/dataTables.buttons.js',
+      'bower_components/datatables.net-buttons/js/buttons.colVis.js',
+      'bower_components/datatables.net-buttons/js/buttons.flash.js',
+      'bower_components/datatables.net-buttons/js/buttons.html5.js',
+      'bower_components/datatables.net-buttons/js/buttons.print.js',
+      'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

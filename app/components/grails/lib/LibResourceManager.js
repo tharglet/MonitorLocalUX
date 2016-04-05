@@ -19,7 +19,6 @@ ResourceManager.prototype.config = {
       defaults: { id: '@id' },
       actions: {
         'list'  : {isArray:true},
-        'query' : {isArray:true},
       }
     }
   }
