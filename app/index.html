@@ -50,14 +50,10 @@
     <div class="inner" data-ui-view='app' >
       <asside class="side-nav" >
         <nav role="navigation" >
-          <ul data-ui-view="ao-nav">
-            <li class="parent active"><a data-ui-sref="app.academicOutput">Academic Output</a></li>
-          </ul>
-          <ul data-ui-view="org-nav">
-            <li class="parent active"><a data-ui-sref="app.organisation">Organisation</a></li>
-          </ul>
-          <ul data-ui-view="invoice-nav">
-            <li class="parent active"><a data-ui-sref="app.invoice">Invoice</a></li>
+          <ul>
+            <li data-ui-view="ao-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.academicOutput">Academic Output</a></li>
+            <li data-ui-view="org-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.organisation">Organisation</a></li>
+            <li data-ui-view="invoice-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.invoice">Invoice</a></li>
           </ul>
         </nav>
       </asside>
