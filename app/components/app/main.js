@@ -10,15 +10,16 @@ define(
     "satellizer",
     'angular-ui-router',
     'bootstrap-js',
-    
+
     // Component modules.
     'auth',
     'academic-output',
     'organisation',
-    'invoice'
-  ],                
+    'invoice',
+    'person'
+  ],
   function (couchPotato, conf, notify) {
-    
+
     var app = angular.module('app', [
       'scs.couch-potato',
       'satellizer',
@@ -27,19 +28,20 @@ define(
       'auth',
       'academic-output',
       'organisation',
-      'invoice'
+      'invoice',
+      'person'
     ])
-    
+
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
     .constant( 'NO_AUTH', true )
     .constant( "appConfig", conf )
-    
+
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider) {
-      
+
       $httpProvider.interceptors.push(['$q', '$notifications', function($q, $notifications) {
         return {
           responseError: function(error) {
-            
+
             switch (error.status) {
               case -1:
                 $notifications.showError ({
@@ -52,14 +54,14 @@ define(
                 });
                 break;
               case 422 :
-                
+
                 if ("_embedded" in error && "errors" in error['_embedded']) {
-                  
+
                   var messages = "";
                   angular.forEach(error['_embedded'].errors, function( error_entry ){
-                    message += angular.element('<p />').text(error_entry.message).html();
+                    messages += angular.element('<p />').text(error_entry.message).html();
                   });
-                  
+
                   $notifications.showError ({
                     'title':  "There were errors in your submission.",
                     'text':   messages,
@@ -70,35 +72,35 @@ define(
                 }
                 break;
             }
-            
+
             // We should still reject the request.
             return $q.reject(error);
           }
         };
       }]);
-      
+
       couchPotato.configureApp(app);
-      
+
       // Lets add a lazy dependencies decorator to the state provider.
       $stateProvider.decorator('deps', function (state) {
-          
+
         var tempKey;
         var depsResolutionKey = tempKey = 'deps';
         var count = 1;
         while (state.resolve && state.resolve[tempKey]) {
-          
+
           tempKey = depsResolutionKey + count;
         }
         depsResolutionKey = tempKey;
-        
+
         // Add the resolve object if necessary.
         if (!state.resolve) {
           state.resolve = {};
         }
-        
-        // Now we need to add the resolve property.      
+
+        // Now we need to add the resolve property.
         state.resolve[tempKey] = $couchPotatoProvider.resolveDependencies(state.deps);
-        
+
         return state.deps;
       });
 
@@ -156,7 +158,7 @@ define(
           }
         },
       });
-      
+
       $stateProvider.state('app.dash', {
         url: '/',
         data: {
@@ -164,13 +166,13 @@ define(
         },
         templateUrl: 'components/app/partials/home.html',
       });
-   
+
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
     .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'NO_AUTH',
       function($couchPotato, $state, $stateParams, $rootScope, $log, shared, NO_AUTH) {
-      
+
         // Use lazy run-time registration.
         app.lazy = $couchPotato;
 
@@ -179,8 +181,8 @@ define(
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         console.log("main run");
- 
-        // Watch for state changes -- if we switch to a protected state, check that the user is authenticated. 
+
+        // Watch for state changes -- if we switch to a protected state, check that the user is authenticated.
         // If not - send to the login page and store the toState so we can go back to it once auth has completed.
         $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
           $log.debug('routeChangeStart %o', toState);
@@ -201,11 +203,11 @@ define(
               $log.debug('Non-secured resource');
             }
           }
- 
+
           $rootScope.isAuthenticated = shared.isAuthenticated();
 
           // If the user is authenticated, grab the current user and stash in rootScope so we can access it in partials, for
-          // example 
+          // example
           if ($rootScope.isAuthenticated) {
             // $log.debug("Set current user to %o",userService.currentUser());
             $log.debug("user is authenticated -- payload %o",shared.getPayload());
@@ -217,7 +219,7 @@ define(
         });
       }
     ]);
-    
+
     return app;
   }
 );

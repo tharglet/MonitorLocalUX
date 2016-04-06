@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta http-equiv="cleartype" content="on" >
-    
+
     <!-- Include requirejs -->
     <script src="bower_components/requirejs/require.js"></script>
-    
+
       <!-- build:css({.,app}) styles/vendor.css -->
       <link rel="stylesheet" href="styles/select2.css">
       <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
@@ -19,7 +19,7 @@
       <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.history.css">
       <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.mobile.css">
     <!-- endbuild -->
-    
+
     <!-- build:css(.tmp) styles/app.css -->
       <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -28,7 +28,7 @@
       <script src="scripts/rconfig.js"></script>
       <script src="scripts/app-bootstrap.js"></script>
     <!-- endbuild -->
-    
+
     <title>{{$state.current.data.title}}</title>
   </head>
   <body class="{{bodyClasses ? bodyClasses : ''}}" >
@@ -54,6 +54,9 @@
             <li data-ui-view="ao-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.academicOutput">Academic Output</a></li>
             <li data-ui-view="org-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.organisation">Organisation</a></li>
             <li data-ui-view="invoice-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.invoice">Invoice</a></li>
+          </ul>
+          <ul data-ui-view="person-nav">
+            <li class="parent active"><a data-ui-sref="app.person">People</a></li>
           </ul>
         </nav>
       </asside>
