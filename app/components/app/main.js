@@ -17,8 +17,9 @@ define(
     'auth',
     'academic-output',
     'organisation',
-    'invoice'
-  ],                
+    'invoice',
+    'person'
+  ],
   function (couchPotato, conf, notify, moment) {
     
     var app = angular.module('app', [
@@ -30,7 +31,8 @@ define(
       'auth',
       'academic-output',
       'organisation',
-      'invoice'
+      'invoice',
+      'person'
     ])
     
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
