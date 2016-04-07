@@ -1,18 +1,15 @@
 'use strict';
 
 /**
- * @ngdoc overview
- * @name app
- * @description
- * # app
- *
- * Main module of the application.
+ * Application javascript.
+ * Any none angular stuff can go in here along with the angular bootstrapping,
+ * method too!
  */
 
 // Load the above module and bootstrap it.
 require(
   [
-   'app',
+   'app'
   ],
   function () {
     angular.element(document).ready(function() {

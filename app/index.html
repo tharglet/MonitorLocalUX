@@ -26,7 +26,7 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
       <script src="scripts/rconfig.js"></script>
-      <script src="scripts/app-bootstrap.js"></script>
+      <script src="scripts/application.js"></script>
     <!-- endbuild -->
     
     <title>{{$state.current.data.title}}</title>
@@ -51,9 +51,9 @@
       <asside class="side-nav" >
         <nav role="navigation" >
           <ul>
-            <li data-ui-view="ao-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.academicOutput">Academic Output</a></li>
-            <li data-ui-view="org-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.organisation">Organisation</a></li>
-            <li data-ui-view="invoice-nav" data-ui-sref-active="active" class="parent"><a data-ui-sref="app.invoice">Invoice</a></li>
+            <li data-ui-view="ao-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.academicOutput">Academic Output</a></li>
+            <li data-ui-view="org-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.organisation">Organisation</a></li>
+            <li data-ui-view="invoice-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.invoice">Invoice</a></li>
           </ul>
         </nav>
       </asside>

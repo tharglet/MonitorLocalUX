@@ -1,37 +1,79 @@
 <section id="invoice-grid" class="inner ">
-   <div class="row" >
+   <form name="invoice" id="invoiceForm" class="row" >
     <article data-ui-view>
-      <form id="invoiceMain" name="invoiceMain">
-        <div class="form-group form-group-sm span-2" data-ng-class="{'has-error': (invoiceMain.name.$dirty && invoiceMain.name.$invalid), 'has-success': (invoiceMain.name.$dirty && invoiceMain.name.$valid)}" >
-          <label id="nameLabel" for="name" class="control-label span-12" aria-label="Invoice Name" >Invoice ref</label>
-          <div class="span-12" >
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#mainPanel" aria-label="Expand/Collapse the main AO content" id="mainPanelHeading">Invoice Details</h3>
+        </div>
+        <div id="mainPanel" name="invoice" class="panel-body in" aria-labelledby="mainPanelHeading" >
+          <div class="form-group form-group-sm span-3" data-ng-class="{'has-error': (invoice.name.$dirty && invoice.name.$invalid), 'has-success': (invoice.name.$dirty && invoice.name.$valid)}" >
+            <label id="nameLabel" for="name" class="control-label" aria-label="Invoice Name" >Invoice ref</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Invoice Ref" aria-labelledby="nameLabel" 
               data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
               data-kint-ui-input-feedback data-kint-validate required />
               
-            <div data-ng-if="invoiceMain.name.$dirty" data-ng-messages="invoiceMain.name.$error" class="help-block" role="alert">
+            <div data-ng-if="invoice.name.$dirty" data-ng-messages="invoice.name.$error" class="help-block" role="alert">
               <p data-ng-message="required">Please enter a reference</p>
-              <p data-ng-message="kintValidate">{{invoiceMain.name.kintValidate.message}}</p>
+              <p data-ng-message="kintValidate">{{invoice.name.kintValidate.message}}</p>
             </div>
           </div>
-        </div>
-        <div class="form-group form-group-sm span-3" data-ng-class="{'has-error': (invoiceMain.date.$dirty && invoiceMain.date.$invalid), 'has-success': (invoiceMain.date.$dirty && invoiceMain.date.$valid)}" >
-          <label id="dateLabel" for="date" class="control-label span-12" aria-label="Invoice date" >Invoice Date</label>
-          <div class="span-12">
-            <div class="input-group input-group-sm" >
-              <input type="date" class="form-control" id="date" name="date" aria-labelledby="dateLabel" 
-                data-ng-model="context.date" data-ng-model-options="{ debounce: 650 }"
-                placeholder="yyyy-mm-dd" data-uib-datepicker-popup data-is-open="dateOpened" data-ng-click="dateOpened=true"
-                data-kint-ui-input-feedback data-kint-validate required />
+          <div class="form-group form-group-sm span-3" data-ng-class="{'has-error': (invoice.date.$dirty && invoice.date.$invalid), 'has-success': (invoice.date.$dirty && invoice.date.$valid)}" >
+            <label id="dateLabel" for="date" class="control-label" aria-label="Invoice date" >Tax Date</label>
+            <div class="input-group input-group-sm date" data-datetimepicker >
+              <input type="text" class="form-control" id="date" name="date" aria-labelledby="dateLabel" 
+                data-ng-model="context.date" data-ng-model-options="{ updateOn: 'blur' }"
+                data-kint-ui-input-feedback data-kint-validate />
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
-            <div data-ng-if="invoiceMain.date.$dirty" data-ng-messages="invoiceMain.date.$error" class="help-block" role="alert">
-              <p data-ng-message="required">Please enter a valid tax date</p>
-              <p data-ng-message="kintValidate">{{invoiceMain.date.kintValidate.message}}</p>
+            <div data-ng-if="invoice.date.$dirty" data-ng-messages="invoice.date.$error" class="help-block" role="alert">
+              <p data-ng-message="kintValidate">{{invoice.date.kintValidate.message}}</p>
+            </div>
+          </div>
+          <div class="form-group form-group-sm span-3" data-ng-class="{'has-error': (invoice.dueDate.$dirty && invoice.dueDate.$invalid), 'has-success': (invoice.dueDate.$dirty && invoice.dueDate.$valid)}" >
+            <label id="dateLabel" for="dueDate" class="control-label" aria-label="Invoice date" >Payment Due</label>
+            <div class="input-group input-group-sm date" data-datetimepicker >
+              <input type="text" class="form-control" id="dueDate" name="dueDate" aria-labelledby="dateLabel" 
+                data-ng-model="context.dueDate" data-ng-model-options="{ updateOn: 'blur' }"
+                data-kint-ui-input-feedback data-kint-validate />
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+            <div data-ng-if="invoice.dueDate.$dirty" data-ng-messages="invoice.dueDate.$error" class="help-block" role="alert">
+              <p data-ng-message="kintValidate">{{invoice.dueDate.kintValidate.message}}</p>
             </div>
           </div>
         </div>
-      </form>
+      </div>
+      <!-- End Main Section -->
+      
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#internalTrackingPanel" aria-label="Expand/Collapse the main AO content" id="internalTrackingPanelHeading">Internal Tracking</h3>
+        </div>
+        <div id="internalTrackingPanel" name="invoice" class="panel-body in" aria-labelledby="internalTrackingPanelHeading" >
+          <div class="form-group form-group-sm span-2">
+            <label id="receivedLabel" for="received" class="control-label" aria-label="Received">Received *</label>
+            <kint-refdata-lookup name="received" id="received" data-object="context" data-property="received" class="form-control input-sm" required >
+          </div>
+          <div class="form-group form-group-sm span-3" data-ng-class="{'has-error': (invoice.receivedDate.$dirty && invoice.receivedDate.$invalid), 'has-success': (invoice.receivedDate.$dirty && invoice.receivedDate.$valid)}" >
+            <label id="receivedDateLabel" for="receivedDate" class="control-label" aria-label="Received Date" >Received Date</label>
+            <div class="input-group input-group-sm date" data-datetimepicker >
+              <input type="text" class="form-control" id="receivedDate" name="receivedDate" aria-labelledby="receivedDateLabel" 
+                data-ng-model="context.receivedDate" data-ng-model-options="{ updateOn: 'blur' }"
+                data-ng-disabled="context.received.value !== 'Yes'" data-ng-required="context.received.value === 'Yes'"
+                data-kint-ui-input-feedback data-kint-validate />
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+            <div data-ng-if="invoice.receivedDate.$dirty" data-ng-messages="invoice.receivedDate.$error" class="help-block" role="alert">
+              <p data-ng-message="required">Please enter a valid date</p>
+              <p data-ng-message="kintValidate">{{invoice.date.kintValidate.message}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group pull-right">
+        <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="invoice.$invalid" >Save</button>
+        <button type="button" class="btn btn-link" >Cancel</button>
+      </div>
     </article>
   </div>
 </section>

@@ -6,10 +6,12 @@ define(
     'angular-couch-potato',
     './config',
     'notifications',
+    'moment',
     'html5shiv',
     "satellizer",
     'angular-ui-router',
     'bootstrap-js',
+    'angular-bootstrap-datetimepicker-directive',
     
     // Component modules.
     'auth',
@@ -17,13 +19,14 @@ define(
     'organisation',
     'invoice'
   ],                
-  function (couchPotato, conf, notify) {
+  function (couchPotato, conf, notify, moment) {
     
     var app = angular.module('app', [
       'scs.couch-potato',
       'satellizer',
       'ui.router',
       'notify',
+      'datetimepicker',
       'auth',
       'academic-output',
       'organisation',
@@ -34,7 +37,7 @@ define(
     .constant( 'NO_AUTH', true )
     .constant( "appConfig", conf )
     
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker) {
       
       $httpProvider.interceptors.push(['$q', '$notifications', function($q, $notifications) {
         return {
@@ -53,16 +56,16 @@ define(
                 break;
               case 422 :
                 
-                if ("_embedded" in error && "errors" in error['_embedded']) {
+                if ("data" in error && "_embedded" in error.data && "errors" in error.data['_embedded']) {
                   
-                  var messages = "";
-                  angular.forEach(error['_embedded'].errors, function( error_entry ){
-                    message += angular.element('<p />').text(error_entry.message).html();
+                  var messages = angular.element("<div />");
+                  angular.forEach(error.data['_embedded'].errors, function( error_entry ){
+                    angular.element('<p />').text(error_entry.message).appendTo(messages);
                   });
                   
                   $notifications.showError ({
                     'title':  "There were errors in your submission.",
-                    'text':   messages,
+                    'text':   messages.html(),
                     buttons: {
                       closer: false,
                     }
@@ -100,6 +103,12 @@ define(
         state.resolve[tempKey] = $couchPotatoProvider.resolveDependencies(state.deps);
         
         return state.deps;
+      });
+      
+      // Date pickers...
+      datetimepicker.setOptions({
+        format: "DD/MM/YYYY",
+        extraFormats: [moment.ISO_8601]
       });
 
       // Sattelizer likes us to have the host of the callback be the same origin as the site we are serving. Thats very nice when we are serving the

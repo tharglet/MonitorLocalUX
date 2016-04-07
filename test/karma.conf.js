@@ -58,6 +58,11 @@ module.exports = function(config) {
       'bower_components/datatables.net-buttons/js/buttons.html5.js',
       'bower_components/datatables.net-buttons/js/buttons.print.js',
       'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js',
+      'bower_components/angular-datetime/dist/datetime.js',
+      'bower_components/moment/moment.js',
+      'bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js',
+      'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+      'bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

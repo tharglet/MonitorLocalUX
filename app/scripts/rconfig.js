@@ -43,7 +43,12 @@ requirejs.config({
     "datatables.net-buttons-bs": "../bower_components/datatables.net-buttons-bs/js/buttons.bootstrap",
     "buttons.html5": "../bower_components/datatables.net-buttons/js/buttons.html5",
     "buttons.flash": "../bower_components/datatables.net-buttons/js/buttons.flash",
-    "buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print"
+    "buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print",
+    "dataTables.buttons": "../bower_components/datatables.net-buttons/js/dataTables.buttons",
+    "angular-datetime": "../bower_components/angular-datetime/dist/datetime",
+    "eonasdan-bootstrap-datetimepicker": "../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min",
+    moment: "../bower_components/moment/min/moment.min",
+    "angular-bootstrap-datetimepicker-directive": "../bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive"
   },
   baseUrl: "components",
   packages: [
@@ -133,7 +138,6 @@ requirejs.config({
     },
     "responsive-bootstrap-toolkit": {
       deps: [
-        "jquery",
         "bootstrap-js"
       ]
     },
@@ -220,6 +224,25 @@ requirejs.config({
       deps: [
         "datatables.net-bs",
         "datatables.net-buttons",
+        "jquery"
+      ]
+    },
+    "angular-datetime": {
+      deps: [
+        "angular"
+      ]
+    },
+    "eonasdan-bootstrap-datetimepicker": {
+      deps: [
+        "jquery",
+        "bootstrap-js",
+        "moment"
+      ]
+    },
+    "angular-bootstrap-datetimepicker-directive": {
+      deps: [
+        "angular",
+        "eonasdan-bootstrap-datetimepicker",
         "jquery"
       ]
     }

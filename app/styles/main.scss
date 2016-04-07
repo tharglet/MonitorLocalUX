@@ -6,6 +6,8 @@
 // Custom bootstrap based on jisc patterns.
 @import "bootstrap-jisc";
 
+@import "eonasdan-bootstrap-datetimepicker/src/sass/_bootstrap-datetimepicker";
+
 // Global includes.
 @import "variables/**/*";
 @import "abstractions/**/*";
