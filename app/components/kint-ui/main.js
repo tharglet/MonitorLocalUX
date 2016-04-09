@@ -9,6 +9,7 @@ define (
   'kint-ui',
   [
    './directives/DrtvInputFeedback',
+   './directives/DrtvInput',
    'angular-xeditable',
    'angular-aria',
    'angular-ui-router',
@@ -20,7 +21,7 @@ define (
    'ui-select',
    'angular-messages',
   ],
-  function(DrtvInputFeedback) {
+  function(DrtvInputFeedback,DrtvInput) {
     var theme = "bs3";
     
     // Define some prefixes and var names here.
@@ -35,6 +36,7 @@ define (
     
     // Register directives.
     .directive(directiveNamespace + 'InputFeedback', [constPrefix + "THEME", '$templateRequest', '$compile', DrtvInputFeedback])
+    .directive(directiveNamespace + 'Input', [constPrefix + "THEME", '$templateRequest', '$compile', DrtvInput])
     
     .run(['editableOptions', 'uiSelectConfig', function(editableOptions, uiSelectConfig){
       

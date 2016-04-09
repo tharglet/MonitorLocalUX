@@ -1,17 +1,16 @@
 <section id="org-grid" class="inner tab-content">
    <div class="row" >
-    <article class="span-12" data-ui-view>
+    <form id="orgMain" name="orgMain" class="span-12" data-ui-view>
       <div class="panel panel-collapsible panel-default">
         <div class="panel-heading">
           <h3 data-toggle="collapse" data-target="#mainPanel" aria-label="Expand/Collapse the main Org content" id="org-main-heading">Organisation details</h3>
         </div>
-        <form id="mainPanel" name="mainPanel" class="panel-body form-horizontal in" aria-labelledby="mainPanelHeading">
+        <div class="panel-body form-horizontal in" aria-labelledby="mainPanelHeading">
 
           <div class="form-group">
-            <label id="orgIdLabel" for="orgId" class="span-3 control-label" aria-label="Org ID">Organisation ID</label>
+            <label id="orgIdLabel" for="id" class="span-3 control-label" aria-label="Org ID">Organisation ID</label>
             <div class="span-2">
-              <input type="text" class="form-control" id="orgId" name="orgId" aria-labelledby="orgIdLabel" disabled="true"
-                     data-ng-model="context.id" data-kint-validate required />
+              <input type="text" class="form-control" id="id" name="id" aria-labelledby="orgIdLabel" disabled="true" data-ng-model="context.id" />
             </div>
           </div>
 
@@ -29,18 +28,18 @@
           </div>
 
           <div class="form-group">
-            <label id="orgAddressLabel" for="orgAddress" class="span-3 control-label" aria-label="Org Address">Organisation Address</label>
+            <label id="orgAddressLabel" for="address" class="span-3 control-label" aria-label="Org Address">Organisation Address</label>
             <div class="span-9">
-              <input type="text" class="form-control" id="orgAddress" name="orgAddress" placeholder="Address" aria-labelledby="orgAddressLabel"
+              <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" aria-labelledby="orgAddressLabel"
                      data-ng-model="context.address" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                     data-kint-ui-input-feedback data-kint-validate required />
+                     data-kint-ui-input-feedback data-kint-validate required></textarea>
             </div>
           </div>
 
           <div class="form-group">
             <label id="orgTaxCodeLabel" for="orgTaxCode" class="span-3 control-label" aria-label="Org Tax Code">Organisation VAT/Tax Code</label>
             <div class="span-5">
-              <input type="text" class="form-control" id="orgTaxCode" name="orgTaxCode" placeholder="Tax Code" aria-labelledby="orgTaxCodeLabel"
+              <input type="text" class="form-control" id="taxCode" name="taxCode" placeholder="Tax Code" aria-labelledby="orgTaxCodeLabel"
                      data-ng-model="context.taxCode" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
                      data-kint-ui-input-feedback data-kint-validate required />
             </div>
@@ -58,8 +57,8 @@
             <button type="button" class="btn btn-link" >Cancel</button>
           </div>
 
-        </form>
+        </div>
       </div>
-    </article>
+    </form>
   </div>
 </section>

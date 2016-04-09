@@ -7,11 +7,15 @@ define (
     return function ($rootScope, $scope, context) {
       
       if (typeof $scope.context === 'undefined') {
+        // Create a holder for the original model.
+        $scope.orginal_context = {};
+        angular.copy(context, $scope.orginal_context);
+        
+        // Now set the actual context against the scope.
         $scope.context = context;
-        $scope.orginal_context = angular.copy(context);
       }
       
-      // Set a couple of methods agains the scope.
+      // Set a couple of methods against the scope.
       $scope.saveChanges = function() {
         
         // This is current scope of the button press.
@@ -25,8 +29,19 @@ define (
         }
       };
       
-      $scope.cancelChanges = function() {
-        $scope.context = angular.copy(orginal_context);
+      $scope.cancelChanges = function(e) {
+        
+        // First we should reset teh model.
+        angular.copy(this.orginal_context, this.context);
+        
+        // Set the form to pristine.
+        if (e) {
+          var form = angular.element(e.target).closest("form");
+          if (form.length > 0) {
+            var ctrl = form.controller('form');
+            ctrl.$setPristine(true);
+          }
+        }
       };
     };
   }
