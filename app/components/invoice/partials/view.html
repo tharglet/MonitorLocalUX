@@ -1,5 +1,5 @@
 <section id="invoice-grid" class="inner ">
-   <form name="invoice" id="invoiceForm" class="row" >
+  <form name="invoice" id="invoice" class="row" >
     <article data-ui-view>
       <div class="panel panel-collapsible panel-default">
         <div class="panel-heading">
@@ -70,10 +70,11 @@
           </div>
         </div>
       </div>
-      <div class="form-group pull-right">
-        <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="invoice.$invalid" >Save</button>
-        <button type="button" class="btn btn-link" >Cancel</button>
-      </div>
     </article>
+    
+    <div class="form-group pull-right">
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="invoice.$invalid" >Save</button>
+      <button type="button" class="btn btn-link" >Cancel</button>
+    </div>
   </div>
 </section>
