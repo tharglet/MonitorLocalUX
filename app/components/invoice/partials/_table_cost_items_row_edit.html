@@ -1,0 +1,16 @@
+<td><span class="span-2">
+  <kint-refdata-lookup name="publicationRoute" id="publicationRoute" data-object="context.costItem[$index]" data-property="category" class="form-control input-sm" required >
+</span></td>
+<td class="info" >{{costItem.grossValue.currency}}</td>
+<td class="info" >{{costItem.grossValue.value | number : 2}}</td>
+<td class="info" >{{costItem.grossValueGBP.value | number : 2}}</td>
+<td class="info" >{{costItem.tax.value | number : 2}}</td>
+<td class="info" >{{costItem.grossValue.value - cost.tax.value | number : 2}}</td>
+<td>{{costItem.budget.name}}</td>
+<td>Award</td>
+<td>Pre pay</td>
+<td>Accademic output</td>
+<td>
+  <button type="button" ng-click="cancelEditMultiProperty('invoiceCosts', $index)" class="btn btn-default btn-sm" >Cancel</button>
+  <button type="button" ng-click="confirmEditMultiProperty('invoiceCosts', $index)" class="btn btn-success btn-sm" >Save</button>
+</td>

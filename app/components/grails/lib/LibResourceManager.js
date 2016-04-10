@@ -76,7 +76,23 @@ ResourceManager.prototype.addRefdata = function ( res, conf, type ) {
       };
     });
   }
+  
   return conf;
+};
+
+ResourceManager.prototype.addGenericLookup = function ( res, type ) {
+  
+  var _self = this;
+  
+  // Also want to bolt on the generic method to fetch nested properties
+  // from the main resource.
+  res.prototype["genericLookup"] = function( propName ) {
+    return _self.http({
+      "url": _self.baseUrl + "/ref/" + type + "/" + propName,
+      "headers": { "Accept": "application/json;charset=UTF-8" },
+      "method": "GET"
+    });
+  };
 };
 
 ResourceManager.prototype.addLookup = function ( res, type ) {
@@ -89,6 +105,49 @@ ResourceManager.prototype.addLookup = function ( res, type ) {
       "method": "GET",
       "params": params || {},
     });
+  };
+};
+
+ResourceManager.prototype.addBlankFetching = function ( res, type ) {
+  
+  // Reference to this as it currently stands.
+  var _self = this;
+  
+  // Cache for fetched blanks.
+  res.prototype._blanks = {};
+  res.prototype.getBlankProperty  = function(propName) {
+    
+    // Create a deferred resonse.
+    var response = _self.q.defer();
+    
+    // method to succeed the deferred.
+    var respond = function ( data ) {
+      // Always return a copy to ensure the original cached version remains unaltered.
+      response.resolve ( angular.copy( data ) );
+    };
+    
+    var cache = this._blanks;
+    
+    // get from cache.
+    var cached = cache[propName];
+    if (typeof cached === 'undefined') {
+      
+      _self.http({
+        "url": _self.baseUrl + "/ref/blank/" + type + "/" + propName,
+        "headers": { "Accept": "application/json;charset=UTF-8" },
+        "method": "GET"
+      }).then(function (response) {
+        
+        // Add to the cache and then return.
+        cache[propName] = response.data;
+        respond ( response.data );
+      });
+    } else {
+      respond (cached);
+    }
+    
+    // Return the deferred promise.
+    return response.promise;
   };
 };
 
@@ -133,6 +192,8 @@ ResourceManager.prototype.r = function ( type ) {
         _self.addRefdata(res, conf, type);
         _self.addLookup(res, type);
         _self.addValidateProperty(res, type);
+        _self.addBlankFetching(res, type);
+        _self.addGenericLookup(res, type);
       }
     }
     

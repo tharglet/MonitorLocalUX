@@ -70,11 +70,25 @@
           </div>
         </div>
       </div>
+      <!-- End Internal Tracking -->
+      
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#costItemsPanel" aria-label="Expand/Collapse the main AO content" id="costItemsPanelHeading">Invoice Lines / Cost Items</h3>
+        </div>
+        <div id="costItemsPanel" name="invoice" class="panel-body in" aria-labelledby="costItemsPanelHeading" >
+          <form id="costItems" name="costItems" class="table-responsive" >
+            <ng-include src="'components/invoice/partials/_table_cost_items.html'" ></ng-include>
+          </form>
+        </div>
+      </div>
+      <!-- End Internal Tracking -->
+      
     </article>
     
     <div class="form-group pull-right">
       <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="invoice.$invalid" >Save</button>
       <button type="button" class="btn btn-link" >Cancel</button>
     </div>
-  </div>
+  </form>
 </section>
