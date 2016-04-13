@@ -14,31 +14,31 @@ define(
   function () {   // Module instantiator. Should return an object that will be stored against the name of this module.
 
     // Create our angular module here.
-    return angular.module('person', ['grails', 'search', 'kintUi'])
+    return angular.module('grant', ['grails', 'search', 'kintUi'])
       .config(['$stateProvider', function($stateProvider) {
         // State for search.
-        $stateProvider.state('app.person', {
+        $stateProvider.state('app.grant', {
           parent: 'app.componentSearch',
-          url:   '^/person',
-          grailsResource: 'Person',
+          url:   '^/grant',
+          grailsResource: 'Grant',
           views: {
             // Unnamed view.
             "" : {
               controller: 'SearchResultsController',
             },
-            "person-nav@app" : {
-              templateUrl: "components/person/partials/_nav.html",
+            "grant-nav@app" : {
+              templateUrl: "components/grant/partials/_nav.html",
             }
           },
           data : {
-            title: "Person",
+            title: "Grant",
           }
         });
-        $stateProvider.state('app.person.view', {
+        $stateProvider.state('app.grant.view', {
           url: '/:id',
           views: {
             "@app": {
-              templateUrl: 'components/person/partials/view.html',
+              templateUrl: 'components/grant/partials/view.html',
               controller: 'GrailsEditController'
             },
           },

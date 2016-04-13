@@ -1,0 +1,49 @@
+<section id="funder-grid" class="inner tab-content">
+  <form id="funder" name="person" class="row" >
+    <article class="span-12" data-ui-view>
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#funder-body" aria-label="Expand/Collapse the main Funder content" id="funder-heading">Funder details</h3>
+        </div>
+        <div id="funder-body" class="panel-body form-horizontal in" aria-labelledby="funder-heading">
+
+          <div class="form-group form-group-sm">
+            <label id="funderIdLabel" for="funderId" class="control-label span-3" aria-label="Funder ID">Funder ID</label>
+            <div class="span-2">
+              <input type="text" class="form-control" id="funderId" name="funderId" aria-labelledby="funderIdLabel" disabled="true"
+                     data-ng-model="context.id" data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" data-ng-class="{'has-error': (funder.name.$dirty && funder.name.$invalid), 'has-success': (funder.name.$dirty && funder.name.$valid)}" >
+            <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Funder Name" >Funder Name*</label>
+            <div class="span-9">
+              <!--<kint-component-lookup name="name" id="name" data-object="context" data-property="name" data-template="name" class="form-control input-sm" required >-->
+              <input type="text" class="form-control" id="name" name="name" placeholder="Funder name" aria-labelledby="nameLabel"
+                     data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate required />
+              <div data-ng-if="funder.name.$dirty" data-ng-messages="funder.name.$error" class="help-block" role="alert">
+                <p data-ng-message="required">Please enter a name</p>
+                <p data-ng-message="kintValidate">{{funder.name.kintValidate.message}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm">
+            <label id="groupLabel" for="group" class="control-label span-3" aria-label="Funder Group">Funder Group</label>
+            <div class="span-9" data-ng-class="{'has-error': (funder.group.$dirty && funder.group.$invalid), 'has-success': (funder.group.$dirty && funder.group.$valid)}">
+              <kint-refdata-lookup name="group" id="group" data-object="context" data-property="group" class="form-control input-sm" >
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <div class="form-group pull-right">
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="funder.$invalid" >Save</button>
+      <button type="button" class="btn btn-link" >Cancel</button>
+    </div>
+
+  </form>
+</section>

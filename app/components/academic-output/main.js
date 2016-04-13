@@ -12,7 +12,7 @@ define(
    'kint-ui',
   ],
   function () {   // Module instantiator. Should return an object that will be stored against the name of this module.
-    
+
     // Create our angular module here.
     return angular.module('academic-output', ['grails', 'search', 'kintUi'])
     .config(['$stateProvider', function($stateProvider) {
@@ -45,7 +45,7 @@ define(
           },
         },
         data : {
-          subTitle: "Main"
+          subTitle: "General"
         }
       });
       $stateProvider.state('app.academicOutput.view.people', {

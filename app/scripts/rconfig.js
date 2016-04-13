@@ -61,7 +61,9 @@ requirejs.config({
     "academic-output",
     "organisation",
     "invoice",
-    "person"
+    "person",
+    "funder",
+    "grant"
   ],
   shim: {
     angular: {

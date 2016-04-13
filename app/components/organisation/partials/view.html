@@ -7,48 +7,57 @@
         </div>
         <div class="panel-body form-horizontal in" aria-labelledby="mainPanelHeading">
 
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label id="orgIdLabel" for="id" class="span-3 control-label" aria-label="Org ID">Organisation ID</label>
             <div class="span-2">
               <input type="text" class="form-control" id="id" name="id" aria-labelledby="orgIdLabel" disabled="true" data-ng-model="context.id" />
             </div>
+            <label id="isniLabel" for="isni" class="span-1 control-label" aria-label="Org ID">ISNI</label>
+            <div class="span-2">
+              <input type="text" class="form-control" id="isni" name="isni" aria-labelledby="isniLabel" data-ng-model="context.isni" />
+            </div>
+            <label id="ringgoldLabel" for="ringgold" class="span-2 control-label" aria-label="Org ID">Ringgold</label>
+            <div class="span-2">
+              <input type="text" class="form-control" id="ringgold" name="ringgold" aria-labelledby="ringgoldLabel" data-ng-model="context.ringgold" />
+            </div>
           </div>
 
-          <div class="form-group" data-ng-class="{'has-error': (oganisation.name.$dirty && oganisation.name.$invalid), 'has-success': (oganisation.name.$dirty && oganisation.name.$valid)}" >
-            <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Organisation Name" >Organisation Name</label>
+          <div class="form-group form-group-sm" data-ng-class="{'has-error': (organisation.name.$dirty && organisation.name.$invalid), 'has-success': (organisation.name.$dirty && organisation.name.$valid)}" >
+            <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Organisation Name" >Organisation Name*</label>
             <div class="span-9">
+              <!--<kint-component-lookup name="name" id="name" data-object="context" data-property="name" data-template="name" class="form-control input-sm" required >-->
               <input type="text" class="form-control" id="name" name="name" placeholder="Organisation name" aria-labelledby="nameLabel"
                      data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
                      data-kint-ui-input-feedback data-kint-validate required />
-              <div data-ng-if="oganisation.name.$dirty" data-ng-messages="oganisation.name.$error" class="help-block" role="alert">
+              <div data-ng-if="organisation.name.$dirty" data-ng-messages="organisation.name.$error" class="help-block" role="alert">
                 <p data-ng-message="required">Please enter a name</p>
-                <p data-ng-message="kintValidate">{{oganisation.name.kintValidate.message}}</p>
+                <p data-ng-message="kintValidate">{{organisation.name.kintValidate.message}}</p>
               </div>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group form-group-sm">
             <label id="orgAddressLabel" for="address" class="span-3 control-label" aria-label="Org Address">Organisation Address</label>
             <div class="span-9">
               <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" aria-labelledby="orgAddressLabel"
                      data-ng-model="context.address" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                     data-kint-ui-input-feedback data-kint-validate required></textarea>
+                     data-kint-ui-input-feedback data-kint-validate></textarea>
             </div>
           </div>
 
-          <div class="form-group">
-            <label id="orgTaxCodeLabel" for="orgTaxCode" class="span-3 control-label" aria-label="Org Tax Code">Organisation VAT/Tax Code</label>
+          <div class="form-group form-group-sm">
+            <label id="orgTaxCodeLabel" for="taxCode" class="span-3 control-label" aria-label="Org Tax Code">Organisation VAT/Tax Code</label>
             <div class="span-5">
               <input type="text" class="form-control" id="taxCode" name="taxCode" placeholder="Tax Code" aria-labelledby="orgTaxCodeLabel"
                      data-ng-model="context.taxCode" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                     data-kint-ui-input-feedback data-kint-validate required />
+                     data-kint-ui-input-feedback data-kint-validate />
             </div>
           </div>
 
-          <div class="form-group" >
-            <label id="orgTypeLabel" for="orgType" class="span-3 control-label" aria-label="Org Type">Organisation Type</label>
+          <div class="form-group form-group-sm" data-ng-class="{'has-error': (organisation.type.$dirty && organisation.type.$invalid), 'has-success': (organisation.type.$dirty && organisation.type.$valid)}">
+            <label id="orgTypeLabel" for="type" class="span-3 control-label" aria-label="Org Type">Organisation Type*</label>
             <div class="span-9">
-              <kint-component-lookup name="orgType" id="orgType" data-object="context" data-property="relatedTo" class="form-control" ></kint-component-lookup>
+              <kint-refdata-lookup name="type" id="type" data-object="context" data-property="type" class="form-control input-sm" required >
             </div>
           </div>
         </div>
