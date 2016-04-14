@@ -8,12 +8,29 @@ define (
       return {
         restrict: 'E',
         scope: {
-          object:   "=",
-          property: "@",
-          template: "@",
-          required: "@"
+          
+          // Objects against which we are to bind the data.
+          object:       "=",
+          property:     "@",
+          
+          // These allow for overrides on the object against which the query happens.
+          contextObj:   "&",
+          contextPath:  "@",
+          
+          // Allow for a different template 
+          template:     "@"
         },
         link: function ($scope, iElement, iAttr) {
+          
+          // Grab the object.
+          var obj = $scope.contextObj();
+          if ( typeof obj === 'undefined' ) {
+            obj = $scope.object;
+          }
+          
+          if (typeof $scope.contextPath === 'undefined') {
+            $scope.contextPath = $scope.property;
+          }
 
           var iElem  = iElement;
 
@@ -24,16 +41,10 @@ define (
 
           // The refresh function
           $scope.refresh = function ( searchParam ) {
-
-            // Refdata function name.
-            var funcName = $scope.property + "Values";
-            // Check if this is refdata. We fetch all refdata.
-            if ( $scope.object && typeof $scope.object[funcName] === 'function' ) {
-              // Grab the values...
-              ($scope.object[funcName])().then(function( rdata ){
-                $scope.data = rdata.data;
-              });
-            }
+            // Now that we can have . notated propertie we should use geenric method.
+            obj.componentLookup ($scope.contextPath).then(function( rdata ){
+              $scope.data = rdata.data;
+            });
           };
           
           $scope.checkUndefined = function (item, model) {

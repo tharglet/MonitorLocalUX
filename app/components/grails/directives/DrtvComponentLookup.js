@@ -6,12 +6,29 @@ define (
       return {
         restrict: 'E',
         scope: {
-          object:   "=",
-          property: "@",
-          template: "@",
-          required: "@"
+          
+          // Objects against which we are to bind the data.
+          object:       "=",
+          property:     "@",
+          
+          // These allow for overrides on the object against which the query happens.
+          contextObj:   "&",
+          contextPath:  "@",
+          
+          // Allow for a different template 
+          template:     "@"
         },
         link: function ($scope, iElement, iAttr) {
+          
+          // Grab the object.
+          var obj = $scope.contextObj();
+          if ( typeof obj === 'undefined' ) {
+            obj = $scope.object;
+          }
+          
+          if (typeof $scope.contextPath === 'undefined') {
+            $scope.contextPath = $scope.property;
+          }
 
           var iElem  = iElement;
 
@@ -22,16 +39,16 @@ define (
           $scope.refresh = function ( searchParam ) {
 
             // Check if this is refdata. We fetch all refdata.
-            if ( $scope.object && typeof $scope.object.componentLookup === 'function') {
+            if ( obj && $scope.contextPath && typeof obj.componentLookup === 'function') {
               // Push if through the lookup method on the resource.
-              $scope.object.componentLookup ($scope.property, searchParam).then(function( rdata ){
+              obj.componentLookup ($scope.contextPath, searchParam).then(function( rdata ){
                 $scope.data = rdata.data;
               });
             }
           };
           
           $scope.checkUndefined = function (item, model) {
-            if (item === undefined) {
+            if (typeof item === 'undefined') {
               $scope.object[$scope.property] = null;
             }
           };
@@ -59,14 +76,14 @@ define (
           $templateRequest("components/grails/directives/partials/component-lookup.html").then(function(html){
             var template = angular.element(html);
             
-            if (typeof $scope.required === 'undefined') {
+            if (typeof iAttr.required === 'undefined') {
               $('ui-select-match', template).attr("allow-clear", "true");
             }
 
             // Grab each element.
             addAttributes(iAttr, template);
 
-            // Comile the template now.
+            // Compile the template now.
             $compile(template)($scope);
 
             // Replace
