@@ -87,7 +87,7 @@ define (
 
             var template = angular.element(html);
             
-            if (typeof $scope.required === 'undefined') {
+            if (typeof iAttr.required === 'undefined') {
               $('ui-select-match', template).attr("allow-clear", "true");
             }
 
