@@ -22,6 +22,14 @@
       }
     }
   }
+  
+  td[class*="span-"] {
+    @extend td[class*="col-"];
+  }
+  
+  th[class*="span-"] {
+    @extend th[class*="col-"];
+  }
 }
 
 // Usually variables should be in a separate place, but for the font stack we will make an exception as we don't want to have
