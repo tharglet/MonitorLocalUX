@@ -5,14 +5,12 @@
       <div class="panel-heading">
         <h3 data-toggle="collapse" data-target="#contactDetailsPanel" aria-label="Expand/Collapse the main contact details content" id="contactDetailsHeading">Contact details</h3>
       </div>
-      <div id="contactDetailsPanel" class="panel-body in" aria-labelledby="contactDetailsHeading" >
+      <div id="contactDetailsPanel" class="panel-body form-horizontal in" aria-labelledby="contactDetailsHeading" >
         <form id="addContactDetails" name="addContactDetails" class="table-responsive" >
           <ng-include src="'components/person/partials/_table_contact_details.html'" ></ng-include>
         </form>
 
-      </div>
-      <div id="addContactDetailsPanel" class="panel-body form-horizontal in" aria-labelledby="addContactDetailsHeading" >
-        <h3 data-toggle="collapse" data-target="#addContactDetailsPanel" aria-label="Expand/Collapse the add contact details content" id="addContactDetailsHeading">Add new contact details</h3>
+        <h4 id="addContactDetailsHeading">Add new contact details</h4>
         <div class="form-group form-group-sm">
           <a class="pull-right" data-ui-sref="app.organisation.view ({id: 'create'})">Add new organisation to Monitor Local +</a>
         </div>
