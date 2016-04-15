@@ -24,7 +24,7 @@
           <div class="form-group form-group-sm">
             <div class="span-4" data-ng-class="{'has-error': (person.title.$dirty && person.title.$invalid), 'has-success': (person.title.$dirty && person.title.$valid)}">
               <label id="titleLabel" for="title" class="control-label" aria-label="Title">Title</label>
-              <kint-refdata-lookup name="title" id="title" data-object="context" data-property="title" class="form-control input-sm" required >
+              <kint-refdata-lookup name="title" id="title" data-object="context" data-property="title" class="form-control input-sm" >
             </div>
 
             <div class="span-4">
@@ -59,7 +59,9 @@
       <button type="button" class="btn btn-link" >Cancel</button>
     </div>
 
-    <ng-include src="'components/person/partials/_contact_details.html'" ></ng-include>
-
   </form>
+
+  <ng-include src="'components/person/partials/_contact_details.html'" ></ng-include>
+
+
 </section>
