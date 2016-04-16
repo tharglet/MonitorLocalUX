@@ -43,7 +43,7 @@ define(
     .constant( 'NO_AUTH', true )
     .constant( "appConfig", conf )
 
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'appConfig', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, appConf) {
 
       $httpProvider.interceptors.push(['$q', '$notifications', function($q, $notifications) {
         return {
@@ -60,6 +60,8 @@ define(
                   }
                 });
                 break;
+                
+              // Validation error on save.
               case 422 :
 
                 if ("data" in error && "_embedded" in error.data && "errors" in error.data['_embedded']) {
@@ -82,7 +84,37 @@ define(
 
             // We should still reject the request.
             return $q.reject(error);
-          }
+          },
+          'response': function( response ) {
+            
+            // First we use the config object to check whether this was a PUT or POST made to update/add a resource
+            // respectively. We only act on those types here.
+            if (response && response.config && response.config.data && response.config.data.$$isResource === true) {
+              
+              var conf = response.config;
+              // Check the method.
+              var update = true;
+              switch (conf.method.toUpperCase()) {
+                case 'POST'  :
+                  // New resource.
+                  update = false;
+                case 'PUT'   :
+                  // Only act on success code.
+                  if (response.status === 200) {
+                    if (typeof response.data ==='object' && !angular.isArray(response.data) && response.data.id) {
+                      var el = response.data;                  
+                      $notifications.showSuccess ({
+                        'title':  "Successfully " + (update ? "updated" : "saved"),
+                        'text':   (update ? "Changes to " : "") + "'" + el.name + "' successfully " + (update ? "saved." : "created.")
+                      });
+                    }
+                  }
+              }
+            }
+            
+            // Return the repsponse to allow for successful propegation.
+            return response;
+          },
         };
       }]);
 

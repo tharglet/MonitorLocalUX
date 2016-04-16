@@ -62,6 +62,16 @@ define (
         },
         opacity: "0.65",
         stack : stacks['bottom-right'],
+      },
+      'defaults-success' : {
+        type: "success",
+        delay: 6000,
+        buttons: {
+          closer: true,
+          sticker: false
+        },
+        opacity: "0.65",
+        stack : stacks['bottom-right'],
       }
     };
     
@@ -78,6 +88,20 @@ define (
         
         // Remove other notifications in the stack.
         notify.removeStack(n.stack);
+        
+        // Create the Pnofity instance.
+        n = new notify(n);
+        
+        // Return it so it can be extended by the caller.
+        return n;
+      },
+      showSuccess : function (notice) {
+        var n = $.extend(
+          true,
+          {},
+          mainMessages['defaults-success'],
+          notice
+        );
         
         // Create the Pnofity instance.
         n = new notify(n);

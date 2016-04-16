@@ -3,7 +3,7 @@
 
 define (
   ['notifications'],
-  function (notify) {
+  function () {
     return function ($rootScope, $scope, context) {
       
       if (typeof $scope.context === 'undefined') {
