@@ -1,0 +1,8 @@
+.dataTables_paginate {
+  .pagination > li {
+    & > a, 
+    & > span {
+      padding: 5px 10px;
+    }
+  }
+}
