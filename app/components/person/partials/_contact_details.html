@@ -1,67 +1,64 @@
+<form id="contactDetails" name="contactDetails" class="row" >
+  <article class="span-12" data-ui-view>
 
-<article class="span-12" data-ui-view>
-
-  <div class="panel panel-collapsible panel-default">
-    <div class="panel-heading">
-      <h3 data-toggle="collapse" data-target="#contactDetailsPanel" aria-label="Expand/Collapse the main contact details content" id="contactDetailsHeading">Contact details</h3>
-    </div>
-    <div id="contactDetailsPanel" class="panel-body in" aria-labelledby="contactDetailsHeading" >
-      <form id="contactDetails" name="contactDetails" class="table-responsive" >
-        <ng-include src="'components/person/partials/_table_contact_details.html'" ></ng-include>
-      </form>
-    </div>
-  </div>
-
-  <div class="panel panel-collapsible panel-default">
-    <div class="panel-heading">
-      <h3 data-toggle="collapse" data-target="#addContactDetailsPanel" aria-label="Expand/Collapse the add contact details content" id="addContactDetailsHeading">Add new contact details</h3>
-    </div>
-    <div id="addContactDetailsPanel" class="panel-body form-horizontal in" aria-labelledby="addContactDetailsHeading" >
-
-      <div class="form-group form-group-sm">
-        <label id="departmentLabel" for="department" class="span-3 control-label" aria-label="Contact Details Department" >Department</label>
-        <div class="span-9">
-          <input type="text" class="form-control" id="department" name="department" placeholder="Department" aria-labelledby="departmentLabel"
-                data-ng-model="context.department" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                data-kint-ui-input-feedback data-kint-validate />
-        </div>
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#contactDetailsPanel" aria-label="Expand/Collapse the main contact details content" id="contactDetailsHeading">Contact details</h3>
       </div>
+      <div id="contactDetailsPanel" class="panel-body form-horizontal in" aria-labelledby="contactDetailsHeading" >
+        <form id="addContactDetails" name="addContactDetails" class="table-responsive" >
+          <ng-include src="'components/person/partials/_table_contact_details.html'" ></ng-include>
+        </form>
 
-      <div class="form-group form-group-sm">
-        <label id="jobTitleLabel" for="jobTitle" class="span-3 control-label" aria-label="Contact Details Job Title" >Position/ Job title</label>
-        <div class="span-4">
-          <input type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Position/ Job title" aria-labelledby="jobTitleLabel"
-                 data-ng-model="context.jobTitle" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                 data-kint-ui-input-feedback data-kint-validate />
+        <h4 id="addContactDetailsHeading">Add new contact details</h4>
+        <div class="form-group form-group-sm">
+          <a class="pull-right" data-ui-sref="app.organisation.view ({id: 'create'})">Add new organisation to Monitor Local +</a>
+        </div>
+        <div class="form-group form-group-sm">
+          <label id="departmentLabel" for="department" class="span-3 control-label" aria-label="Contact Details Department" >Department</label>
+          <div class="span-9">
+            <input type="text" class="form-control" id="department" name="department" placeholder="Department" aria-labelledby="departmentLabel"
+                  data-ng-model="context.department" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                  data-kint-ui-input-feedback data-kint-validate />
+          </div>
         </div>
 
-        <label id="ldapIdLabel" for="ldapId" class="span-2 control-label" aria-label="Contact Details LDAP ID Title" >LDAP ID</label>
-        <div class="span-3">
-          <input type="text" class="form-control" id="ldapId" name="ldapId" placeholder="LDAP ID" aria-labelledby="ldapIdLabel"
-                 data-ng-model="context.ldapId" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                 data-kint-ui-input-feedback data-kint-validate />
-        </div>
-      </div>
+        <div class="form-group form-group-sm">
+          <label id="jobTitleLabel" for="jobTitle" class="span-3 control-label" aria-label="Contact Details Job Title" >Position/ Job title</label>
+          <div class="span-4">
+            <input type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Position/ Job title" aria-labelledby="jobTitleLabel"
+                   data-ng-model="context.jobTitle" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                   data-kint-ui-input-feedback data-kint-validate />
+          </div>
 
-      <div class="form-group form-group-sm">
-        <label id="emailAddressLabel" for="emailAddress" class="span-3 control-label" aria-label="Contact Details Email Address" >Primary email address</label>
-        <div class="span-4">
-          <input type="text" class="form-control" id="emailAddress" name="emailAddress" placeholder="Primary email address" aria-labelledby="emailAddressLabel"
-                 data-ng-model="context.emailAddress" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                 data-kint-ui-input-feedback data-kint-validate />
+          <label id="ldapIdLabel" for="ldapId" class="span-2 control-label" aria-label="Contact Details LDAP ID Title" >LDAP ID</label>
+          <div class="span-3">
+            <input type="text" class="form-control" id="ldapId" name="ldapId" placeholder="LDAP ID" aria-labelledby="ldapIdLabel"
+                   data-ng-model="context.ldapId" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                   data-kint-ui-input-feedback data-kint-validate />
+          </div>
         </div>
 
-        <label id="telephoneNumberLabel" for="telephoneNumber" class="span-2 control-label" aria-label="Contact Details Telephone Number Title" >Primary telephone</label>
-        <div class="span-3">
-          <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber" placeholder="Primary telephone" aria-labelledby="telephoneNumberLabel"
-                 data-ng-model="context.telephoneNumber" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                 data-kint-ui-input-feedback data-kint-validate />
+        <div class="form-group form-group-sm">
+          <label id="emailAddressLabel" for="emailAddress" class="span-3 control-label" aria-label="Contact Details Email Address" >Primary email address</label>
+          <div class="span-4">
+            <input type="text" class="form-control" id="emailAddress" name="emailAddress" placeholder="Primary email address" aria-labelledby="emailAddressLabel"
+                   data-ng-model="context.emailAddress" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                   data-kint-ui-input-feedback data-kint-validate />
+          </div>
+
+          <label id="telephoneNumberLabel" for="telephoneNumber" class="span-2 control-label" aria-label="Contact Details Telephone Number Title" >Primary telephone</label>
+          <div class="span-3">
+            <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber" placeholder="Primary telephone" aria-labelledby="telephoneNumberLabel"
+                   data-ng-model="context.telephoneNumber" data-ng-model-options="{ updateOn: 'default', debounce: { article: 650} }"
+                   data-kint-ui-input-feedback data-kint-validate />
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="form-group pull-right">
-    <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="contactDetails.$invalid" >Add</button>
-  </div>
-</article>
+    <div class="form-group pull-right">
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="contactDetails.$invalid" >Add</button>
+    </div>
+  </article>
+</form>
