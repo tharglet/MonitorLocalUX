@@ -55,7 +55,7 @@ define (
 
           var addAttributes = function(atrrs, template) {
             angular.forEach(iAttr, function(val, name) {
-              if (!name.startsWith('$')) {
+              if (!name.indexOf('$') === 0) {
                 switch ( name ) {
                 case "object":
                 case "property":
