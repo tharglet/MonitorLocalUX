@@ -112,7 +112,7 @@ define (
     };
     
     // Register a provider here that will return the api.
-    if (angular !== 'undefined') {
+    if (typeof angular !== 'undefined') {
       // Let's add a module and register the provider..
       angular.module('notify', [])
       .provider('$notifications', [ function() {
