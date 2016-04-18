@@ -39,3 +39,15 @@ grunt serve
 ```
 __note:__ If the app does not launch in your browser automatically you should navigate to: 
 http://localhost:9090/
+
+## Deploying
+```
+grunt build
+```
+Creates a folder named "dist" in the root of the project. Compress and upload this folder to the server.
+
+__note:__ There is a temporary change needed for teh app to work properly.
+Navigate into your newly created dist folder and then components/app/config.js and change the backend to point to the correct place. (Without the trailing slash)
+This step will eventually be folded into the grunt build process. 
+
+ 
