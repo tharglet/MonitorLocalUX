@@ -137,9 +137,9 @@
           </div>
 
           <div class="form-group form-group-sm" >
-            <label id="journalPublicationTitleLabel" for="journalpublicationTitle" class="span-3 control-label" aria-label="Publication Title">Journal title</label>
+            <label id="journalPublicationTitleLabel" for="journalPublicationTitle" class="span-3 control-label" aria-label="Publication Title">Journal title</label>
             <div class="span-9">
-              <input type="text" class="form-control" id="journalpublicationTitle" name="journalPublicationTitle" placeholder="Publication title" aria-labelledby="journalPublicationTitleLabel"
+              <input type="text" class="form-control" id="journalPublicationTitle" name="journalPublicationTitle" placeholder="Publication title" aria-labelledby="journalPublicationTitleLabel"
                      data-ng-model="context.publicationTitle" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
                      data-kint-ui-input-feedback data-kint-validate />
             </div>
@@ -150,6 +150,40 @@
             <div class="span-5">
               <kint-refdata-lookup name="journalPublisher" id="journalPublisher" data-object="context" data-property="publisher" class="form-control input-sm" >
             </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="journalIssueDateLabel" for="journalIssueDate" class="control-label span-3" aria-label="Journal issue date" >Journal issue date</label>
+            <div class="span-3">
+              <div class="input-group input-group-sm date" data-datetimepicker >
+                <input type="text" class="form-control" id="journalIssueDate" name="journalIssueDate" aria-labelledby="journalIssueDateLabel"
+                       data-ng-model="context.journalIssueDate" data-ng-model-options="{ updateOn: 'blur' }"
+                       data-kint-ui-input-feedback data-kint-validate />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </div>
+
+            <label id="journalVolumeLabel" for="journalVolume" class="span-1 control-label" aria-label="Journal Volume">Volume</label>
+            <div class="span-1">
+              <input type="text" class="form-control" id="journalVolume" name="journalVolume" placeholder="Volume" aria-labelledby="journalVolumeLabel"
+                     data-ng-model="context.journalVolume" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+
+            <label id="journalIssueLabel" for="journalIssue" class="span-1 control-label" aria-label="Journal Issue">Issue</label>
+            <div class="span-1">
+              <input type="text" class="form-control" id="journalIssue" name="journalIssue" placeholder="Issue" aria-labelledby="journalIssueLabel"
+                     data-ng-model="context.journalIssue" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+
+            <label id="journalPagesLabel" for="journalPages" class="span-1 control-label" aria-label="Journal Pages">Pages</label>
+            <div class="span-1">
+              <input type="text" class="form-control" id="journalPages" name="journalPages" placeholder="Pages" aria-labelledby="journalPagesLabel"
+                     data-ng-model="context.journalPages" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+
           </div>
 
           <div class="form-group form-group-sm" >
@@ -197,6 +231,44 @@
             <label id="conferenceublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
             <div class="span-5">
               <kint-refdata-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher" class="form-control input-sm" >
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="conferencePublicationPlaceLabel" for="conferencePublicationPlace" class="span-3 control-label" aria-label="Place of Publication">Place of publication</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="conferencePublicationPlace" name="conferencePublicationPlace" placeholder="Place of publication" aria-labelledby="conferencePublicationPlaceLabel"
+                     data-ng-model="context.publicationPlace" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="conferenceStartDateLabel" for="conferenceStartDate" class="control-label span-3" aria-label="Conference start date" >Conference start date</label>
+            <div class="span-3">
+              <div class="input-group input-group-sm date" data-datetimepicker >
+                <input type="text" class="form-control" id="conferenceStartDate" name="conferenceStartDate" aria-labelledby="conferenceStartDateLabel"
+                       data-ng-model="context.conferenceStartDate" data-ng-model-options="{ updateOn: 'blur' }"
+                       data-kint-ui-input-feedback data-kint-validate />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </div>
+
+            <label id="conferenceEndDateLabel" for="conferenceEndDate" class="control-label span-3" aria-label="Conference end date" >Conference end date</label>
+            <div class="span-3">
+              <div class="input-group input-group-sm date" data-datetimepicker >
+                <input type="text" class="form-control" id="conferenceEndDate" name="conferenceEndDate" aria-labelledby="conferenceEndDateLabel"
+                       data-ng-model="context.conferenceEndDate" data-ng-model-options="{ updateOn: 'blur' }"
+                       data-kint-ui-input-feedback data-kint-validate />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="conferenceOrg" for="conferenceOrg" class="span-3 control-label" aria-label="Conference Organisation">Conference organisation</label>
+            <div class="span-5">
+              <kint-refdata-lookup name="conferenceOrg" id="conferenceOrg" data-object="context" data-property="conferenceOrg" class="form-control input-sm" >
             </div>
           </div>
 
