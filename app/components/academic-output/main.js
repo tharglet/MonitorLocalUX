@@ -61,9 +61,14 @@ define(
       });
       $stateProvider.state('app.academicOutput.view.publication', {
         url:          '/publication',
+        deps: [
+          'components/academic-output/CtrlAcademicOutputController.js'
+        ],
         views: {
           "": {
             templateUrl:  'components/academic-output/partials/_tab_publication.html',
+            // Academic output controller extends GrailsEditController
+            controller: 'AcademicOutputController'
           },
         },
         data : {
