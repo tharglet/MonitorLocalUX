@@ -3,7 +3,7 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('AcademicOutputController', [ '$scope', '$modal', function($scope, $modal) {
+    app.registerController('AcademicOutputController', [ '$scope', '$uibModal', function($scope, $modal) {
 
       console.log("AcademicOutputController");
 
@@ -11,7 +11,7 @@ define (
         console.log("lookupDOI");
           var modalInstance = $modal.open({
           // animation: $scope.animationsEnabled,
-          templateUrl: 'academic_output/partials/_doi.html',
+          templateUrl: 'components/academic-output/partials/_doi.html',
           // controller: 'DOILookupCtrl',
           // size: size ,
         });
