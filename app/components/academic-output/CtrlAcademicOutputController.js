@@ -12,15 +12,12 @@ define (
           var modalInstance = $modal.open({
           // animation: $scope.animationsEnabled,
           templateUrl: 'components/academic-output/partials/_doi.html',
-          // controller: 'DOILookupCtrl',
+          controller: 'DOIValidationController',
           // size: size ,
         });
 
       };
 
-      /**
-       * Code for search box will go here.
-       */
     }]);
   }
 );

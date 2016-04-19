@@ -62,7 +62,8 @@ define(
       $stateProvider.state('app.academicOutput.view.publication', {
         url:          '/publication',
         deps: [
-          'components/academic-output/CtrlAcademicOutputController.js'
+          'components/academic-output/CtrlAcademicOutputController.js',
+          'components/academic-output/CtrlDOIValidationController.js'
         ],
         views: {
           "": {
