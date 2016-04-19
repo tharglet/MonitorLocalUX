@@ -1,8 +1,218 @@
-<div class="row" >
-  <div class="span-12">
-    <p>Placeholding content for Publications tab.</p>
-  </div>
-</div>
+<section id="aoPublication-grid" class="inner tab-content">
+  <form id="publication" name="publication" class="row" >
+    <article class="span-12" data-ui-view>
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#publication-body" aria-label="Expand/Collapse the main Publication content" id="publicationHeading">Publication lifecycle</h3>
+        </div>
+        <div id="publication-body" class="panel-body form-horizontal in" aria-labelledby="publicationHeading">
+          <div class="form-group form-group-sm" >
+            <label id="publicationStatusLabel" for="publicationStatus" class="span-3 control-label" aria-label="Publication status">Publication status</label>
+            <div class="span-3">
+              <kint-refdata-lookup name="publicationStatus" id="publicationStatus" data-object="context" data-property="publicationStatus" class="form-control input-sm" >
+            </div>
+
+            <label id="publishedDateLabel" for="publishedDate" class="control-label span-3" aria-label="Published date" >Date published</label>
+            <div class="span-3">
+              <div class="input-group input-group-sm date" data-datetimepicker >
+                <input type="text" class="form-control" id="publishedDate" name="publishedDate" aria-labelledby="publishedDateLabel"
+                       data-ng-model="context.publishedDate" data-ng-model-options="{ updateOn: 'blur' }"
+                       data-kint-ui-input-feedback data-kint-validate />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="publisherURLLabel" for="publisherURL" class="span-3 control-label" aria-label="Publisher URL" >Gold Publisher URL</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="publisherURL" name="publisherURL" placeholder="Gold Publisher URL" aria-labelledby="publisherURLLabel"
+                     data-ng-model="context.publisherURL" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="publicationStatusNoteLabel" for="publicationStatusNote" class="control-label span-3" aria-label="Publication Status Note" >Publication status note</label>
+            <div class="span-9">
+              <textarea type="text" class="form-control" id="publicationStatusNote" name="publicationStatusNote" placeholder="Publication Status Note" aria-labelledby="publicationStatusNoteLabel"
+                        data-ng-model="context.publicationStatusNote" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                        data-kint-ui-input-feedback data-kint-validate></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#publicationOutput-body" aria-label="Expand/Collapse the main Publication Output content" id="publicationOutputHeading">Publication output details</h3>
+        </div>
+        <div id="publicationOutput-body" class="panel-body form-horizontal in" aria-labelledby="publicationOutputHeading">
+
+          <div class="form-group form-group-sm" >
+            <label id="outputTypeLabel" for="outputType" class="span-3 control-label" aria-label="Output Type">Output type</label>
+            <div class="span-3">
+              <kint-refdata-lookup name="outputType" id="outputType" data-object="context" data-property="outputType" class="form-control input-sm" required >
+            </div>
+
+            <label id="DOILabel" for="DOI" class="span-3 control-label" aria-label="DOI" >DOI</label>
+            <div class="span-3">
+              <input type="text" class="form-control" id="DOI" name="DOI" placeholder="DOI" aria-labelledby="DOILabel"
+                     data-ng-model="context.DOI" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="PMCIDLabel" for="PMCID" class="span-3 control-label" aria-label="PMCID" >PMCID</label>
+            <div class="span-3">
+              <input type="text" class="form-control" id="PMCID" name="PMCID" placeholder="PMCID" aria-labelledby="PMCIDLabel"
+                     data-ng-model="context.PMCID" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+
+            <label id="PMIDLabel" for="PMID" class="span-3 control-label" aria-label="PMID" >PMID</label>
+            <div class="span-3">
+              <input type="text" class="form-control" id="PMID" name="PMID" placeholder="PMID" aria-labelledby="PMIDLabel"
+                     data-ng-model="context.PMID" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" data-ng-class="{'has-error': (academicOutput.name.$dirty && academicOutput.name.$invalid), 'has-success': (academicOutput.name.$dirty && academicOutput.name.$valid)}" >
+            <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Publication Title" >Title</label>
+            <div class="span-9">
+              <textarea type="text" class="form-control" id="name" name="name" placeholder="Publication Title" aria-labelledby="nameLabel"
+                        data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                        data-kint-ui-input-feedback data-kint-validate required />
+
+              <div data-ng-if="academicOutput.name.$dirty" data-ng-messages="academicOutput.name.$error" class="help-block" role="alert">
+                <p data-ng-message="required">Please enter a name</p>
+                <p data-ng-message="kintValidate">{{academicOutput.name.kintValidate.message}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="localReferenceLabel" for="localReference" class="span-3 control-label" aria-label="Local Reference">Local reference</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="localReference" name="localReference" placeholder="Local Reference" aria-labelledby="localReferenceLabel"
+                     data-ng-model="context.localReference" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="authorNameListLabel" for="authorNameList" class="span-3 control-label" aria-label="Author Name List" >Author name list</label>
+            <div class="span-9">
+              <textarea type="text" class="form-control" id="authorNameList" name="authorNameList" placeholder="Author Name List" aria-labelledby="authorNameListLabel"
+                        data-ng-model="context.authorNameList" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                        data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="panel panel-collapsible panel-default" ng-if="context.outputType.value == 'Journal Article'">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#journalDetails-body" aria-label="Expand/Collapse the main Journal Details content" id="journalDetailsHeading">Journal details</h3>
+        </div>
+        <div id="journalDetails-body" class="panel-body form-horizontal in" aria-labelledby="journalDetailsHeading">
+
+          <div class="form-group form-group-sm" >
+            <label id="journalISSNLabel" for="journalISSN" class="span-3 control-label" aria-label="ISSN" >ISSN</label>
+            <div class="span-4">
+              <input type="text" class="form-control" id="journalISSN" name="journalISSN" placeholder="ISSN" aria-labelledby="journalISSNLabel"
+                     data-ng-model="context.ISSN" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+
+            <label id="journaleISSNLabel" for="journaleISSN" class="span-1 control-label" aria-label="eISSN" >eISSN</label>
+            <div class="span-4">
+              <input type="text" class="form-control" id="journaleISSN" name="journaleISSN" placeholder="eISSN" aria-labelledby="journaleISSNLabel"
+                     data-ng-model="context.eISSN" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="journalPublicationTitleLabel" for="journalpublicationTitle" class="span-3 control-label" aria-label="Publication Title">Journal title</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="journalpublicationTitle" name="journalPublicationTitle" placeholder="Publication title" aria-labelledby="journalPublicationTitleLabel"
+                     data-ng-model="context.publicationTitle" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="journalPublisherLabel" for="journalPublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
+            <div class="span-5">
+              <kint-refdata-lookup name="journalPublisher" id="journalPublisher" data-object="context" data-property="publisher" class="form-control input-sm" >
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="journalOpenAccessStatusLabel" for="journalOpenAccessStatus" class="span-3 control-label" aria-label="Open Access Status">Open access status</label>
+            <div class="span-5">
+              <kint-refdata-lookup name="journalOpenAccessStatus" id="journalOpenAccessStatus" data-object="context" data-property="openAccessStatus" class="form-control input-sm" >
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="panel panel-collapsible panel-default" ng-if="context.outputType.value == 'Conference Paper'">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#conferenceDetails-body" aria-label="Expand/Collapse the main Conference Details content" id="conferenceDetailsHeading">Conference details</h3>
+        </div>
+        <div id="conferenceDetails-body" class="panel-body form-horizontal in" aria-labelledby="conferenceDetailsHeading">
+
+          <div class="form-group form-group-sm" >
+            <label id="conferenceISSNLabel" for="conferenceISSN" class="span-3 control-label" aria-label="ISSN" >ISSN</label>
+            <div class="span-4">
+              <input type="text" class="form-control" id="conferenceISSN" name="conferenceISSN" placeholder="ISSN" aria-labelledby="conferenceISSNLabel"
+                     data-ng-model="context.ISSN" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+
+            <label id="conferenceeISSNLabel" for="conferenceeISSN" class="span-1 control-label" aria-label="eISSN" >eISSN</label>
+            <div class="span-4">
+              <input type="text" class="form-control" id="conferenceeISSN" name="conferenceeISSN" placeholder="eISSN" aria-labelledby="conferenceeISSNLabel"
+                     data-ng-model="context.eISSN" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="conferencePublicationTitleLabel" for="conferencePublicationTitle" class="span-3 control-label" aria-label="Publication Title">Conference title</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="conferencePublicationTitle" name="conferencePublicationTitle" placeholder="Publication title" aria-labelledby="conferencePublicationTitleLabel"
+                     data-ng-model="context.publicationTitle" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="conferenceublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
+            <div class="span-5">
+              <kint-refdata-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher" class="form-control input-sm" >
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="conferenceOpenAccessStatusLabel" for="conferenceOpenAccessStatus" class="span-3 control-label" aria-label="Open Access Status">Open access status</label>
+            <div class="span-5">
+              <kint-refdata-lookup name="conferenceOpenAccessStatus" id="conferenceOpenAccessStatus" data-object="context" data-property="openAccessStatus" class="form-control input-sm" >
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+  </form>
+</section>
+
 <div class="row" >
   <div class="span-2">DOI</div>
   <div class="span-8"><span id="publicationDOI"></span></div>
