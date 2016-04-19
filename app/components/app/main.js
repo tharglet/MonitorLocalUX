@@ -259,7 +259,7 @@ define(
             $rootScope.currentUser = shared.getPayload();
           }
           else {
-            $rootScope.currentUser = { displayName : '', profilePic:'' };
+            $rootScope.currentUser = { name : '', profilePic:'' };
           }
         });
       }
