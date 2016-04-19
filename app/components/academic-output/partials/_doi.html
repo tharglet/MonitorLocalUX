@@ -10,15 +10,48 @@
         <label class="col-md-3 control-label" for="doi">DOI</label>
         <div class="col-md-9">
 
-        <div class="input-group">
-          <input id="doi" name="doi"type="text" placeholder="Enter DOI" class="form-control input-md">
-          <span class="btn btn-default btn-primary btn-sm input-group-addon">Validate</span>
-        </div>
+          <div class="input-group">
+            <input id="doi" name="doi"type="text" placeholder="Enter DOI" class="form-control input-md" ng-model="item_doi">
+            <span class="btn btn-default btn-primary btn-sm input-group-addon" ng-click="validate()">Validate</span>
+          </div>
 
-        <span class="help-block">DOI Name Help Text</span>
+          <span class="help-block">DOI Name Help Text</span>
         </div>
       </div>
     </fieldset>
   </form>
+
+  <div ng-show="valid">
+    Crossref Article Title {{item_title}}<br/>
+    Crossref Container Title {{item_container_title}}<br/>
+    Crossref Type {{item_type}}<br/>
+
+    Identifiers : <ul> <li ng-repeat="identifier in item_identifiers">{{identifier}}</li> </ul>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Famiy Name</th>
+          <th>Given Name</th>
+          <th>Affiliation(s)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="author in item_authors">
+          <td>{{author.family}}</td>
+          <td>{{author.given}}</td>
+          <td>{{author.affiliation[0]}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-success">Add Valid DOI</button>
+  </div>
+
+  <div ng-show="valid" class="ng-hide">
+    Please enter valid doi
+  </div>
 </div>
 
