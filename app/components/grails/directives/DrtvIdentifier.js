@@ -79,6 +79,9 @@ define (
             // Add the bucket for tracking too.
             privateScope.target = target;
 
+            // Replace first!
+            iElem.replaceWith(template);
+
             // Compile the template now.
             $compile(template)(privateScope);
             
@@ -100,9 +103,6 @@ define (
                 $scope.target.splice(index, 1);
               }
             });
-
-            // Replace
-            iElem.replaceWith(template);
           });
         },
       };

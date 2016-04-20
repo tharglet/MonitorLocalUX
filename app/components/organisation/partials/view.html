@@ -1,5 +1,5 @@
 <section id="org-grid" class="inner">
-  <form id="oganisation" name="oganisation" class="row" >
+  <form id="organisation" name="organisation" class="row" >
     <article data-ui-view>
       <div class="panel panel-collapsible panel-default">
         <div class="panel-heading">
@@ -14,11 +14,11 @@
             </div>
             <label id="isniLabel" for="isni" class="span-1 control-label" aria-label="Org ID">ISNI</label>
             <div class="span-2">
-              <input type="text" class="form-control" id="isni" name="isni" aria-labelledby="isniLabel" data-ng-model="context.isni" />
+              <kint-identifier data-property="identifiers" data-namespace="isni" class="form-control" id="isni" name="isni" aria-labelledby="isniLabel" data-ng-model="context.identifiers" ></k-int-identifier>
             </div>
             <label id="ringgoldLabel" for="ringgold" class="span-2 control-label" aria-label="Org ID">Ringgold</label>
             <div class="span-2">
-              <input type="text" class="form-control" id="ringgold" name="ringgold" aria-labelledby="ringgoldLabel" data-ng-model="context.ringgold" />
+              <kint-identifier data-property="identifiers" data-namespace="ringgold" class="form-control" id="ringgold" name="ringgold" aria-labelledby="isniLabel" data-ng-model="context.identifiers" ></k-int-identifier>
             </div>
           </div>
 
