@@ -94,19 +94,29 @@ define(
               var update = true;
               switch (conf.method.toUpperCase()) {
                 case 'POST'  :
-                  // New resource.
-                  update = false;
+                  // Only act on success code.
+                  if (response.status === 201) {
+                    if (typeof response.data ==='object' && !angular.isArray(response.data) && response.data.id) {
+                      var el = response.data;                  
+                      $notifications.showSuccess ({
+                        'title':  "Successfully saved",
+                        'text':   "'" + el.name + "' successfully created."
+                      });
+                    }
+                  }
+                  break;
                 case 'PUT'   :
                   // Only act on success code.
                   if (response.status === 200) {
                     if (typeof response.data ==='object' && !angular.isArray(response.data) && response.data.id) {
                       var el = response.data;                  
                       $notifications.showSuccess ({
-                        'title':  "Successfully " + (update ? "updated" : "saved"),
-                        'text':   (update ? "Changes to " : "") + "'" + el.name + "' successfully " + (update ? "saved." : "created.")
+                        'title':  "Successfully updated",
+                        'text':   "Changes to '" + el.name + "' successfully saved."
                       });
                     }
                   }
+                  break;
               }
             }
             
