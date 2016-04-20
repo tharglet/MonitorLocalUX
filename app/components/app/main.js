@@ -19,7 +19,6 @@ define(
     'organisation',
     'invoice',
     'person',
-    'funder',
     'grant'
   ],
   function (couchPotato, conf, notify, moment) {
@@ -35,7 +34,6 @@ define(
       'organisation',
       'invoice',
       'person',
-      'funder',
       'grant'
     ])
 

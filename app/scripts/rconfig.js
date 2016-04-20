@@ -61,7 +61,6 @@ requirejs.config({
     "organisation",
     "invoice",
     "person",
-    "funder",
     "grant"
   ],
   shim: {

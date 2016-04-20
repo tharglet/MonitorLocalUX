@@ -8,6 +8,7 @@ define (
   'notifications',
   [
     "pnotify",
+    "angular",
     "pnotify.animate",
 //    "pnotify.desktop",
     "pnotify.buttons",
