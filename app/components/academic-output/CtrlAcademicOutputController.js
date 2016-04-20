@@ -9,12 +9,12 @@ define (
 
       $scope.lookupDOI = function() {
         console.log("lookupDOI");
-        return $scope.openModal('components/academic-output/partials/_doi.html', 'DOIValidationController');
+        return $scope.openModal('components/academic-output/partials/_modal_doi.html', 'DOIValidationController');
       };
       
-      $scope.editCost = function() {
+      $scope.editCost = function(item) {
         console.log("Cost edit");
-        return $scope.openModal('components/academic-output/partials/_table_cost_item_row_edit.html');
+        return $scope.openModal('components/academic-output/partials/_modal_cost_item_edit.html');
       };
     }]);
   }

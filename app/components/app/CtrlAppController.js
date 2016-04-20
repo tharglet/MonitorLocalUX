@@ -95,7 +95,7 @@ function(app) {
       if (typeof ctrl !== 'undefined') {
         conf.controller = ctrl;
       }
-      return modalInstance = $modal.open(conf);
+      return $modal.open(conf);
     };
   }]);
 });

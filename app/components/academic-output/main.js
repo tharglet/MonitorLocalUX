@@ -38,6 +38,9 @@ define(
       // Default config for un-named view.
       $stateProvider.state('app.academicOutput.view', {
         url: '/:id',
+        deps: [
+          'components/academic-output/CtrlAcademicOutputController.js',
+        ],
         views: {
           "@app": {
             templateUrl: 'components/academic-output/partials/view.html',
@@ -68,8 +71,6 @@ define(
         views: {
           "": {
             templateUrl:  'components/academic-output/partials/_tab_publication.html',
-            // Academic output controller extends GrailsEditController
-            controller: 'AcademicOutputController'
           },
         },
         data : {

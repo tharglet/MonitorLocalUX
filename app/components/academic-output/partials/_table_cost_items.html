@@ -16,7 +16,7 @@
   </thead>
   
   <tbody>
-    <tr ng-repeat="costItem in context.academicOutputCosts" ng-form="costItem{{$index}}" ng-include="'components/invoice/partials/_table_cost_items_row' + (costItem['$editMode'] ? '_edit' : '') + '.html'" >
+    <tr ng-repeat="costItem in context.academicOutputCosts" ng-form="costItem{{$index}}" ng-include="'components/academic-output/partials/_table_cost_items_row' + (costItem['$editMode'] ? '_edit' : '') + '.html'" >
     </tr>
     <tr>
       <td></td>
