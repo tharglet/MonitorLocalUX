@@ -7,8 +7,15 @@
 'use strict';
 
 define (
-  ['./controllers/CtrlComponentEdit', './directives/DrtvComponentLookup', './directives/DrtvRefdataLookup', './directives/DrtvLiveValidator', 'angular-resource', './lib/LibResourceManager' ],
-  function(ComponentEditController, ComponentLookupDirective, RefdataLookupDirective, ValidatorDirective) {
+  [
+    './controllers/CtrlComponentEdit',
+    './directives/DrtvComponentLookup',
+    './directives/DrtvRefdataLookup',
+    './directives/DrtvLiveValidator',
+    './directives/DrtvIdentifier',
+    'angular-resource',
+    './lib/LibResourceManager' ],
+  function(ComponentEditController, ComponentLookupDirective, RefdataLookupDirective, ValidatorDirective, IdentifierDirective) {
     
     // Define some prefixes and var names here.
     var directiveNamespace = "kint";
@@ -28,6 +35,7 @@ define (
     ngGr.controller('GrailsEditController', ['$rootScope', '$scope', contextVariableName, ComponentEditController]);
     ngGr.directive(directiveNamespace + 'ComponentLookup', ['$compile', '$templateRequest', ComponentLookupDirective]);
     ngGr.directive(directiveNamespace + 'RefdataLookup', ['$compile', '$templateRequest', RefdataLookupDirective]);
+    ngGr.directive(directiveNamespace + 'Identifier', ['$compile', '$templateRequest', '$parse', '$filter', IdentifierDirective]);
     ngGr.directive(directiveNamespace + 'Validate', ['$q', ValidatorDirective]);
     
     // If the UI Router is present then we should add a decorator to allow for,
