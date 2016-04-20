@@ -4,6 +4,6 @@
 <td>{{contactDetails.emailAddress}}</td>
 <td>{{contactDetails.telephoneNumber}}</td>
 <td>
-  <button type="button" ng-click="editMultiProperty('personContactDetails', $index, true)" class="btn btn-default btn-sm" >Edit</button>
-  <button type="button" ng-click="removeFrom('personContactDetails', $index)" class="btn btn-danger btn-sm" >Del</button>
+  <button type="button" ng-click="editMultiProperty(contactDetails)" class="btn btn-default btn-sm" >Edit</button>
+  <button type="button" ng-click="removeFrom('personContactDetails', contactDetails)" class="btn btn-danger btn-sm" >Del</button>
 </td>

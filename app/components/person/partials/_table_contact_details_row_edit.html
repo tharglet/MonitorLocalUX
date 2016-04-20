@@ -6,6 +6,6 @@
 <td><input type="text" name="emailAddress" id="emailAddress" class="form-control input-sm" data-ng-model="contactDetails.emailAddress" data-kint-ui-input-feedback data-kint-validate /></td>
 <td><input type="text" name="telephoneNumber" id="telephoneNumber" class="form-control input-sm" data-ng-model="contactDetails.telephoneNumber" data-kint-ui-input-feedback data-kint-validate /></td>
 <td>
-  <button type="button" ng-click="cancelEditMultiProperty('personContactDetails', $index)" class="btn btn-default btn-sm" >Cancel</button>
-  <button type="button" ng-click="confirmEditMultiProperty('personContactDetails', $index)" class="btn btn-success btn-sm" >Save</button>
+  <button type="button" ng-click="cancelEditMultiProperty(contactDetails)" class="btn btn-default btn-sm" >Cancel</button>
+  <button type="button" ng-click="confirmEditMultiProperty(contactDetails)" class="btn btn-success btn-sm" >Save</button>
 </td>
