@@ -16,9 +16,11 @@ define (
           contextPath:  "@",
           
           // Allow for a different template 
-          template:     "@"
+          template:     "@",
         },
         link: function ($scope, iElement, iAttr) {
+          
+          var multiple = typeof iAttr['multiple'] !== 'undefined'; 
           
           // Grab the object.
           var obj = $scope.contextObj();
@@ -59,7 +61,8 @@ define (
                 switch ( name ) {
                 case "object":
                 case "property":
-                  // ignore these 2.
+                case "multiple":
+                  // ignore these.
                   break;
                 case "class":
                   // Add classes rather than setting.
@@ -73,7 +76,7 @@ define (
             });
           };
 
-          $templateRequest("components/grails/directives/partials/component-lookup.html").then(function(html){
+          $templateRequest("components/grails/directives/partials/component-lookup" + (multiple ? "-multi" : "") + ".html").then(function(html){
             var template = angular.element(html);
             
             if (typeof iAttr.required === 'undefined') {

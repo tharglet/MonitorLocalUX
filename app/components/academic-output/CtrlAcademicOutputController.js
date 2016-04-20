@@ -9,12 +9,17 @@ define (
 
       $scope.lookupDOI = function() {
         console.log("lookupDOI");
-        return $scope.openModal('components/academic-output/partials/_modal_doi.html', 'DOIValidationController');
+        return this.openModal('components/academic-output/partials/_modal_doi.html', 'DOIValidationController');
       };
       
       $scope.editCost = function(item) {
         console.log("Cost edit");
-        return $scope.openModal('components/academic-output/partials/_modal_cost_item_edit.html');
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_cost_item_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
       };
     }]);
   }

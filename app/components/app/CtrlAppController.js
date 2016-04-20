@@ -87,14 +87,17 @@ function(app) {
 
     // open a modal.
     $scope.openModal = function (template, ctrl) {
+      var $mScope = this;
       var conf = {
         animation: true,
-        templateUrl: template
+        templateUrl: template,
+        scope: $mScope
       };
       
       if (typeof ctrl !== 'undefined') {
         conf.controller = ctrl;
       }
+      
       return $modal.open(conf);
     };
   }]);

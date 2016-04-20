@@ -6,8 +6,8 @@
 <td class="info" >{{costItem.grossValue.value - cost.tax.value | number : 2}}</td>
 <td>{{costItem.budget.name}}</td>
 <td>{{costItem.invoice.name}}</td>
-<td><ul data-ng-if="costItem.awards" >
-   <li ng-repeat="award in costItem.awards" >{{award.value}}</li>
+<td><ul data-ng-if="costItem.grants" >
+   <li ng-repeat="grant in costItem.grants" >{{grant.name}}</li>
 </ul></td>
 <td><ul data-ng-if="costItem.prepay" >
    <li ng-repeat="prepay in costItem.prepay" >{{prepay.value}}</li>

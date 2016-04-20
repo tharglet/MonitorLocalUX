@@ -9,14 +9,14 @@
       <th class="info" >NET</th>
       <th>Budget</th>
       <th>Invoice</th>
-      <th>Award</th>
+      <th>Grant</th>
       <th>Pre pay</th>
       <th>Action</th>
     </tr>
   </thead>
   
   <tbody>
-    <tr ng-repeat="costItem in context.academicOutputCosts" ng-form="costItem{{$index}}" ng-include="'components/academic-output/partials/_table_cost_items_row' + (costItem['$editMode'] ? '_edit' : '') + '.html'" >
+    <tr ng-repeat="costItem in context.academicOutputCosts" ng-form="costItem{{$index}}" ng-include="'components/academic-output/partials/_table_cost_items_row.html'" >
     </tr>
     <tr>
       <td></td>
