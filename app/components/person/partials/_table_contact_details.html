@@ -2,13 +2,24 @@
   <thead>
   <tr>
     <th>Org</th>
-    <th>Dept, Position/Job Title</th>
+    <th>Dept</th>
+    <th>Position/Job Title</th>
     <th>Primary email</th>
     <th>Primary telephone</th>
+    <th>Action</th>
   </tr>
   </thead>
 
   <tbody>
   <tr ng-repeat="contactDetails in context.personContactDetails" ng-form="contactDetails{{$index}}" ng-include="'components/person/partials/_table_contact_details_row' + (contactDetails['$editMode'] ? '_edit' : '') + '.html'" >
   </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('personContactDetails')" >Add</button>
+    </td>
 </table>

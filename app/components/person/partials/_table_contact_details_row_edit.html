@@ -1,0 +1,11 @@
+<td>
+    <kint-component-lookup name="organisation" id="organisation" data-object="contactDetails" data-property="organisation" data-context-obj="context" data-context-path="personContactDetails.organisation" class="form-control input-sm" >
+</td>
+<td><input type="text" name="department" id="department" class="form-control input-sm" data-ng-model="contactDetails.department" data-kint-ui-input-feedback data-kint-validate /></td>
+<td><input type="text" name="jobTitle" id="jobTitle" class="form-control input-sm" data-ng-model="contactDetails.jobTitle" data-kint-ui-input-feedback data-kint-validate /></td>
+<td><input type="text" name="emailAddress" id="emailAddress" class="form-control input-sm" data-ng-model="contactDetails.emailAddress" data-kint-ui-input-feedback data-kint-validate /></td>
+<td><input type="text" name="telephoneNumber" id="telephoneNumber" class="form-control input-sm" data-ng-model="contactDetails.telephoneNumber" data-kint-ui-input-feedback data-kint-validate /></td>
+<td>
+  <button type="button" ng-click="cancelEditMultiProperty('personContactDetails', $index)" class="btn btn-default btn-sm" >Cancel</button>
+  <button type="button" ng-click="confirmEditMultiProperty('personContactDetails', $index)" class="btn btn-success btn-sm" >Save</button>
+</td>

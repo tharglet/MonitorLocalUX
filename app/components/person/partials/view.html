@@ -32,10 +32,6 @@
               <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name(s)" aria-labelledby="firstNameLabel"
                      data-ng-model="context.firstName" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
                      data-kint-ui-input-feedback data-kint-validate required />
-              <div data-ng-if="person.firstName.$dirty" data-ng-messages="person.firstName.$error" class="help-block" role="alert">
-                <p data-ng-message="required">Please enter a first name</p>
-                <p data-ng-message="kintValidate">{{person.firstName.kintValidate.message}}</p>
-              </div>
             </div>
 
             <div class="span-4">
@@ -43,13 +39,19 @@
               <input type="text" class="form-control" id="surname" name="surname" placeholder="Surname" aria-labelledby="surnameLabel"
                      data-ng-model="context.surname" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
                      data-kint-ui-input-feedback data-kint-validate required />
-              <div data-ng-if="person.surname.$dirty" data-ng-messages="person.surname.$error" class="help-block" role="alert">
-                <p data-ng-message="required">Please enter a surname</p>
-                <p data-ng-message="kintValidate">{{person.surname.kintValidate.message}}</p>
-              </div>
             </div>
           </div>
+        </div>
+      </div>
 
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#contactDetailsPanel" aria-label="Expand/Collapse the main contact details content" id="contactDetailsHeading">Contact details</h3>
+        </div>
+        <div id="contactDetailsPanel" class="panel-body form-horizontal in" aria-labelledby="contactDetailsHeading" >
+          <form id="addContactDetails" name="addContactDetails" class="table-responsive" >
+            <ng-include src="'components/person/partials/_table_contact_details.html'" ></ng-include>
+          </form>
         </div>
       </div>
     </article>
@@ -58,10 +60,5 @@
       <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="person.$invalid" >Save</button>
       <button type="button" class="btn btn-link" >Cancel</button>
     </div>
-
   </form>
-
-  <ng-include src="'components/person/partials/_contact_details.html'" ></ng-include>
-
-
 </section>
