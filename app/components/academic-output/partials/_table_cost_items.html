@@ -1,0 +1,33 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Cat</th>
+      <th class="info" >Curr</th>
+      <th class="info" >Gross</th>
+      <th class="info" >Gross GBP</th>
+      <th class="info" >Tax</th>
+      <th class="info" >NET</th>
+      <th>Budget</th>
+      <th>Invoice</th>
+      <th>Award</th>
+      <th>Pre pay</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr ng-repeat="costItem in context.academicOutputCosts" ng-form="costItem{{$index}}" ng-include="'components/invoice/partials/_table_cost_items_row' + (costItem['$editMode'] ? '_edit' : '') + '.html'" >
+    </tr>
+    <tr>
+      <td></td>
+      <td class="info" >Totals</td>
+      <td class="info" >Gross</td>
+      <td class="info" >Gross GBP</td>
+      <td class="info" >Tax</td>
+      <td class="info" >NET</td>
+      <td colspan="4"></td>
+      <td>
+        <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('academicOutputCosts')" >Add</button>
+      </td>
+    </tr>
+</table>

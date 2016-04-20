@@ -41,22 +41,19 @@ define (
         }
       };
       
-      $scope.removeFrom = function (propertyName, index) {
+      $scope.removeFrom = function (propertyName, item) {
         
         // The resource.
         var res = $scope.context;
         
         // Only add if we can push to it.
         if (res[propertyName] && typeof res[propertyName].splice === 'function' ) {
+          var index = res[propertyName].indexOf(item);
           res[propertyName].splice(index, 1);
         }
       };
       
-      $scope.cancelEditMultiProperty = function (propertyName, index) {
-        
-        // The resource.
-        var res = $scope.context;
-        var item = res[propertyName][index];
+      $scope.cancelEditMultiProperty = function (item) {
         
         // Grab the original.
         var _orig = item.$$original;
@@ -66,21 +63,17 @@ define (
         
         // Restore the original.
         angular.copy(_orig, item);
-        $scope.setEditFlagFor (propertyName, index, false);
+        $scope.setEditFlagFor (item, false);
       };
       
-      $scope.confirmEditMultiProperty = function (propertyName, index) {
-        $scope.setEditFlagFor (propertyName, index, false);
+      $scope.confirmEditMultiProperty = function (item) {
+        $scope.setEditFlagFor (item, false);
       };
       
-      $scope.editMultiProperty = function (propertyName, index) {
-        
-        // The resource.
-        var res = $scope.context;
+      $scope.editMultiProperty = function (item) {
         
         // Get the current value.
         var _orig = {};
-        var item = res[propertyName][index];
         
         // Copy to our object.
         angular.copy(item, _orig);
@@ -88,16 +81,16 @@ define (
         // Now that we have a copy we can save the copy. Important to copy first so we don't try to copy the copy.
         item.$$original = _orig;
         
-        $scope.setEditFlagFor (propertyName, index, true);
+        $scope.setEditFlagFor (item, true);
       };
       
-      $scope.setEditFlagFor = function (propertyName, index, value) {
+      $scope.setEditFlagFor = function (item, value) {
         
         // The resource.
         var res = $scope.context;
         
         // Just concat the index and prop name.
-        res[propertyName][index]['$editMode'] = value;
+        item['$editMode'] = value;
       };
       
       // Set a couple of methods against the scope.

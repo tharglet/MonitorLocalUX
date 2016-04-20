@@ -5,10 +5,14 @@
 <td class="info" >{{costItem.tax.value | number : 2}}</td>
 <td class="info" >{{costItem.grossValue.value - cost.tax.value | number : 2}}</td>
 <td>{{costItem.budget.name}}</td>
-<td>Award</td>
-<td>Pre pay</td>
-<td>Accademic output</td>
+<td>{{costItem.invoice.name}}</td>
+<td><ul data-ng-if="{{costItem.awards}}" >
+   <li ng-repeat="award in costItem.awards" >{{award.value}}</li>
+</ul></td>
+<td><ul data-ng-if="{{costItem.prepay}}" >
+   <li ng-repeat="prepay in costItem.prepay" >{{prepay.value}}</li>
+</ul></td>
 <td>
-  <button type="button" ng-click="editMultiProperty(costItem)" class="btn btn-default btn-sm" >Edit</button>
+  <button type="button" ng-click="editCost(costItem)" class="btn btn-default btn-sm" >Edit</button>
   <button type="button" ng-click="removeFrom('invoiceCosts', costItem)" class="btn btn-danger btn-sm" >Del</button>
 </td>

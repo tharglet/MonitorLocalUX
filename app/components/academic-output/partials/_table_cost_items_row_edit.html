@@ -7,9 +7,9 @@
 <td class="info" >{{costItem.tax.value | number : 2}}</td>
 <td class="info" >{{costItem.grossValue.value - cost.tax.value | number : 2}}</td>
 <td>{{costItem.budget.name}}</td>
+<td>Invoice</td>
 <td>Award</td>
 <td>Pre pay</td>
-<td>Accademic output</td>
 <td>
   <button type="button" ng-click="cancelEditMultiProperty(costItem)" class="btn btn-default btn-sm" >Cancel</button>
   <button type="button" ng-click="confirmEditMultiProperty(costItem)" class="btn btn-success btn-sm" >Save</button>

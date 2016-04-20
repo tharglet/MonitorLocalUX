@@ -3,7 +3,7 @@
 define (
 ['app','auth/SvcUserService'],
 function(app) {
-  return  app.registerController ('AppController', ['$rootScope', '$scope', '$state', function ($rootScope, $scope, $stateProvider) {
+  return  app.registerController ('AppController', ['$rootScope', '$scope', '$state', '$uibModal', function ($rootScope, $scope, $stateProvider, $modal) {
 
     /**
      * Method to set the title.
@@ -83,5 +83,19 @@ function(app) {
       setTitle();
       setTrail();
     });
+    
+
+    // open a modal.
+    $scope.openModal = function (template, ctrl) {
+      var conf = {
+        animation: true,
+        templateUrl: template
+      };
+      
+      if (typeof ctrl !== 'undefined') {
+        conf.controller = ctrl;
+      }
+      return modalInstance = $modal.open(conf);
+    };
   }]);
 });
