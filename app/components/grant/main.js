@@ -20,7 +20,7 @@ define(
         $stateProvider.state('app.grant', {
           parent: 'app.componentSearch',
           url:   '^/grant',
-          grailsResource: 'Grant',
+          grailsResource: 'AOGrant',
           views: {
             // Unnamed view.
             "" : {
