@@ -5,10 +5,21 @@
     <th>Funder group</th>
     <th>Grant name</th>
     <th>% of APC charge</th>
+    <th>Action</th>
   </tr>
   </thead>
 
   <tbody>
-  <!--<tr ng-repeat="contactDetails in context.personContactDetails" ng-form="contactDetails{{$index}}" ng-include="'components/person/partials/_table_contact_details_row' + (contactDetails['$editMode'] ? '_edit' : '') + '.html'" >
-</tr>-->
+    <tr ng-repeat="aoFunds in context.funds" ng-form="aoFunds{{$index}}" ng-include="'components/academic-output/partials/_table_funder_row' + (aoFunds['$editMode'] ? '_edit' : '') + '.html'" >
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('funds')" >Add</button>
+      </td>
+    </tr>
+  </tbody>
 </table>

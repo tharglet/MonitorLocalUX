@@ -1,0 +1,8 @@
+<td>{{aoFunds.organisation.name}}</td>
+<td>{{aoFunds.funder.fundingGroup}}</td>
+<td>{{aoFunds.AOGrant.name}}</td>
+<td>{{aoFunds.apcCharge}}%</td>
+<td>
+  <button type="button" ng-click="editMultiProperty('funds', $index, true)" class="btn btn-default btn-sm" >Edit</button>
+  <button type="button" ng-click="removeFrom('funds', $index)" class="btn btn-danger btn-sm" >Del</button>
+</td>
