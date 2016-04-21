@@ -8,15 +8,15 @@
       <th class="info" >Tax</th>
       <th class="info" >NET</th>
       <th>Budget</th>
-      <th>Award</th>
+      <th>Academic output</th>
+      <th>Grants</th>
       <th>Pre pay</th>
-      <th>Accademic output</th>
       <th>Action</th>
     </tr>
   </thead>
   
   <tbody>
-    <tr ng-repeat="costItem in context.invoiceCosts" ng-form="costItem{{$index}}" ng-include="'components/invoice/partials/_table_cost_items_row' + (costItem['$editMode'] ? '_edit' : '') + '.html'" >
+    <tr ng-repeat="costItem in context.invoiceCosts" ng-form="costItem{{$index}}" ng-include="'components/invoice/partials/_table_cost_items_row.html'" >
     </tr>
     <tr>
       <td></td>
