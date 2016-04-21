@@ -3,6 +3,6 @@
     <span data-ng-bind="$select.selected.value"></span>
   </ui-select-match>
   <ui-select-choices data-refresh="refresh()" data-refresh-delay="350" data-repeat="item in (data | filter: { value : $select.search } ) track by item.id">
-    <span data-ng-bind="item.value"></span>
+    <span data-ng-bind-html="item.value | highlight: $select.search"></span>
   </ui-select-choices>
 </ui-select>

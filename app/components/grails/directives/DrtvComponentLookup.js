@@ -2,7 +2,7 @@
 
 define (
   function () {
-    return function ($compile, $templateRequest) {
+    return function ($compile, $templateRequest, $parse) {
       return {
         restrict: 'E',
         scope: {
@@ -17,6 +17,10 @@ define (
           
           // Allow for a different template 
           template:     "@",
+          
+          // Query params.
+
+          params:       "@",
         },
         link: function ($scope, iElement, iAttr) {
           
@@ -36,6 +40,9 @@ define (
 
           // Add the data and update functions here.
           $scope.data = [];
+          
+          // Params to be sent to the lookup.
+          var params = $parse(iAttr['params'])($scope) || {};
 
           // The refresh function
           $scope.refresh = function ( searchParam ) {
@@ -43,7 +50,7 @@ define (
             // Check if this is refdata. We fetch all refdata.
             if ( obj && $scope.contextPath && typeof obj.componentLookup === 'function') {
               // Push if through the lookup method on the resource.
-              obj.componentLookup ($scope.contextPath, searchParam).then(function( rdata ){
+              obj.componentLookup ($scope.contextPath, searchParam, params).then(function( rdata ){
                 $scope.data = rdata.data;
               });
             }

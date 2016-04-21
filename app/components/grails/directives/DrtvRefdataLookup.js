@@ -42,7 +42,7 @@ define (
           // The refresh function
           $scope.refresh = function ( searchParam ) {
             // Now that we can have . notated propertie we should use geenric method.
-            obj.componentLookup ($scope.contextPath).then(function( rdata ){
+            obj.componentLookup ($scope.contextPath, searchParam, {match:'value'}).then(function( rdata ){
               $scope.data = rdata.data;
             });
           };
@@ -102,6 +102,6 @@ define (
           });
         },
       };
-    }
+    };
   }
 );

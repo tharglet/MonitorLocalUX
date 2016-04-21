@@ -36,6 +36,9 @@ define(
       });
       $stateProvider.state('app.invoice.view', {
         url: '/:id',
+        deps: [
+          'components/invoice/CtrlInvoiceController.js',
+        ],
         views: {
           "@app": {
             templateUrl: 'components/invoice/partials/view.html',

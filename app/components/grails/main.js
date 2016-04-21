@@ -33,7 +33,7 @@ define (
     // The functions for the below are stored in different files. They are included above using
     // requirejs and they should return a method. That method can then be accessed by applied var name.
     ngGr.controller('GrailsEditController', ['$rootScope', '$scope', contextVariableName, ComponentEditController]);
-    ngGr.directive(directiveNamespace + 'ComponentLookup', ['$compile', '$templateRequest', ComponentLookupDirective]);
+    ngGr.directive(directiveNamespace + 'ComponentLookup', ['$compile', '$templateRequest', '$parse', ComponentLookupDirective]);
     ngGr.directive(directiveNamespace + 'RefdataLookup', ['$compile', '$templateRequest', RefdataLookupDirective]);
     ngGr.directive(directiveNamespace + 'Identifier', ['$compile', '$templateRequest', '$parse', '$filter', IdentifierDirective]);
     ngGr.directive(directiveNamespace + 'Validate', ['$q', ValidatorDirective]);
