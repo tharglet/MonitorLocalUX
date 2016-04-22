@@ -1,14 +1,12 @@
-<section id="invoice-grid" class="inner">
-  <form name="aoFinance" id="aoFinance" class="row" >
-    <article data-ui-view>
-      <div class="panel panel-collapsible panel-default">
-        <div class="panel-heading">
-          <h3 data-toggle="collapse" data-target="#committedCosts" aria-label="Expand/Collapse the main AO content" id="committedCostsHeading">Committed Costs</h3>
-        </div>
-        <div id="committedCosts" name="committedCosts" class="panel-body in" aria-labelledby="committedCostsHeading" >
-          <ng-include src="'components/academic-output/partials/_table_cost_items.html'" ></ng-include>
-        </div>
+<form name="aoFinance" id="aoFinance" >
+  <article data-ui-view>
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#committedCosts" aria-label="Expand/Collapse the main AO content" id="committedCostsHeading">Committed Costs</h3>
       </div>
-    </article>
-  </form>
-</section>
+      <div id="committedCosts" name="committedCosts" class="panel-body in" aria-labelledby="committedCostsHeading" >
+        <ng-include src="'components/academic-output/partials/_table_cost_items.html'" ></ng-include>
+      </div>
+    </div>
+  </article>
+</form>

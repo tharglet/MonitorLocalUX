@@ -1,57 +1,56 @@
-<section id="aoPerson-grid" class="inner tab-content">
-  <form id="aoPerson" name="aoPerson" class="row" >
-    <article class="span-12" data-ui-view>
-      <div class="panel panel-collapsible panel-default">
-        <div class="panel-heading">
-          <h3 data-toggle="collapse" data-target="#assignedPerson-body" aria-label="Expand/Collapse the main assigned Person content" id="assignedPerson-heading">People assigned to this academic output</h3>
-        </div>
-        <div id="assignedPerson-body" class="panel-body form-horizontal in" aria-labelledby="assignedPerson-heading">
-          <ng-include src="'components/academic-output/partials/_table_people.html'" ></ng-include>
-        </div>
+<form id="aoPerson" name="aoPerson" class="row" >
+  <article data-ui-view>
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#assignedPerson-body" aria-label="Expand/Collapse the main assigned Person content" id="assignedPerson-heading">People assigned to this academic output</h3>
       </div>
-
-      <div class="panel panel-collapsible panel-default">
-        <div class="panel-heading">
-          <h3 data-toggle="collapse" data-target="#aoPerson-body" aria-label="Expand/Collapse the main AO Person content" id="aoPerson-heading">Assign a person to this academic output</h3>
-        </div>
-        <div id="aoPerson-body" class="panel-body form-horizontal in" aria-labelledby="aoPerson-heading">
-
-          <!--<div class="form-group form-group-sm">
-            <label id="groupLabel" for="group" class="control-label span-3" aria-label="Funder Group">Funder group</label>
-            <div class="span-9">
-              <kint-refdata-lookup name="group" id="group" data-object="context.funder" data-property="group" class="form-control input-sm" >
-            </div>
-          </div>-->
-
-          <div class="form-group form-group-sm">
-            <label id="organisationLabel" for="organisation" class="control-label span-3" aria-label="Organisation">Organisation</label>
-            <div class="span-9">
-              <kint-refdata-lookup name="organisation" id="organisation" data-object="context" data-property="organisation" class="form-control input-sm" >
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm" >
-            <label id="personLabel" for="person" class="control-label span-3" aria-label="Person">Person</label>
-            <div class="span-9">
-              <kint-refdata-lookup name="person" id="person" data-object="context" data-property="person" class="form-control input-sm" >
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm" >
-            <label id="roleLabel" for="role" class="control-label span-3" aria-label="Role">Role</label>
-            <div class="span-9">
-              <kint-refdata-lookup name="role" id="role" data-object="context" data-property="role" class="form-control input-sm" >
-            </div>
-          </div>
-
-        </div>
+      <div id="assignedPerson-body" class="panel-body form-horizontal in" aria-labelledby="assignedPerson-heading">
+        <ng-include src="'components/academic-output/partials/_table_people.html'" ></ng-include>
       </div>
-    </article>
-
-    <div class="form-group">
-      <button type="button" class="btn btn-success" class="pull-left" >Assign Person</button>
-      <button type="button" class="btn btn-link" class="pull-right ">Cancel</button>
     </div>
 
-  </form>
-</section>
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#aoPerson-body" aria-label="Expand/Collapse the main AO Person content" id="aoPerson-heading">Assign a person to this academic output</h3>
+      </div>
+      <div id="aoPerson-body" class="panel-body form-horizontal in" aria-labelledby="aoPerson-heading">
+
+        <!--<div class="form-group form-group-sm">
+          <label id="groupLabel" for="group" class="control-label span-3" aria-label="Funder Group">Funder group</label>
+          <div class="span-9">
+            <kint-refdata-lookup name="group" id="group" data-object="context.funder" data-property="group" class="form-control input-sm" >
+          </div>
+        </div>-->
+
+        <div class="form-group form-group-sm">
+          <label id="organisationLabel" for="organisation" class="control-label span-3" aria-label="Organisation">Organisation</label>
+          <div class="span-9">
+            <kint-refdata-lookup name="organisation" id="organisation" data-object="context" data-property="organisation" class="form-control input-sm" >
+          </div>
+        </div>
+
+        <div class="form-group form-group-sm" >
+          <label id="personLabel" for="person" class="control-label span-3" aria-label="Person">Person</label>
+          <div class="span-9">
+            <kint-refdata-lookup name="person" id="person" data-object="context" data-property="person" class="form-control input-sm" >
+          </div>
+        </div>
+
+        <div class="form-group form-group-sm" >
+          <label id="roleLabel" for="role" class="control-label span-3" aria-label="Role">Role</label>
+          <div class="span-9">
+            <kint-refdata-lookup name="role" id="role" data-object="context" data-property="role" class="form-control input-sm" >
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </article>
+
+  <div class="form-group">
+    <button type="button" class="btn btn-success" class="pull-left" >Assign Person</button>
+    <button type="button" class="btn btn-link" class="pull-right ">Cancel</button>
+  </div>
+
+</form>
+
