@@ -36,6 +36,9 @@ define(
         });
         $stateProvider.state('app.person.view', {
           url: '/:id',
+          deps: [
+            'components/person/CtrlPersonController.js',
+          ],
           views: {
             "@app": {
               templateUrl: 'components/person/partials/view.html',
