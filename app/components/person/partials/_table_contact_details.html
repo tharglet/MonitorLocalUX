@@ -11,15 +11,17 @@
   </thead>
 
   <tbody>
-  <tr ng-repeat="contactDetails in context.personContactDetails" ng-form="contactDetails{{$index}}" ng-include="'components/person/partials/_table_contact_details_row' + (contactDetails['$editMode'] ? '_edit' : '') + '.html'" >
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>
-      <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('personContactDetails')" >Add</button>
-    </td>
+    <tr ng-repeat="contactDetails in context.personContactDetails" ng-form="contactDetails{{$index}}" ng-include="'components/person/partials/_table_contact_details_row' + (contactDetails['$editMode'] ? '_edit' : '') + '.html'" >
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('personContactDetails')" >Add</button>
+      </td>
+    </tr>
+  </tbody>
 </table>

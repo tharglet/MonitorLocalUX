@@ -1,7 +1,7 @@
 <td>{{contactDetails.organisation.name}}</td>
 <td>{{contactDetails.department}}</td>
 <td>{{contactDetails.jobTitle}}</td>
-<td>{{contactDetails.emailAddress}}</td>
+<td><a ng-href="mailto:{{ contactDetails.emailAddress }}">{{contactDetails.emailAddress}}</a></td>
 <td>{{contactDetails.telephoneNumber}}</td>
 <td>
   <button type="button" ng-click="editMultiProperty(contactDetails)" class="btn btn-default btn-sm" >Edit</button>
