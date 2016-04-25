@@ -3,34 +3,68 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('DOIValidationController', [ '$scope', '$http', function($scope, $http) {
+    app.registerController('DOIValidationController', [ '$scope', '$http', '$filter', function($scope, $http, $filter) {
 
       console.log("DOIValidationController");
+      
+      // Need to set to existing value, if present or fetch a blank.
+      var ns = "doi";
 
-      $scope.item_doi ='10.1037/0003-066X.59.1.29';
-      $scope.item_container_title ='Unknown';
-      $scope.item_title ='Unknown';
-      $scope.item_type ='Unknown';
-      $scope.valid = false;
+      // Data object for the lookup. We'll make the structure match that of the AO.
+      // This should mean a simple "angular.merge" operation adds the necessary vals on confirmation.
+      $scope.doi_data = {
+        identifiers: angular.copy(($filter('filter')($scope.context.identifiers, { identifier : { namespace : { value: ( ns ) } } }, false)))
+      };
+      
+      // If there isn't an entry then we should create one.
+      if ($scope.doi_data['identifiers'].length < 1) {
+        
+        // Create a blank one.
+        $scope.getBlank('identifiers').then(function (data) {
+          // Set the namespace and add to the list.
+          data.identifier.namespace.value = ns;
+          
+          // Set the value.
+          data.identifier.value = '';
+          
+          // Also directly set our entry here.
+//          angular.copy (data, doi_data);
+          $scope.doi_data['identifiers'].push(data);
+        });
+      }
+      
+      $scope.item_container_title = 'Unknown';
+      $scope.item_type = 'Unknown';
+      $scope.valid = null;
 
       $scope.validate = function(){
         console.log("validate");
 
         var config = {};
         // $http.get('http://api.crossref.org/works/'+'10.1037/0003-066X.59.1.29', config)
-        $http.get('http://api.crossref.org/works/'+$scope.item_doi, config)
+        $http.get('http://api.crossref.org/works/'+ $scope.doi_data['identifiers'][0].identifier.value, config)
           .then(function success(response) {
-                  console.log("OK %o",response);
-                  $scope.item_container_title = response.data.message['container-title'][0];
-                  $scope.item_title = response.data.message.title[0];
-                  $scope.item_type = response.data.message.type;
-                  $scope.item_identifiers = response.data.message.ISSN;
-                  $scope.item_authors = response.data.message.author;
-                  $scope.valid = true;
-                }, 
-                function error(response) {
-                  console.log("Error");
-                });
+          console.log("OK %o",response);
+          $scope.item_container_title = response.data.message['container-title'][0];
+          $scope.doi_data['name'] = response.data.message.title[0];
+          $scope.item_type = response.data.message.type;
+          $scope.item_identifiers = response.data.message.ISSN;
+          $scope.item_authors = response.data.message.author;
+          
+          // Also add a simple list.
+          // SO: This will need to change to create, or match names.
+          var names = "";
+          angular.forEach (response.data.message.author, function (author) {
+            names += (author['given'] + ' ' + author['family']) + "\n";
+          });
+          
+          $scope.doi_data['authorNameList'] = names.replace(/^\s+|\s+$/gm,'');
+          $scope.valid = true;
+        }, 
+        function error(response) {
+          console.log("Error");
+          $scope.valid = false;
+        });
       };
 
       // Validate by cross ref : issue GET to http://api.crossref.org/works/ + DOI -- eg "10.1037/0003-066X.59.1.29"

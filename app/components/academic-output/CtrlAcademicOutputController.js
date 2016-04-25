@@ -9,7 +9,13 @@ define (
 
       $scope.lookupDOI = function() {
         console.log("lookupDOI");
-        return this.openModal('components/academic-output/partials/_modal_doi.html', 'DOIValidationController');
+        var callingScope = this;
+        return callingScope.openModal('components/academic-output/partials/_modal_doi.html', 'DOIValidationController').result.then(function (res) {
+          // Merge into the context.
+          angular.merge(callingScope.context, res);
+        },function (){
+          // Do nothing...
+        });
       };
       
       $scope.editCost = function(item) {

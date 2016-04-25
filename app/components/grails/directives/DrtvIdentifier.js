@@ -47,7 +47,18 @@ define (
           
           // Create a filtered view for our new element.
           var idList = ($filter('filter')(target, { identifier : { namespace : { value: ( ns ) } } }, false));
+
           var idEntry = {};
+          
+          $scope.$watchCollection(iAttr['ngModel'], function(){
+            // Refresh the collection.
+            idList = ($filter('filter')(target, { identifier : { namespace : { value: ( ns ) } } }, false));
+            if (idList.length > 0) {
+              
+              // Copy the entry...
+              angular.copy (idList[0], idEntry);
+            }
+          });
           
           // If there isn't an entry then we should create one.
           if (idList.length < 1) {

@@ -3,30 +3,38 @@
 </div>
 
 <div class="modal-body">
-  <form novalidate class="simple-form form-horizontal" role="form">
-    <fieldset>
+  <form novalidate class="simple-form form-horizontal" name="doiLookup" role="form">
 
-      <div class="form-group">
-        <label class="col-md-3 control-label" for="doi">DOI</label>
-        <div class="col-md-9">
+    <div class="form-group" data-ng-class="{'has-error': (doiLookup.doi.$dirty && valid===false), 'has-success' : (valid===true)}" >
+      <label class="span-3 control-label" for="doi">DOI</label>
+      <div class="span-9">
 
-          <div class="input-group">
-            <input id="doi" name="doi"type="text" placeholder="Enter DOI" class="form-control input-md" ng-model="item_doi">
-            <span class="btn btn-default btn-primary btn-sm input-group-addon" ng-click="validate()">Validate</span>
-          </div>
-
-          <span class="help-block">DOI Name Help Text</span>
+        <div class="input-group">
+          <input id="doi" name="doi"type="text" placeholder="Enter DOI" class="form-control input-md" data-ng-change="valid = null" data-ng-model="doi_data['identifiers'][0].identifier.value">
+          <span class="btn btn-default btn-primary btn-sm input-group-addon" data-ng-click="validate()">Validate</span>
         </div>
+        <span data-ng-if="doiLookup.doi.$dirty && valid==false" class="help-block">Please enter valid doi</span>
+        <span class="help-block">DOI Name Help Text</span>
       </div>
-    </fieldset>
+    </div>
+    <div class="form-group">
+      <div class="span-12" >
+        <button type="button" ng-click="$dismiss()" class="btn btn-default btn-sm" >
+          Cancel
+        </button>
+        <button type="button" ng-if="doiLookup.doi.$dirty && valid === true" ng-click="$close(doi_data)" class="btn btn-success btn-sm" >
+          Save and apply
+        </button>
+      </div>
+    </div>
   </form>
 
-  <div ng-show="valid">
+  <div data-ng-show="valid">
     Crossref Article Title {{item_title}}<br/>
     Crossref Container Title {{item_container_title}}<br/>
     Crossref Type {{item_type}}<br/>
 
-    Identifiers : <ul> <li ng-repeat="identifier in item_identifiers">{{identifier}}</li> </ul>
+    Identifiers : <ul> <li data-ng-repeat="identifier in item_identifiers">{{identifier}}</li> </ul>
 
     <table class="table table-striped">
       <thead>
@@ -34,24 +42,16 @@
           <th>Famiy Name</th>
           <th>Given Name</th>
           <th>Affiliation(s)</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="author in item_authors">
+        <tr data-ng-repeat="author in item_authors">
           <td>{{author.family}}</td>
           <td>{{author.given}}</td>
           <td>{{author.affiliation[0]}}</td>
-          <td></td>
         </tr>
       </tbody>
     </table>
-
-    <button class="btn btn-success">Add Valid DOI</button>
-  </div>
-
-  <div ng-show="valid" class="ng-hide">
-    Please enter valid doi
   </div>
 </div>
 

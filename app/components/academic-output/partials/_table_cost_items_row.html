@@ -12,6 +12,7 @@
 <td><ul data-ng-if="costItem.prepay" >
    <li ng-repeat="prepay in costItem.prepay" >{{prepay.value}}</li>
 </ul></td>
+<td>{{costItem.estimated.value}}</td>
 <td>
   <button type="button" ng-click="editCost(costItem)" class="btn btn-default btn-sm" >Edit</button>
   <button type="button" ng-click="removeFrom('academicOutputCosts', costItem)" class="btn btn-danger btn-sm" >Del</button>
