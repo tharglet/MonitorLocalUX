@@ -1,9 +1,9 @@
-<td>{{costItem.category.value}}</td>
-<td class="info" >{{costItem.currency}}</td>
-<td class="info" >{{costItem.grossValue.value | number : 2}}</td>
-<td class="info" >{{costItem.grossValueGBP.value | number : 2}}</td>
-<td class="info" >{{costItem.tax.value | number : 2}}</td>
-<td class="info" >{{costItem.grossValue.value - cost.tax.value | number : 2}}</td>
+<td data-ng-bind="costItem.category.value" ></td>
+<td class="info" data-ng-bind="costItem.currency" ></td>
+<td class="info" data-ng-init="tableTotals['gross'] = (tableTotals['gross'] + costItem.grossValue.value)" data-ng-bind="costItem.grossValue.value | number : 2" ></td>
+<td class="info" data-ng-init="tableTotals['gross-gbp'] = (tableTotals['gross-gbp'] + costItem.grossValueGBP.value)" data-ng-bind="costItem.grossValueGBP.value | number : 2" ></td>
+<td class="info" data-ng-init="tableTotals['tax'] = (tableTotals['tax'] + costItem.tax.value)" data-ng-bind="costItem.tax.value | number : 2" ></td>
+<td class="info" data-ng-init="tableTotals['net'] = (tableTotals['net'] + (costItem.grossValue.value - costItem.tax.value))" data-ng-bind="(costItem.grossValue.value - costItem.tax.value) | number : 2" ></td>
 <td>{{costItem.budget.name}}</td>
 <td>{{costItem.academicOutput.name}}</td>
 <td><ul data-ng-if="costItem.grants" >
