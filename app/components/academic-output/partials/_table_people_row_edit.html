@@ -1,0 +1,15 @@
+<td>
+  <kint-component-lookup name="person" id="person" data-object="aoPeople" data-property="person" data-context-obj="context" data-context-path="people.person" class="form-control input-sm" >
+</td>
+<td>{{aoPeople.emailAddress}}</td>
+<td>{{aoPeople.telephoneNumber}}</td>
+<td>
+  <kint-component-lookup name="organisation" id="organisation" data-object="aoPeople" data-property="organisation" data-context-obj="context" data-context-path="people.organisation" class="form-control input-sm">
+</td>
+<td><!--
+  <kint-component-lookup name="role" id="role" data-object="aoPeople" data-property="role" data-context-obj="context" data-context-path="people.role" class="form-control input-sm" >
+--></td>
+<td>
+  <button type="button" ng-click="cancelEditMultiProperty(aoPeople)" class="btn btn-default btn-sm" >Cancel</button>
+  <button type="button" ng-click="confirmEditMultiProperty(aoPeople)" class="btn btn-success btn-sm" >Save</button>
+</td>

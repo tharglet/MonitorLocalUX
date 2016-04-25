@@ -6,10 +6,22 @@
     <th>Telephone</th>
     <th>Organisation</th>
     <th>Role</th>
+    <th>Action</th>
   </tr>
   </thead>
 
   <tbody>
-    <!--<tr ng-repeat="contactDetails in context.personContactDetails" ng-form="contactDetails{{$index}}" ng-include="'components/person/partials/_table_contact_details_row' + (contactDetails['$editMode'] ? '_edit' : '') + '.html'" >
-  </tr>-->
+  <tr ng-repeat="aoPeople in context.people" ng-form="aoPeople{{$index}}" ng-include="'components/academic-output/partials/_table_people_row' + (aoPeople['$editMode'] ? '_edit' : '') + '.html'" >
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('people')" >Add</button>
+    </td>
+  </tr>
+  </tbody>
 </table>
