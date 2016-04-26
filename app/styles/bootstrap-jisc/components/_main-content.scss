@@ -8,7 +8,7 @@ body {
   background-repeat: no-repeat;
   @include background-image(linear-gradient(to right, $body-bg, $body-bg));
   @include background-size(50% 100%);
-  padding-bottom: 70px;
+  padding-bottom: 60px;
   & > .inner {
     @extend .container;
     background-color: $body-bg;
