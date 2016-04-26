@@ -4,6 +4,6 @@
 <td><a ng-href="mailto:{{ contactDetails.emailAddress }}">{{contactDetails.emailAddress}}</a></td>
 <td>{{contactDetails.telephoneNumber}}</td>
 <td>
-  <button type="button" ng-click="editContactDetails(personContactDetails)" class="btn btn-default btn-sm" >Edit</button>
+  <button type="button" ng-click="editContactDetails(contactDetails)" class="btn btn-default btn-sm" >Edit</button>
   <button type="button" ng-click="removeFrom('personContactDetails', contactDetails)" class="btn btn-danger btn-sm" >Del</button>
 </td>
