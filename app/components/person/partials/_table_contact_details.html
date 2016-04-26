@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-    <tr ng-repeat="contactDetails in context.personContactDetails" ng-form="contactDetails{{$index}}" ng-include="'components/person/partials/_table_contact_details_row' + (contactDetails['$editMode'] ? '_edit' : '') + '.html'" >
+    <tr ng-repeat="contactDetails in context.personContactDetails" ng-form="contactDetails{{$index}}" ng-include="'components/person/partials/_table_contact_details_row.html'" >
     </tr>
     <tr>
       <td></td>
