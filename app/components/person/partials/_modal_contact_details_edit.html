@@ -3,7 +3,7 @@
 </div>
 
 <div class="modal-body">
-  <form id="contactDetailsFrm" name="contactDetailsFrm" novalidate class="simple-form form-horizontal" role="form" >
+  <form id="contactDetailsForm" name="contactDetailsForm" novalidate class="simple-form form-horizontal" role="form" >
 
     <div class="form-group">
       <label id="organisationLabel" for="organisation" class="span-3 control-label" >Organisation</label>
@@ -17,7 +17,7 @@
       <label id="departmentLabel" for="department" class="span-3 control-label" >Department</label>
       <div class="span-9">
         <input type="text" class="form-control" id="department" name="department" placeholder="Department" aria-labelledby="departmentLabel"
-               data-ng-model="personContactDetails.department" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
+               data-ng-model="contactDetails.department" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
                data-kint-ui-input-feedback />
       </div>
     </div>
@@ -26,7 +26,7 @@
       <label id="jobTitleLabel" for="jobTitle" class="span-3 control-label" aria-label="Contact Details Job Title" >Position/ Job title</label>
       <div class="span-9">
         <input type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Position/ Job title" aria-labelledby="jobTitleLabel"
-               data-ng-model="context.jobTitle" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
+               data-ng-model="contactDetails.jobTitle" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
                data-kint-ui-input-feedback />
       </div>
     </div>
@@ -44,7 +44,7 @@
       <label id="telephoneNumberLabel" for="telephoneNumber" class="span-3 control-label" aria-label="Telephone Number" >Primary telephone</label>
       <div class="span-9">
         <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber" placeholder="Primary telephone" aria-labelledby="telephoneNumberLabel"
-               data-ng-model="context.contactDetails.telephoneNumber" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
+               data-ng-model="contactDetails.telephoneNumber" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
                data-kint-ui-input-feedback />
       </div>
     </div>
