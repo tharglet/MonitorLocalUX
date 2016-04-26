@@ -17,11 +17,21 @@ define (
           // Do nothing...
         });
       };
-      
+
       $scope.editCost = function(item) {
         console.log("Cost edit");
         var callingScope = this;
         callingScope.openModal('components/academic-output/partials/_modal_cost_item_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
+
+      $scope.editFunder = function(item) {
+        console.log("Funder edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_funder_edit.html').result.then(function () {
           callingScope.confirmEditMultiProperty(item);
         },function (){
           callingScope.cancelEditMultiProperty(item);
