@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-  <tr ng-repeat="aoPeople in context.people" ng-form="aoPeople{{$index}}" ng-include="'components/academic-output/partials/_table_people_row' + (aoPeople['$editMode'] ? '_edit' : '') + '.html'" >
+  <tr ng-repeat="aoName in context.names | filter: { person : {id: ''} }" ng-form="aoName{{$index}}" ng-include="'components/academic-output/partials/_table_people_row' + (aoName['$editMode'] ? '_edit' : '') + '.html'" >
   </tr>
   <tr>
     <td></td>

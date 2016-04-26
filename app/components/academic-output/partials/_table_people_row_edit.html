@@ -1,15 +1,15 @@
 <td>
-  <kint-component-lookup name="person" id="person" data-object="aoPeople" data-property="person" data-context-obj="context" data-context-path="people.person" class="form-control input-sm" >
+  <kint-component-lookup name="person" id="person" data-object="aoName" data-property="person" data-context-obj="context" data-context-path="names.person" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" >
 </td>
-<td>{{aoPeople.emailAddress}}</td>
-<td>{{aoPeople.telephoneNumber}}</td>
 <td>
-  <kint-component-lookup name="organisation" id="organisation" data-object="aoPeople" data-property="organisation" data-context-obj="context" data-context-path="people.organisation" class="form-control input-sm">
+  <kint-component-lookup name="organisation" id="organisation" data-object="aoName" data-property="organisation" data-context-obj="context" data-context-path="names.person.contactDetails.organisation" class="form-control input-sm" data-params="{ match:['name'], perPage: 25 }" >
 </td>
+<td>{{aoName.emailAddress}}</td>
+<td>{{aoName.telephoneNumber}}</td>
 <td><!--
-  <kint-component-lookup name="role" id="role" data-object="aoPeople" data-property="role" data-context-obj="context" data-context-path="people.role" class="form-control input-sm" >
+  <kint-component-lookup name="role" id="role" data-object="aoName" data-property="role" data-context-obj="context" data-context-path="people.role" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" >
 --></td>
 <td>
-  <button type="button" ng-click="cancelEditMultiProperty(aoPeople)" class="btn btn-default btn-sm" >Cancel</button>
-  <button type="button" ng-click="confirmEditMultiProperty(aoPeople)" class="btn btn-success btn-sm" >Save</button>
+  <button type="button" ng-click="cancelEditMultiProperty(aoName)" class="btn btn-default btn-sm" >Cancel</button>
+  <button type="button" ng-click="confirmEditMultiProperty(aoName)" class="btn btn-success btn-sm" >Save</button>
 </td>
