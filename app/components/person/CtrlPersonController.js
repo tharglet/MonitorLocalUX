@@ -7,13 +7,21 @@ define (
 
       console.log("PersonController");
 
-      $scope.editContactDetails = function(item) {
+      $scope.editContactDetails = function (item) {
         console.log("Contact Details");
         var callingScope = this;
         callingScope.openModal('components/person/partials/_modal_contact_details_edit.html').result.then(function () {
           callingScope.confirmEditMultiProperty(item);
-        },function (){
+        }, function () {
           callingScope.cancelEditMultiProperty(item);
+        });
+      };
+      
+      $scope.addOrganisation = function(item) {
+        console.log("Add Organisation");
+        var callingScope = this;
+        callingScope.openModal('components/person/partials/_modal_organisation.html').result.then(function () {
+          callingScope.saveChanges();
         });
       };
     }]);
