@@ -1,5 +1,5 @@
 <section id="grant-grid" class="inner">
-  <form id="grant" name="person" class="row" >
+  <form id="grant" name="grant" class="row" >
     <article data-ui-view>
       <div class="panel panel-collapsible panel-default">
         <div class="panel-heading">
@@ -53,8 +53,8 @@
     </article>
 
     <div class="form-group pull-right">
-      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="grant.$invalid" >Save</button>
-      <button type="button" class="btn btn-link" >Cancel</button>
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!grant.$dirty || grant.$invalid" >Save</button>
+      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!grant.$dirty" >Cancel</button>
     </div>
 
   </form>
