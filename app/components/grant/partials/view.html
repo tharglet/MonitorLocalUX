@@ -1,5 +1,5 @@
 <section id="grant-grid" class="inner">
-  <form id="grant" name="person" class="row" >
+  <form id="grant" name="grant" class="row" >
     <article data-ui-view>
       <div class="panel panel-collapsible panel-default">
         <div class="panel-heading">
@@ -11,7 +11,10 @@
             <label id="grantIdLabel" for="grantId" class="control-label span-3" aria-label="Grant Code">Grant code*</label>
             <div class="span-3">
               <input type="text" class="form-control" id="grantId" name="grantId" aria-labelledby="grantIdLabel"
-                     data-ng-model="context.grantId" data-kint-validate required />
+                     data-ng-model="context.grantId" required />
+              <div data-ng-if="grant.name.$dirty" data-ng-messages="grant.name.$error" class="help-block" role="alert">
+                <p data-ng-message="required">Please enter a name</p>
+              </div>
             </div>
 
             <label id="internalGrantIdLabel" for="internalGrantId" class="control-label span-3" aria-label="Grant ">Internal project code</label>

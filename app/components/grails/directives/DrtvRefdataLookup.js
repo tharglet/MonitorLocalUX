@@ -18,7 +18,7 @@ define (
           contextPath:  "@",
           
           // Allow for a different template 
-          template:     "@"
+          template:     "@",
         },
         link: function ($scope, iElement, iAttr) {
           
@@ -100,7 +100,7 @@ define (
             // Replace
             iElem.replaceWith(template);
           });
-        },
+        }
       };
     };
   }

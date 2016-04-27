@@ -1,26 +1,22 @@
 <table class="table table-striped table-hover table-condensed">
   <thead>
   <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Telephone</th>
-    <th>Organisation</th>
+    <th>Title</th>
+    <th>Firstname</th>
+    <th>Surname</th>
     <th>Role</th>
     <th>Action</th>
   </tr>
   </thead>
 
   <tbody>
-  <tr ng-repeat="aoName in context.names | filter: { person : {id: ''} }" ng-form="aoName{{$index}}" ng-include="'components/academic-output/partials/_table_people_row' + (aoName['$editMode'] ? '_edit' : '') + '.html'" >
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+  <tr ng-repeat="aoName in people" ng-form="aoName{{$index}}" data-ng-init="person = aoName.person">
+    <td><a data-ui-sref="app.person.view ({id: person.id})" >{{person.title}}</a></td>
+    <td>{{person.firstName}}</td>
+    <td>{{person.surname}}</td>
+    <td>{{aoName.namerel.value}}</td>
     <td>
-      <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('people')" >Add</button>
+      <button type="button" ng-click="removeFrom('names', aoName)" class="btn btn-danger btn-sm" >Del</button>
     </td>
   </tr>
   </tbody>

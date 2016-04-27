@@ -81,6 +81,15 @@
           </div>
         </div>
 
+        <div class="form-group form-group-sm" >
+          <label id="localReferenceLabel" for="localReference" class="span-3 control-label" aria-label="Local Reference">Local reference</label>
+          <div class="span-9">
+            <input type="text" class="form-control" id="localReference" name="localReference" placeholder="Local Reference" aria-labelledby="localReferenceLabel"
+                   data-ng-model="context.localReference" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                   data-kint-ui-input-feedback data-kint-validate />
+          </div>
+        </div>
+
         <div class="form-group form-group-sm" data-ng-class="{'has-error': (academicOutput.name.$dirty && academicOutput.name.$invalid), 'has-success': (academicOutput.name.$dirty && academicOutput.name.$valid)}" >
           <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Publication Title" >Title</label>
           <div class="span-9">
@@ -92,15 +101,6 @@
               <p data-ng-message="required">Please enter a name</p>
               <p data-ng-message="kintValidate">{{academicOutput.name.kintValidate.message}}</p>
             </div>
-          </div>
-        </div>
-
-        <div class="form-group form-group-sm" >
-          <label id="localReferenceLabel" for="localReference" class="span-3 control-label" aria-label="Local Reference">Local reference</label>
-          <div class="span-9">
-            <input type="text" class="form-control" id="localReference" name="localReference" placeholder="Local Reference" aria-labelledby="localReferenceLabel"
-                   data-ng-model="context.localReference" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                   data-kint-ui-input-feedback data-kint-validate />
           </div>
         </div>
 
@@ -151,14 +151,11 @@
         </div>
 
         <div class="form-group form-group-sm" >
-          <label id="journalIssueDateLabel" for="journalIssueDate" class="control-label span-3" aria-label="Journal issue date" >Journal issue date</label>
+          <label id="journalIssueDateLabel" for="journalIssueDate" class="control-label span-3" aria-label="Journal issue" >Journal issue date</label>
           <div class="span-3">
-            <div class="input-group input-group-sm date" data-datetimepicker >
-              <input type="text" class="form-control" id="journalIssueDate" name="journalIssueDate" aria-labelledby="journalIssueDateLabel"
-                     data-ng-model="context.journalIssueDate" data-ng-model-options="{ updateOn: 'blur' }"
-                     data-kint-ui-input-feedback data-kint-validate />
-              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-            </div>
+            <input type="text" class="form-control" id="journalIssueDate" name="journalIssueDate" aria-labelledby="journalIssueDateLabel"
+               data-ng-model="context.journalIssueDate" data-ng-model-options="{ updateOn: 'blur' }"
+               data-kint-ui-input-feedback data-kint-validate />
           </div>
 
           <label id="journalVolumeLabel" for="journalVolume" class="span-1 control-label" aria-label="Journal Volume">Volume</label>
