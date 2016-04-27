@@ -11,9 +11,9 @@
 
   <tbody>
   <tr ng-repeat="aoName in people" ng-form="aoName{{$index}}" data-ng-init="person = aoName.person">
-    <td><a data-ui-sref="app.person.view ({id: person.id})" >{{person.title}}</a></td>
-    <td>{{person.firstName}}</td>
-    <td>{{person.surname}}</td>
+    <td><a data-ui-sref="app.person.view ({id: person.id})" >{{person.title.value}}</a></td>
+    <td><a data-ui-sref="app.person.view ({id: person.id})" >{{person.firstName}}</a></td>
+    <td><a data-ui-sref="app.person.view ({id: person.id})" >{{person.surname}}</a></td>
     <td>{{aoName.namerel.value}}</td>
     <td>
       <button type="button" ng-click="removeFrom('names', aoName)" class="btn btn-danger btn-sm" >Del</button>
