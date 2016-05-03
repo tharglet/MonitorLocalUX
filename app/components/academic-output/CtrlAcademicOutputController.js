@@ -37,6 +37,16 @@ define (
           callingScope.cancelEditMultiProperty(item);
         });
       };
+
+      $scope.editLicenceEvidence = function(item) {
+        console.log("Licence Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_licence_evidence_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
     }]);
   }
 );

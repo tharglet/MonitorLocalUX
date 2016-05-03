@@ -59,7 +59,7 @@
             <div class="input-group input-group-sm">
               <kint-identifier data-property="identifiers" data-namespace="doi" class="form-control" data-ng-model="context.identifiers"
                 id="DOI" name="DOI" aria-labelledby="DOILabel" disabled="disabled" ></kint-identifier>
-              
+
               <span class="input-group input-group-btn">
                 <button class="btn btn-secondary" type="button" title="Edit the DOI" data-ng-click="lookupDOI()" ><i class="glyphicon glyphicon-edit" ></i></button>
               </span>
@@ -226,7 +226,7 @@
         </div>
 
         <div class="form-group form-group-sm" >
-          <label id="conferenceublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
+          <label id="conferencePublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
           <div class="span-5">
             <kint-refdata-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher" class="form-control input-sm" >
           </div>
@@ -266,16 +266,38 @@
         <div class="form-group form-group-sm" >
           <label id="conferenceOrg" for="conferenceOrg" class="span-3 control-label" aria-label="Conference Organisation">Conference organisation</label>
           <div class="span-5">
-            <kint-refdata-lookup name="conferenceOrg" id="conferenceOrg" data-object="context" data-property="conferenceOrg" class="form-control input-sm" >
+            <kint-refdata-lookup name="conferenceOrg" id="conferenceOrg" data-object="context" data-property="conferenceOrg" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
 
         <div class="form-group form-group-sm" >
           <label id="conferenceOpenAccessStatusLabel" for="conferenceOpenAccessStatus" class="span-3 control-label" aria-label="Open Access Status">Open access status</label>
           <div class="span-5">
-            <kint-refdata-lookup name="conferenceOpenAccessStatus" id="conferenceOpenAccessStatus" data-object="context" data-property="openAccessStatus" class="form-control input-sm" >
+            <kint-refdata-lookup name="conferenceOpenAccessStatus" id="conferenceOpenAccessStatus" data-object="context" data-property="openAccessStatus" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
+
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#licenceApplied-body" aria-label="Expand/Collapse the main Licence Applied content" id="licenceAppliedHeading">Publication Licence Applied</h3>
+      </div>
+      <div id="licenceApplied-body" class="panel-body form-horizontal in" aria-labelledby="licenceAppliedHeading">
+
+        <div class="form-group form-group-sm" >
+          <label id="licenceAppliedLabel" for="licenceApplied" class="span-3 control-label" aria-label="Publisher">Publication licence applied</label>
+          <div class="span-5">
+            <kint-refdata-lookup name="licenceApplied" id="licenceApplied" data-object="context" data-property="appliedPublicationLicence" class="form-control input-sm" ></kint-refdata-lookup>.
+          </div>
+        </div>
+
+        <h4 id="licenceAppliedEvidenceHeading">Evidence</h4>
+
+        <form id="licenceEvidence" name="licenceEvidence" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_licence_evidence.html'" ></ng-include>
+        </form>
 
       </div>
     </div>
