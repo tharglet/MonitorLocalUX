@@ -49,9 +49,29 @@ define (
       };
 
       $scope.editEmbargoEvidence = function(item) {
-        console.log("Licence Evidence edit");
+        console.log("Embargo Evidence edit");
         var callingScope = this;
         callingScope.openModal('components/academic-output/partials/_modal_embargo_evidence_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
+
+      $scope.editAcknowledgementEvidence = function(item) {
+        console.log("Acknowledgement Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_acknowledgement_evidence_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
+
+      $scope.editResearchEvidence = function(item) {
+        console.log("Research Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_research_evidence_edit.html').result.then(function () {
           callingScope.confirmEditMultiProperty(item);
         },function (){
           callingScope.cancelEditMultiProperty(item);

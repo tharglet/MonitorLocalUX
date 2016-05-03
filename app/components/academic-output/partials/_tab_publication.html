@@ -335,5 +335,49 @@
 
       </div>
     </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#acknowledgement-body" aria-label="Expand/Collapse the main Funder Acknowledgement content" id="acknowledgementHeading">Funder Acknowledgement</h3>
+      </div>
+      <div id="acknowledgement-body" class="panel-body form-horizontal in" aria-labelledby="acknowledgementHeading">
+
+        <div class="form-group form-group-sm" >
+          <label id="acknowledgementPresentLabel" for="acknowledgementPresent" class="span-3 control-label" aria-label="Acknowledgement">Acknowledgement is present?</label>
+          <div class="span-5">
+            <kint-refdata-lookup name="acknowledgementPresent" id="acknowledgementPresent" data-object="context" data-property="acknowledgementPresent" class="form-control input-sm" ></kint-refdata-lookup>.
+          </div>
+        </div>
+
+        <h4 id="acknowledgementEvidenceHeading">Evidence</h4>
+
+        <form id="funderAcknowledgement" name="funderAcknowledgement" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_acknowledgement_evidence.html'" ></ng-include>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#research-body" aria-label="Expand/Collapse the main Research Materials content" id="researchHeading">Research Materials Statement</h3>
+      </div>
+      <div id="research-body" class="panel-body form-horizontal in" aria-labelledby="researchHeading">
+
+        <div class="form-group form-group-sm" >
+          <label id="accessStatementLabel" for="accessStatement" class="span-3 control-label" aria-label="Access Statement">Access statement is present?</label>
+          <div class="span-5">
+            <kint-refdata-lookup name="accessStatement" id="accessStatement" data-object="context" data-property="accessStatement" class="form-control input-sm" ></kint-refdata-lookup>.
+          </div>
+        </div>
+
+        <h4 id="researchEvidenceHeading">Evidence</h4>
+
+        <form id="researchEvidence" name="researchEvidence" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_research_evidence.html'" ></ng-include>
+        </form>
+
+      </div>
+    </div>
   </article>
 </form>
