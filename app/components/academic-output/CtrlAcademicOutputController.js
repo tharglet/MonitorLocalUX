@@ -77,6 +77,16 @@ define (
           callingScope.cancelEditMultiProperty(item);
         });
       };
+
+      $scope.editDeposits = function(item) {
+        console.log("Research Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_deposit_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
     }]);
   }
 );
