@@ -1,0 +1,8 @@
+<ui-select data-ng-model="object[property]" on-select="checkUndefined($item, $model)" >
+  <ui-select-match>
+    <span data-ng-bind="$select.selected.name"></span>
+  </ui-select-match>
+  <ui-select-choices data-refresh="refresh($select.search)" data-refresh-delay="350" data-repeat="item in (data | filter: { name : $select.search } ) track by item.id">
+    <span data-ng-bind-html="item.name | highlight: $select.search"></span>
+  </ui-select-choices>
+</ui-select>

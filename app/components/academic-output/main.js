@@ -53,9 +53,13 @@ define(
       });
       $stateProvider.state('app.academicOutput.view.people', {
         url:          '/people',
+        deps: [
+          'components/academic-output/CtrlAOPeopleController.js',
+        ],
         views: {
           "": {
             templateUrl:  'components/academic-output/partials/_tab_people.html',
+            controller: 'AOPeopleController'
           },
         },
         data : {

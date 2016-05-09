@@ -19,8 +19,8 @@ define (
           template:     "@",
           
           // Query params.
-
-          params:       "@",
+          params:       "@"
+          
         },
         link: function ($scope, iElement, iAttr) {
           
@@ -34,6 +34,14 @@ define (
           
           if (typeof $scope.contextPath === 'undefined') {
             $scope.contextPath = $scope.property;
+          }
+          
+          var lookupMethod;
+          if (typeof iAttr['lookupMethod'] === 'undefined') {
+            lookupMethod = obj.componentLookup;
+          } else {
+            // Parse the lookup method.
+            lookupMethod = $parse(iAttr['lookupMethod'])($scope);
           }
 
           var iElem  = iElement;
