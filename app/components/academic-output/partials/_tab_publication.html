@@ -59,7 +59,7 @@
             <div class="input-group input-group-sm">
               <kint-identifier data-property="identifiers" data-namespace="doi" class="form-control" data-ng-model="context.identifiers"
                 id="DOI" name="DOI" aria-labelledby="DOILabel" disabled="disabled" ></kint-identifier>
-              
+
               <span class="input-group input-group-btn">
                 <button class="btn btn-secondary" type="button" title="Edit the DOI" data-ng-click="lookupDOI()" ><i class="glyphicon glyphicon-edit" ></i></button>
               </span>
@@ -223,7 +223,7 @@
         </div>
 
         <div class="form-group form-group-sm" >
-          <label id="conferenceublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
+          <label id="conferencePublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
           <div class="span-5">
             <kint-refdata-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher" class="form-control input-sm" >
           </div>
@@ -263,16 +263,129 @@
         <div class="form-group form-group-sm" >
           <label id="conferenceOrg" for="conferenceOrg" class="span-3 control-label" aria-label="Conference Organisation">Conference organisation</label>
           <div class="span-5">
-            <kint-refdata-lookup name="conferenceOrg" id="conferenceOrg" data-object="context" data-property="conferenceOrg" class="form-control input-sm" >
+            <kint-refdata-lookup name="conferenceOrg" id="conferenceOrg" data-object="context" data-property="conferenceOrg" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
 
         <div class="form-group form-group-sm" >
           <label id="conferenceOpenAccessStatusLabel" for="conferenceOpenAccessStatus" class="span-3 control-label" aria-label="Open Access Status">Open access status</label>
           <div class="span-5">
-            <kint-refdata-lookup name="conferenceOpenAccessStatus" id="conferenceOpenAccessStatus" data-object="context" data-property="openAccessStatus" class="form-control input-sm" >
+            <kint-refdata-lookup name="conferenceOpenAccessStatus" id="conferenceOpenAccessStatus" data-object="context" data-property="openAccessStatus" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
+
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#licenceApplied-body" aria-label="Expand/Collapse the main Licence Applied content" id="licenceAppliedHeading">Publication Licence Applied</h3>
+      </div>
+      <div id="licenceApplied-body" class="panel-body form-horizontal in" aria-labelledby="licenceAppliedHeading">
+
+        <div class="form-group form-group-sm" >
+          <label id="licenceAppliedLabel" for="licenceApplied" class="span-3 control-label" aria-label="Publisher">Publication licence applied</label>
+          <div class="span-5">
+            <kint-refdata-lookup name="licenceApplied" id="licenceApplied" data-object="context" data-property="appliedPublicationLicence" class="form-control input-sm" ></kint-refdata-lookup>.
+          </div>
+        </div>
+
+        <h4 id="licenceAppliedEvidenceHeading">Evidence</h4>
+
+        <form id="licenceEvidence" name="licenceEvidence" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_licence_evidence.html'" ></ng-include>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#embargoApplied-body" aria-label="Expand/Collapse the main Embargo Applied content" id="embargoAppliedHeading">Embargo Period Applied</h3>
+      </div>
+      <div id="embargoApplied-body" class="panel-body form-horizontal in" aria-labelledby="embargoAppliedHeading">
+
+        <div class="form-group form-group-sm" >
+          <label id="embargoPeriodLabel" for="embargoPeriod" class="span-3 control-label" aria-label="Embargo Period">Embargo period (months)</label>
+          <div class="span-3">
+            <input type="number" class="form-control" id="embargoPeriod" name="embargoPeriod" placeholder="0" aria-labelledby="embargoPeriodLabel"
+                   data-ng-model="context.embargoPeriod" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
+                   step="1" min="0" data-kint-ui-input-feedback required />
+          </div>
+
+          <label id="embargoEndDateLabel" for="embargoEndDate" class="control-label span-3" aria-label="Embargo end date" >Embargo end date</label>
+          <div class="span-3">
+            <div class="input-group input-group-sm date" data-datetimepicker >
+              <input type="text" class="form-control" id="embargoEndDate" name="embargoEndDate" aria-labelledby="embargoEndDateLabel"
+                     data-ng-model="context.embargoEndDate" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
+                     data-kint-ui-input-feedback data-kint-validate />
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <h4 id="embargoAppliedEvidenceHeading">Evidence</h4>
+
+        <form id="embargoEvidence" name="embargoEvidence" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_embargo_evidence.html'" ></ng-include>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#acknowledgement-body" aria-label="Expand/Collapse the main Funder Acknowledgement content" id="acknowledgementHeading">Funder Acknowledgement</h3>
+      </div>
+      <div id="acknowledgement-body" class="panel-body form-horizontal in" aria-labelledby="acknowledgementHeading">
+
+        <div class="form-group form-group-sm" >
+          <label id="acknowledgementPresentLabel" for="acknowledgementPresent" class="span-3 control-label" aria-label="Acknowledgement">Acknowledgement is present?</label>
+          <div class="span-5">
+            <kint-refdata-lookup name="acknowledgementPresent" id="acknowledgementPresent" data-object="context" data-property="acknowledgementPresent" class="form-control input-sm" ></kint-refdata-lookup>.
+          </div>
+        </div>
+
+        <h4 id="acknowledgementEvidenceHeading">Evidence</h4>
+
+        <form id="funderAcknowledgement" name="funderAcknowledgement" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_acknowledgement_evidence.html'" ></ng-include>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#research-body" aria-label="Expand/Collapse the main Research Materials content" id="researchHeading">Research Materials Statement</h3>
+      </div>
+      <div id="research-body" class="panel-body form-horizontal in" aria-labelledby="researchHeading">
+
+        <div class="form-group form-group-sm" >
+          <label id="accessStatementLabel" for="accessStatement" class="span-3 control-label" aria-label="Access Statement">Access statement is present?</label>
+          <div class="span-5">
+            <kint-refdata-lookup name="accessStatement" id="accessStatement" data-object="context" data-property="accessStatement" class="form-control input-sm" ></kint-refdata-lookup>.
+          </div>
+        </div>
+
+        <h4 id="researchEvidenceHeading">Evidence</h4>
+
+        <form id="researchEvidence" name="researchEvidence" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_research_evidence.html'" ></ng-include>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#deposit-body" aria-label="Expand/Collapse the main Deposit content" id="depositHeading">Deposit(s)</h3>
+      </div>
+      <div id="deposit-body" class="panel-body form-horizontal in" aria-labelledby="acknowledgementHeading">
+
+        <form id="depositForm" name="depositForm" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_deposit.html'" ></ng-include>
+        </form>
 
       </div>
     </div>

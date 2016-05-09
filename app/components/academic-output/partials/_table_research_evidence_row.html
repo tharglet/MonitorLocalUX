@@ -1,0 +1,8 @@
+<td>{{aoResearchEvidence.researchEvidenceSource.value}}</td>
+<td>{{aoResearchEvidence.researchEvidenceFinder.value}}</td>
+<td><a ng-href="http://{{ aoResearchEvidence.researchEvidenceURL }}" target="_blank">{{aoResearchEvidence.researchEvidenceURL}}</a></td>
+<td></td>
+<td>
+  <button type="button" ng-click="editResearchEvidence(aoResearchEvidence)" class="btn btn-default btn-sm" >Edit</button>
+  <button type="button" ng-click="removeFrom('researchEvidence', aoResearchEvidence)" class="btn btn-danger btn-sm" >Del</button>
+</td>

@@ -45,6 +45,56 @@ define (
           callingScope.cancelEditMultiProperty(item);
         });
       };
+
+      $scope.editLicenceEvidence = function(item) {
+        console.log("Licence Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_licence_evidence_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
+
+      $scope.editEmbargoEvidence = function(item) {
+        console.log("Embargo Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_embargo_evidence_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
+
+      $scope.editAcknowledgementEvidence = function(item) {
+        console.log("Acknowledgement Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_acknowledgement_evidence_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
+
+      $scope.editResearchEvidence = function(item) {
+        console.log("Research Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_research_evidence_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
+
+      $scope.editDeposits = function(item) {
+        console.log("Research Evidence edit");
+        var callingScope = this;
+        callingScope.openModal('components/academic-output/partials/_modal_deposit_edit.html').result.then(function () {
+          callingScope.confirmEditMultiProperty(item);
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      };
     }]);
   }
 );
