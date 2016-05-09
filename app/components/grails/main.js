@@ -41,6 +41,7 @@ define (
     // If the UI Router is present then we should add a decorator to allow for,
     // GrailsResource resolution.
     ngGr.config(['$injector', function ($injector) {
+      
       if($injector.has('$stateProvider')){
         var $stateProvider = $injector.get('$stateProvider');
         
@@ -86,7 +87,28 @@ define (
           return state[grailsResourceProviderName];
         });
       }
-    }]);
+    }])
+    
+//    .run(['$http', function($http){      
+//      // Add a transformer to the HTTP object to strip grails circular reference attributes {.. _ref: '../../' }
+//      $http.defaults.transformResponse.unshift(function(response){
+//        var regex = /\s*\{(?=[^\}\,\:]*(["']?)\_ref(["']?)\s*\:)[^\}]*\}\s*(\,?)/g;
+//        
+//        // Replace with placeholder.
+//        var res = response.replace(regex, '____BR____');
+//        
+//        // Replace empty arrays with single reference.
+//        regex = /\s*\[\s*(____BR____){1,}\s*\]\s*(\,?)/g
+//          res = response.replace(regex, '____BR____');
+//          
+//        // Remove empty properties.
+//        regex = /(["'][^"']+["'])\s*\:\s*\s*(____BR____){1,}\s*\s*(\,?\s*)/g
+//        res = response.replace(regex, '');
+//        
+//        return response;
+//      });
+//    }])
+    ;
     
     return ngGr;
   }
