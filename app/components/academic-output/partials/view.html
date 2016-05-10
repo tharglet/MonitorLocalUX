@@ -164,13 +164,15 @@
                 <kint-refdata-lookup name="response" id="response" data-object="context" data-property="publisherResponse" class="form-control input-sm" >
               </div>
 
-              <label id="responseDateLabel" for="responseDate" class="control-label span-3" aria-label="Response date" >Date responded</label>
-              <div class="span-3">
-                <div class="input-group input-group-sm date" data-datetimepicker >
-                  <input type="text" class="form-control" id="responseDate" name="responseDate" aria-labelledby="responseDateLabel"
-                         data-ng-model="context.publisherResponseDate" data-ng-model-options="{ updateOn: 'blur' }"
-                         data-kint-ui-input-feedback data-kint-validate />
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              <div data-ng-if="context.publisherResponse.value == 'Accepted'">
+                <label id="responseDateLabel" for="responseDate" class="control-label span-3" aria-label="Response date">Date accepted</label>
+                <div class="span-3">
+                  <div class="input-group input-group-sm date" data-datetimepicker>
+                    <input type="text" class="form-control" id="responseDate" name="responseDate" aria-labelledby="responseDateLabel"
+                           data-ng-model="context.publisherResponseDate" data-ng-model-options="{ updateOn: 'blur' }"
+                           data-kint-ui-input-feedback data-kint-validate />
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                  </div>
                 </div>
               </div>
             </div>
