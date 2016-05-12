@@ -62,10 +62,15 @@ define (
               return grails.r (typeName);
             }];
           }
+          
+          // Because composite states inherit from their parents, we should only run if the parent does not include
+          // these params, as it will have fired there already.
+          this.ownParams.$$parent;
 
           // Add another property that fetches a resource if the state param of ID is set.
-          if (state.ownParams && "id" in state.ownParams) {
+          if (state.ownParams && "id" in state.ownParams && !(state.ownParams.$$parent && "id" in state.ownParams.$$parent)) {
             state.resolve[contextVariableName] = ['$stateParams', grailsResourceProviderName, function ($stateParams, resource) {
+              
               if (resource) {
                 var id = $stateParams.id;
                 if (id == "create") {
@@ -89,22 +94,8 @@ define (
       }
     }])
     
-//    .run(['$http', function($http){      
-//      // Add a transformer to the HTTP object to strip grails circular reference attributes {.. _ref: '../../' }
-//      $http.defaults.transformResponse.unshift(function(response){
-//        var regex = /\s*\{(?=[^\}\,\:]*(["']?)\_ref(["']?)\s*\:)[^\}]*\}\s*(\,?)/g;
-//        
-//        // Replace with placeholder.
-//        var res = response.replace(regex, '____BR____');
-//        
-//        // Replace empty arrays with single reference.
-//        regex = /\s*\[\s*(____BR____){1,}\s*\]\s*(\,?)/g
-//          res = response.replace(regex, '____BR____');
-//          
-//        // Remove empty properties.
-//        regex = /(["'][^"']+["'])\s*\:\s*\s*(____BR____){1,}\s*\s*(\,?\s*)/g
-//        res = response.replace(regex, '');
-//        
+//    .run(['$http', function($http){
+//      $http.defaults.transformResponse.unshift(function(response){//        
 //        return response;
 //      });
 //    }])
