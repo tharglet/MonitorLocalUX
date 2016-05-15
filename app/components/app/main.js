@@ -78,6 +78,19 @@ define(
                   });
                 }
                 break;
+                
+              // Server error.
+              case 500 :
+
+                if ("data" in error && "message" in error.data) {
+
+                  $notifications.showError ({
+                    'title':  "Server Error",
+                    'text':   error.data.message
+                  });
+                  break;
+                }
+                break;
             }
 
             // We should still reject the request.
