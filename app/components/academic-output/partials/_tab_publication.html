@@ -60,7 +60,6 @@
               <kint-identifier data-property="identifiers" data-namespace="doi" class="form-control" data-ng-model="context.identifiers"
                 id="DOI" name="DOI" aria-labelledby="DOILabel" disabled="disabled" ></kint-identifier>
 
-              <span class="input-group input-group-btn">
                 <button class="btn btn-secondary" type="button" title="Edit the DOI" data-ng-click="lookupDOI()" ><i class="glyphicon glyphicon-edit" ></i></button>
               </span>
             </div>
@@ -71,7 +70,7 @@
           <label id="PMCIDLabel" for="PMCID" class="span-3 control-label" aria-label="PMCID" >PMCID</label>
           <div class="span-3">
             <kint-identifier data-property="identifiers" data-namespace="pmcid" class="form-control" data-ng-model="context.identifiers"
-              id="PMCID" name="PMCID" aria-labelledby="PMCIDLabel" ></kint-identifier>
+                id="PMCID" name="PMCID" aria-labelledby="PMCIDLabel" ></kint-identifier>
           </div>
 
           <label id="PMIDLabel" for="PMID" class="span-2 control-label" aria-label="PMID" >PMID</label>
@@ -131,7 +130,8 @@
 
           <label id="journaleISSNLabel" for="journaleISSN" class="span-1 control-label" aria-label="eISSN" >eISSN</label>
           <div class="span-4">
-            <kint-identifier id="journaleISSN" name="journaleISSN" data-property="identifiers" data-namespace="eissn" class="form-control" data-ng-model="context.identifiers" aria-labelledby="journaleISSNLabel" ></kint-identifier>
+            <kint-identifier id="journaleISSN" name="journaleISSN" data-property="identifiers" data-namespace="eissn"
+              class="form-control" data-ng-model="context.identifiers" aria-labelledby="journaleISSNLabel" ></kint-identifier>
           </div>
         </div>
         <div class="form-group form-group-sm" >
@@ -199,19 +199,18 @@
 
         <div class="form-group form-group-sm" >
           <label id="conferenceISSNLabel" for="conferenceISSN" class="span-3 control-label" aria-label="ISSN" >ISSN</label>
-          <div class="span-4">
-            <input type="text" class="form-control" id="conferenceISSN" name="conferenceISSN" placeholder="ISSN" aria-labelledby="conferenceISSNLabel"
-                   data-ng-model="context.ISSN" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                   data-kint-ui-input-feedback data-kint-validate />
+          <div class="span-4">                   
+            <kint-identifier id="conferenceISSN" name="conferenceISSN" data-property="identifiers" data-namespace="issn"
+              class="form-control" data-ng-model="context.identifiers" aria-labelledby="conferenceISSNLabel" ></kint-identifier>
           </div>
 
           <label id="conferenceeISSNLabel" for="conferenceeISSN" class="span-1 control-label" aria-label="eISSN" >eISSN</label>
-          <div class="span-4">
-            <input type="text" class="form-control" id="conferenceeISSN" name="conferenceeISSN" placeholder="eISSN" aria-labelledby="conferenceeISSNLabel"
-                   data-ng-model="context.eISSN" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                   data-kint-ui-input-feedback data-kint-validate />
+          <div class="span-4">                   
+            <kint-identifier id="conferenceeISSN" name="conferenceeISSN" data-property="identifiers" data-namespace="eissn"
+              class="form-control" data-ng-model="context.identifiers" aria-labelledby="conferenceeISSNLabel" ></kint-identifier>
           </div>
         </div>
+
 
         <div class="form-group form-group-sm" >
           <label id="conferencePublicationTitleLabel" for="conferencePublicationTitle" class="span-3 control-label" aria-label="Publication Title">Conference title</label>
@@ -233,8 +232,8 @@
           <label id="conferencePublicationPlaceLabel" for="conferencePublicationPlace" class="span-3 control-label" aria-label="Place of Publication">Place of publication</label>
           <div class="span-9">
             <input type="text" class="form-control" id="conferencePublicationPlace" name="conferencePublicationPlace" placeholder="Place of publication" aria-labelledby="conferencePublicationPlaceLabel"
-                   data-ng-model="context.publicationPlace" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                   data-kint-ui-input-feedback data-kint-validate />
+               data-ng-model="context.publicationPlace" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+               data-kint-ui-input-feedback data-kint-validate />
           </div>
         </div>
 
@@ -286,7 +285,7 @@
         <div class="form-group form-group-sm" >
           <label id="licenceAppliedLabel" for="licenceApplied" class="span-3 control-label" aria-label="Publisher">Publication licence applied</label>
           <div class="span-5">
-            <kint-refdata-lookup name="licenceApplied" id="licenceApplied" data-object="context" data-property="appliedPublicationLicence" class="form-control input-sm" ></kint-refdata-lookup>.
+            <kint-refdata-lookup name="licenceApplied" id="licenceApplied" data-object="context" data-property="licence" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
 
@@ -340,9 +339,9 @@
       <div id="acknowledgement-body" class="panel-body form-horizontal in" aria-labelledby="acknowledgementHeading">
 
         <div class="form-group form-group-sm" >
-          <label id="acknowledgementPresentLabel" for="acknowledgementPresent" class="span-3 control-label" aria-label="Acknowledgement">Acknowledgement is present?</label>
+          <label id="acknowledgementLabel" for="acknowledgement" class="span-3 control-label" aria-label="Acknowledgement">Acknowledgement is present?</label>
           <div class="span-5">
-            <kint-refdata-lookup name="acknowledgementPresent" id="acknowledgementPresent" data-object="context" data-property="acknowledgementPresent" class="form-control input-sm" ></kint-refdata-lookup>.
+            <kint-refdata-lookup name="acknowledgement" id="acknowledgement" data-object="context" data-property="acknowledgement" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
 
@@ -364,7 +363,7 @@
         <div class="form-group form-group-sm" >
           <label id="accessStatementLabel" for="accessStatement" class="span-3 control-label" aria-label="Access Statement">Access statement is present?</label>
           <div class="span-5">
-            <kint-refdata-lookup name="accessStatement" id="accessStatement" data-object="context" data-property="accessStatement" class="form-control input-sm" ></kint-refdata-lookup>.
+            <kint-refdata-lookup name="accessStatement" id="accessStatement" data-object="context" data-property="accessStatement" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
 
@@ -382,7 +381,17 @@
         <h3 data-toggle="collapse" data-target="#deposit-body" aria-label="Expand/Collapse the main Deposit content" id="depositHeading">Deposit(s)</h3>
       </div>
       <div id="deposit-body" class="panel-body form-horizontal in" aria-labelledby="acknowledgementHeading">
+        
 
+        <div class="form-group form-group-sm" >
+          <label id="depositedLabel" for="deposited" class="span-3 control-label" aria-label="Actual Deposited in Repository">Is Deposited</label>
+          <div class="span-5">
+            <kint-refdata-lookup name="deposited" id="deposited" data-object="context" data-property="deposited" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+        </div>
+
+        <h4 id="researchEvidenceHeading">Deposites</h4>
+        
         <form id="depositForm" name="depositForm" class="table-responsive" >
           <ng-include src="'components/academic-output/partials/_table_deposit.html'" ></ng-include>
         </form>

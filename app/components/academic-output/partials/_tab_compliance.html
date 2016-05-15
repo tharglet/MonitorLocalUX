@@ -1,192 +1,160 @@
-<form id="compliance" name="compliance" >
+<form id="compliance" name="compliance" class="fomr-inline">
   <article data-ui-view>
+    
+    <!-- Licence -->
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
-        <h3 data-toggle="collapse" data-target="#licenceApplied-body" aria-label="Expand/Collapse the main Licence Applied content" id="licenceAppliedHeading">Publication Licence Applied</h3>
+        <h3 data-toggle="collapse" data-target="#licenceRule" aria-label="Expand/Collapse the main Licence Applied content" id="licenceRuleHeading">Licence Compliance: RCUK</h3>
       </div>
-      <div id="licenceApplied-body" class="panel-body form-horizontal in" aria-labelledby="licenceAppliedHeading">
+      <div id="licenceRule" class="panel-body in" aria-labelledby="licenceRuleHeading">
 
-        <div class="form-group form-group-sm" >
-          <label id="licenceAppliedLabel" for="licenceApplied" class="span-3 control-label" aria-label="Publisher">Publication licence applied</label>
-          <div class="span-5">
-            <kint-refdata-lookup name="licenceApplied" id="licenceApplied" data-object="context" data-property="appliedPublicationLicence" class="form-control input-sm" ></kint-refdata-lookup>.
+        <div class="row form-group form-group-sm" >
+          <div class="span-4">
+            <label id="licenceRequiredLabel" for="licenceRequired" class="control-label" aria-label="Required Licence">Required Licence</label>
+            <kint-refdata-lookup name="licenceRequired" id="licenceRequired" data-object="context" data-property="licenceRequired"
+              data-context-obj="context" data-context-path="licence" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+          <div class="span-4" >
+            <label id="licenceLabel" for="licence" class="control-label" aria-label="Actual Licence">Actual Licence</label>
+            <kint-refdata-lookup name="licence" id="licence" data-object="context" data-property="licence" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+          <div class="span-4" >
+            <label id="licenceResultLabel" for="licenceResult" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+            <kint-refdata-lookup name="licenceResult" id="licenceResult" data-object="context" data-property="licenceResult"
+              data-context-obj="context" data-context-path="complianceRules.status" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
-
-        <div class="form-group form-group-sm" >
-          <label id="licenceComplianceResultLabel" for="licenceComplianceResult" class="span-3 control-label" aria-label="Licence Result">Compliance Result</label>
-          <div id="licenceComplianceResult" aria-labelledby="licenceComplianceResultLabel">
-            <div class="span-3">
-              <input type="radio" name="licenceResult" value="review" checked> For Review
-            </div>
-            <div class="span-3">
-              <input type="radio" name="licenceResult" value="pass"> Pass
-            </div>
-            <div class="span-3">
-              <input type="radio" name="licenceResult" value="fail"> Fail
-            </div>
-          </div>
+        
+        <h4 id="licenceEvidenceHeading" data-toggle="collapse" data-target="#licenceEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
+        <div data-ng-form id="licenceEvidence" name="licenceEvidence" class="table-responsive collapse out" aria-labelledby="licenceEvidenceHeading"
+          data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
         </div>
-
-        <h4 id="licenceAppliedEvidenceHeading">Evidence</h4>
-
-        <form id="licenceEvidence" name="licenceEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_licence_evidence.html'" ></ng-include>
-        </form>
-
       </div>
     </div>
-
+    
+    <!-- Embargo -->
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
-        <h3 data-toggle="collapse" data-target="#embargoApplied-body" aria-label="Expand/Collapse the main Embargo Applied content" id="embargoAppliedHeading">Embargo Period Applied</h3>
+        <h3 data-toggle="collapse" data-target="#embargoPeriodRule" aria-label="Expand/Collapse the main Licence Applied content" id="embargoPeriodRuleHeading">Embargo Period: RCUK</h3>
       </div>
-      <div id="embargoApplied-body" class="panel-body form-horizontal in" aria-labelledby="embargoAppliedHeading">
+      <div id="embargoPeriodRule" class="panel-body in" aria-labelledby="embargoPeriodRuleHeading">
 
-        <div class="form-group form-group-sm" >
-          <label id="embargoPeriodLabel" for="embargoPeriod" class="span-3 control-label" aria-label="Embargo Period">Embargo period (months)</label>
-          <div class="span-3">
-            <input type="number" class="form-control" id="embargoPeriod" name="embargoPeriod" placeholder="0" aria-labelledby="embargoPeriodLabel"
-                   data-ng-model="context.embargoPeriod" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-                   step="1" min="0" data-kint-ui-input-feedback required />
+        <div class="row form-group form-group-sm" >
+          <div class="span-4">
+            <label id="embargoPeriodRequiredLabel" for="embargoPeriodRequired" class="control-label" aria-label="Embargo Period">Required Embargo Period</label>
+            <input type="number" class="form-control" id="embargoPeriodRequired" name="embargoPeriodRequired" placeholder="0" aria-labelledby="embargoPeriodRequiredLabel" 
+              data-ng-model="context.embargoPeriodRequired" step="1" min="0" />
           </div>
-
-          <label id="embargoEndDateLabel" for="embargoEndDate" class="control-label span-3" aria-label="Embargo end date" >Embargo end date</label>
-          <div class="span-3">
-            <div class="input-group input-group-sm date" data-datetimepicker >
-              <input type="text" class="form-control" id="embargoEndDate" name="embargoEndDate" aria-labelledby="embargoEndDateLabel"
-                     data-ng-model="context.embargoEndDate" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-                     data-kint-ui-input-feedback data-kint-validate />
-              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-            </div>
+          <div class="span-4" >
+            <label id="embargoPeriodLabel" for="embargoPeriod" class="control-label" aria-label="Embargo Period">Actual Embargo Period</label>
+            <input type="number" class="form-control" id="embargoPeriod" name="embargoPeriod" placeholder="0" aria-labelledby="embargoPeriodLabel" 
+              data-ng-model="context.embargoPeriod" step="1" min="0" />
           </div>
-        </div>
-
-        <div class="form-group form-group-sm" >
-          <label id="embargoComplianceResultLabel" for="embargoComplianceResult" class="span-3 control-label" aria-label="Embargo Result">Compliance Result</label>
-          <div id="embargoComplianceResult" aria-labelledby="embargoComplianceResultLabel">
-            <div class="span-3">
-              <input type="radio" name="embargoResult" value="review" checked> For Review
-            </div>
-            <div class="span-3">
-              <input type="radio" name="embargoResult" value="pass"> Pass
-            </div>
-            <div class="span-3">
-              <input type="radio" name="embargoResult" value="fail"> Fail
-            </div>
+          
+          <div class="span-4" >
+            <label id="embargoPeriodResultLabel" for="embargoPeriodResult" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+            <kint-refdata-lookup name="embargoPeriodResult" id="embargoPeriodResult" data-object="context" data-property="embargoPeriodResult"
+              data-context-obj="context" data-context-path="complianceRules.status" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
 
-        <h4 id="embargoAppliedEvidenceHeading">Evidence</h4>
-
-        <form id="embargoEvidence" name="embargoEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_embargo_evidence.html'" ></ng-include>
-        </form>
-
+        <h4 id="embargoPeriodEvidenceHeading" data-toggle="collapse" data-target="#embargoPeriodEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
+        <div data-ng-form id="embargoPeriodEvidence" name="embargoPeriodEvidence" class="table-responsive collapse out" aria-labelledby="embargoPeriodEvidenceHeading"
+          data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
+        </div>
       </div>
     </div>
-
+    
+    <!-- Funder Acknowledgement -->
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
-        <h3 data-toggle="collapse" data-target="#acknowledgement-body" aria-label="Expand/Collapse the main Funder Acknowledgement content" id="acknowledgementHeading">Funder Acknowledgement</h3>
+        <h3 data-toggle="collapse" data-target="#acknowledgementRule" aria-label="Expand/Collapse the main Licence Applied content" id="acknowledgementRuleHeading">Funder Acknowledgement: RCUK</h3>
       </div>
-      <div id="acknowledgement-body" class="panel-body form-horizontal in" aria-labelledby="acknowledgementHeading">
+      <div id="acknowledgementRule" class="panel-body in" aria-labelledby="acknowledgementRuleHeading">
 
-        <div class="form-group form-group-sm" >
-          <label id="acknowledgementPresentLabel" for="acknowledgementPresent" class="span-3 control-label" aria-label="Acknowledgement">Acknowledgement is present?</label>
-          <div class="span-5">
-            <kint-refdata-lookup name="acknowledgementPresent" id="acknowledgementPresent" data-object="context" data-property="acknowledgementPresent" class="form-control input-sm" ></kint-refdata-lookup>.
+        <div class="row form-group form-group-sm" >
+          <div class="span-4">
+            <label id="acknowledgementRequiredLabel" for="acknowledgementRequired" class="control-label" aria-label="Required Acknowledgement">Required Acknowledgement</label>
+            <kint-refdata-lookup name="acknowledgementRequired" id="acknowledgementRequired" data-object="context" data-property="acknowledgementRequired"
+              data-context-obj="context" data-context-path="acknowledgement" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+          <div class="span-4" >
+            <label id="acknowledgementLabel" for="acknowledgement" class="control-label" aria-label="Actual Acknowledgement">Actual Acknowledgement</label>
+            <kint-refdata-lookup name="acknowledgement" id="acknowledgement" data-object="context" data-property="acknowledgement" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+          <div class="span-4" >
+            <label id="acknowledgementResultLabel" for="acknowledgementResult" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+            <kint-refdata-lookup name="acknowledgementResult" id="acknowledgementResult" data-object="context" data-property="acknowledgementResult"
+              data-context-obj="context" data-context-path="complianceRules.status" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
-
-        <div class="form-group form-group-sm" >
-          <label id="acknowledgementComplianceResultLabel" for="acknowledgementComplianceResult" class="span-3 control-label" aria-label="Acknowledgement Result">Compliance Result</label>
-          <div id="acknowledgementComplianceResult" aria-labelledby="acknowledgementComplianceResultLabel">
-            <div class="span-3">
-              <input type="radio" name="acknowledgementResult" value="review" checked> For Review
-            </div>
-            <div class="span-3">
-              <input type="radio" name="acknowledgementResult" value="pass"> Pass
-            </div>
-            <div class="span-3">
-              <input type="radio" name="acknowledgementResult" value="fail"> Fail
-            </div>
-          </div>
+        
+        <h4 id="acknowledgementEvidenceHeading" data-toggle="collapse" data-target="#acknowledgementEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
+        <div data-ng-form id="acknowledgementEvidence" name="acknowledgementEvidence" class="table-responsive collapse out" aria-labelledby="acknowledgementEvidenceHeading"
+          data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
         </div>
-
-        <h4 id="acknowledgementEvidenceHeading">Evidence</h4>
-
-        <form id="funderAcknowledgement" name="funderAcknowledgement" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_acknowledgement_evidence.html'" ></ng-include>
-        </form>
-
       </div>
     </div>
-
+    
+    <!-- Access Statement -->
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
-        <h3 data-toggle="collapse" data-target="#research-body" aria-label="Expand/Collapse the main Research Materials content" id="researchHeading">Research Materials Statement</h3>
+        <h3 data-toggle="collapse" data-target="#accessStatementRule" aria-label="Expand/Collapse the main Licence Applied content" id="accessStatementRuleHeading">Funder Access Statement: RCUK</h3>
       </div>
-      <div id="research-body" class="panel-body form-horizontal in" aria-labelledby="researchHeading">
+      <div id="accessStatementRule" class="panel-body in" aria-labelledby="accessStatementRuleHeading">
 
-        <div class="form-group form-group-sm" >
-          <label id="accessStatementLabel" for="accessStatement" class="span-3 control-label" aria-label="Access Statement">Access statement is present?</label>
-          <div class="span-5">
-            <kint-refdata-lookup name="accessStatement" id="accessStatement" data-object="context" data-property="accessStatement" class="form-control input-sm" ></kint-refdata-lookup>.
+        <div class="row form-group form-group-sm" >
+          <div class="span-4">
+            <label id="accessStatementRequiredLabel" for="accessStatementRequired" class="control-label" aria-label="Required Access Statement">Required Access Statement</label>
+            <kint-refdata-lookup name="accessStatementRequired" id="accessStatementRequired" data-object="context" data-property="accessStatementRequired"
+              data-context-obj="context" data-context-path="accessStatement" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+          <div class="span-4" >
+            <label id="accessStatementLabel" for="accessStatement" class="control-label" aria-label="Actual Access Statement">Actual Access Statement</label>
+            <kint-refdata-lookup name="accessStatement" id="accessStatement" data-object="context" data-property="accessStatement" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+          <div class="span-4" >
+            <label id="accessStatementResultLabel" for="accessStatementResult" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+            <kint-refdata-lookup name="accessStatementResult" id="accessStatementResult" data-object="context" data-property="accessStatementResult"
+              data-context-obj="context" data-context-path="complianceRules.status" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
-
-        <div class="form-group form-group-sm" >
-          <label id="researchComplianceResultLabel" for="researchComplianceResult" class="span-3 control-label" aria-label="Research Result">Compliance Result</label>
-          <div id="researchComplianceResult" aria-labelledby="researchComplianceResultLabel">
-            <div class="span-3">
-              <input type="radio" name="researchResult" value="review" checked> For Review
-            </div>
-            <div class="span-3">
-              <input type="radio" name="researchResult" value="pass"> Pass
-            </div>
-            <div class="span-3">
-              <input type="radio" name="researchResult" value="fail"> Fail
-            </div>
-          </div>
+        
+        <h4 id="accessStatementEvidenceHeading" data-toggle="collapse" data-target="#accessStatementEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
+        <div data-ng-form id="accessStatementEvidence" name="accessStatementEvidence" class="table-responsive collapse out" aria-labelledby="accessStatementEvidenceHeading"
+          data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
         </div>
-
-        <h4 id="researchEvidenceHeading">Evidence</h4>
-
-        <form id="researchEvidence" name="researchEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_research_evidence.html'" ></ng-include>
-        </form>
-
       </div>
     </div>
-
+    
+    <!-- Repository -->
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
-        <h3 data-toggle="collapse" data-target="#deposit-body" aria-label="Expand/Collapse the main Deposit content" id="depositHeading">Deposit(s)</h3>
+        <h3 data-toggle="collapse" data-target="#depositedRule" aria-label="Expand/Collapse the main Licence Applied content" id="depositedRuleHeading">Funder Access Statement: RCUK</h3>
       </div>
-      <div id="deposit-body" class="panel-body form-horizontal in" aria-labelledby="acknowledgementHeading">
+      <div id="depositedRule" class="panel-body in" aria-labelledby="depositedRuleHeading">
 
-        <div class="form-group form-group-sm" >
-          <label id="depositComplianceResultLabel" for="depositComplianceResult" class="span-3 control-label" aria-label="Deposit Result">Compliance Result</label>
-          <div id="depositComplianceResult" aria-labelledby="depositComplianceResultLabel">
-            <div class="span-3">
-              <input type="radio" name="depositResult" value="review" checked> For Review
-            </div>
-            <div class="span-3">
-              <input type="radio" name="depositResult" value="pass"> Pass
-            </div>
-            <div class="span-3">
-              <input type="radio" name="depositResult" value="fail"> Fail
-            </div>
+        <div class="row form-group form-group-sm" >
+          <div class="span-4">
+            <label id="depositedRequiredLabel" for="depositedRequired" class="control-label" aria-label="Deposited in Repository">Required Deposited in Repository</label>
+            <kint-refdata-lookup name="depositedRequired" id="depositedRequired" data-object="context" data-property="depositedRequired"
+              data-context-obj="context" data-context-path="deposited" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+          <div class="span-4" >
+            <label id="depositedLabel" for="deposited" class="control-label" aria-label="Actual Deposited in Repository">Actual Deposited in Repository</label>
+            <kint-refdata-lookup name="deposited" id="deposited" data-object="context" data-property="deposited" class="form-control input-sm" ></kint-refdata-lookup>
+          </div>
+          <div class="span-4" >
+            <label id="depositedResultLabel" for="depositedResult" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+            <kint-refdata-lookup name="depositedResult" id="depositedResult" data-object="context" data-property="depositedResult"
+              data-context-obj="context" data-context-path="complianceRules.status" class="form-control input-sm" ></kint-refdata-lookup>
           </div>
         </div>
-
-        <h4 id="depositEvidenceHeading">Evidence</h4>
-
-        <form id="depositForm" name="depositForm" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_deposit.html'" ></ng-include>
-        </form>
-
+        
+        <h4 id="depositedEvidenceHeading" data-toggle="collapse" data-target="#depositedEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
+        <div data-ng-form id="depositedEvidence" name="depositedEvidence" class="table-responsive collapse out" aria-labelledby="depositedEvidenceHeading"
+          data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
+        </div>
       </div>
     </div>
   </article>
