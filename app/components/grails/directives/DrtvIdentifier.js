@@ -46,13 +46,13 @@ define (
           var target = $parse(iAttr['ngModel'])($scope);
           
           // Create a filtered view for our new element.
-          var idList = ($filter('filter')(target, { identifier : { namespace : { value: ( ns ) } } }, false));
+          var idList = ($filter('filter')(target, { identifier : { namespace : { value: ( ns ) } } }, true));
 
           var idEntry = {};
           
           $scope.$watchCollection(iAttr['ngModel'], function(){
             // Refresh the collection.
-            idList = ($filter('filter')(target, { identifier : { namespace : { value: ( ns ) } } }, false));
+            idList = ($filter('filter')(target, { identifier : { namespace : { value: ( ns ) } } }, true));
             if (idList.length > 0) {
               
               // Copy the entry...
