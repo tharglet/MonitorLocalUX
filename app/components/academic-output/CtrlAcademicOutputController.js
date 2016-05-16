@@ -27,6 +27,8 @@ define (
         
         callingScope.openModal('components/academic-output/partials/_modal_cost_item_edit.html').result.then(function () {
           callingScope.confirmEditMultiProperty(item);
+          // Dirty the owning form too!
+          callingScope.academicOutput.$setDirty();
         },function (){
           callingScope.cancelEditMultiProperty(item);
         });
@@ -41,6 +43,8 @@ define (
         
         callingScope.openModal('components/academic-output/partials/_modal_funder_edit.html').result.then(function () {
           callingScope.confirmEditMultiProperty(item);
+          // Dirty the owning form too!
+          callingScope.academicOutput.$setDirty();
         },function (){
           callingScope.cancelEditMultiProperty(item);
         });
@@ -51,6 +55,8 @@ define (
         var callingScope = this;
         callingScope.openModal('components/academic-output/partials/_modal_evidence_edit.html').result.then(function () {
           callingScope.confirmEditMultiProperty(item);
+          // Dirty the owning form too!
+          callingScope.academicOutput.$setDirty();
         },function (){
           callingScope.cancelEditMultiProperty(item);
         });
@@ -62,6 +68,8 @@ define (
         var callingScope = this;
         callingScope.openModal('components/academic-output/partials/_modal_deposit_edit.html').result.then(function () {
           callingScope.confirmEditMultiProperty(item);
+          // Dirty the owning form too!
+          callingScope.academicOutput.$setDirty();
         },function (){
           callingScope.cancelEditMultiProperty(item);
         });
