@@ -60,6 +60,7 @@
               <kint-identifier data-property="identifiers" data-namespace="doi" class="form-control" data-ng-model="context.identifiers"
                 id="DOI" name="DOI" aria-labelledby="DOILabel" disabled="disabled" ></kint-identifier>
 
+              <span class="input-group-btn">
                 <button class="btn btn-secondary" type="button" title="Edit the DOI" data-ng-click="lookupDOI()" ><i class="glyphicon glyphicon-edit" ></i></button>
               </span>
             </div>
@@ -292,7 +293,7 @@
         <h4 id="licenceAppliedEvidenceHeading">Evidence</h4>
 
         <form id="licenceEvidence" name="licenceEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_licence_evidence.html'" ></ng-include>
+          <ng-include src="'components/academic-output/partials/_table_compliance_evidence.html'" ></ng-include>
         </form>
 
       </div>
@@ -326,7 +327,7 @@
         <h4 id="embargoAppliedEvidenceHeading">Evidence</h4>
 
         <form id="embargoEvidence" name="embargoEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_embargo_evidence.html'" ></ng-include>
+          <ng-include src="'components/academic-output/partials/_table_compliance_evidence.html'" ></ng-include>
         </form>
 
       </div>
@@ -348,7 +349,7 @@
         <h4 id="acknowledgementEvidenceHeading">Evidence</h4>
 
         <form id="funderAcknowledgement" name="funderAcknowledgement" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_acknowledgement_evidence.html'" ></ng-include>
+          <ng-include src="'components/academic-output/partials/_table_compliance_evidence.html'" ></ng-include>
         </form>
 
       </div>
@@ -370,7 +371,7 @@
         <h4 id="researchEvidenceHeading">Evidence</h4>
 
         <form id="researchEvidence" name="researchEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_research_evidence.html'" ></ng-include>
+          <ng-include src="'components/academic-output/partials/_table_compliance_evidence.html'" ></ng-include>
         </form>
 
       </div>
@@ -390,7 +391,7 @@
           </div>
         </div>
 
-        <h4 id="researchEvidenceHeading">Deposites</h4>
+        <h4 id="despositesHeading">Deposites</h4>
         
         <form id="depositForm" name="depositForm" class="table-responsive" >
           <ng-include src="'components/academic-output/partials/_table_deposit.html'" ></ng-include>

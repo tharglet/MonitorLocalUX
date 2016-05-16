@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-  <tr ng-repeat="aoDeposits in context.deposits" ng-form="aoDeposits{{$index}}" ng-include="'components/academic-output/partials/_table_deposit_row' + (aoDeposits['$editMode'] ? '_edit' : '') + '.html'" >
+  <tr ng-repeat="aoDeposit in context.deposits" ng-form="aoDeposit{{$index}}" ng-include="'components/academic-output/partials/_table_deposit_row' + (aoDeposit['$editMode'] ? '_edit' : '') + '.html'" >
   </tr>
   <tr>
     <td></td>
