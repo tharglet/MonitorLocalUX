@@ -1,5 +1,228 @@
-<div class="row" >
-  <div class="span-12">
-    <p>Placeholding content for All tab.</p>
-  </div>
-</div>
+<form name="aoSummary" id="aoSummary" >
+  <article data-ui-view>
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#academicOutputGeneral" aria-label="Expand/Collapse the main AO content" id="generalPanelHeading">General Details</h3>
+      </div>
+
+      <div id="academicOutputGeneral" class="panel-body form-horizontal in" aria-labelledby="academicOutputHeading">
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Title</label>
+          <div class="span-9">{{context.name}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Assigned To</label>
+          <div class="span-9">{{context.assignedTo.name}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Date Contact Made</label>
+          <div class="span-9">{{context.contactDate | date: 'dd/MM/yyyy'}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Publication Route</label>
+          <div class="span-9">{{context.publicationRoute.value}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#academicOutputFunding" aria-label="Expand/Collapse the main Funding content" id="fundingHeading">Funding</h3>
+      </div>
+
+      <div id="academicOutputFunding" class="panel-body form-horizontal in" aria-labelledby="fundingHeading">
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">APC Funding Approval</label>
+          <div class="span-9">{{context.approval.value}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Date Decision Made</label>
+          <div class="span-9">{{context.decisionDate | date: 'dd/MM/yyyy'}}</div>
+        </div>
+
+        <h4 id="fundingAssignmentsHeading">Grant assignments</h4>
+
+        <form id="fundingAssignments" name="fundingAssignments" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_funder.html'" ></ng-include>
+        </form>
+
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#academicOutputSubmission" aria-label="Expand/Collapse the main Submission content" id="submissionHeading">Submission lifecycle</h3>
+      </div>
+
+      <div id="academicOutputSubmission" class="panel-body form-horizontal in" aria-labelledby="submissionHeading">
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Publisher Submission Status</label>
+          <div class="span-9">{{context.submission.value}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Date submitted</label>
+          <div class="span-9">{{context.submissionDate | date: 'dd/MM/yyyy'}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Publisher Response</label>
+          <div class="span-9">{{context.publisherResponse.value}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Date Accepted</label>
+          <div class="span-9">{{context.publisherResponseDate | date: 'dd/MM/yyyy'}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#assignedPerson-body" aria-label="Expand/Collapse the main assigned Person content" id="assignedPerson-heading">People assigned to this academic output</h3>
+      </div>
+      <div id="assignedPerson-body" class="panel-body form-horizontal in" aria-labelledby="assignedPerson-heading" >
+        <ng-include data-ng-if="people && people.length > 0" src="'components/academic-output/partials/_table_people.html'" ></ng-include>
+        <p data-ng-if="!people || people.length == 0" >There are currently no people assigned.</p>
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#publication-body" aria-label="Expand/Collapse the main Publication content" id="publicationHeading">Publication lifecycle</h3>
+      </div>
+      <div id="publication-body" class="panel-body form-horizontal in" aria-labelledby="publicationHeading">
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Publication Status</label>
+          <div class="span-9">{{context.publicationStatus}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Date Published</label>
+          <div class="span-9">{{context.publishedDate | date: 'dd/MM/yyyy'}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Gold Publisher URL</label>
+          <div class="span-9">{{context.publisherURL}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#publicationOutput-body" aria-label="Expand/Collapse the main Publication Output content" id="publicationOutputHeading">Publication output details</h3>
+      </div>
+      <div id="publicationOutput-body" class="panel-body form-horizontal in" aria-labelledby="publicationOutputHeading">
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Output Type</label>
+          <div class="span-9">{{context.outputType.value}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Local Reference</label>
+          <div class="span-9">{{context.localReference}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Author Name List</label>
+          <div class="span-9">{{context.authorNameList}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default" ng-if="context.outputType.value == 'Journal Article'">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#journalDetails-body" aria-label="Expand/Collapse the main Journal Details content" id="journalDetailsHeading">Journal details</h3>
+      </div>
+      <div id="journalDetails-body" class="panel-body form-horizontal in" aria-labelledby="journalDetailsHeading">
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Journal Title</label>
+          <div class="span-9">{{context.publicationTitle}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Publisher</label>
+          <div class="span-9">{{context.publisher.value}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Journal issue date</label>
+          <div class="span-3">{{context.journalIssueDate}}</div>
+
+          <label class="span-1 control-label">Volume</label>
+          <div class="span-1">{{context.journalVolume}}</div>
+
+          <label class="span-1 control-label">Issue</label>
+          <div class="span-1">{{context.journalIssue}}</div>
+
+          <label class="span-1 control-label">Pages</label>
+          <div class="span-1">{{context.journalPages}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Open Access Status</label>
+          <div class="span-9">{{context.openAccessStatus.value}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default" ng-if="context.outputType.value == 'Conference Paper'">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#conferenceDetails-body" aria-label="Expand/Collapse the main Conference Details content" id="conferenceDetailsHeading">Conference details</h3>
+      </div>
+      <div id="conferenceDetails-body" class="panel-body form-horizontal in" aria-labelledby="conferenceDetailsHeading">
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Conference Title</label>
+          <div class="span-9">{{context.publicationTitle}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Publisher</label>
+          <div class="span-9">{{context.publisher.name }}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Place of publication</label>
+          <div class="span-9">{{context.publicationPlace}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Conference Start Date</label>
+          <div class="span-9">{{context.conferenceStartDate | date: 'dd/MM/yyyy'}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Conference End Date</label>
+          <div class="span-9">{{context.conferenceEndDate | date: 'dd/MM/yyyy'}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Conference Organisation</label>
+          <div class="span-9">{{context.conferenceOrg}}</div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label class="span-3 control-label">Open Access Status</label>
+          <div class="span-9">{{context.openAccessStatus.value}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#committedCosts" aria-label="Expand/Collapse the main AO content" id="committedCostsHeading">Committed Costs</h3>
+      </div>
+      <div id="committedCosts" name="committedCosts" class="panel-body in" aria-labelledby="committedCostsHeading" >
+        <ng-include src="'components/academic-output/partials/_table_cost_items.html'" ></ng-include>
+      </div>
+    </div>
+  </article>
+</form>

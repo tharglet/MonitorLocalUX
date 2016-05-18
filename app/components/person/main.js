@@ -21,6 +21,97 @@ define(
           parent: 'app.componentSearch',
           url:   '^/person',
           grailsResource: 'Person',
+          searchFields: [
+            {
+              'data'  : 'surname',
+              'title' : "Surname"
+            },
+            {
+              'data'  : 'firstName',
+              'title' : "First Name(s)"
+            },
+            {
+              'data'      : 'identifiers',
+              'title'     : "ORCID",
+              'orderable' : false,
+              'render'    : function ( sData, type, oData, meta ) {
+
+                if (type === 'display') {
+                  var val = "";
+                  if (sData && sData.length > 0) {
+                    var list = $("<ul />");
+                    // Output each identifier.
+                    $.each (sData, function () {
+                      var cid = this;
+                      list.append($("<li />").html(
+                        "<strong>" + cid.identifier.namespace.value + ":</strong>&nbsp;" + cid.identifier.value
+                      ));
+                    });
+
+                    val = list.html();
+                  }
+
+                  return val;
+                } else {
+                  return sData;
+                }
+              }
+            },
+            {
+              'data'      : 'personContactDetails',
+              'title'     : "Depts",
+              'orderable' : false,
+              'render'    : function ( sData, type, oData, meta ) {
+
+                if (type === 'display') {
+                  var val = "";
+                  if (sData && sData.length > 0) {
+                    var list = $("<ul />");
+                    // Output each identifier.
+                    $.each (sData, function () {
+                      var pcd = this;
+                      list.append($("<li />").html(
+                        "<strong>" + pcd.organisation.name + ":</strong>&nbsp;" + pcd.department
+                      ));
+                    });
+
+                    val = list.html();
+                  }
+
+                  return val;
+                } else {
+                  return sData;
+                }
+              }
+            },
+            {
+              'data'      : 'personContactDetails',
+              'title'     : "Email Address",
+              'orderable' : false,
+              'render'    : function ( sData, type, oData, meta ) {
+
+                if (type === 'display') {
+                  var val = "";
+                  if (sData && sData.length > 0) {
+                    var list = $("<ul />");
+                    // Output each identifier.
+                    $.each (sData, function () {
+                      var pcd = this;
+                      list.append($("<li />").html(
+                        pcd.emailAddress
+                      ));
+                    });
+
+                    val = list.html();
+                  }
+
+                  return val;
+                } else {
+                  return sData;
+                }
+              }
+            }
+          ],
           views: {
             // Unnamed view.
             "" : {
