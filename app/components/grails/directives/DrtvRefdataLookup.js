@@ -15,10 +15,7 @@ define (
           
           // These allow for overrides on the object against which the query happens.
           contextObj:   "&",
-          contextPath:  "@",
-          
-          // Allow for a different template 
-          template:     "@",
+          contextPath:  "@"
         },
         link: function ($scope, iElement, iAttr) {
           
@@ -83,7 +80,11 @@ define (
             });
           };
 
-          $templateRequest("components/grails/directives/partials/refdata-lookup.html").then(function(html){
+          var tmp = "components/grails/directives/partials/refdata-lookup.html";
+          if (typeof iAttr['template'] === 'string') {
+            tmp = iAttr['template'];
+          }
+          $templateRequest(tmp).then(function(html){
 
             var template = angular.element(html);
             

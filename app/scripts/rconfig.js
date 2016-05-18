@@ -61,7 +61,8 @@ requirejs.config({
     "organisation",
     "invoice",
     "person",
-    "grant"
+    "grant",
+    "budget"
   ],
   shim: {
     angular: {
