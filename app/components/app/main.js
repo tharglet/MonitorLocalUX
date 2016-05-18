@@ -19,7 +19,8 @@ define(
     'organisation',
     'invoice',
     'person',
-    'grant'
+    'grant',
+    'budget'
   ],
   function (couchPotato, conf, notify, moment) {
 
@@ -34,7 +35,8 @@ define(
       'organisation',
       'invoice',
       'person',
-      'grant'
+      'grant',
+      'budget'
     ])
 
     // CONSTANT USED TO GLOBALLY DISABLE AUTH

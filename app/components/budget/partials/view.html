@@ -1,0 +1,65 @@
+<section id="budget-grid" class="inner">
+  <form id="budget" name="budget" class="row" >
+    <article data-ui-view>
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#budget-body" aria-label="Expand/Collapse the main Budget content" id="budget-heading">Budget details</h3>
+        </div>
+        <div id="budget-body" class="panel-body form-horizontal in" aria-labelledby="budget-heading">
+
+          <div class="form-group form-group-sm">
+            <label id="budgetCodeLabel" for="budgetCode" class="control-label span-3" aria-label="Budget Code">Budget code*</label>
+            <div class="span-3">
+              <input type="text" class="form-control" id="budgetCode" name="budgetCode" aria-labelledby="budgetCodeLabel"
+                     data-ng-model="context.code" required />
+              <div data-ng-if="budget.code.$dirty" data-ng-messages="budget.code.$error" class="help-block" role="alert">
+                <p data-ng-message="required">Please enter a code</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm" data-ng-class="{'has-error': (budget.name.$dirty && budget.name.$invalid), 'has-success': (budget.name.$dirty && budget.name.$valid)}" >
+            <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Budget Name" >Budget Name*</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Budget name" aria-labelledby="nameLabel"
+                     data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                     data-kint-ui-input-feedback data-kint-validate required />
+              <div data-ng-if="budget.name.$dirty" data-ng-messages="budget.name.$error" class="help-block" role="alert">
+                <p data-ng-message="required">Please enter a name</p>
+                <p data-ng-message="kintValidate">{{budget.name.kintValidate.message}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm">
+            <label id="sourceLabel" for="source" class="control-label span-3" aria-label="Source">Source</label>
+            <div class="span-9">
+              <kint-component-lookup name="source" id="source" data-object="context" data-property="source" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm">
+            <label id="remaingFundsLabel" for="remaingFunds" class="control-label span-3" aria-label="Rremaing funds">Rremaing funds</label>
+            <div class="span-9">
+              <input type="number" class="form-control" id="remaingFunds" name="remaingFunds" placeholder="0.00" aria-labelledby="remaingFundsLabel" 
+              data-ng-model="context.remainingFunds.value" step="0.01" min="0" />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm">
+            <label id="prepayLabel" for="prepay" class="control-label span-3" aria-label="Prepay">Prepay</label>
+            <div class="span-9">
+              <kint-refdata-lookup name="prepay" id="prepay" data-object="context" data-property="prepay" class="form-control input-sm" required >
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="form-group pull-right">
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!budget.$dirty || budget.$invalid" >Save</button>
+      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!budget.$dirty" >Cancel</button>
+    </div>
+
+  </form>
+</section>

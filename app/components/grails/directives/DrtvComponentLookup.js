@@ -15,9 +15,6 @@ define (
           contextObj:   "&",
           contextPath:  "@",
           
-          // Allow for a different template 
-          template:     "@",
-          
           // Query params.
           params:       "@"
           
@@ -91,7 +88,13 @@ define (
             });
           };
 
-          $templateRequest("components/grails/directives/partials/component-lookup" + (multiple ? "-multi" : "") + ".html").then(function(html){
+          
+          var tmp = "components/grails/directives/partials/component-lookup" + (multiple ? "-multi" : "") + ".html";
+          if (typeof iAttr['template'] === 'string') {
+            tmp = iAttr['template'];
+          }
+          
+          $templateRequest(tmp).then(function(html){
             var template = angular.element(html);
             
             if (typeof iAttr.required === 'undefined') {
