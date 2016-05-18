@@ -331,13 +331,13 @@ a.list-group-item {
 
 @media screen and (min-width: $container-xlarge-desktop) {
   .container {
-      max-width: ($container-xlarge-desktop + $grid-gutter-width);
-      width: ($container-xlarge-desktop + $grid-gutter-width);
+      max-width: ($container-xlarge-desktop);
+      width: ($container-xlarge-desktop);
   }
 }
 @media screen and (min-width: $container-xxlarge-desktop) {
   .container {
-      max-width: ($container-xxlarge-desktop + $grid-gutter-width);
-      width: ($container-xxlarge-desktop + $grid-gutter-width);
+      max-width: ($container-xxlarge-desktop);
+      width: ($container-xxlarge-desktop);
   }
 }
