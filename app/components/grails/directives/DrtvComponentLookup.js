@@ -56,9 +56,9 @@ define (
           $scope.refresh = function ( searchParam ) {
 
             // Check if this is refdata. We fetch all refdata.
-            if ( obj && $scope.contextPath && typeof obj.componentLookup === 'function') {
+            if ( obj && $scope.contextPath && typeof lookupMethod === 'function') {
               // Push if through the lookup method on the resource.
-              obj.componentLookup ($scope.contextPath, searchParam, params).then(function( rdata ){
+              lookupMethod ($scope.contextPath, searchParam, params).then(function( rdata ){
                 $scope.data = rdata.data;
               });
             }

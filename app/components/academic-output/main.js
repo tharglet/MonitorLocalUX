@@ -21,6 +21,51 @@ define(
         parent: 'app.componentSearch',
         url:   '^/academic-output',
         grailsResource: 'AcademicOutput',
+        searchFields: [
+          { 
+            'data'      : 'identifiers',
+            'title'     : "IDs",
+            'orderable' : false,
+            'render'    : function ( sData, type, oData, meta ) {
+              
+              if (type === 'display') {
+                var val = "";
+                if (sData && sData.length > 0) {
+                  var list = $("<ul />");
+                  // Output each identifier.
+                  $.each (sData, function () {
+                    var cid = this;
+                    list.append($("<li />").html(
+                      "<strong>" + cid.identifier.namespace.value + ":</strong>&nbsp;" + cid.identifier.value
+                    ));
+                  });
+                  
+                  val = list.html();
+                }
+                
+                return val;
+              } else {
+                return sData;
+              }
+            }
+          },
+          {
+            'data'  : 'publicationTitle',
+            'title' : "Journal/Conference Title"
+          },
+          { 
+            'data'          : 'publisher.name',
+            'title'         : 'Publisher',
+            'orderable'     : false,
+            "defaultContent": ''
+          },
+          { 
+            'data'          : 'funder.name',
+            'title'         : 'funder',
+            'orderable'     : false,
+            "defaultContent": ''
+          }
+        ],
         views: {
           // Unnamed view.
           "" : {

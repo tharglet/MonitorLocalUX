@@ -56,7 +56,10 @@ define (
             if (idList.length > 0) {
               
               // Copy the entry...
-              angular.copy (idList[0], idEntry);
+              
+              if (!angular.equals(idList[0], idEntry)) {
+                angular.copy (idList[0], idEntry);
+              }
             }
           });
           
