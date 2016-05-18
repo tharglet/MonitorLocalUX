@@ -21,6 +21,20 @@ define(
           parent: 'app.componentSearch',
           url:   '^/grant',
           grailsResource: 'AOGrant',
+          searchFields: [
+            {
+              'data'  : 'internalGrantId',
+              'title' : "Internal project code"
+            },
+            {
+              'data'  : 'funder.name',
+              'title' : 'Funder'
+            },
+            {
+              'data'  : 'funder.fundingGroup',
+              'title' : 'Funding Group'
+            }
+          ],
           views: {
             // Unnamed view.
             "" : {
