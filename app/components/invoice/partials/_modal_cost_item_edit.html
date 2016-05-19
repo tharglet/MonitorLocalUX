@@ -1,13 +1,13 @@
 <div class="modal-header">
-  <h3 class="modal-title">Edit AO Cost</h3>
+  <h3 class="modal-title">Edit Invoice Cost</h3>
 </div>
 
-<div class="modal-body">
+<div class="modal-body" >
   <form name="invoiceCostItem" id="invoiceCostItem" novalidate class="simple-form form-horizontal" role="form">
     <div class="form-group">
       <label class="span-3 control-label" for="category">Category</label>
       <div class="span-9" >
-        <kint-refdata-lookup name="category" id="category" data-object="costItem" data-property="category" data-context-obj="context" data-context-path="invoiceCosts.category" class="form-control input-sm" required="required" ></kint-refdata-lookup>
+        <kint-refdata-lookup name="category" id="category" data-object="costItem" data-property="category" data-context-obj="context" data-context-path="invoiceCosts.category" class="form-control input-sm" required ></kint-refdata-lookup>
       </div>
     </div>
     <div class="form-group">
@@ -41,39 +41,23 @@
                step="0.01" min="0" data-kint-ui-input-feedback required />
       </div>
     </div>
-    <div class="form-group">
-      <label class="span-3 control-label" for="doi">Budgets</label>
+    <div class="form-group" >
+      <label class="span-3 control-label" for="doi">Academic Output</label>
       <div class="span-9" >
-        {{costItem.budget.name}}
+        <kint-component-lookup name="academicOutput" id="academicOutput" class="form-control input-sm"
+          data-object="costItem" data-property="academicOutput"
+          data-context-obj="context" data-context-path="invoiceCosts.academicOutput"
+          data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
       </div>
     </div>
     <div class="form-group">
-      <label class="span-3 control-label" for="academicOutput">Academic Output</label>
+      <label class="span-3 control-label" for="doi">Budget</label>
       <div class="span-9" >
-        <kint-component-lookup name="academicOutput" id="academicOutput"
-          data-object="costItem" data-property="academicOutput" data-params="{ match:['name'], perPage: 25}"
-          data-context-obj="context" data-context-path="invoiceCosts.academicOutput" class="form-control input-sm" ></kint-component-lookup>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="span-3 control-label" for="grants">Grants</label>
-      <div class="span-9" >
-        <kint-component-lookup name="grants" id="grants" multiple data-object="costItem" data-property="grants" 
-        data-context-obj="context" data-context-path="invoiceCosts.grants" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" ></kintkint-component-lookup>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="span-3 control-label" for="prepay">Pre Pay</label>
-      <div class="span-9" >
-        {{costItem.prepay.name}}
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="span-3 control-label" for="estimated">Estimated *</label>
-      <div class="span-9" >
-        <kint-refdata-lookup name="estimated" id="estimated" data-object="costItem"
-            data-property="estimated" data-context-obj="context" data-context-path="invoiceCosts.estimated"
-            class="form-control input-sm" required="required" ></kint-refdata-lookup>
+        <kint-component-lookup name="budget" id="budget" class="form-control input-sm"
+          data-object="costItem" data-property="budget"
+          data-context-obj="context" data-context-path="invoiceCosts.budget"
+          data-params="{ match:['name', 'code'], perPage: 25 }"
+          data-template="components/budget/partials/budget-lookup.html" ></kint-component-lookup>
       </div>
     </div>
     <div class="form-group">

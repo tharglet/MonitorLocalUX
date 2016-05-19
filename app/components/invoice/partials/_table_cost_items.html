@@ -1,16 +1,14 @@
-<table class="table table-striped table-hover" data-ng-init="tableTotals = {}">
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Cat</th>
       <th class="info" >Curr</th>
-      <th class="info" data-ng-init="tableTotals['gross'] = 0" >Gross</th>
-      <th class="info" data-ng-init="tableTotals['gross-gbp'] = 0" >Gross GBP</th>
-      <th class="info" data-ng-init="tableTotals['tax'] = 0" >Tax</th>
-      <th class="info" data-ng-init="tableTotals['net'] = 0" >NET</th>
+      <th class="info" >Gross</th>
+      <th class="info" >Gross GBP</th>
+      <th class="info" >Tax</th>
+      <th class="info" >NET</th>
+      <th>Academic Output</th>
       <th>Budget</th>
-      <th>Academic output</th>
-      <th>Grants</th>
-      <th>Pre pay</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -21,14 +19,13 @@
     <tr>
       <td></td>
       <td class="info" >Totals</td>
-      <td class="info" data-ng-bind="tableTotals['gross'] | number : 2" ></td>
-      <td class="info" data-ng-bind="tableTotals['gross-gbp'] | number : 2" ></td>
-      <td class="info" data-ng-bind="tableTotals['tax'] | number : 2" ></td>
-      <td class="info" data-ng-bind="tableTotals['net'] | number : 2" ></td>
-      <td colspan="4" ></td>
+      <td class="info" >Gross</td>
+      <td class="info" >Gross GBP</td>
+      <td class="info" >Tax</td>
+      <td class="info" >NET</td>
+      <td colspan="2"></td>
       <td>
-        <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('invoiceCosts')" >Add</button>
+        <button type="button" class="btn btn-warning btn-sm" ng-click="addCost('invoiceCosts')" >Add</button>
       </td>
     </tr>
-  </tbody>
 </table>
