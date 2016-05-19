@@ -5,8 +5,6 @@ define (
   function(app) {
     app.registerController('AcademicOutputController', [ '$scope', function($scope) {
 
-      console.log("AcademicOutputController");
-
       $scope.lookupDOI = function() {
         console.log("lookupDOI");
         var callingScope = this;
@@ -15,22 +13,6 @@ define (
           angular.merge(callingScope.context, res);
         },function (){
           // Do nothing...
-        });
-      };
-
-      $scope.editCost = function(item) {
-        console.log("Cost edit");
-        var callingScope = this;
-        
-        // Need to remember the original.
-        callingScope.editMultiProperty(item);
-        
-        callingScope.openModal('components/academic-output/partials/_modal_cost_item_edit.html').result.then(function () {
-          callingScope.confirmEditMultiProperty(item);
-          // Dirty the owning form too!
-          callingScope.academicOutput.$setDirty();
-        },function (){
-          callingScope.cancelEditMultiProperty(item);
         });
       };
 

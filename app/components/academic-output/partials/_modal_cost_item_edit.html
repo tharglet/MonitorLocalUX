@@ -1,8 +1,8 @@
 <div class="modal-header">
-  <h3 class="modal-title">Edit AO Cost</h3>
+  <h3 class="modal-title">Edit {{ costItem.status.value }} AO Cost</h3>
 </div>
 
-<div class="modal-body">
+<div class="modal-body" >
   <form name="aoCostItem" id="aoCostItem" novalidate class="simple-form form-horizontal" role="form">
     <div class="form-group">
       <label class="span-3 control-label" for="category">Category</label>
@@ -41,6 +41,15 @@
                step="0.01" min="0" data-kint-ui-input-feedback required />
       </div>
     </div>
+    <div class="form-group" data-ng-if="costItem.status.value === 'Actual'" >
+      <label class="span-3 control-label" for="doi">Invoice</label>
+      <div class="span-9" >
+        <kint-component-lookup name="invoice" id="invoice" class="form-control input-sm"
+          data-object="costItem" data-property="invoice"
+          data-context-obj="context" data-context-path="academicOutputCosts.invoice"
+          data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+      </div>
+    </div>
     <div class="form-group">
       <label class="span-3 control-label" for="doi">Budget</label>
       <div class="span-9" >
@@ -51,7 +60,7 @@
           data-template="components/budget/partials/budget-lookup.html" ></kint-component-lookup>
       </div>
     </div>
-    <div class="form-group">
+    <div data-ng-if="costItem.status.value === 'Committed'" class="form-group">
       <label class="span-3 control-label" for="estimated">Estimated *</label>
       <div class="span-9" >
         <kint-refdata-lookup name="estimated" id="estimated" data-object="costItem" data-property="estimated" data-context-obj="context" data-context-path="academicOutputCosts.estimated" class="form-control input-sm" required ></kint-refdata-lookup>

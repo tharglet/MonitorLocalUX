@@ -35,10 +35,12 @@ define (
         
         // Only add if we can push to it.
         if (res[propertyName] && typeof res[propertyName].push === 'function' ) {
-          $scope.getBlank(propertyName).then(function ( blank ) {
+          return $scope.getBlank(propertyName).then(function ( blank ) {
             $scope.context[propertyName].push( blank );
           });
         }
+        
+        return null;
       };
       
       $scope.removeFrom = function (propertyName, item) {

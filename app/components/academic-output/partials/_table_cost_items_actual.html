@@ -7,14 +7,14 @@
       <th class="info" >Gross GBP</th>
       <th class="info" >Tax</th>
       <th class="info" >NET</th>
+      <th>Invoice</th>
       <th>Budget</th>
-      <th>Estimated</th>
       <th>Action</th>
     </tr>
   </thead>
   
   <tbody>
-    <tr ng-repeat="costItem in costs['Committed']" ng-form="costItem{{$index}}" ng-include="'components/academic-output/partials/_table_cost_items_row.html'" >
+    <tr ng-repeat="costItem in costs['Actual']" ng-form="costItem{{$index}}" ng-include="'components/academic-output/partials/_table_cost_items_actual_row.html'" >
     </tr>
     <tr>
       <td></td>
@@ -25,7 +25,7 @@
       <td class="info" >NET</td>
       <td colspan="2"></td>
       <td>
-        <button type="button" class="btn btn-warning btn-sm" ng-click="addCost('academicOutputCosts', 'Committed')" >Add</button>
+        <button type="button" class="btn btn-warning btn-sm" ng-click="addCost('academicOutputCosts', 'Actual')" >Add</button>
       </td>
     </tr>
 </table>

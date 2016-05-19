@@ -127,9 +127,13 @@ define(
       });
       $stateProvider.state('app.academicOutput.view.finance', {
         url:          '/finance',
+        deps: [
+          'components/academic-output/CtrlAOFinanceController.js',
+        ],
         views: {
           "": {
             templateUrl:  'components/academic-output/partials/_tab_finance.html',
+            controller: 'AOFinanceController'
           },
         },
         data : {
