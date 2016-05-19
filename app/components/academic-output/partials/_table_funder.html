@@ -2,7 +2,6 @@
   <thead>
   <tr>
     <th>Funder</th>
-    <th>Funder group</th>
     <th>Grant name</th>
     <th>% of research funding</th>
     <th>Action</th>
@@ -13,10 +12,7 @@
     <tr ng-repeat="fund in context.funds" ng-form="fund{{$index}}" ng-include="'components/academic-output/partials/_table_funder_row.html'" >
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td colspan="3"></td>
       <td>
         <button type="button" class="btn btn-warning btn-sm" ng-click="addBlank('funds')" >Add</button>
       </td>

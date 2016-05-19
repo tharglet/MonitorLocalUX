@@ -21,6 +21,26 @@ define(
           parent: 'app.componentSearch',
           url:   '^/budget',
           grailsResource: 'Budget',
+          searchFields: [
+            {
+              'data'          : 'code',
+              'title'         : "Code"
+            },
+            {
+              'data'          : 'source.name',
+              'title'         : "Source",
+              'orderable'     : false
+            },
+            {
+              'data'          : 'remainingFunds.value',
+              'title'         : "Remaining Funds"
+            },
+            {
+              'data'          : 'prepay.value',
+              'title'         : "Prepay",
+              'orderable'     : false
+            }
+          ],
           views: {
             // Unnamed view.
             "" : {

@@ -1,8 +1,8 @@
-<td>{{aoDeposits.name}}</td>
+<td>{{aoDeposit.name}}</td>
 <td><a ng-href="http://{{ aoDeposit.url }}" target="_blank">{{aoDeposit.url}}</a></td>
 <td>{{aoDeposit.versionDeposited.value}}</td>
 <td>{{aoDeposit.depositDate | date:'dd/MM/yyyy'}}</td>
 <td>
-  <button type="button" ng-click="editDeposits(aoDeposit)" class="btn btn-default btn-sm" >Edit</button>
+  <button type="button" ng-click="editDeposit(aoDeposit)" class="btn btn-default btn-sm" >Edit</button>
   <button type="button" ng-click="removeFrom('deposits', aoDeposit)" class="btn btn-danger btn-sm" >Del</button>
 </td>
