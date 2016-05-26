@@ -89,7 +89,7 @@ ResourceManager.prototype.addGenericLookup = function ( res, type ) {
   res.prototype["genericLookup"] = function( propName ) {
     return _self.http({
       "url": _self.baseUrl + "/ref/" + type + "/" + propName,
-      "headers": { "Accept": "application/json;charset=UTF-8" },
+      "headers": { "Accept": "application/json;charset=UTF-8", "Accept-Version": "condensed" },
       "method": "GET"
     });
   };
@@ -101,7 +101,7 @@ ResourceManager.prototype.addLookup = function ( res, type ) {
   res.prototype.componentLookup  = function(propName, search, params) {
     return _self.http({
       "url": _self.baseUrl + "/ref/" + type + "/" + propName + (search ? "/" + search : ""),
-      "headers": { "Accept": "application/json;charset=UTF-8" },
+      "headers": { "Accept": "application/json;charset=UTF-8", "Accept-Version": "condensed" },
       "method": "GET",
       "params": params || {},
     });

@@ -32,7 +32,11 @@ define(
               'orderable'     : false
             },
             {
-              'data'          : 'remainingFunds.value',
+              'data'          : 'totalFunds.display',
+              'title'         : "Total Funds"
+            },
+            {
+              'data'          : 'remainingFunds.display',
               'title'         : "Remaining Funds"
             },
             {
