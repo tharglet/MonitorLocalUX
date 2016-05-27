@@ -7,5 +7,7 @@
 /build
 .directory
 .project
+.settings
+.editorconfig
 /app/fonts
 /jisc-template.zip
