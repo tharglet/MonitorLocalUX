@@ -5,6 +5,7 @@
   <ui-select-choices data-refresh="refresh($select.search)" data-refresh-delay="350" data-repeat="item in data track by item.id">
     <span data-ng-bind-html="item.name | highlight: $select.search"></span><br />
     <small><em>Code:</em> <span data-ng-bind-html="item.code | highlight: $select.search"></span></small><br />
+    <small><em>Remaining Funds:</em> {{item.remainingFunds.display}}</small>
     <small data-ng-if="item.prepay.value == 'Yes'" ><em>Prepay:</em> Yes</small>
   </ui-select-choices>
 </ui-select>

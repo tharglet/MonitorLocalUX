@@ -53,7 +53,7 @@
             <div class="input-group input-group-sm span-9">
               <span class="input-group-addon">{{context.remainingFunds.symbol}}</span>
               <p class="form-control-static" aria-labelledby="remainingFundsLabel"
-              	data-ng-bind="(context.totalFunds.value - context.remainingFunds.value) | number : context.remainingFunds.decimals " ></p>
+              	data-ng-bind="(context.totalFunds.value - context.allocatedFunds.value) | number : context.allocatedFunds.decimals " ></p>
             </div>
           </div>
 
