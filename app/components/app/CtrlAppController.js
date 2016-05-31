@@ -110,6 +110,9 @@ function(app) {
         var multiProp = arguments[2];
         var formName = arguments[3];
         
+        // Blank alter.
+        var blankAlter = arguments[4];
+        
         callingScope.modalEditListItem(template, item, multiProp, function (obj) {
           
           // Add to the list.
@@ -117,7 +120,7 @@ function(app) {
           
           // Dirty the owning form too!
           callingScope[formName].$setDirty();
-        });
+        }, null, blankAlter);
       } else {
         
         var formName = arguments[2];
@@ -148,8 +151,19 @@ function(app) {
         var cbConfirm = arguments[3];
         var cbCancel = arguments[4];
         
+        // Blank alter.
+        var blankAlter = arguments[5];
+        
         // String indicates list item property on the context. We need to create one.
         callingScope.getBlank(item).then(function ( item ) {
+          
+          // First thing is to alter the blank if the callee has supplied
+          // a method to do so. The return value of the method should be the
+          // altered object.
+          if (typeof blankAlter === 'function') {
+            // Call the method supplying the blank (execute in the calling scope).
+            item = blankAlter.call (callingScope, item);
+          }
           
           var modalScope = callingScope.$new();
           

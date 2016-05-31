@@ -35,40 +35,25 @@ define (
         }
       });
       
-      $scope.addCost = function (propertyName, type) {
-        
-        // The resource.
-        var res = $scope.context;
-        
-        // Only add if we can push to it.
-        if (res[propertyName] && typeof res[propertyName].push === 'function' ) {
-          return $scope.getBlank(propertyName).then(function ( blank ) {
-            
-            var typeObj = $scope.paymentTypes[type];
-            
+      $scope.editCost = function(item, type) {
+        if (typeof item === 'string') {
+          this.editListItem ('components/academic-output/partials/_modal_cost_item_edit.html', item, arguments[2], 'academicOutput', function(ci) {
             // Add the type to the "blank"
-            blank.status = typeObj;
-            $scope.context[propertyName].push( blank );
+            ci.status = $scope.paymentTypes[type];
+            ci.academicOutput = { id : $scope.context.id };
+            
+            return ci;
           });
+        } else {
+          this.editListItem ('components/academic-output/partials/_modal_cost_item_edit.html', item, 'academicOutput');
         }
-        
-        return null;
       };
       
-      $scope.editCost = function(item) {
-        var callingScope = this;
-        
-        // Need to remember the original.
-        callingScope.editMultiProperty(item);
-        
-        callingScope.openModal('components/academic-output/partials/_modal_cost_item_edit.html').result.then(function () {
-          callingScope.confirmEditMultiProperty(item);
-          // Dirty the owning form too!
-          callingScope.academicOutput.$setDirty();
-        },function (){
-          callingScope.cancelEditMultiProperty(item);
-        });
-      };      
+      $scope.actualizeCost = function (item) {
+        item.status = $scope.paymentTypes['Actual'];
+        updateCostLists ();
+        $scope.academicOutput.$setDirty();
+      }
     }]);
   }
 );
