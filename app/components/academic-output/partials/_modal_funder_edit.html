@@ -8,8 +8,9 @@
     <div class="form-group">
       <label id="funderLabel" for="funder" class="span-3 control-label" >Funder</label>
       <div class="span-9">
-        <kint-component-lookup name="funder" id="funder" data-object="fund" data-property="funder" data-context-obj="context"
-                               data-context-path="funds.funder" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+        <kint-component-lookup name="funder" id="funder" data-object="filters" data-property="funder"
+        	data-context-obj="context" data-context-path="funds.grant.funder" class="form-control input-sm"
+        	data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
       </div>
     </div>
 
@@ -24,7 +25,7 @@
       <label id="grantLabel" for="grant" class="span-3 control-label" >Grant</label>
       <div class="span-9">
         <kint-component-lookup name="grant" id="grant" data-object="fund" data-property="grant" data-context-obj="context"
-                               data-context-path="funds.grant" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+          data-context-path="funds.grant" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
       </div>
     </div>
 
@@ -39,10 +40,10 @@
 
     <div class="form-group">
       <div class="span-12" >
-        <button type="button" ng-click="$dismiss()" class="btn btn-default btn-sm" >
+        <button type="button" ng-click="$dismiss(fund)" class="btn btn-default btn-sm" >
           Cancel
         </button>
-        <button type="button" ng-click="$close()" class="btn btn-success btn-sm" >
+        <button type="button" ng-click="$close(fund)" class="btn btn-success btn-sm" >
           Save
         </button>
       </div>

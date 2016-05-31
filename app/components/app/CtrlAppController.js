@@ -83,9 +83,8 @@ function(app) {
       setTitle();
       setTrail();
     });
-    
 
-    // open a modal.
+    // Open a modal.
     $scope.openModal = function (template, ctrl) {
       var $mScope = this;
       var conf = {
@@ -100,5 +99,75 @@ function(app) {
       
       return $modal.open(conf);
     };
+
+    // Edit List items.
+    $scope.editListItem = function (template, item) {
+      // Calling scope.
+      var callingScope = this;
+      
+      if (typeof item === 'string') {
+        
+        var multiProp = arguments[2];
+        var formName = arguments[3];
+        
+        callingScope.modalEditListItem(template, item, multiProp, function (obj) {
+          
+          // Add to the list.
+          callingScope.context[item].push( obj );
+          
+          // Dirty the owning form too!
+          callingScope[formName].$setDirty();
+        });
+      } else {
+        
+        var formName = arguments[2];
+        callingScope.editMultiProperty(item);
+        callingScope.modalEditListItem(template, item, function (item) {
+          
+          callingScope.confirmEditMultiProperty(item);
+          // Dirty the owning form too!
+          callingScope[formName].$setDirty();
+        },function (){
+          callingScope.cancelEditMultiProperty(item);
+        });
+      }
+    };
+    
+    // Modal editing of list items.
+    $scope.modalEditListItem = function (modalTmp, item) {
+      
+      // Grab the current scope (from which this method was actually called and not where declared).
+      var callingScope = this;
+      
+      if (typeof item === 'string' && typeof arguments[2] === 'string') {
+        
+        // The scoped name of the variable we are going to edit in the modal.
+        var scopedVarName = arguments[2];
+        
+        // Callbacks at args 3,4
+        var cbConfirm = arguments[3];
+        var cbCancel = arguments[4];
+        
+        // String indicates list item property on the context. We need to create one.
+        callingScope.getBlank(item).then(function ( item ) {
+          
+          var modalScope = callingScope.$new();
+          
+          // Add the blank.
+          modalScope[scopedVarName] = item;
+          
+          // We should now open the modal.
+          modalScope.openModal(modalTmp).result.then(cbConfirm, cbCancel);
+        });
+      } else {
+
+        // Callbacks at args 2,3
+        var cbConfirm = arguments[2];
+        var cbCancel = arguments[3];
+        
+        // Assume editing ob existing object.
+        callingScope.openModal(modalTmp).result.then(cbConfirm, cbCancel);
+      }
+    }
   }]);
 });

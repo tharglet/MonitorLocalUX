@@ -83,7 +83,7 @@ define (
         // Now that we have a copy we can save the copy. Important to copy first so we don't try to copy the copy.
         item.$$original = _orig;
         
-        $scope.setEditFlagFor (item, true);
+        this.setEditFlagFor (item, true);
       };
       
       $scope.setEditFlagFor = function (item, value) {

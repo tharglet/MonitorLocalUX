@@ -17,44 +17,27 @@ define (
       };
 
       $scope.editFunder = function(item) {
-        console.log("Funder edit");
-        var callingScope = this;
-        
-        // Need to remember the original.
-        callingScope.editMultiProperty(item);
-        
-        callingScope.openModal('components/academic-output/partials/_modal_funder_edit.html').result.then(function () {
-          callingScope.confirmEditMultiProperty(item);
-          // Dirty the owning form too!
-          callingScope.academicOutput.$setDirty();
-        },function (){
-          callingScope.cancelEditMultiProperty(item);
-        });
-      };
-
-      $scope.editEvidence = function(item) {
-        console.log("Licence Evidence edit");
-        var callingScope = this;
-        callingScope.openModal('components/academic-output/partials/_modal_evidence_edit.html').result.then(function () {
-          callingScope.confirmEditMultiProperty(item);
-          // Dirty the owning form too!
-          callingScope.academicOutput.$setDirty();
-        },function (){
-          callingScope.cancelEditMultiProperty(item);
-        });
+        if (typeof item === 'string') {
+          this.editListItem ('components/academic-output/partials/_modal_funder_edit.html', item, arguments[1], 'academicOutput');
+        } else {
+          this.editListItem ('components/academic-output/partials/_modal_funder_edit.html', item, 'academicOutput');
+        }
       };
       
+      $scope.editEvidence = function(item) {
+        if (typeof item === 'string') {
+          this.editListItem ('components/academic-output/partials/_modal_evidence_edit.html', item, arguments[1], 'academicOutput');
+        } else {
+          this.editListItem ('components/academic-output/partials/_modal_evidence_edit.html', item, 'academicOutput');
+        }
+      };
 
       $scope.editDeposit = function(item) {
-        console.log("Deposite Edit");
-        var callingScope = this;
-        callingScope.openModal('components/academic-output/partials/_modal_deposit_edit.html').result.then(function () {
-          callingScope.confirmEditMultiProperty(item);
-          // Dirty the owning form too!
-          callingScope.academicOutput.$setDirty();
-        },function (){
-          callingScope.cancelEditMultiProperty(item);
-        });
+        if (typeof item === 'string') {
+          this.editListItem ('components/academic-output/partials/_modal_deposit_edit.html', item, arguments[1], 'academicOutput');
+        } else {
+          this.editListItem ('components/academic-output/partials/_modal_deposit_edit.html', item, 'academicOutput');
+        }
       };
     }]);
   }
