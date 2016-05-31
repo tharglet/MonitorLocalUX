@@ -4,7 +4,9 @@ define (
   ['app'],
   function(app) {
     app.registerController('AOFinanceController', [ '$scope', '$filter', function($scope, $filter) {
-      console.log("Finance Ctrl");
+      
+      // The categories to total.
+      var totalCats = ['grossValue', 'grossValueGBP', 'tax', 'net'];
       
       // The list of payment types.
       $scope.paymentTypes = {};
@@ -13,13 +15,41 @@ define (
           $scope.paymentTypes[item.value] = item;
         });
       });
-      
 
       $scope.costs = {};
+      $scope.totals = {};
       var updateCostLists = function (paymentTypes) {
         paymentTypes = paymentTypes || $scope.paymentTypes;
         angular.forEach (paymentTypes, function (item, index) {
-          $scope.costs[index] = $filter('filter') ($scope.context.academicOutputCosts, { 'status' : item }, true);
+          
+          // First filter the list.
+          var items = $filter('filter') ($scope.context.academicOutputCosts, { 'status' : item }, true);
+          
+          // Calculate the net and increment all the totals..
+          $scope.totals[index] = {};
+          angular.forEach (items, function (row, rowIndex) {
+            row.net = { value: row.grossValueGBP.value - row.tax.value };
+
+            // Totals
+            angular.forEach (totalCats, function (cat) {
+              
+              var val = row[cat].value;
+              if (row.category && row.category.value == 'Refund') {
+                val = -val;
+              }
+              
+              if (rowIndex ===- 0) {
+                // Set rather than increment.
+                $scope.totals[index][cat] = val;
+              } else {
+                // increment.
+                $scope.totals[index][cat] += val;
+              }
+            });
+          });
+          
+          // Set the items after calculating.
+          $scope.costs[index] = items;
         });
       };
       
@@ -29,18 +59,17 @@ define (
           updateCostLists (newValue);
         }
       });
-      $scope.$watchCollection('context.academicOutputCosts', function( newValue, oldValue ) {
+      $scope.$watch('context.academicOutputCosts', function( newValue, oldValue ) {
         if (typeof newValue !== 'undefined') {
           updateCostLists ();
         }
-      });
+      }, true);
       
       $scope.editCost = function(item, type) {
         if (typeof item === 'string') {
           this.editListItem ('components/academic-output/partials/_modal_cost_item_edit.html', item, arguments[2], 'academicOutput', function(ci) {
             // Add the type to the "blank"
             ci.status = $scope.paymentTypes[type];
-            ci.academicOutput = { id : $scope.context.id };
             
             return ci;
           });

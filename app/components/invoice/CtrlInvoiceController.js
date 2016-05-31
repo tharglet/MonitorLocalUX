@@ -4,7 +4,11 @@ define (
   ['app'],
   function(app) {
     app.registerController('InvoiceController', [ '$scope', function($scope) {
-   // The list of payment types.
+      
+      // The categories to total.
+      var totalCats = ['grossValue', 'grossValueGBP', 'tax', 'net'];
+      
+      // The list of payment types.
       $scope.paymentTypes = {};
       $scope.context.componentLookup ("invoiceCosts.status").then(function( rdata ) {
         angular.forEach (rdata.data, function (item) {
@@ -12,37 +16,54 @@ define (
         });
       });
       
-      $scope.addCost = function (propertyName) {
-        
-        // The resource.
-        var res = $scope.context;
-        
-        // Only add if we can push to it.
-        if (res[propertyName] && typeof res[propertyName].push === 'function' ) {
-          return $scope.getBlank(propertyName).then(function ( blank ) {
+      $scope.editCost = function(item) {
+        if (typeof item === 'string') {
+          this.editListItem ('components/invoice/partials/_modal_cost_item_edit.html', item, arguments[1], 'invoice', function(ci) {
             // Add the type to the "blank"
-            blank.status = $scope.paymentTypes['Actual'];
-            $scope.context[propertyName].push( blank );
+            ci.status = $scope.paymentTypes['Actual'];
+            
+            return ci;
           });
+        } else {
+          this.editListItem ('components/invoice/partials/_modal_cost_item_edit.html', item, 'invoice');
         }
-        
-        return null;
       };
       
-      $scope.editCost = function(item) {
-        var callingScope = this;
+      $scope.totals = {};
+      var updateTotals = function () {
         
-        // Need to remember the original.
-        callingScope.editMultiProperty(item);
-        
-        callingScope.openModal('components/invoice/partials/_modal_cost_item_edit.html').result.then(function () {
-          callingScope.confirmEditMultiProperty(item);
-          // Dirty the owning form too!
-          callingScope.invoice.$setDirty();
-        },function (){
-          callingScope.cancelEditMultiProperty(item);
+        // Just need to update the invoice totals.
+        angular.forEach ($scope.context.invoiceCosts, function (row, rowIndex) {
+          
+          // NET value.
+          row.net = { value: row.grossValueGBP.value - row.tax.value };
+
+          // Totals
+          angular.forEach (totalCats, function (cat) {
+            
+            var val = row[cat].value;
+            if (row.category && row.category.value == 'Refund') {
+              val = -val;
+            }
+            
+            if (rowIndex ===- 0) {
+              // Set rather than increment.
+              $scope.totals[cat] = val;
+            } else {
+              // increment.
+              $scope.totals[cat] += val;
+            }
+          });
         });
       };
+      
+
+      // Watch the collection, so we can update the totals.
+      $scope.$watch('context.invoiceCosts', function( newValue, oldValue ) {
+        if (typeof newValue !== 'undefined') {
+          updateTotals();
+        }
+      }, true);
     }]);
   }
 );

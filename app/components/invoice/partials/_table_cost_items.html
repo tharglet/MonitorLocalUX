@@ -19,13 +19,13 @@
     <tr>
       <td></td>
       <td class="info" >Totals</td>
-      <td class="info" >Gross</td>
-      <td class="info" >Gross GBP</td>
-      <td class="info" >Tax</td>
-      <td class="info" >NET</td>
+      <td class="info" >{{(totals['grossValue'] || 0) | number : 2}}</td>
+      <td class="info" >{{(totals['grossValueGBP'] || 0) | number : 2}}</td>
+      <td class="info" >{{(totals['tax'] || 0) | number : 2}}</td>
+      <td class="info" >{{(totals['net'] || 0) | number : 2}}</td>
       <td colspan="2"></td>
       <td>
-        <button type="button" class="btn btn-warning btn-sm" ng-click="addCost('invoiceCosts')" >Add</button>
+        <button type="button" class="btn btn-warning btn-sm" ng-click="editCost('invoiceCosts', 'costItem')" >Add</button>
       </td>
     </tr>
 </table>
