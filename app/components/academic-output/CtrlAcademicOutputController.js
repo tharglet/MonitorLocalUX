@@ -6,7 +6,6 @@ define (
     app.registerController('AcademicOutputController', [ '$scope', function($scope) {
 
       $scope.lookupDOI = function() {
-        console.log("lookupDOI");
         var callingScope = this;
         return callingScope.openModal('components/academic-output/partials/_modal_doi.html', 'DOIValidationController').result.then(function (res) {
           // Merge into the context.
@@ -17,10 +16,23 @@ define (
       };
 
       $scope.editFunder = function(item) {
+        var callingScope = this;
         if (typeof item === 'string') {
-          this.editListItem ('components/academic-output/partials/_modal_funder_edit.html', item, arguments[1], 'academicOutput');
+          callingScope.editListItem ('components/academic-output/partials/_modal_funder_edit.html', item, arguments[1], 'academicOutput', function(newFund) {
+
+            // Total the percentages.
+            var remaining = 100.00;
+            angular.forEach (callingScope.context.funds, function (fund) {
+              remaining -= fund.apcCharge;
+            });
+            
+            // Set the fund percentage.
+            newFund.apcCharge = remaining;
+            
+            return newFund;
+          });
         } else {
-          this.editListItem ('components/academic-output/partials/_modal_funder_edit.html', item, 'academicOutput');
+          callingScope.editListItem ('components/academic-output/partials/_modal_funder_edit.html', item, 'academicOutput');
         }
       };
       

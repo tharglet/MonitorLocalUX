@@ -32,9 +32,8 @@
     <div class="form-group">
       <label id="apcChargeLabel" for="apcCharge" class="span-3 control-label" >% of research funding</label>
       <div class="span-3 inline">
-        <input type="text" class="form-control" id="apcCharge" name="apcCharge" placeholder="APC Charge" aria-labelledby="apcChargeLabel"
-               data-ng-model="fund.apcCharge" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-               data-kint-ui-input-feedback />
+        <input type="number" class="form-control" id="apcCharge" name="apcCharge"
+          aria-labelledby="apcChargeLabel" data-ng-model="fund.apcCharge" step="0.01" min="0.00" max="100.00" />
       </div>
     </div>
 
