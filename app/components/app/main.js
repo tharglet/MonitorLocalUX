@@ -225,6 +225,17 @@ define(
             controller: 'AppController',
           }
         },
+        resolve: {
+          applicationSettings: ['$http', 'appConfig', function ($http, appConfig) {
+            return $http({
+              method: 'GET',
+              url: appConfig.backend + '/application/settings',
+              headers: {
+                'Accept': 'application/json'
+              },
+            });
+          }]
+        }
       });
 
       $stateProvider.state('app.dash', {

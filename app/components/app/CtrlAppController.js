@@ -3,8 +3,20 @@
 define (
 ['app','auth/SvcUserService'],
 function(app) {
-  return  app.registerController ('AppController', ['$rootScope', '$scope', '$state', '$uibModal', function ($rootScope, $scope, $stateProvider, $modal) {
+  return app.registerController ('AppController', ['$rootScope', '$scope', '$state', '$uibModal', 'applicationSettings', function ($rootScope, $scope, $stateProvider, $modal, applicationSettings) {
 
+    // Add the application to the rootScope within the app.
+    
+    if (applicationSettings && applicationSettings.status > 199 && applicationSettings.status < 300) {
+      // Success. Grab the data and save it.
+      $rootScope.application = {
+        settings : applicationSettings.data
+      };
+    }
+    
+    console.log ("Set application settings to :");
+    console.log ($rootScope.application);
+    
     /**
      * Method to set the title.
      */
