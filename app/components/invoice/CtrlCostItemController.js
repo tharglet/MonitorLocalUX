@@ -3,9 +3,7 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('CostItemController', [ '$scope', '$filter', function($scope, $filter) {
-      
-      console.log("Cost Item Controller");
+    app.registerController('CostItemController', [ '$scope', function($scope) {
       
       // Controller for CostItem.
       $scope.updateBaseCurrencyValue = function () {
@@ -14,7 +12,7 @@ define (
         var rate = $scope.application.settings.currency.rates[$scope.costItem.currency].rate;
         
         // Update the value of GBP
-        $scope.costItem.grossValueGBP.value = parseFloat( $filter('number')( (rate * $scope.costItem.grossValue.value), $scope.costItem.grossValueGBP.decimals));
+        $scope.costItem.grossValueGBP.value = parseFloat((rate * $scope.costItem.grossValue.value).toFixed($scope.costItem.grossValueGBP.decimals));
       };
     }]);
   }
