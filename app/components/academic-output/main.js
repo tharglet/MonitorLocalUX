@@ -129,6 +129,7 @@ define(
         url:          '/finance',
         deps: [
           'components/academic-output/CtrlAOFinanceController.js',
+          'components/invoice/CtrlCostItemController.js'
         ],
         views: {
           "": {

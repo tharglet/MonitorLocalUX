@@ -13,12 +13,18 @@
     <div class="form-group">
       <label class="span-3 control-label" id="currencyLabel" for="currency">Currency</label>
       <div class="span-9">
-        <ui-select data-ng-model="costItem.currency" class="form-control" id="currency" name="currency" aria-labelledby="currencyLabel" >
+        <ui-select on-select="updateBaseCurrencyValue()" data-ng-model="costItem.currency" class="form-control" id="currency" name="currency" aria-labelledby="currencyLabel" >
           <ui-select-match>
             <span data-ng-bind="$select.selected"></span>
+            <span data-ng-if="$select.selected !== application.settings.currency.base" class="text-muted" >
+              (= {{application.settings.currency.rates[$select.selected].rate}} {{application.settings.currency.rates[$select.selected].toCurr}})
+            </span>
           </ui-select-match>
           <ui-select-choices data-repeat="item in application.settings.currency.all | filter: $select.search ">
             <span data-ng-bind-html="item | highlight: $select.search "></span>
+            <span data-ng-if="item !== application.settings.currency.base" class="text-muted" >
+              (= {{application.settings.currency.rates[item].rate}} {{application.settings.currency.rates[item].toCurr}})
+            </span>
           </ui-select-choices>
         </ui-select>
       </div>
@@ -27,24 +33,22 @@
       <label class="span-3 control-label" id="grossValueLabel" for="grossValue">Gross Value</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="grossValue" name="grossValue" placeholder="0.00" aria-labelledby="grossValueLabel" 
-              data-ng-model="costItem.grossValue.value" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-               step="0.01" min="0" data-kint-ui-input-feedback required />
+          data-ng-change="updateBaseCurrencyValue()"
+          data-ng-model="costItem.grossValue.value" step="0.01" min="0" required />
       </div>
     </div>
     <div class="form-group">
       <label class="span-3 control-label" id="grossValueGBPLabel" for="grossValueGBP">Gross Value GBP</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="grossValueGBP" name="grossValueGBP" placeholder="0.00" aria-labelledby="grossValueGBPLabel" 
-              data-ng-model="costItem.grossValueGBP.value" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-               step="0.01" min="0" data-kint-ui-input-feedback required />
+          data-ng-model="costItem.grossValueGBP.value" step="0.01" min="0" data-ng-disabled="costItem.currency === application.settings.currency.base" required />
       </div>
     </div>
     <div class="form-group">
       <label class="span-3 control-label" id="taxLabel" for="tax">Tax</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="tax" name="tax" placeholder="0.00" aria-labelledby="taxLabel" 
-              data-ng-model="costItem.tax.value" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-               step="0.01" min="0" data-kint-ui-input-feedback required />
+          data-ng-model="costItem.tax.value" step="0.01" min="0" required />
       </div>
     </div>
     <div class="form-group" data-ng-if="costItem.status.value === 'Actual'" >

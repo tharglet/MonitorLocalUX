@@ -23,9 +23,9 @@ define (
             ci.status = $scope.paymentTypes['Actual'];
             
             return ci;
-          });
+          }, 'CostItemController');
         } else {
-          this.editListItem ('components/invoice/partials/_modal_cost_item_edit.html', item, 'invoice');
+          this.editListItem ('components/invoice/partials/_modal_cost_item_edit.html', item, 'invoice', 'CostItemController');
         }
       };
       

@@ -125,6 +125,9 @@ function(app) {
         // Blank alter.
         var blankAlter = arguments[4];
         
+        // Modal controller.
+        var modalCtrl = arguments[5];
+        
         callingScope.modalEditListItem(template, item, multiProp, function (obj) {
           
           // Add to the list.
@@ -132,10 +135,14 @@ function(app) {
           
           // Dirty the owning form too!
           callingScope[formName].$setDirty();
-        }, null, blankAlter);
+        }, null, blankAlter, modalCtrl);
       } else {
         
         var formName = arguments[2];
+        
+        // Modal controller.
+        var modalCtrl = arguments[3];
+        
         callingScope.editMultiProperty(item);
         callingScope.modalEditListItem(template, item, function (item) {
           
@@ -144,7 +151,7 @@ function(app) {
           callingScope[formName].$setDirty();
         },function (){
           callingScope.cancelEditMultiProperty(item);
-        });
+        }, modalCtrl);
       }
     };
     
@@ -166,6 +173,8 @@ function(app) {
         // Blank alter.
         var blankAlter = arguments[5];
         
+        var modalCtrl = arguments[6];
+        
         // String indicates list item property on the context. We need to create one.
         callingScope.getBlank(item).then(function ( item ) {
           
@@ -183,16 +192,18 @@ function(app) {
           modalScope[scopedVarName] = item;
           
           // We should now open the modal.
-          modalScope.openModal(modalTmp).result.then(cbConfirm, cbCancel);
+          modalScope.openModal(modalTmp, modalCtrl).result.then(cbConfirm, cbCancel);
         });
       } else {
 
         // Callbacks at args 2,3
         var cbConfirm = arguments[2];
         var cbCancel = arguments[3];
+
+        var modalCtrl = arguments[4];
         
         // Assume editing ob existing object.
-        callingScope.openModal(modalTmp).result.then(cbConfirm, cbCancel);
+        callingScope.openModal(modalTmp, modalCtrl).result.then(cbConfirm, cbCancel);
       }
     }
   }]);

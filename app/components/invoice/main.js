@@ -38,6 +38,7 @@ define(
         url: '/:id',
         deps: [
           'components/invoice/CtrlInvoiceController.js',
+          'components/invoice/CtrlCostItemController.js'
         ],
         views: {
           "@app": {

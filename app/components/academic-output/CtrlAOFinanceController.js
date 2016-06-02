@@ -72,9 +72,9 @@ define (
             ci.status = $scope.paymentTypes[type];
             
             return ci;
-          });
+          }, 'CostItemController');
         } else {
-          this.editListItem ('components/academic-output/partials/_modal_cost_item_edit.html', item, 'academicOutput');
+          this.editListItem ('components/academic-output/partials/_modal_cost_item_edit.html', item, 'academicOutput', 'CostItemController');
         }
       };
       
