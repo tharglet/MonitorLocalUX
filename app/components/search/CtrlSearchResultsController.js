@@ -4,15 +4,20 @@ define (
   ['app'],
   function(app) {
     app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', function($scope, $state, resource) {
-      console.log ("SearchResultsController");
+      var stateStringCache = {};
       
       var cols = [
         { 'data' : 'id', 'title': "#" },
         { 
           'data'        : 'name',
           'title'       : "Name",
-          'createdCell' : function (nTd, sData, oData, iRow, iCol) {
-            $(nTd).html("<a href='" + $state.href($state.current.name + ".view", {id: oData['id']}, {inherit: true}) + "'>"+sData+"</a>");
+          'render'    : function ( sData, type, oData, meta ) {
+            if (type === 'display') {
+              var val = "<a href='" + $state.href($state.current.name + ".view", {id: oData['id']}, {inherit: true}) + "'>"+sData+"</a>";
+              return val;
+            } else {
+              return sData;
+            }
           }
         }
       ];
@@ -32,15 +37,45 @@ define (
         });
       }
       
+      var getDTKey = function () {
+     // Create a key for the state settings for the table.
+        var s = $state.current;
+        
+        // Grab from cache.
+        var key = stateStringCache[s.name];
+        if (typeof key === 'undefined') {
+          key = s.name;
+          
+          while (typeof s['parent'] !== 'undefined') {
+            s = $state.get(s.parent);
+            key += "-" + s.name;
+          }
+          stateStringCache[$state.current.name] = key;
+        }
+        
+        return key;
+      }
+      
       // Create a table container, and add to the DOM first.
       var table = $("<table class='table table-striped table-hover' width='100%' />");
       $('.search-results' ).html("").append(table);
       table.dataTable({
         pagingType: "full_numbers",
+        buttons: [
+          'colvis'
+        ],
         processing: true,
         serverSide: true,
         searching: false,
+        responsive: true,
+        colReorder: true,
         stateSave: true,
+        stateSaveCallback: function(settings,data) {
+          localStorage.setItem( 'SearchTable_' + getDTKey(), JSON.stringify(data) );
+        },
+        stateLoadCallback: function(settings) {
+          return JSON.parse( localStorage.getItem( 'SearchTable_' + getDTKey() ) );
+        },
         localStorage: 60 * 60 * 72,
         columns: cols,
         ajax : function (data, callback, settings) {
@@ -50,14 +85,6 @@ define (
             callback(response);
           });
         },
-        buttons: [
-          {
-            text: 'Add New',
-            action: function ( e, dt, node, config ) {
-              $state.go(".view", {id: 'create'}, {inherit: true});
-            }
-          }
-        ]
       });
       ;
     }]);

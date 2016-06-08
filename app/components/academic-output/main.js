@@ -40,7 +40,7 @@ define(
                     ));
                   });
                   
-                  val = list.html();
+                  val = $('<div />').append(list).html();
                 }
                 
                 return val;

@@ -37,13 +37,17 @@ requirejs.config({
     "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks",
     "angular-bootstrap": "../bower_components/angular-bootstrap/ui-bootstrap-tpls",
     "angular-messages": "../bower_components/angular-messages/angular-messages",
+
     "datatables.net-buttons": "../bower_components/datatables.net-buttons/js/dataTables.buttons",
-    "buttons.colVis": "../bower_components/datatables.net-buttons/js/buttons.colVis",
     "datatables.net-buttons-bs": "../bower_components/datatables.net-buttons-bs/js/buttons.bootstrap",
-    "buttons.html5": "../bower_components/datatables.net-buttons/js/buttons.html5",
-    "buttons.flash": "../bower_components/datatables.net-buttons/js/buttons.flash",
-    "buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print",
-    "dataTables.buttons": "../bower_components/datatables.net-buttons/js/dataTables.buttons",
+    "datatables.net-buttons.colVis": "../bower_components/datatables.net-buttons/js/buttons.colVis",
+    "datatables.net-buttons.html5": "../bower_components/datatables.net-buttons/js/buttons.html5",
+    "datatables.net-buttons.flash": "../bower_components/datatables.net-buttons/js/buttons.flash",
+    "datatables.net-buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print",
+    "datatables.net-colreorder": "../bower_components/datatables.net-colreorder/js/dataTables.colReorder",
+    "datatables.net-responsive": "../bower_components/datatables.net-responsive/js/dataTables.responsive",
+    "datatables.net-responsive-bs": "../bower_components/datatables.net-responsive-bs/js/responsive.bootstrap",
+    
     "angular-datetime": "../bower_components/angular-datetime/dist/datetime",
     "eonasdan-bootstrap-datetimepicker": "../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min",
     moment: "../bower_components/moment/min/moment.min",
@@ -219,6 +223,25 @@ requirejs.config({
       deps: [
         "datatables.net-bs",
         "datatables.net-buttons",
+        "jquery"
+      ]
+    },
+    "datatables.net-colreorder": {
+      deps: [
+        "datatables.net",
+        "jquery"
+      ]
+    },
+    "datatables.net-responsive": {
+      deps: [
+        "datatables.net",
+        "jquery"
+      ]
+    },
+    "datatables.net-responsive-bs": {
+      deps: [
+        "datatables.net-bs",
+        "datatables.net-responsive",
         "jquery"
       ]
     },

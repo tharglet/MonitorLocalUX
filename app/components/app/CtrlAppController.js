@@ -14,9 +14,6 @@ function(app) {
       };
     }
     
-    console.log ("Set application settings to :");
-    console.log ($rootScope.application);
-    
     /**
      * Method to set the title.
      */
