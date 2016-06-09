@@ -1,3 +1,26 @@
+.dt-buttons {
+  .btn {
+    margin-right: 5px;
+  }
+}
+
+.dt-button-groups {
+  @extend .row;
+  .primary-buttons {
+    float: left;
+  }
+  .export-buttons {
+    float: right;
+  }
+  margin: 5px 0 10px 0;
+}
+
+.dataTables_length {
+  clear:left;
+  float:left;
+  margin:2px 0
+}
+
 .dataTables_paginate {
   .pagination > li {
     & > a, 

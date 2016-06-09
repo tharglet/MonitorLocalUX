@@ -38,7 +38,7 @@ define (
       }
       
       var getDTKey = function () {
-     // Create a key for the state settings for the table.
+        // Create a key for the state settings for the table.
         var s = $state.current;
         
         // Grab from cache.
@@ -59,17 +59,30 @@ define (
       // Create a table container, and add to the DOM first.
       var table = $("<table class='table table-striped table-hover' width='100%' />");
       $('.search-results' ).html("").append(table);
-      table.dataTable({
+      table = table.DataTable({
         pagingType: "full_numbers",
         buttons: [
-          'colvis'
+          {
+            text: '<i class="glyphicon glyphicon-plus" ></i> Add',
+            action: function ( e, dt, node, config ) {
+              $state.go(".view", {id: 'create'}, {inherit: true});
+            },
+            className: 'btn-xs btn-primary'
+          },
+          { 
+            extend: 'colvis',
+            text: '<i class="glyphicon glyphicon-eye-close" ></i> Show/Hide Columns',
+            className: 'btn-xs'
+          },
         ],
+        dom: '<"dt-button-groups"<"primary-buttons"B><"export-buttons">><"controls"lp>tip',
         processing: true,
         serverSide: true,
         searching: false,
         responsive: true,
         colReorder: true,
         stateSave: true,
+        fixedHeader: true,
         stateSaveCallback: function(settings,data) {
           localStorage.setItem( 'SearchTable_' + getDTKey(), JSON.stringify(data) );
         },
@@ -86,7 +99,20 @@ define (
           });
         },
       });
+
+      new $.fn.dataTable.Buttons(table, {
+        buttons : [{
+          extend: 'csv',
+          className: 'btn-xs btn-info'
+        }]
+      });
+      
+      // Add exports.
+      $('.export-buttons', table.table().container())
+        .html("<span class='info' >Export as:&nbsp;</span>")
+        .append(table.buttons( 1, null ).container())
       ;
+      
     }]);
   }
 );

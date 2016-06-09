@@ -47,6 +47,7 @@ requirejs.config({
     "datatables.net-colreorder": "../bower_components/datatables.net-colreorder/js/dataTables.colReorder",
     "datatables.net-responsive": "../bower_components/datatables.net-responsive/js/dataTables.responsive",
     "datatables.net-responsive-bs": "../bower_components/datatables.net-responsive-bs/js/responsive.bootstrap",
+    "datatables.net-fixedheader": "../bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader",
     
     "angular-datetime": "../bower_components/angular-datetime/dist/datetime",
     "eonasdan-bootstrap-datetimepicker": "../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min",
@@ -226,6 +227,26 @@ requirejs.config({
         "jquery"
       ]
     },
+    "datatables.net-buttons.colVis": {
+      deps: [
+        "datatables.net-buttons",
+      ]
+    },
+    "datatables.net-buttons.html5": {
+      deps: [
+        "datatables.net-buttons",
+      ]
+    },
+    "datatables.net-buttons.flash": {
+      deps: [
+        "datatables.net-buttons",
+      ]
+    },
+    "datatables.net-buttons.print": {
+      deps: [
+        "datatables.net-buttons",
+      ]
+    },
     "datatables.net-colreorder": {
       deps: [
         "datatables.net",
@@ -242,6 +263,12 @@ requirejs.config({
       deps: [
         "datatables.net-bs",
         "datatables.net-responsive",
+        "jquery"
+      ]
+    },
+    "datatables.net-fixedheader": {
+      deps: [
+        "datatables.net",
         "jquery"
       ]
     },

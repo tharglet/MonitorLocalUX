@@ -5,6 +5,9 @@ define(
    'angular-ui-router',
    'datatables.net-bs',
    'datatables.net-buttons-bs',
+   'datatables.net-buttons.colVis',
+   'datatables.net-buttons.html5',
+   'datatables.net-fixedheader',
    'datatables.net-colreorder',
    'datatables.net-responsive-bs',
    'grails'

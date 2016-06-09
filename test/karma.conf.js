@@ -66,6 +66,7 @@ module.exports = function(config) {
       'bower_components/datatables.net-colreorder/js/dataTables.colReorder.js',
       'bower_components/datatables.net-responsive/js/dataTables.responsive.js',
       'bower_components/datatables.net-responsive-bs/js/responsive.bootstrap.js',
+      'bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
