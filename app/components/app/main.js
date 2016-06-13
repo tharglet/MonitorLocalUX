@@ -40,7 +40,7 @@ define(
     ])
 
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
-    .constant( 'NO_AUTH', true )
+    .constant( 'NO_AUTH', false )
     .constant( "appConfig", conf )
 
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'appConfig', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, appConf) {
@@ -195,13 +195,13 @@ define(
 
       // See OAuth2 RFC:: http://tools.ietf.org/html/rfc6749
       $authProvider.oauth2({
-        name: 'sob',  // K-int Shib-OAuth2 GW
+        name: 'Knowint Shib Auth Bridge',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
         url: 'http://localhost:8080/jwt/callback/sob',
         // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
-        clientId: 'monitorLocalDev',
+        clientId: 'monitor-local-svc',
         // OAuth2 Endpoint
-        authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/oauth/authorize',
+        authorizationEndpoint: 'https://authsvc.k-int.com/uaa/login',
         // responseType:'token',
         responseType:'code',
         requiredUrlParams: ['scope','responseType'],

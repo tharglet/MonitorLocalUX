@@ -22,7 +22,7 @@ define(
           "components/search/CtrlSearchResultsController.js"
         ],
         data: {
-          requirelogin:true,
+          requirelogin:false,
         },
         views: {
           // Unnamed view at app state level...
