@@ -201,7 +201,7 @@ define(
         // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
         clientId: 'monitor-local-svc',
         // OAuth2 Endpoint
-        authorizationEndpoint: 'https://authsvc.k-int.com/uaa/login',
+        authorizationEndpoint: 'https://authsvc.k-int.com/uaa/oauth/authorize',
         // responseType:'token',
         responseType:'code',
         requiredUrlParams: ['scope','responseType'],
