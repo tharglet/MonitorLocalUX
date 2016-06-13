@@ -194,6 +194,8 @@ define(
       });
 
       // See OAuth2 RFC:: http://tools.ietf.org/html/rfc6749
+      // See also -- K-Int internal documentaiton::
+      // https://docs.google.com/document/d/18BOD9i4-Fiy-2dWgsh9SKwsUOgjyseGTGbbTk8Yf6Fc/edit
       $authProvider.oauth2({
         name: 'Knowint Shib Auth Bridge',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
