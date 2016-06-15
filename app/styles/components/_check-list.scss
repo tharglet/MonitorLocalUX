@@ -1,0 +1,25 @@
+ul.check-list {
+  @extend .list-group;
+  li {
+    @extend .list-group-item;
+    @extend .list-group-item-danger;
+    @extend .glyphicon-remove;
+    
+    border-color: $state-danger-border;
+    
+    &::before {
+      padding-right: 1em;
+      font-family: "Glyphicons Halflings";
+    }
+    
+    &.disabled {
+     border-color:  $list-group-border;
+    }
+    
+    &.checked {
+     @extend .list-group-item-success;
+     @extend .glyphicon-ok;
+     border-color: $state-success-border;
+    }
+  }
+}

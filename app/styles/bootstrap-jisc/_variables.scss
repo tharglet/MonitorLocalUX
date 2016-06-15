@@ -75,10 +75,32 @@ $pagination-disabled-color: $gray-light;
 
 // Brand colours
 // $brand-primary: $jSubMenu;
-// $brand-success: $success-bg;
-// $brand-info: $info-bg;
-// $brand-warning: $warning-bg;
-// $brand-danger: $danger-bg;
+$brand-info: $info-bg;
+$brand-warning: $warning-bg;
+$brand-danger:  $danger-bg;
+$brand-success:  $success-bg;
+
+$btn-info-color:  $info-text;
+$btn-warning-color:  $warning-text;
+$btn-danger-color:  $danger-text;
+$btn-success-color:  $success-text;
+
+$state-info-text: #000;
+$state-info-bg: $brand-info;
+$state-info-border:  $info-border;
+
+$state-success-text: $success-text;
+$state-success-bg: $brand-success;
+$state-success-border:  $success-border;
+
+$state-danger-text: $danger-text;
+$state-danger-bg: $brand-danger;
+$state-danger-border:  $danger-border;
+
+$state-success-text: $success-text;
+$state-success-bg: $brand-success;
+$state-success-border:  $success-border;
+
 
 // Remove the border radius.
 $border-radius-base: 0;

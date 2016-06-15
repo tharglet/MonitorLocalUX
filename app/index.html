@@ -35,7 +35,7 @@
 
     <title>{{$state.current.data.title}}</title>
   </head>
-  <body class="{{bodyClasses ? bodyClasses : ''}}" >
+  <body class="{{bodyClasses ? bodyClasses : ''}} with-sidebar" data-ng-cloak>
     <header class="site-header">
       <div class="masthead" role="banner" >
         <div class="inner">
@@ -48,6 +48,9 @@
           <div class="title-nav">
             <a data-ui-sref="app.dash" >Monitor Local <span class="badge">alpha</span></a>
           </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><button type="button" class="btn btn-sm navbar-btn side-panel-button" title="Show side panel" ><i class="glyphicon glyphicon-tasks" ></i></button></li>
+          </ul>
         </div>
       </div>
     </header>
@@ -80,6 +83,24 @@
       <!--/ main -->
     </div>
     <!--/ .inner -->
+    <asside id="side-panel">
+      <div class="inner" >
+        <div class="content" >
+          <div class="controls" >
+            <button type="button" class="btn btn-primary btn-sm side-panel-button" title="Close" ><i class="glyphicon glyphicon-remove" ></i></button>
+          </div>
+          <h2>Workflow</h2>
+          <h3>People</h3>
+          <ul class="check-list">
+             <li class="" >Item one</li>
+             <li class="checked" >Item two</li>
+             <li>Item three</li>
+             <li>Item four</li>
+             <li>Item five</li>
+           </ul>
+         </div>
+      </div>
+    </asside>
     <div id="notifications" ></div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
