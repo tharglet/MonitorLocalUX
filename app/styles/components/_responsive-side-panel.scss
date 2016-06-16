@@ -19,6 +19,7 @@ $side-panel-cols-lg: 3;
       position: absolute;
       top: $grid-gutter-width * 0.75;
       right: ($grid-gutter-width * 1.4);
+      margin-right:10px;
       z-index:10000000;
     }
     
@@ -26,7 +27,9 @@ $side-panel-cols-lg: 3;
        height: 100%;
       .content {
         height: 100%;
-        overflow-y: auto;
+        overflow-y: scroll;
+        padding-left: $grid-gutter-width / 2;
+        padding-right: $grid-gutter-width / 2;
         
         h2 {
           margin-top: $grid-gutter-width * 1.5;

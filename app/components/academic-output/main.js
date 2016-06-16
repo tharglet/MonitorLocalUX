@@ -85,11 +85,16 @@ define(
         url: '/:id',
         deps: [
           'components/academic-output/CtrlAcademicOutputController.js',
+          'components/academic-output/CtrlAOSidebarController.js'
         ],
         views: {
           "@app": {
             templateUrl: 'components/academic-output/partials/view.html',
             controller: 'GrailsEditController'
+          },
+          "sidebar@": {
+            templateUrl: 'components/academic-output/partials/_sidebar.html',
+            controller: 'AOSidebarController'
           },
         },
         data : {

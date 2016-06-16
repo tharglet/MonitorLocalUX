@@ -9,28 +9,28 @@
     <!-- Include requirejs -->
     <script src="bower_components/requirejs/require.js"></script>
 
-      <!-- build:css({.,app}) styles/vendor.css -->
-      <link rel="stylesheet" href="styles/select2.css">
-      <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
-      <link rel="stylesheet" href="bower_components/datatables.net-buttons-bs/css/buttons.bootstrap.css">
-      <link rel="stylesheet" href="bower_components/datatables.net-colreorder-bs/css/colReorder.bootstrap.css">
-      <link rel="stylesheet" href="bower_components/datatables.net-responsive-bs/css/responsive.bootstrap.css">
-      <link rel="stylesheet" href="bower_components/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css">
-      <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css">
-      <link rel="stylesheet" href="bower_components/ui-select/dist/select.min.css">
-      <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.css">
-      <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.buttons.css">
-      <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.history.css">
-      <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.mobile.css">
+    <!-- build:css({.,app}) styles/vendor.css -->
+    <link rel="stylesheet" href="styles/select2.css">
+    <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="bower_components/datatables.net-buttons-bs/css/buttons.bootstrap.css">
+    <link rel="stylesheet" href="bower_components/datatables.net-colreorder-bs/css/colReorder.bootstrap.css">
+    <link rel="stylesheet" href="bower_components/datatables.net-responsive-bs/css/responsive.bootstrap.css">
+    <link rel="stylesheet" href="bower_components/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css">
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css">
+    <link rel="stylesheet" href="bower_components/ui-select/dist/select.min.css">
+    <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.css">
+    <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.buttons.css">
+    <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.history.css">
+    <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.mobile.css">
     <!-- endbuild -->
 
     <!-- build:css(.tmp) styles/app.css -->
-      <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-      <script src="scripts/rconfig.js"></script>
-      <script src="scripts/application.js"></script>
+    <script src="scripts/rconfig.js"></script>
+    <script src="scripts/application.js"></script>
     <!-- endbuild -->
 
     <title>{{$state.current.data.title}}</title>
@@ -39,17 +39,17 @@
     <header class="site-header">
       <div class="masthead" role="banner" >
         <div class="inner">
-          <a class="visuallyhidden" href="#main" tabindex="1" target="_self" >
-            <span>Skip to main content</span>
-          </a>
-          <a class="logo" href="//jisc.ac.uk">
-            <img alt="Jisc logo" src="images/jisc-logo.png">
-          </a>
+          <a class="visuallyhidden" href="#main" tabindex="1" target="_self" > <span>Skip to main content</span> </a>
+          <a class="logo" href="//jisc.ac.uk"> <img alt="Jisc logo" src="images/jisc-logo.png"> </a>
           <div class="title-nav">
             <a data-ui-sref="app.dash" >Monitor Local <span class="badge">alpha</span></a>
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><button type="button" class="btn btn-sm navbar-btn side-panel-button" title="Show side panel" ><i class="glyphicon glyphicon-tasks" ></i></button></li>
+            <li>
+              <button type="button" class="btn btn-sm navbar-btn side-panel-button" title="Show side panel" >
+                <i class="glyphicon glyphicon-tasks" ></i>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -58,26 +58,39 @@
       <asside class="side-nav" >
         <nav role="navigation" >
           <ul>
-            <li data-ui-view="ao-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.academicOutput">Academic Output</a></li>
-            <li data-ui-view="org-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.organisation">Organisation</a></li>
-            <li data-ui-view="invoice-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.invoice">Invoice</a></li>
-            <li data-ui-view="person-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.person">Person</a></li>
-            <li data-ui-view="grant-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.grant">Grant</a></li>
-            <li data-ui-view="budget-nav" data-ui-sref-active-eq="active" class="parent"><a data-ui-sref="app.budget">Budget</a></li>
+            <li data-ui-view="ao-nav" data-ui-sref-active-eq="active" class="parent">
+              <a data-ui-sref="app.academicOutput">Academic Output</a>
+            </li>
+            <li data-ui-view="org-nav" data-ui-sref-active-eq="active" class="parent">
+              <a data-ui-sref="app.organisation">Organisation</a>
+            </li>
+            <li data-ui-view="invoice-nav" data-ui-sref-active-eq="active" class="parent">
+              <a data-ui-sref="app.invoice">Invoice</a>
+            </li>
+            <li data-ui-view="person-nav" data-ui-sref-active-eq="active" class="parent">
+              <a data-ui-sref="app.person">Person</a>
+            </li>
+            <li data-ui-view="grant-nav" data-ui-sref-active-eq="active" class="parent">
+              <a data-ui-sref="app.grant">Grant</a>
+            </li>
+            <li data-ui-view="budget-nav" data-ui-sref-active-eq="active" class="parent">
+              <a data-ui-sref="app.budget">Budget</a>
+            </li>
           </ul>
         </nav>
       </asside>
-      <div class="crumb-wrapper" data-ui-view='breadcrumb' role="navigation" ><ol class="breadcrumb" >
-        <li data-ng-repeat="(index, crumb) in crumb_trail" data-ng-switch="crumb.uri" data-ng-class="{active: (index == (crumb_trail.length -1))}" >
-          <span data-ng-switch-when="undefined" title="{{crumb.title}}">{{crumb.title}}</span>
-          <a data-ng-switch-default href="{{crumb.uri}}" title="{{crumb.title}}" >{{crumb.title}}</a>
-        </li>
-      </ol></div>
+      <div class="crumb-wrapper" data-ui-view='breadcrumb' role="navigation" >
+        <ol class="breadcrumb" >
+          <li data-ng-repeat="(index, crumb) in crumb_trail" data-ng-switch="crumb.uri" data-ng-class="{active: (index == (crumb_trail.length -1))}" >
+            <span data-ng-switch-when="undefined" title="{{crumb.title}}">{{crumb.title}}</span>
+            <a data-ng-switch-default href="{{crumb.uri}}" title="{{crumb.title}}" >{{crumb.title}}</a>
+          </li>
+        </ol>
+      </div>
       <main role="main" id="main">
         <h1>{{title}}<span data-ng-if="!secondaryTitle && subTitle">: <small>{{subTitle}}</small></span></h1>
         <h2 data-ng-if="secondaryTitle" >{{secondaryTitle}}<span data-ng-if="subTitle">: <small>{{subTitle}}</small></span></h2>
-        <div class="inner" data-ui-view>
-        </div>
+        <div class="inner" data-ui-view></div>
         <!-- .inner -->
       </main>
       <!--/ main -->
@@ -85,26 +98,23 @@
     <!--/ .inner -->
     <asside id="side-panel">
       <div class="inner" >
-        <div class="content" >
-          <div class="controls" >
-            <button type="button" class="btn btn-primary btn-sm side-panel-button" title="Close" ><i class="glyphicon glyphicon-remove" ></i></button>
-          </div>
-          <h2>Workflow</h2>
-          <h3>People</h3>
-          <ul class="check-list">
-             <li class="" >Item one</li>
-             <li class="checked" >Item two</li>
-             <li>Item three</li>
-             <li>Item four</li>
-             <li>Item five</li>
-           </ul>
-         </div>
+        <div class="controls" >
+          <button type="button" class="btn btn-primary btn-sm side-panel-button" title="Close" >
+            <i class="glyphicon glyphicon-remove" ></i>
+          </button>
+        </div>
+        <div class="content" data-ui-view="sidebar" >
+          <h2>Contextual Sidebar</h2>
+        </div>
       </div>
     </asside>
+    <!--/ sidebar -->
     <div id="notifications" ></div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
-        <p class="navbar-text navbar-right">Please provide feedback about Monitor Local at: <a href="https://goo.gl/9FbX9l" class="navbar-link">https://goo.gl/9FbX9l</a></p>
+        <p class="navbar-text navbar-right">
+          Please provide feedback about Monitor Local at: <a href="https://goo.gl/9FbX9l" class="navbar-link">https://goo.gl/9FbX9l</a>
+        </p>
       </div>
     </nav>
   </body>
