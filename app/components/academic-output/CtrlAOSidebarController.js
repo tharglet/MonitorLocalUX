@@ -49,10 +49,11 @@ define (
       }, 500);
       
       $scope.$watchGroup(
-        ['context.name','context.publicationRoute', 'context.apcFundingApproval'], refreshRules
+        ['context.name','context.publicationRoute', 'context.publicationTitle', 'context.apcFundingApproval'], refreshRules
       );
       $scope.$watchCollection('context.identifiers', refreshRules);
       $scope.$watchCollection('context.academicOutputCosts', refreshRules);
+      $scope.$watchCollection('context.funds', refreshRules);
     }]);
   }
 );

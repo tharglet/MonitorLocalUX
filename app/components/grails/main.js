@@ -101,7 +101,7 @@ define (
 //    }])
   ;
     
-  //angularjs debounce
+  // Debounce method for ensuring we only run a method once.
   ngGr.factory('debounce', function($timeout) {
     return function(callback, interval) {
       var timeout = null;
