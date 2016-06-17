@@ -21,6 +21,12 @@ define(
         parent: 'app.componentSearch',
         url:   '^/invoice',
         grailsResource: 'Invoice',
+        searchFields: [
+          {
+            'data'  : 'date',
+            'title' : "Date received"
+          },
+        ],
         views: {
           // Unnamed view.
           "" : {

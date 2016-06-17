@@ -12,17 +12,17 @@ define (
       $scope.workflow = {};
       var workflowGrouping = {
           'General' : [
-            'Add a Title',
-            'Attach a grant',
+            'Add a title',
             'Set the publication route',
-            'Set APC Funding Approval'
+            'Set APC funding approval',
+            'Attach a grant'
           ],
           'People' : [
             'Add a main contact'
           ],
           'Publication' : [
-            'Add an identifier',
-            'Add a Publication Title',
+            'Add an identifier (DOI/PMID/PMCID)',
+            'Add a journal/conference title',
             'Add an ISSN or eISSN'
           ],
           'Finance' : [
@@ -31,7 +31,7 @@ define (
       };
       
       // Grab the workflow status.
-      var refreshRules = debounce(function () { 
+      var refreshRules = debounce(function () {
         resource.checkRules({ id: 'workflow' }, context).$promise.then(function (workflowData) {
           var wf = $scope.workflow;
           angular.forEach(workflowGrouping, function (rules, group) {
@@ -48,12 +48,15 @@ define (
         });
       }, 500);
       
+      // Shallow watches. Only change if reference changes not the properties.
       $scope.$watchGroup(
         ['context.name','context.publicationRoute', 'context.publicationTitle', 'context.apcFundingApproval'], refreshRules
       );
-      $scope.$watchCollection('context.identifiers', refreshRules);
-      $scope.$watchCollection('context.academicOutputCosts', refreshRules);
-      $scope.$watchCollection('context.funds', refreshRules);
+      
+      // Deep watches. Watch for items added to the collection as well as properties of each items changing.
+      $scope.$watch('context.identifiers', refreshRules, true);
+      $scope.$watch('context.academicOutputCosts', refreshRules, true);
+      $scope.$watch('context.funds', refreshRules, true);
     }]);
   }
 );
