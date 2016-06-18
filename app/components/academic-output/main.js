@@ -148,9 +148,13 @@ define(
       });
       $stateProvider.state('app.academicOutput.view.compliance', {
         url:          '/compliance',
+        deps: [
+          'components/academic-output/CtrlAOComplianceController.js',
+        ],
         views: {
           "": {
             templateUrl:  'components/academic-output/partials/_tab_compliance.html',
+            controller: 'AOComplianceController'
           },
         },
         data : {

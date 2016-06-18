@@ -1,16 +1,16 @@
 .panel-collapsible {
-  .panel-heading *:first-child {
+  .panel-heading > *:first-child {
     
     font-size: 1.1em;
     margin:0;
     padding:0;
+    cursor: pointer;
     
     &:after {
       font-family:'Glyphicons Halflings';
       content:"\e113";
       float: right;
-      color: grey;      
-      cursor: pointer;
+      color: grey;
       &:hover,
       &:active,
       &focus {

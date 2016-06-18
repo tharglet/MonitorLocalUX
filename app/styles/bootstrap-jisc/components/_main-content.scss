@@ -21,6 +21,7 @@ body {
     @extend .container-fluid;
     background-color: $body-bg;
     margin-top: -(($grid-columns * $grid-gutter-width) - ($grid-gutter-width * 0.25));
+    padding-bottom: 2 * $grid-gutter-width;
     // min-height: ($grid-columns * $grid-gutter-width) - ($grid-gutter-width * 0.25); 
     .inner {
       @extend .container-fluid;

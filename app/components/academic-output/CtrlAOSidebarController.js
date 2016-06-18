@@ -5,7 +5,7 @@ define (
   function(app) {
     app.registerController('AOSidebarController', [ '$scope', 'context', 'grailsResource', 'debounce', function ($scope, context, resource, debounce) {
       
-      // The context will not be in this scope.
+      // The context will not exist in this scope. We need it for watches.
       $scope.context = context;
       
       // Use the contextual resource and check the rules for workflow.
@@ -43,8 +43,6 @@ define (
               wf[group][rule] = workflowData[rule];
             });
           });
-          
-          angular.merge ( workflowData, $scope.workflow );
         });
       }, 500);
       
