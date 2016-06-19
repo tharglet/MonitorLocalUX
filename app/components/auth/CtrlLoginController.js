@@ -4,7 +4,10 @@ define (
   ['app', './SvcUserService'],
   function(app) {
     app.registerController('LoginCtrl', [ '$scope', '$auth', '$log', 'UserService', function($scope, $auth, $log, UserService) {
+
       $scope.alerts = [];
+
+      console.log("auth Controller");
     
       $scope.authenticate = function(provider) {
         $log.debug("Authenticate");

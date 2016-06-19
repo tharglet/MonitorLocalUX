@@ -51,3 +51,25 @@ Navigate into your newly created dist folder and then components/app/config.js a
 This step will eventually be folded into the grunt build process. 
 
  
+
+## Alternate Apache based client deployment
+
+Alias /monitor/ /home/USER/dev/MonitorLocalUX/visualsImpl/app/
+
+<Directory /home/USER/dev/MonitorLocalUX/app/>
+    Order allow,deny
+    Allow from all
+
+    RewriteEngine on
+
+    Require local
+
+    # Don't rewrite files or directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Rewrite everything else to index.html to allow html5 state links
+    RewriteRule ^ index.html [L]
+</Directory>
+

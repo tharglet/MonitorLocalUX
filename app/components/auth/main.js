@@ -13,17 +13,16 @@ define(
     // Create our angular module here.
     return angular.module('auth', ['ui.router'])
       .config(['$stateProvider', function($stateProvider) {
-  
         // State for Login.
         $stateProvider.state('app.login', {
           deps: ['auth/CtrlLoginController'],
           views : {
-            "@" : { // Un-named (default) view.
+            "" : { // Un-named (default) view.
               controller: 'LoginCtrl',
               templateUrl: 'components/auth/partials/login.html',
             },
           },
-          url:          '^/login',
+          url: '^/login',
           data : {
             title: "Login",
             requireLogin: false

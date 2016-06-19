@@ -40,7 +40,7 @@ define(
     ])
 
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
-    .constant( 'NO_AUTH', false )
+    // .constant( 'NO_AUTH', false )
     .constant( "appConfig", conf )
 
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'appConfig', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, appConf) {
@@ -176,16 +176,10 @@ define(
       // app from //monitorlocal.jisc.ac.uk/redirect but when we're developing the odds are that we are serving from localhost:9090. So we switch the URL
       // AND the clientId [Since the ShibOauth bridge *currently* only allows one callback URL per registered client.
       // var callback_url = 'http://monitorlocal.jisc.ac.uk/redirect';
-      var callback_url = 'http://localhost:9090/redirect/';
+      var callback_url = 'http://localhost/monitorLocalSvc/jwt/callback/';
 
       console.log("Using callback URL %s",callback_url);
 
-
-      console.log("Config google");
-      $authProvider.google({
-        clientId: 'GooglelientId',
-        url: callback_url + "google"
-      });
 
       console.log("Config twitter");
       $authProvider.twitter({
@@ -199,7 +193,7 @@ define(
       $authProvider.oauth2({
         name: 'Knowint Shib Auth Bridge',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
-        url: 'http://localhost:8080/jwt/callback/sob',
+        url: 'http://localhost/monitorLocalSvc/jwt/callback/sob',
         // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
         clientId: 'monitor-local-svc',
         // OAuth2 Endpoint
@@ -212,6 +206,18 @@ define(
         // Tell sattelizer about this particular endpoint -- what the required, optional and  default URL Params are
         scope:['read']
       });
+
+      $authProvider.google({
+        clientId: '186678964269-tajnf5mojsdsa4mk66846apd0d0adc9q.apps.googleusercontent.com',
+        // This is where google will redirect the browser after the user authenticates. For development it's localhost,
+        // for production, the live server and for test the test server
+        // redirectUri: 'http://localhost:8080/cesvc/oauth/callback/google'
+        // url: 'http://localhost:8080/cesvc/oauth/callback/google'
+        url: callback_url + "google",
+        scope:['openid', 'profile', 'email']
+      });
+
+
 
 
       console.log("OK");
@@ -251,8 +257,8 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'NO_AUTH',
-      function($couchPotato, $state, $stateParams, $rootScope, $log, shared, NO_AUTH) {
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared',
+      function($couchPotato, $state, $stateParams, $rootScope, $log, shared) {
 
         // Use lazy run-time registration.
         app.lazy = $couchPotato;
@@ -269,7 +275,7 @@ define(
           $log.debug('routeChangeStart %o', toState);
           if (toState) {
             console.log("toState.data:%o",toState.data);
-            if ( !NO_AUTH && toState.data && toState.data.requireLogin) {
+            if ( toState.data && toState.data.requireLogin) {
               if (shared.isAuthenticated()) {
                 $log.debug('User Logged In for secured resource');
               } else {
