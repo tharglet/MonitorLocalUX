@@ -43,7 +43,8 @@ define(
     // .constant( 'NO_AUTH', false )
     .constant( "appConfig", conf )
 
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'appConfig', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, appConf) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'appConfig', 
+             function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, appConf) {
 
       $httpProvider.interceptors.push(['$q', '$notifications', function($q, $notifications) {
         return {
@@ -257,10 +258,10 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared',
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 
       function($couchPotato, $state, $stateParams, $rootScope, $log, shared) {
 
-        // Use lazy run-time registration.
+        // Use lazy run-time registration
         app.lazy = $couchPotato;
 
         // These params are used regularly. Including them within the root scope will,

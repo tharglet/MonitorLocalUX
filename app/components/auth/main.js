@@ -15,7 +15,7 @@ define(
       .config(['$stateProvider', function($stateProvider) {
         // State for Login.
         $stateProvider.state('app.login', {
-          deps: ['auth/CtrlLoginController'],
+          deps: ['auth/CtrlLoginController', 'auth/SvcUserService'],
           views : {
             "" : { // Un-named (default) view.
               controller: 'LoginCtrl',
