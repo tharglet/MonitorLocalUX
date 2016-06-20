@@ -94,6 +94,7 @@ define (
         ajax : function (data, callback, settings) {
           
           // Use the grails helper to get the resources.
+          // IAN:: Is this where we are dropping the Authorization Bearer token??
           return resource.query(data, function(response){
             callback(response);
           });
