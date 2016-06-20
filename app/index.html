@@ -45,11 +45,36 @@
             <a data-ui-sref="app.dash" >Monitor Local <span class="badge">alpha</span></a>
           </div>
           <ul class="nav navbar-nav navbar-right">
+
             <li>
               <button type="button" class="btn btn-sm navbar-btn side-panel-button" title="Show side panel" >
                 <i class="glyphicon glyphicon-tasks" ></i>
               </button>
             </li>
+
+            <li ng-if="currentUser != null" class="ce-profile" dropdown>
+              <a href id="user-status" role="button" aria-haspopup="true" aria-expanded="false" dropdown-toggle>
+              CURRENTUSER
+                {{currentUser}}
+                {{currentUser.displayName}}
+                        <div class="ce-profile-image">
+                            <img class="media-object" ng-src="{{currentUser.profilePic}}" alt="{{currentUser.displayName}}">
+                        </div>
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="user-status">
+                        <li><a href="#/profile">Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#/orgs/new">New Organisation</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href ng-click="logout()">Sign out</a></li>
+              </ul>
+            </li>
+
+            <li ng-if="currentUser == null">
+              <a href="#login">Login</a>
+            </li>
+
           </ul>
         </div>
       </div>

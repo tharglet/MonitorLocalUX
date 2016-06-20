@@ -20,7 +20,7 @@ define(
        * @description login a user.
        */
       this.login = function(user) {
-          $log.debug("login %o",user);
+          $log.debug("UserService::login %o",user);
           $window.localStorage.currentUser = JSON.stringify(user);
           // TODO: this seems a little unnecessary, can probably just return user.
           // return JSON.parse($window.localStorage.currentUser);
@@ -35,7 +35,7 @@ define(
        * @description get the current user object.
        */
       this.currentUser = function() {
-          $log.debug("Parsing local storage current user");
+          $log.debug("UserService::Parsing local storage current user");
           var user = JSON.parse($window.localStorage.currentUser);
           return user;
       };
@@ -47,12 +47,12 @@ define(
        * @description logout the current user.
        */
       this.logout = function() {
-          $log.debug("Logout");
+          $log.debug("UserService::Logout");
           delete $window.localStorage.currentUser;
       };
 
       this.update = function(user) {
-          $log.debug("update %o",user);
+          $log.debug("UserService::update %o",user);
           $window.localStorage.currentUser = JSON.stringify(user);
       };
     }]);
