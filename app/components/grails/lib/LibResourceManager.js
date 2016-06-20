@@ -201,7 +201,7 @@ ResourceManager.prototype.r = function ( type ) {
       var conf = _self.getConfig( type );
       
       if ( conf ) {
-        res = _self.ngResource (_self.baseUrl + conf['uri'] , conf['defaults'] || {}, conf['actions']);
+        res = _self.ngResource (conf['url'] , conf['defaults'] || {}, conf['actions']);
         _self.resourceCache[_self.baseUrl+type] = res;
         _self.addRefdata(res, conf, type);
         _self.addLookup(res, type);
