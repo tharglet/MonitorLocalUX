@@ -95,6 +95,8 @@ define (
           
           // Use the grails helper to get the resources.
           // IAN:: Is this where we are dropping the Authorization Bearer token??
+          // IAN2:: Does look like this one:: https://github.com/l-lin/angular-datatables/issues/279
+          console.log("About to call resource.quey on %o %o ",resource,data);
           return resource.query(data, function(response){
             callback(response);
           });
