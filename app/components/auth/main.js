@@ -12,7 +12,7 @@ define(
     
     // Create our angular module here.
     return angular.module('auth', ['ui.router'])
-      .config(['$stateProvider', function($stateProvider) {
+      .config(['$stateProvider', '$httpProvider', function($stateProvider, $httpProvider) {
         // State for Login.
         $stateProvider.state('app.login', {
           deps: ['auth/CtrlLoginController', 'auth/SvcUserService'],
@@ -28,6 +28,22 @@ define(
             requireLogin: false
           },
         });
+        
+        $httpProvider.interceptors.push(['$q', '$injector',  function($q, $injector) {
+          return {
+            responseError: function(error) {
+
+              switch (error.status) {
+              case 401:
+                $injector.get('$state').transitionTo('app.login');
+                break;
+              }
+
+              // We should still reject the request.
+              return $q.reject(error);
+            },
+           };
+        }]);
       }])
     ;
   }
