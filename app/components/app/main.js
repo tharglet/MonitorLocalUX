@@ -25,6 +25,7 @@ define(
   function (couchPotato, conf, notify, moment) {
 
     var app = angular.module('app', [
+      'config',
       'scs.couch-potato',
       'satellizer',
       'ui.router',
@@ -41,7 +42,6 @@ define(
 
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
     // .constant( 'NO_AUTH', false )
-    .constant( "appConfig", conf )
 
     .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'appConfig', 
              function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, appConf) {
@@ -177,7 +177,7 @@ define(
       // app from //monitorlocal.jisc.ac.uk/redirect but when we're developing the odds are that we are serving from localhost:9090. So we switch the URL
       // AND the clientId [Since the ShibOauth bridge *currently* only allows one callback URL per registered client.
       // var callback_url = 'http://monitorlocal.jisc.ac.uk/redirect';
-      var callback_url = 'http://localhost/monitorLocalSvc/jwt/callback/';
+      var callback_url = appConf.backend + '/jwt/callback/';
 
       console.log("Using callback URL %s",callback_url);
 
@@ -194,7 +194,7 @@ define(
       $authProvider.oauth2({
         name: 'Knowint Shib Auth Bridge',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
-        url: 'http://localhost/monitorLocalSvc/jwt/callback/sob',
+        url: callback_url + 'sob',
         // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
         clientId: 'monitor-local-svc',
         // OAuth2 Endpoint
@@ -217,9 +217,6 @@ define(
         url: callback_url + "google",
         scope:['openid', 'profile', 'email']
       });
-
-
-
 
       console.log("OK");
 
