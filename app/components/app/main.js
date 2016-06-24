@@ -4,7 +4,6 @@ define(
   'app',
   [ // Add all the dependencies.
     'angular-couch-potato',
-    './config',
     'notifications',
     'moment',
     'html5shiv',
@@ -12,6 +11,7 @@ define(
     'angular-ui-router',
     'bootstrap-js',
     'angular-bootstrap-datetimepicker-directive',
+    './config',
 
     // Component modules.
     'auth',
@@ -22,7 +22,10 @@ define(
     'grant',
     'budget'
   ],
-  function (couchPotato, conf, notify, moment) {
+  function (couchPotato, notify, moment) {
+    
+    // Default application object. We can use these references throughout to keep in sync.
+    var applicationData = {};
 
     var app = angular.module('app', [
       'config',
@@ -43,8 +46,8 @@ define(
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
     // .constant( 'NO_AUTH', false )
 
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'appConfig', 
-             function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, appConf) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'userServiceProvider', 'appConfig', 
+             function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, userServiceProvider, appConf) {
 
       $httpProvider.interceptors.push(['$q', '$notifications', function($q, $notifications) {
         return {
@@ -219,6 +222,15 @@ define(
       });
 
       console.log("OK");
+      
+      // Add some basic settings..
+      angular.merge(applicationData, {
+        config: angular.copy(appConf),
+        user : {
+          name: "Guest"
+        }
+      });
+      userServiceProvider.setStorage ( applicationData );
 
       // Default app abstract state.
       $stateProvider.state('app', {
@@ -232,14 +244,22 @@ define(
           }
         },
         resolve: {
-          applicationSettings: ['$http', 'appConfig', function ($http, appConfig) {
-            return $http({
-              method: 'GET',
-              url: appConfig.backend + '/application/settings',
-              headers: {
-                'Accept': 'application/json'
-              },
-            });
+          applicationSettings: ['$rootScope', '$http', 'appConfig', function ($rootScope, $http, appConfig) {
+            
+            // Grab straight from the root scope.
+            if ( typeof $rootScope.application.currency == 'undefined' ) {
+              return $http({
+                method: 'GET',
+                url: appConfig.backend + '/application/settings',
+                headers: {
+                  'Accept': 'application/json'
+                },
+              }).then (function (applicationSettings) {
+                angular.merge($rootScope.application, applicationSettings.data);
+              });
+            } else {
+              return $rootScope.application;
+            }
           }]
         }
       });
@@ -256,7 +276,7 @@ define(
       $urlRouterProvider.otherwise('/');
     }])
     .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 
-      function($couchPotato, $state, $stateParams, $rootScope, $log, shared) {
+      function($couchPotato, $state, $stateParams, $rootScope) {
 
         // Use lazy run-time registration
         app.lazy = $couchPotato;
@@ -267,41 +287,7 @@ define(
         $rootScope.$stateParams = $stateParams;
         console.log("main run");
 
-        // Watch for state changes -- if we switch to a protected state, check that the user is authenticated.
-        // If not - send to the login page and store the toState so we can go back to it once auth has completed.
-        $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
-          $log.debug('routeChangeStart %o', toState);
-          if (toState) {
-            console.log("toState.data:%o",toState.data);
-            if ( toState.data && toState.data.requireLogin) {
-              if (shared.isAuthenticated()) {
-                $log.debug('User Logged In for secured resource');
-              } else {
-                $log.debug('user not logged in for secured resource');
-                ev.preventDefault();
-                $rootScope.pendingPath = toState;
-                $state.go('app.login');
-                // $location.path('/login');
-              }
-            }
-            else {
-              $log.debug('Non-secured resource');
-            }
-          }
-
-          $rootScope.isAuthenticated = shared.isAuthenticated();
-
-          // If the user is authenticated, grab the current user and stash in rootScope so we can access it in partials, for
-          // example
-          if ($rootScope.isAuthenticated) {
-            // $log.debug("Set current user to %o",userService.currentUser());
-            $log.debug("user is authenticated -- payload %o",shared.getPayload());
-            $rootScope.currentUser = shared.getPayload();
-          }
-          else {
-            $rootScope.currentUser = { name : '', profilePic:'' };
-          }
-        });
+        $rootScope.application = applicationData;
       }
     ]);
 

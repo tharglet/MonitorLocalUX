@@ -45,36 +45,51 @@
             <a data-ui-sref="app.dash" >Monitor Local <span class="badge">alpha</span></a>
           </div>
           <ul class="nav navbar-nav navbar-right">
-
             <li>
               <button type="button" class="btn btn-sm navbar-btn side-panel-button" title="Show side panel" >
                 <i class="glyphicon glyphicon-tasks" ></i>
               </button>
             </li>
-
-            <li ng-if="currentUser != null" class="ce-profile" dropdown>
-              <a href id="user-status" role="button" aria-haspopup="true" aria-expanded="false" dropdown-toggle>
-              CURRENTUSER
-                {{currentUser}}
-                {{currentUser.displayName}}
-                        <div class="ce-profile-image">
-                            <img class="media-object" ng-src="{{currentUser.profilePic}}" alt="{{currentUser.displayName}}">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img data-ng-if="application.user.profilePic" class="profile-icon-sm" data-ng-src="{{application.user.profilePic}}" alt="{{application.user.name ? application.user.name :  application.user.username}}">
+                    <span data-ng-if="!application.user.profilePic" class="glyphicon glyphicon-user profile-icon-sm"></span>
+                    <strong>{{ application.user.name ? application.user.name :  application.user.username }}</strong>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="navbar-profile">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="text-center">
+                                        <img data-ng-if="application.user.profilePic" class="profile-icon-lg" data-ng-src="{{application.user.profilePic}}" alt="{{application.user.name ? application.user.name :  application.user.username}}">
+                                        <span data-ng-if="!application.user.profilePic" class="glyphicon glyphicon-user profile-icon-lg"></span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="text-left"><strong>{{ application.user.name ? application.user.name :  application.user.username }}</strong></p>
+                                    <p class="text-left small">{{ application.user.email }}</p>
+                                </div>
+                            </div>
                         </div>
-              </a>
-
-              <ul class="dropdown-menu" aria-labelledby="user-status">
-                        <li><a href="#/profile">Profile</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#/orgs/new">New Organisation</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href ng-click="logout()">Sign out</a></li>
-              </ul>
-            </li>
-
-            <li ng-if="currentUser == null">
-              <a href="#login">Login</a>
-            </li>
-
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="navbar-profile navbar-profile-session">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                        <a href="#" class="btn btn-danger btn-block">Logout</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+             </li>
           </ul>
         </div>
       </div>
