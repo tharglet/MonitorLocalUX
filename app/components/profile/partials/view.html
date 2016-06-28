@@ -12,14 +12,14 @@
           <div class="form-group form-group-sm">
             <label id="userDisplayNameLabel" for="id" class="span-3 control-label" aria-label="userDisplayName">Display Name</label>
             <div class="span-2">
-              <input type="text" class="form-control" id="userDisplayName" name="userDisplayName" aria-labelledby="userDisplayNameLabel" data-ng-model="userDisplayName" />
+              <input type="text" class="form-control" id="userDisplayName" name="userDisplayName" aria-labelledby="userDisplayNameLabel" data-ng-model="application.user.name" />
             </div>
           </div>
 
           <div class="form-group form-group-sm">
             <label id="userBioLabel" for="id" class="span-3 control-label" aria-label="userBio">User Biography / Note</label>
             <div class="span-7">
-              <textarea type="text" class="form-control" id="userBio" name="userBio" aria-labelledby="userBioLabel" data-ng-model="userBio"></textarea>
+              <textarea type="text" class="form-control" id="userBio" name="userBio" aria-labelledby="userBioLabel" data-ng-model="application.user.bio"></textarea>
             </div>
           </div>
 
@@ -27,8 +27,8 @@
       </div>
     </article>
     <div class="form-group pull-right">
-      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!organisation.$dirty || organisation.$invalid" >Save</button>
-      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!organisation.$dirty" >Cancel</button>
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()">Save</button>
+      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()">Cancel</button>
     </div>
   </form>
 
@@ -54,7 +54,7 @@
         <tr>
           <td><input type="text" placeholder="Request new affiliation with....." class="form-control" id="reqOrgName" name="reqOrgName" /></td>
           <td><select class="c-select form-control" name="role"><option value="User">Standard User</option><option value="Admin">Admin</option></select></td>
-          <td><button type="button" class="btn btn-success" data-ng-click="saveChanges()">Request</button></td>
+          <td><button type="button" class="btn btn-success" data-ng-click="requestAffiliation()">Request</button></td>
         </tr>
       </table>
     </div>
