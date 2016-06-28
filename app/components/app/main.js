@@ -239,6 +239,7 @@ define(
       // Default app abstract state.
       $stateProvider.state('app', {
         abstract: true,
+        authRequired: true,
         deps: [
           'app/CtrlAppController'
         ],

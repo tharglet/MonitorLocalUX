@@ -19,6 +19,8 @@ define(
         // Use the injector service to conditionally get the state provider.
         var $state = $injector.has('$state') ? $injector.get('$state') : null;
         
+        var $auth = $injector.has('$auth') ? $injector.get('$auth') : null;
+        
         return {
     
           /**
@@ -43,6 +45,9 @@ define(
           logout : function() {
               $log.debug("UserService::Logout");
               
+              // Do the logout.
+              $auth && $auth.logout();
+              
               // Keeps the reference alive but removes the data.
               angular.copy({}, storage.user);
           },
@@ -59,7 +64,7 @@ define(
           isAnonymous : function (user) {
             user = user || this.currentUser();
             if (this.getRoles(user).length > 0) {
-              return hasRole ('ROLE_ANONYMOUS', user);
+              return this.hasRole ('ROLE_ANONYMOUS', user);
             }
             
             return true;

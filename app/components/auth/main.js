@@ -22,11 +22,27 @@ define(
       .config(['$stateProvider', '$httpProvider', '$injector', function($stateProvider, $httpProvider, $injector) {
         
         $stateProvider.decorator('authRequired', function (state) {
-            return state.authRequired ? state.authRequired : false;
+          
+          if (typeof state.authRequired === 'undefined') {
+            // Get the state here.
+            var theState = state;
+            while (typeof theState.authRequired === 'undefined' && theState.parent) {
+              theState = theState.parent;
+            }
+            
+            // Either we are at a root state, or we have a definite value for the authRequired.
+            var required =  theState.authRequired ? theState.authRequired : false;
+            
+            // Add the value as a property if it wasn't already present.
+            state.authRequired = required;
+          }
+          
+          return state.authRequired;
         });
         
         // State for Login.
         $stateProvider.state('app.login', {
+          authRequired: false,
           deps: ['auth/CtrlLoginController'],
           views : {
             "" : { // Un-named (default) view.
@@ -89,6 +105,10 @@ define(
           var theError = error;
           console.log(error);
         });
+        
+        $rootScope.logout = function () {
+          userService.logout();
+        }
       }])
     ;
   }
