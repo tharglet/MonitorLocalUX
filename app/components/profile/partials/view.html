@@ -1,0 +1,67 @@
+<section id="org-grid" class="inner">
+  <form id="userProfile" name="userProfile" class="row" >
+    <article data-ui-view>
+      <div class="panel panel-collapsible panel-default">
+
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#org-body" aria-label="Expand/Collapse the main Org content" id="org-heading">User Profile</h3>
+        </div>
+
+        <div id="org-body" class="panel-body form-horizontal in" aria-labelledby="user-displayName">
+
+          <div class="form-group form-group-sm">
+            <label id="userDisplayNameLabel" for="id" class="span-3 control-label" aria-label="userDisplayName">Display Name</label>
+            <div class="span-2">
+              <input type="text" class="form-control" id="userDisplayName" name="userDisplayName" aria-labelledby="userDisplayNameLabel" data-ng-model="userDisplayName" />
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm">
+            <label id="userBioLabel" for="id" class="span-3 control-label" aria-label="userBio">User Biography / Note</label>
+            <div class="span-7">
+              <textarea type="text" class="form-control" id="userBio" name="userBio" aria-labelledby="userBioLabel" data-ng-model="userBio"></textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+    <div class="form-group pull-right">
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!organisation.$dirty || organisation.$invalid" >Save</button>
+      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!organisation.$dirty" >Cancel</button>
+    </div>
+  </form>
+
+
+  <div class="panel panel-collapsible panel-default">
+
+    <div class="panel-heading">
+      <h3 data-toggle="collapse" data-target="#org-body" aria-label="Expand/Collapse the main Org content" id="org-heading">Current Organisational Affiliations</h3>
+    </div>
+
+    <div id="org-body" class="panel-body form-horizontal in" aria-labelledby="user-displayName">
+      <table class="table table-striped">
+        <tr>
+          <th>Organisation</th>
+          <th>Role</th>
+          <th>Status</th>
+        </tr>
+        <tr ng-repeat="affiliation in application.user.affiliations">
+          <td>{{affiliation}}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Request new affiliation with....." class="form-control" id="reqOrgName" name="reqOrgName" /></td>
+          <td><select class="c-select form-control" name="role"><option value="User">Standard User</option><option value="Admin">Admin</option></select></td>
+          <td><button type="button" class="btn btn-success" data-ng-click="saveChanges()">Request</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</section>
+
+<pre>
+{{application.user}}
+</pre>
