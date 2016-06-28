@@ -123,8 +123,7 @@
           </ul>
        
           <!-- Only shown if user has been granted ROLE_ADMIN. Should correspond to staticRules for admin paths -->
-          <ul ng-if="application.user.roles.indexOf('ROLE_ADMIN') >= 0">
-            <br/>
+          <ul kint-access-state="app.user" >
             <li data-ui-view="user-nav" data-ui-sref-active-eq="active" class="parent">
               <a data-ui-sref="app.user">User</a>
             </li>
