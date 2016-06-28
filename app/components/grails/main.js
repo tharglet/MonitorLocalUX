@@ -28,7 +28,6 @@ define (
     
     // Register the constant.
     ngGr.constant("grailsResourceProviderName", grailsResourceProviderName);
-
     
     // The functions for the below are stored in different files. They are included above using
     // requirejs and they should return a method. That method can then be accessed by applied var name.

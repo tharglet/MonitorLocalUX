@@ -45,6 +45,9 @@ define(
     
           update : function(user) {
               $log.debug("UserService::update %o",user);
+              if (!storage.user) {
+                storage.user = {};
+              }
               angular.merge(storage.user, user);
               storage.user;
           },
