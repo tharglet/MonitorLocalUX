@@ -54,7 +54,11 @@ define(
           
           isAnonymous : function (user) {
             user = user | currentUser();
-            return hasRole ('ROLE_ANONYMOUS', user);
+            if (getRoles(user).length > 0) {
+              return hasRole ('ROLE_ANONYMOUS', user);
+            }
+            
+            return true;
           },
           
           hasRole : function (roleType, user) {
