@@ -21,7 +21,8 @@ define(
     'person',
     'grant',
     'budget',
-    'profile'
+    'profile',
+    'user'
   ],
   function (couchPotato, notify, moment) {
     
@@ -42,7 +43,8 @@ define(
       'person',
       'grant',
       'budget',
-      'profile'
+      'profile',
+      'user'
     ])
 
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
@@ -237,6 +239,7 @@ define(
       // Default app abstract state.
       $stateProvider.state('app', {
         abstract: true,
+        authRequired: true,
         deps: [
           'app/CtrlAppController'
         ],
@@ -277,8 +280,11 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 
-      function($couchPotato, $state, $stateParams, $rootScope) {
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 'satellizer.shared', 
+      function($couchPotato, $state, $stateParams, $rootScope, $http) {
+
+
+        $http.defaults.headers.common["Binding-Source"] = 'ng-app';
 
         // Use lazy run-time registration
         app.lazy = $couchPotato;

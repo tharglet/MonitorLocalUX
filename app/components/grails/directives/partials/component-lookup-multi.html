@@ -1,4 +1,4 @@
-<ui-select multiple data-ng-model="object[property]" on-select="checkUndefined($item, $model)" >
+<ui-select multiple data-ng-model="object[property]" on-select="checkUndefined($item, $model)"  ng-disabled="disabled"  >
   <ui-select-match>
     <span data-ng-bind="$item.name"></span>
   </ui-select-match>

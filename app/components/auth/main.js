@@ -7,19 +7,42 @@
  */
 define(
   "auth",
-  [ './PrvdUserServiceProvider', 'angular-ui-router'],
-  function (userServiceProvider) {
+  [ './PrvdUserServiceProvider', './DrtvUserCanAccessState', 'angular-ui-router'],
+  function (userServiceProvider, accessStateDirective) {
     
     // Create our angular module here.
     return angular.module('auth', ['ui.router'])
     
       // Register the user service against this module too.
       .provider('userService',  userServiceProvider)
+      
+      // Directive for checking user access.
+      .directive('kintAccessState', ['$compile', '$animate', 'userService', accessStateDirective])
     
       .config(['$stateProvider', '$httpProvider', '$injector', function($stateProvider, $httpProvider, $injector) {
         
+        $stateProvider.decorator('authRequired', function (state) {
+          
+          if (typeof state.authRequired === 'undefined') {
+            // Get the state here.
+            var theState = state;
+            while (typeof theState.authRequired === 'undefined' && theState.parent) {
+              theState = theState.parent;
+            }
+            
+            // Either we are at a root state, or we have a definite value for the authRequired.
+            var required =  theState.authRequired ? theState.authRequired : false;
+            
+            // Add the value as a property if it wasn't already present.
+            state.authRequired = required;
+          }
+          
+          return state.authRequired;
+        });
+        
         // State for Login.
         $stateProvider.state('app.login', {
+          authRequired: false,
           deps: ['auth/CtrlLoginController'],
           views : {
             "" : { // Un-named (default) view.
@@ -67,20 +90,7 @@ define(
         $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams, options) {
           
           checkLoginPage (fromState, fromParams, toState);
-          
-          var levelRequired = toState.authRequired;
-          var denied = false;
-          if (levelRequired === true) {
-            
-            // Boolean true means any none-anonymouse user.
-            denied = userService.isAnonymous( levelRequired ); 
-          } else if (typeof levelRequired === 'string') {
-            
-            // String type is assumed to denote a required role.
-            denied = !userService.hasRole( levelRequired );
-          }
-          
-          if (denied === true) {
+          if (userService.checkAccess ( toState.authRequired ) === false) {
             
             // Stop the state change happening...
             e.preventDefault();
@@ -95,6 +105,10 @@ define(
           var theError = error;
           console.log(error);
         });
+        
+        $rootScope.logout = function () {
+          userService.logout();
+        }
       }])
     ;
   }

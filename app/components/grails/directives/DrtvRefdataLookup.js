@@ -15,7 +15,8 @@ define (
           
           // These allow for overrides on the object against which the query happens.
           contextObj:   "&",
-          contextPath:  "@"
+          contextPath:  "@",
+          disabled: "=ngDisabled"
         },
         link: function ($scope, iElement, iAttr) {
           

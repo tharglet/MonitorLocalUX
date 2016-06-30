@@ -16,7 +16,8 @@ define (
           contextPath:  "@",
           
           // Query params.
-          params:       "@"
+          params:       "@",
+          disabled: "=ngDisabled"
           
         },
         link: function ($scope, iElement, iAttr) {

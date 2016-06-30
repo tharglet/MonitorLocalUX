@@ -14,7 +14,13 @@ define(
       this.setStorage = function (val) {
         storage = val;
       }; 
-      this.$get = ['$log', function($log) {
+      this.$get = ['$log', '$injector', function($log, $injector) {
+        
+        // Use the injector service to conditionally get the state provider.
+        var $state = $injector.has('$state') ? $injector.get('$state') : null;
+        
+        var $auth = $injector.has('$auth') ? $injector.get('$auth') : null;
+        
         return {
     
           /**
@@ -39,43 +45,88 @@ define(
           logout : function() {
               $log.debug("UserService::Logout");
               
+              // Do the logout.
+              $auth && $auth.logout();
+              
               // Keeps the reference alive but removes the data.
               angular.copy({}, storage.user);
           },
     
           update : function(user) {
               $log.debug("UserService::update %o",user);
+              if (!storage.user) {
+                storage.user = {};
+              }
               angular.merge(storage.user, user);
-              storage.user;
+              return storage.user;
           },
           
           isAnonymous : function (user) {
-            user = user | currentUser();
-            return hasRole ('ROLE_ANONYMOUS', user);
+            user = user || this.currentUser();
+            if (this.getRoles(user).length > 0) {
+              return this.hasRole ('ROLE_ANONYMOUS', user);
+            }
+            
+            return true;
           },
           
           hasRole : function (roleType, user) {
-            user = user | currentUser();
+            user = user || this.currentUser();
             
             // Grab the roles.
-            var roles = getRoles(user);
+            var roles = this.getRoles(user);
             
             // Check for a match.
             var found = false;
             var type = roleType.toUpperCase();
             for (var i=0; i<roles.length && !found; i++) {
-              found = roles[i]['authority'] == type;
+              found = roles[i] == type;
             }
             return found;
           },
           
           getRoles: function (user) {
-            user = user | currentUser();
+            user = user || this.currentUser();
             if (user) {
               // Get the roles.
-              return user.authorities | [];
+              return user.roles || [];
             }
             return [];
+          },
+          
+          checkAccessState: function ( stateName, user ) {
+            
+            // We default to true.
+            var access = true;
+            
+            if ($state && stateName && typeof stateName === 'string') {
+              user = user || this.currentUser();
+              
+              // Grab the state.
+              var theState = $state.get(stateName);
+              
+              // We should now check the state.
+              access = this.checkAccess (theState.authRequired, user);
+            }
+            
+            return access;
+          },
+          
+          checkAccess: function (accessRequired, user) {
+            user = user || this.currentUser();
+            
+            var denied = false;
+            if (accessRequired === true) {
+              
+              // Boolean true means any none-anonymouse user.
+              denied = this.isAnonymous(user); 
+            } else if (typeof accessRequired === 'string') {
+              
+              // String type is assumed to denote a required role.
+              denied = !this.hasRole( accessRequired, user );
+            }
+            
+            return !denied;
           }
         }
         }];
