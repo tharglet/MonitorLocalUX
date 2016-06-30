@@ -21,13 +21,13 @@ define (
           }
         }
       ];
+
       if (typeof $state.current.searchFields !== "undefined") {
         var extras = [];
         if (typeof $state.current.searchFields === 'function') {
           // Use the return of the function
           extras = $state.current.searchFields();
         } else {
-
           // Use the value
           extras = $state.current.searchFields;
         }
@@ -55,9 +55,10 @@ define (
         
         return key;
       }
-      
+
       // Create a table container, and add to the DOM first.
       var table = $("<table class='table table-striped table-hover' width='100%' />");
+
       $('.search-results' ).html("").append(table);
       table = table.DataTable({
         pagingType: "full_numbers",
@@ -94,8 +95,6 @@ define (
         ajax : function (data, callback, settings) {
           
           // Use the grails helper to get the resources.
-          // IAN:: Is this where we are dropping the Authorization Bearer token??
-          // IAN2:: Does look like this one:: https://github.com/l-lin/angular-datatables/issues/279
           console.log("About to call resource.quey on %o %o ",resource,data);
           return resource.query(data, function(response){
             callback(response);
@@ -115,7 +114,15 @@ define (
         .html("<span class='info' >Export as:&nbsp;</span>")
         .append(table.buttons( 1, null ).container())
       ;
+
+      $scope.$on('searchCriteriaChanged', function(event, args) {
+        console.log("Notified that search criteria have changed -- rerun the search %o",args);
+        // table.clear();
+        // Set the criteria and then call table.draw()
+        table.draw()
+      });
       
     }]);
+
   }
 );
