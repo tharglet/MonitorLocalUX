@@ -6,6 +6,9 @@ define (
   function () {
     return function ($rootScope, $scope, context) {
       
+      // Add a "filers" element for none binding filter values.
+      $scope.filters = {};
+      
       if (typeof $scope.context === 'undefined') {
         // Create a holder for the original model.
         $scope.orginal_context = {};
