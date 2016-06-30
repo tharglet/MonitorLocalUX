@@ -1,10 +1,14 @@
-'use strict';
+'use strict'
 
 define (
   ['app'],
   function(app) {
     app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', function($scope, $state, resource) {
+
       var stateStringCache = {};
+
+      // queryParams will be populated when the search form broadcasts searchCriteriaChanged
+      $scope.queryParams = {}
       
       var cols = [
         { 'data' : 'id', 'title': "#" },
@@ -93,9 +97,9 @@ define (
         localStorage: 60 * 60 * 72,
         columns: cols,
         ajax : function (data, callback, settings) {
-          
           // Use the grails helper to get the resources.
-          console.log("About to call resource.quey on %o %o ",resource,data);
+          data.queryParams = $scope.queryParams;
+          console.log("About to call resource.quey on %o %o %o",resource,data,settings);
           return resource.query(data, function(response){
             callback(response);
           });
@@ -119,7 +123,8 @@ define (
         console.log("Notified that search criteria have changed -- rerun the search %o",args);
         // table.clear();
         // Set the criteria and then call table.draw()
-        table.draw()
+        $scope.queryParams = args;
+        table.draw();
       });
       
     }]);
