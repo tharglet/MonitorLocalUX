@@ -280,8 +280,11 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 
-      function($couchPotato, $state, $stateParams, $rootScope) {
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 'satellizer.shared', 
+      function($couchPotato, $state, $stateParams, $rootScope, $http) {
+
+
+        $http.defaults.headers.common["Binding-Source"] = 'ng-app';
 
         // Use lazy run-time registration
         app.lazy = $couchPotato;
