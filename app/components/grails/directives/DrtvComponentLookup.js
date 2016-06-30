@@ -17,10 +17,21 @@ define (
           
           // Query params.
           params:       "@",
-          disabled: "=ngDisabled"
+          disabled: "<ngDisabled",
+          required: "<ngRequired",
+            
+          filterVals: "="
           
         },
         link: function ($scope, iElement, iAttr) {
+          
+          if (typeof $scope.disabled === 'undefined') {
+            $scope.disabled = typeof iAttr['disabled'] !== 'undefined';
+          }
+          
+          if (typeof $scope.required === 'undefined') {
+            $scope.required = typeof iAttr['required'] !== 'undefined';
+          }
           
           var multiple = typeof iAttr['multiple'] !== 'undefined'; 
           
@@ -47,11 +58,13 @@ define (
           // Add the data and update functions here.
           $scope.data = [];
           
-          // Params to be sent to the lookup.
-          var params = $parse(iAttr['params'])($scope) || {};
+          var paramStr = iAttr['params'];
 
           // The refresh function
           $scope.refresh = function ( searchParam ) {
+            
+            // Params to be sent to the lookup.
+            var params = $parse(paramStr)($scope) || {};
 
             // Check if this is refdata. We fetch all refdata.
             if ( obj && $scope.contextPath && typeof lookupMethod === 'function') {
@@ -61,6 +74,10 @@ define (
               });
             }
           };
+          
+          if ($scope.filterVals) {
+            $scope.$watchCollection ('filterVals', function() { $scope.refresh() });
+          }
           
           $scope.checkUndefined = function (item, model) {
             if (typeof item === 'undefined') {
@@ -98,7 +115,7 @@ define (
           $templateRequest(tmp).then(function(html){
             var template = angular.element(html);
             
-            if (typeof iAttr.required === 'undefined') {
+            if ($scope.required === false) {
               $('ui-select-match', template).attr("allow-clear", "true");
             }
 
