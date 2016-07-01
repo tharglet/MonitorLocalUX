@@ -5,15 +5,15 @@
 <div class="modal-body" >
   <form name="invoiceCostItem" id="invoiceCostItem" novalidate class="simple-form form-horizontal" role="form">
     <div class="form-group">
-      <label class="span-3 control-label" for="category">Category</label>
+      <label class="span-3 control-label" for="category">Category*</label>
       <div class="span-9" >
         <kint-refdata-lookup name="category" id="category" data-object="costItem" data-property="category" data-context-obj="context" data-context-path="invoiceCosts.category" class="form-control input-sm" required ></kint-refdata-lookup>
       </div>
     </div>
     <div class="form-group">
-      <label class="span-3 control-label" id="currencyLabel" for="currency">Currency</label>
+      <label class="span-3 control-label" id="currencyLabel" for="currency">Currency*</label>
       <div class="span-9">
-        <ui-select on-select="updateBaseCurrencyValue()" data-ng-model="costItem.currency" class="form-control" id="currency" name="currency" aria-labelledby="currencyLabel" >
+        <ui-select on-select="updateBaseCurrencyValue()" data-ng-model="costItem.currency" class="form-control" id="currency" name="currency" aria-labelledby="currencyLabel" required>
           <ui-select-match>
             <span data-ng-bind="$select.selected"></span>
             <span data-ng-if="$select.selected !== application.currency.base" class="text-muted" >
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="span-3 control-label" id="grossValueLabel" for="grossValue">Gross Value</label>
+      <label class="span-3 control-label" id="grossValueLabel" for="grossValue">Gross Value*</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="grossValue" name="grossValue" placeholder="0.00" aria-labelledby="grossValueLabel" 
           data-ng-change="updateBaseCurrencyValue()"
@@ -38,14 +38,14 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="span-3 control-label" id="grossValueGBPLabel" for="grossValueGBP">Gross Value GBP</label>
+      <label class="span-3 control-label" id="grossValueGBPLabel" for="grossValueGBP">Gross Value GBP*</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="grossValueGBP" name="grossValueGBP" placeholder="0.00" aria-labelledby="grossValueGBPLabel" 
           data-ng-model="costItem.grossValueGBP.value" step="0.01" min="0" data-ng-disabled="costItem.currency === application.currency.base" required />
       </div>
     </div>
     <div class="form-group">
-      <label class="span-3 control-label" id="taxLabel" for="tax">Tax</label>
+      <label class="span-3 control-label" id="taxLabel" for="tax">Tax*</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="tax" name="tax" placeholder="0.00" aria-labelledby="taxLabel" 
           data-ng-model="costItem.tax.value" step="0.01" min="0" required />
@@ -75,7 +75,7 @@
         <button type="button" ng-click="$dismiss(costItem)" class="btn btn-default btn-sm" >
           Cancel
         </button>
-        <button type="button" ng-click="$close(costItem)" class="btn btn-success btn-sm" >
+        <button type="button" ng-click="$close(costItem)" class="btn btn-success btn-sm" data-ng-disabled="!invoiceCostItem.$dirty || invoiceCostItem.$invalid" >
           Save
         </button>
       </div>

@@ -36,8 +36,7 @@
       <label id="orgAddressLabel" for="address" class="span-3 control-label" aria-label="Org Address">Organisation Address</label>
       <div class="span-9">
               <textarea type="text" class="form-control" id="address" name="address" placeholder="Address" aria-labelledby="orgAddressLabel"
-                        data-ng-model="contactDetails.organisation.address" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                        data-kint-ui-input-feedback data-kint-validate></textarea>
+                        data-ng-model="contactDetails.organisation.address"></textarea>
       </div>
     </div>
 
@@ -45,8 +44,7 @@
       <label id="orgTaxCodeLabel" for="taxCode" class="span-3 control-label" aria-label="Org Tax Code">Organisation VAT/Tax Code</label>
       <div class="span-5">
         <input type="text" class="form-control" id="taxCode" name="taxCode" placeholder="Tax Code" aria-labelledby="orgTaxCodeLabel"
-               data-ng-model="contactDetails.organisation.taxCode" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-               data-kint-ui-input-feedback data-kint-validate />
+               data-ng-model="contactDetails.organisation.taxCode"  />
       </div>
     </div>
 
@@ -64,8 +62,15 @@
       </div>
     </div>
 
-    <div class="form-group pull-right">
-      <button type="button" class="btn btn-success" ng-click="$close()" data-ng-disabled="!organisation.$dirty || organisation.$invalid" >Save</button>
+    <div class="form-group">
+      <div class="span-12" >
+        <button type="button" ng-click="$dismiss()" class="btn btn-default btn-sm" >
+          Cancel
+        </button>
+        <button type="button" ng-click="$close()" class="btn btn-success btn-sm" data-ng-disabled="!addOrganisationForm.$dirty || addOrganisationForm.$invalid" >
+          Save
+        </button>
+      </div>
     </div>
   </form>
 </div>
