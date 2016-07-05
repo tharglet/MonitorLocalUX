@@ -92,12 +92,6 @@ define (
         });
       }
     }])
-    
-//    .run(['$http', function($http){
-//      $http.defaults.transformResponse.unshift(function(response){//        
-//        return response;
-//      });
-//    }])
   ;
     
   // Debounce method for ensuring we only run a method once.

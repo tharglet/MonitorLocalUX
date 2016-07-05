@@ -39,11 +39,15 @@ define (
         // Only add if we can push to it.
         if (res[propertyName] && typeof res[propertyName].push === 'function' ) {
           return $scope.getBlank(propertyName).then(function ( blank ) {
-            $scope.context[propertyName].push( blank );
+            $scope.addTo( propertyName, blank );
           });
         }
         
         return null;
+      };
+      
+      $scope.addTo = function (propertyName, item) {
+        $scope.context[propertyName].push( item );
       };
       
       $scope.removeFrom = function (propertyName, item) {

@@ -1,10 +1,22 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" data-ui-sref-active-eq="active" ><a data-ui-sref="app.academicOutput.view" >General</a></li>
-  <li role="presentation" data-ui-sref-active-eq="active" ><a data-ui-sref="app.academicOutput.view.people" >People</a></li>
-  <li role="presentation" data-ui-sref-active-eq="active" ><a data-ui-sref="app.academicOutput.view.publication" >Publication</a></li>
-  <li role="presentation" data-ui-sref-active-eq="active" ><a data-ui-sref="app.academicOutput.view.finance" >Finance</a></li>
-  <li role="presentation" data-ui-sref-active-eq="active" ><a data-ui-sref="app.academicOutput.view.compliance" >Compliance</a></li>
-  <li role="presentation" data-ui-sref-active-eq="active" class="pull-right" ><a data-ui-sref="app.academicOutput.view.all" >View all</a></li>
+  <li role="presentation" data-ui-sref-active-eq="active" >
+    <a data-ui-sref="app.academicOutput.view" >General</a>
+  </li>
+  <li role="presentation" data-ui-sref-active-eq="active" >
+    <a data-ui-sref="app.academicOutput.view.people" >People</a>
+  </li>
+  <li role="presentation" data-ui-sref-active-eq="active" >
+    <a data-ui-sref="app.academicOutput.view.publication" >Publication</a>
+  </li>
+  <li role="presentation" data-ui-sref-active-eq="active" >
+    <a data-ui-sref="app.academicOutput.view.finance" >Finance</a>
+  </li>
+  <li role="presentation" data-ui-sref-active-eq="active" >
+    <a data-ui-sref="app.academicOutput.view.compliance" >Compliance</a>
+  </li>
+  <li role="presentation" data-ui-sref-active-eq="active" class="pull-right" >
+    <a data-ui-sref="app.academicOutput.view.all" >View all</a>
+  </li>
 </ul>
 <section id="ao-grid" class="inner tab-content" data-ng-controller="AcademicOutputController">
   <form id="academicOutput" name="academicOutput" class="row" >
@@ -18,12 +30,16 @@
             <label id="nameLabel" for="name" class="span-3 control-label" aria-label="AO Name" data-kint-ui-help data-help-page="Academic-Output-Help" data-help-id="user-content-title" >Title*</label>
             <div class="span-9">
               <input type="text" class="form-control" id="name" name="name" placeholder="Academic output name" aria-labelledby="nameLabel"
-                  data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                  data-kint-ui-input-feedback data-kint-validate required />
+              data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+              data-kint-ui-input-feedback data-kint-validate required />
 
               <div data-ng-if="academicOutput.name.$dirty" data-ng-messages="academicOutput.name.$error" class="help-block" role="alert">
-                <p data-ng-message="required">Please enter a name</p>
-                <p data-ng-message="kintValidate">{{academicOutput.name.kintValidate.message}}</p>
+                <p data-ng-message="required">
+                  Please enter a name
+                </p>
+                <p data-ng-message="kintValidate">
+                  {{academicOutput.name.kintValidate.message}}
+                </p>
               </div>
             </div>
           </div>
@@ -40,8 +56,8 @@
             <div class="span-3">
               <div class="input-group input-group-sm date" data-datetimepicker >
                 <input type="text" class="form-control" id="contactDate" name="contactDate" aria-labelledby="contactDateLabel"
-                       data-ng-model="context.contactDate" data-ng-model-options="{ updateOn: 'blur' }"
-                       data-kint-ui-input-feedback data-kint-validate />
+                data-ng-model="context.contactDate" data-ng-model-options="{ updateOn: 'blur' }"
+                data-kint-ui-input-feedback data-kint-validate />
                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
               </div>
             </div>
@@ -72,8 +88,8 @@
             <div class="span-3">
               <div class="input-group input-group-sm date" data-datetimepicker >
                 <input type="text" class="form-control" id="decisionDate" name="decisionDate" aria-labelledby="decisionDateLabel"
-                       data-ng-model="context.apcFundingDate" data-ng-model-options="{ updateOn: 'blur' }"
-                       data-kint-ui-input-feedback data-kint-validate />
+                data-ng-model="context.apcFundingDate" data-ng-model-options="{ updateOn: 'blur' }"
+                data-kint-ui-input-feedback data-kint-validate />
                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
               </div>
             </div>
@@ -94,34 +110,6 @@
             <ng-include src="'components/academic-output/partials/_table_funder.html'" ></ng-include>
           </form>
 
-
-
-          <!--<div class="form-group form-group-sm">
-            <label id="funderLabel" for="funder" class="span-3 control-label" aria-label="Funder">Funder</label>
-            <div class="span-9">
-              <kint-refdata-lookup name="funder" id="funder" data-object="context" data-property="funder" class="form-control input-sm" >
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm">
-            <label id="grantLabel" for="grant" class="span-3 control-label" aria-label="Grant">Grant</label>
-            <div class="span-9">
-              <kint-refdata-lookup name="grant" id="grant" data-object="context" data-property="grants" class="form-control input-sm" >
-            </div>
-          </div>
-
-          <div class="form-group form-group-sm" >
-            <label id="portionLabel" for="portion" class="span-3 control-label" aria-label="Portion Funded" >Portion of APC charge funded</label>
-            <div class="span-2">
-              <input type="text" class="form-control" id="portion" name="portion" aria-labelledby="portionLabel"
-                     data-ng-model="context.portionFunded" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                     data-kint-ui-input-feedback data-kint-validate />
-            </div>
-            %
-            <div class="pull-right">
-              <button type="button" class="btn btn-success" data-ng-click="saveChanges()" >Assign funding to AO</button>
-            </div>
-          </div>-->
         </div>
       </div>
 
@@ -142,8 +130,8 @@
               <div class="span-3">
                 <div class="input-group input-group-sm date" data-datetimepicker >
                   <input type="text" class="form-control" id="submissionDate" name="submissionDate" aria-labelledby="submissionDateLabel"
-                         data-ng-model="context.publisherSubmissionDate" data-ng-model-options="{ updateOn: 'blur' }"
-                         data-kint-ui-input-feedback data-kint-validate />
+                  data-ng-model="context.publisherSubmissionDate" data-ng-model-options="{ updateOn: 'blur' }"
+                  data-kint-ui-input-feedback data-kint-validate />
                   <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                 </div>
               </div>
@@ -151,10 +139,9 @@
 
             <div class="form-group form-group-sm" >
               <label id="submissionNoteLabel" for="submissionNote" class="control-label span-3" aria-label="Submission Note" >Submission note</label>
-              <div class="span-9">
-              <textarea type="text" class="form-control" id="submissionNote" name="submissionNote" placeholder="Submission Note" aria-labelledby="submissionNoteLabel"
-                        data-ng-model="context.publisherSubmissionNote" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                        data-kint-ui-input-feedback data-kint-validate></textarea>
+              <div class="span-9" id="submissionNote"  data-object="context" data-property="notes" 
+                kint-ui-notes blank="getBlank(notes)" add="addTo(notes, note)"  remove="removeFrom(notes, note)" edit="editMultiProperty(note)"
+                cancel="cancelEditMultiProperty(note)" save="confirmEditMultiProperty(note)" type="general.submission" user="application.user" >
               </div>
             </div>
 
@@ -169,8 +156,8 @@
                 <div class="span-3">
                   <div class="input-group input-group-sm date" data-datetimepicker>
                     <input type="text" class="form-control" id="responseDate" name="responseDate" aria-labelledby="responseDateLabel"
-                           data-ng-model="context.publisherResponseDate" data-ng-model-options="{ updateOn: 'blur' }"
-                           data-kint-ui-input-feedback data-kint-validate />
+                    data-ng-model="context.publisherResponseDate" data-ng-model-options="{ updateOn: 'blur' }"
+                    data-kint-ui-input-feedback data-kint-validate />
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                   </div>
                 </div>
@@ -178,11 +165,8 @@
             </div>
 
             <div class="form-group form-group-sm" >
-              <label id="responseNoteLabel" for="responseNote" class="control-label span-3" aria-label="Response Note" >Response note</label>
-              <div class="span-9">
-              <textarea type="text" class="form-control" id="responseNote" name="responseNote" placeholder="Response Note" aria-labelledby="responseNoteLabel"
-                        data-ng-model="context.publisherResponseNote" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                        data-kint-ui-input-feedback data-kint-validate></textarea>
+              <label id="responseNoteLabel" for="responseNote" class="control-label span-3" aria-label="Response Note" >Response notes</label>
+              <div class="span-9 notes">
               </div>
             </div>
           </div>
@@ -191,8 +175,12 @@
     </article>
 
     <div class="form-group pull-right">
-      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!academicOutput.$dirty || academicOutput.$invalid" >Save</button>
-      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!academicOutput.$dirty" >Cancel</button>
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!academicOutput.$dirty || academicOutput.$invalid" >
+        Save
+      </button>
+      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!academicOutput.$dirty" >
+        Cancel
+      </button>
     </div>
   </form>
 </section>

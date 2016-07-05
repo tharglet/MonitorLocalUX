@@ -1,0 +1,65 @@
+.notes {
+  ul {
+    font-size: 0.8em;
+    @extend .media-list;
+    
+    > li {
+      position: relative;
+      @extend .media;
+      
+      > span:first-child {
+        @extend .media-left;
+        > * {
+          @extend .media-object;
+          @extend .img-circle;
+          > img {
+            max-width: 50px;
+            max-height: 50px;
+            height: auto; 
+            width: auto;
+          } 
+          > span {
+            height: 50px; 
+            width: 50px;
+            font-size: 50px;
+          }
+        }
+      }
+      > div:nth-of-type(1) {
+        @extend .media-body;
+      }
+      
+      .controls {
+        position: absolute;
+        bottom: 3px;
+        right : 3px;
+        display: none;
+      }
+      
+      // Add a border the same colour as the background to prevent jumping screen.
+      border: 1px dashed #FFF;
+      
+      &.editable:hover {
+        border-color: #777;
+       .controls {
+         display:block; 
+       }
+      }
+    }
+  }
+  
+  .add-new {
+    @extend .input-group;
+    
+    span {
+      @extend .input-group-addon; 
+      @extend .btn;
+      @extend .btn-primary;
+    }
+  }
+  
+  textarea {
+     @extend .form-control;
+     resize: none;
+  }
+} 

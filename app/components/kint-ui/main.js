@@ -11,6 +11,7 @@ define (
    './directives/DrtvInputFeedback',
    './directives/DrtvInput',
    './directives/DrtvHelp',
+   './directives/DrtvNotes',
    'angular-xeditable',
    'angular-aria',
    'angular-ui-router',
@@ -22,7 +23,7 @@ define (
    'ui-select',
    'angular-messages',
   ],
-  function(DrtvInputFeedback,DrtvInput, DrtvHelp) {
+  function(DrtvInputFeedback,DrtvInput, DrtvHelp, DrtvNotes) {
     var theme = "bs3";
     
     // Define some prefixes and var names here.
@@ -39,6 +40,7 @@ define (
     .directive(directiveNamespace + 'InputFeedback', [constPrefix + "THEME", '$templateRequest', '$compile', DrtvInputFeedback])
     .directive(directiveNamespace + 'Input', [constPrefix + "THEME", '$templateRequest', '$compile', DrtvInput])
     .directive(directiveNamespace + 'Help', [constPrefix + "THEME", '$templateRequest', '$compile', '$q', '$http', '$sce', DrtvHelp])
+    .directive(directiveNamespace + 'Notes', [constPrefix + "THEME", DrtvNotes])
     
     .run(['editableOptions', 'uiSelectConfig', function(editableOptions, uiSelectConfig){
       
