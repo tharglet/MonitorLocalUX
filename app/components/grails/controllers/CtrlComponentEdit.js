@@ -4,7 +4,10 @@
 define (
   ['notifications'],
   function () {
-    return function ($rootScope, $scope, context) {
+    return function ($rootScope, $scope, $injector, context) {
+      
+      // Get the router state provider if present.
+      var $state = $injector.has('$state') ? $injector.get('$state') : null;
       
       // Add a "filers" element for none binding filter values.
       $scope.filters = {};
@@ -112,7 +115,13 @@ define (
           res.$update();
         } else {
           // Save new.
-          res.$save();
+          res.$save(function(){
+            
+            if ($state && res.id) {
+              // Refresh the current state. Helps with passsed references into directives.
+              $state.go($state.current, {id: res.id});
+            }
+          });
         }
       };
       

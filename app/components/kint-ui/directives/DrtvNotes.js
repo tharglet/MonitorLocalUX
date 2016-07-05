@@ -9,10 +9,6 @@ define (
         restrict: 'A',
         scope: {
           blank: '&',
-          add: '&',
-          edit: '&',
-          save: '&',
-          remove: '&',
           object: '=',
           property: '@',
           type: '@',
@@ -29,7 +25,10 @@ define (
             $scope.type = "";
           }
           
-          $scope.notes = $scope.object[$scope.property];
+          // Get the ID and name.
+          var id = $scope.id;
+          var name = $scope.name;
+          
           $scope.$blankNote = {};
           $scope.$newNote = {};
           
@@ -42,22 +41,63 @@ define (
             angular.copy($scope.$blankNote, $scope.$newNote);
           });
           
+          var dirtyForm = function() {
+            $scope[(id || name) + 'Form'].$setDirty(true);
+          }
+          
           // Add the helper methods.
           $scope.saveNote = function(item) {
-            $scope.save({note: item});
+            // No need to roll back.
+            delete item.$$original;
+            item['$editMode'] = false;
+            dirtyForm();
           };
+          
           $scope.editNote = function(item) {
-            $scope.edit({note: item});
+            // Get the current value.
+            var _orig = {};
+            
+            // Copy to our object.
+            angular.copy(item, _orig);
+            
+            // Now that we have a copy we can save the copy. Important to copy first so we don't try to copy the copy.
+            item.$$original = _orig;
+            
+            item['$editMode'] = true;
+            dirtyForm();
           };
+          
           $scope.cancelNote = function(item) {
-            $scope.cancel({note: item});
+            
+            // Grab the original.
+            var _orig = item.$$original;
+            
+            // We should now remove it from the element.
+            delete item.$$original;
+            
+            // Restore the original.
+            angular.copy(_orig, item);
+            item['$editMode'] = false;
+            dirtyForm();
           };
+          
           $scope.addNote = function() {
-            $scope.add({notes : listName, note: angular.copy($scope.$newNote)});
+            
+            // Create a new item.
+            var item = angular.merge (angular.copy($scope.$newNote), {created: new Date().toISOString()});
+            $scope.object[$scope.property].push( item );
+            
+            // Reset the new note to be the blank.
             angular.copy($scope.$blankNote, $scope.$newNote);
+            dirtyForm();
           };
+          
           $scope.removeNote = function(item) {
-            $scope.remove({notes : listName, note: item});
+            
+            // Remove the item.
+            var index = $scope.object[$scope.property].indexOf(item);
+            $scope.object[$scope.property].splice(index, 1);
+            dirtyForm();
           };
           
           // Filter comparator function.
@@ -71,10 +111,6 @@ define (
           
           // Add the class to this element.
           var el = angular.element($element);
-          
-          // Get the ID, name and classes defined on the element to move to the text area.
-          var id = $scope.id;
-          var name = $scope.name;
           
           // Clear any classes on here and add a single notes class.
           el.addClass('notes');
