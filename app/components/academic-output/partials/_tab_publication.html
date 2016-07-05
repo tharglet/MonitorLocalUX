@@ -147,7 +147,8 @@
         <div class="form-group form-group-sm" >
           <label id="journalPublisherLabel" for="journalPublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
           <div class="span-5">
-            <kint-component-lookup name="journalPublisher" id="journalPublisher" data-object="context" data-property="publisher" class="form-control input-sm" data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+            <kint-component-lookup name="journalPublisher" id="journalPublisher" data-object="context" data-property="publisher"
+              class="form-control input-sm" data-params="{ match:['name'], perPage: 25, filters: ['type.value=Publisher']  }" ></kint-component-lookup>
           </div>
         </div>
 
@@ -225,7 +226,8 @@
         <div class="form-group form-group-sm" >
           <label id="conferencePublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
           <div class="span-5">
-            <kint-refdata-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher" class="form-control input-sm" >
+             <kint-component-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher"
+                class="form-control input-sm" data-params="{ match:['name'], perPage: 25, filters: ['type.value=Publisher']  }" ></kint-component-lookup>
           </div>
         </div>
 
