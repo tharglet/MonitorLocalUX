@@ -16,7 +16,7 @@
         <a class="btn btn-xs btn-danger" data-ng-click="removeNote(note)" >Delete</a>
       </div>
     </div>
-    <form data-ng-if="note.$editMode">
+    <form data-ng-if="note.$editMode" name="{{name || id}}EditNoteForm" >
       <textarea data-ng-model="note.note"></textarea>
       <div class="controls" >
         <a class="btn btn-xs btn-success" data-ng-click="saveNote(note)">Save</a>

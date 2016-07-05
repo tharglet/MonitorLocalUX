@@ -1,4 +1,4 @@
-<section id="org-grid" class="inner">
+  <section id="org-grid" class="inner">
   <form id="organisation" name="organisation" class="row" >
     <article data-ui-view>
       <div class="panel panel-collapsible panel-default">
@@ -67,6 +67,15 @@
               <kint-refdata-lookup name="fundingGroup" id="fundingGroup" data-object="context" data-property="fundingGroup" class="form-control input-sm" >
             </div>
           </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#allNotes-container" aria-label="Expand/Collapse notes" id="allNotesHeading">Notes</h3>
+        </div>
+        <div class="panel-body form-horizontal in" id="allNotes"  data-object="context" data-property="notes" aria-labelledby="allNotesHeading"
+          kint-ui-notes blank="getBlank(notes)" type="general" user="application.user" >
         </div>
       </div>
     </article>
