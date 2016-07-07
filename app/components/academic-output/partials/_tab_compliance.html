@@ -30,14 +30,14 @@
             <kint-refdata-lookup name="licence" id="licence" data-object="context" data-property="licence" class="form-control" ></kint-refdata-lookup>
           </div>
         </div>
-        
+
         <h4 id="licenceEvidenceHeading" data-toggle="collapse" data-target="#licenceEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
         <div data-ng-form id="licenceEvidence" name="licenceEvidence" class="table-responsive collapse out" aria-labelledby="licenceEvidenceHeading"
           data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
         </div>
       </div>
     </div>
-    
+
     <!-- Embargo -->
     <div class="panel panel-collapsible panel-default"
       data-ng-if="ruleVals['_all']['Embargo'] != null || ruleVals[context.publicationRoute.value.toLowerCase()]['Embargo'] != null"
@@ -65,13 +65,13 @@
           </div>
           <div class="span-4" >
             <label id="embargoPeriodLabel" for="embargoPeriod" class="control-label" aria-label="Embargo Period">Current Embargo Period</label>
-            <input type="number" class="form-control" id="embargoPeriod" name="embargoPeriod" placeholder="0" aria-labelledby="embargoPeriodLabel" 
+            <input type="number" class="form-control" id="embargoPeriod" name="embargoPeriod" placeholder="0" aria-labelledby="embargoPeriodLabel"
               data-ng-model="context.embargoPeriod" step="1" min="0" />
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- Funder Acknowledgement -->
     <div class="panel panel-collapsible panel-default"
        data-ng-if="ruleVals['_all']['Funder acknowledgement'] != null || ruleVals[context.publicationRoute.value.toLowerCase()]['Funder acknowledgement'] != null"
@@ -102,14 +102,14 @@
             <kint-refdata-lookup name="acknowledgement" id="acknowledgement" data-object="context" data-property="acknowledgement" class="form-control" ></kint-refdata-lookup>
           </div>
         </div>
-        
+
         <h4 id="acknowledgementEvidenceHeading" data-toggle="collapse" data-target="#acknowledgementEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
         <div data-ng-form id="acknowledgementEvidence" name="acknowledgementEvidence" class="table-responsive collapse out" aria-labelledby="acknowledgementEvidenceHeading"
           data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
         </div>
       </div>
     </div>
-    
+
     <!-- Access Statement -->
     <div class="panel panel-collapsible panel-default"
        data-ng-if="ruleVals['_all']['Research materials access'] != null || ruleVals[context.publicationRoute.value.toLowerCase()]['Research materials access'] != null"
@@ -117,7 +117,7 @@
       <div class="panel-heading">
         <h3 data-toggle="collapse" data-target="#accessStatementRule" aria-label="Expand/Collapse the main Licence Applied content" id="accessStatementRuleHeading">
           <i class="glyphicon" data-ng-class="{'glyphicon-warning-sign' : (compliance['Research materials access'] == null), 'glyphicon-remove-circle' : (compliance['Research materials access'] == false), 'glyphicon-ok' : (compliance['Research materials access'] == true)}"></i>
-          Funder Access Statement: RCUK
+          Research Materials Statement: RCUK
         </h3>
       </div>
       <div id="accessStatementRule" class="panel-body in" aria-labelledby="accessStatementRuleHeading">
@@ -140,14 +140,14 @@
             <kint-refdata-lookup name="accessStatement" id="accessStatement" data-object="context" data-property="accessStatement" class="form-control" ></kint-refdata-lookup>
           </div>
         </div>
-        
+
         <h4 id="accessStatementEvidenceHeading" data-toggle="collapse" data-target="#accessStatementEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
         <div data-ng-form id="accessStatementEvidence" name="accessStatementEvidence" class="table-responsive collapse out" aria-labelledby="accessStatementEvidenceHeading"
           data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
         </div>
       </div>
     </div>
-    
+
     <!-- Repository -->
     <div class="panel panel-collapsible panel-default"
        data-ng-if="ruleVals[context.publicationRoute.value.toLowerCase()]['Deposit']"
@@ -180,7 +180,7 @@
             </form>
           </div>
         </div>
-        
+
         <h4 id="depositedEvidenceHeading" data-toggle="collapse" data-target="#depositedEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
         <div data-ng-form id="depositedEvidence" name="depositedEvidence" class="table-responsive collapse out" aria-labelledby="depositedEvidenceHeading"
           data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
