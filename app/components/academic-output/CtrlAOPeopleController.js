@@ -4,14 +4,15 @@ define (
   ['app'],
   function(app) {
     app.registerController('AOPeopleController', [ '$scope', '$filter', function($scope, $filter) {
-
-      console.log("AOPeople Controller");
       
       // Update people...
       var updatePeople = function() {
         $scope.people = $filter('orderBy') ( $filter('filter') ($scope.context.names, { person : { id : '' } }), '-keyContact') ;
       }
+      
       updatePeople();
+      
+      // Watch for the changes 
       $scope.$watchCollection ('context.names', updatePeople);
       
       $scope.data={
@@ -30,6 +31,7 @@ define (
           'keyContact' : this.context.names.length < 1 
         });
         this.context.names.push (item);
+        this.academicOutput.$setDirty();
       };
       
       $scope.makeKeyContact = function(item) {
@@ -42,7 +44,13 @@ define (
           // Now set the item flag.
           item.keyContact = true;
         });
-      }
+        this.academicOutput.$setDirty();
+      };
+      
+      $scope.removeContact = function(item) {
+        this.removeFrom('names', item);
+        this.academicOutput.$setDirty();
+      };
     }]);
   }
 );
