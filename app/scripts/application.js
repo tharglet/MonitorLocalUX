@@ -9,7 +9,8 @@
 // Load the above module and bootstrap it.
 require(
   [
-   'app'
+   'app',
+   'globals/responsive-side-panel.js'
   ],
   function () {
     angular.element(document).ready(function() {

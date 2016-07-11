@@ -3,10 +3,10 @@
 </div>
 
 <div class="modal-body">
-  <form id="researchEvidenceForm" name="researchEvidenceForm" novalidate class="simple-form form-horizontal" role="form" >
+  <form id="depositeForm" name="depositeForm" novalidate class="simple-form form-horizontal" role="form" >
 
     <div class="form-group">
-      <label id="repositoryLabel" for="url" class="span-3 control-label" >Repository Name</label>
+      <label id="repositoryLabel" for="url" class="span-3 control-label" >Repository Name* </label>
       <div class="span-9">        
         <kint-refdata-lookup name="repository" id="repository" data-object="aoDeposit" data-property="name" aria-labelledby="repositoryLabel"
           data-context-obj="context" data-context-path="deposits.name" class="form-control input-sm" required ></kint-refdata-lookup>
@@ -14,16 +14,15 @@
     </div>
 
     <div class="form-group">
-      <label id="urlLabel" for="url" class="span-3 control-label" >Location URL</label>
+      <label id="urlLabel" for="url" class="span-3 control-label" >Location URL*</label>
       <div class="span-9">
         <input type="text" class="form-control" id="url" name="url" placeholder="Location URL" aria-labelledby="urlLabel"
-               data-ng-model="aoDeposit.url" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-               data-kint-ui-input-feedback />
+               data-ng-model="aoDeposit.url" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }" required />
       </div>
     </div>
 
     <div class="form-group">
-      <label id="versionLabel" for="version" class="span-3 control-label" >Version Deposited</label>
+      <label id="versionLabel" for="version" class="span-3 control-label" >Version Deposited*</label>
       <div class="span-9">
         <kint-refdata-lookup name="version" id="version" data-object="aoDeposit" data-property="versionDeposited"
 		  data-context-obj="context" data-context-path="deposits.versionDeposited" class="form-control input-sm" required ></kint-refdata-lookup>
@@ -35,8 +34,7 @@
       <div class="span-4">
         <div class="input-group input-group-sm date" data-datetimepicker >
           <input type="text" class="form-control" id="depositDate" name="depositDate" aria-labelledby="depositDateLabel"
-                 data-ng-model="aoDeposit.depositDate" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-                 data-kint-ui-input-feedback data-kint-validate />
+                 data-ng-model="aoDeposit.depositDate" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }" />
           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
         </div>
       </div>
@@ -47,7 +45,7 @@
         <button type="button" ng-click="$dismiss(aoDeposit)" class="btn btn-default btn-sm" >
           Cancel
         </button>
-        <button type="button" ng-click="$close(aoDeposit)" class="btn btn-success btn-sm" >
+        <button type="button" ng-click="$close(aoDeposit)" class="btn btn-success btn-sm" data-ng-disabled="!depositeForm.$dirty || depositeForm.$invalid" >
           Save
         </button>
       </div>

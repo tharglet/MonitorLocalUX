@@ -74,17 +74,21 @@
  */
 
 .select2-container.input-sm .select2-choice,
-.input-group-sm .select2-container .select2-choice {
+.input-group-sm .select2-container .select2-choice,
+.form-group-sm .select2-container .select2-choice {
   height: $input-height-small;
   line-height: $line-height-small;
   border-radius: $border-radius-small;
+  font-size: $font-size-small;
 }
 
 .select2-container.input-lg .select2-choice,
-.input-group-lg .select2-container .select2-choice {
+.input-group-lg .select2-container .select2-choice,
+.form-group-lg .select2-container .select2-choice {
   height: $input-height-large;
   line-height: $line-height-large;
   border-radius: $border-radius-large;
+  font-size: $font-size-large;
 }
 
 .select2-container-multi .select2-choices .select2-search-field input {
@@ -92,12 +96,14 @@
 }
 
 .select2-container-multi.input-sm .select2-choices .select2-search-field input,
-.input-group-sm .select2-container-multi .select2-choices .select2-search-field input {
+.input-group-sm .select2-container-multi .select2-choices .select2-search-field input,
+.form-group-sm .select2-container-multi .select2-choices .select2-search-field input {
   height: $input-height-small - 2px;
 }
 
 .select2-container-multi.input-lg .select2-choices .select2-search-field input,
-.input-group-lg .select2-container-multi .select2-choices .select2-search-field input {
+.input-group-lg .select2-container-multi .select2-choices .select2-search-field input,
+.form-group-lg .select2-container-multi .select2-choices .select2-search-field input {
   height: $input-height-large - 2px;
 }
 
@@ -119,19 +125,25 @@
 
 .input-sm .select2-chosen,
 .input-group-sm .select2-chosen,
+.form-group-sm .select2-chosen,
 .input-sm .select2-choice > span:first-child, /* 1 */
 .input-group-sm .select2-choice > span:first-child, /* 1 */
+.form-group-sm .select2-choice > span:first-child, /* 1 */
 .input-sm .select2-choices .select2-search-field input,
-.input-group-sm .select2-choices .select2-search-field input {
+.input-group-sm .select2-choices .select2-search-field input,
+.form-group-sm .select2-choices .select2-search-field input {
   padding: $padding-small-vertical $padding-small-horizontal;
 }
 
 .input-lg .select2-chosen,
 .input-group-lg .select2-chosen,
+.form-group-lg .select2-chosen,
 .input-lg .select2-choice > span:first-child, /* 1 */
 .input-group-lg .select2-choice > span:first-child, /* 1 */
+.form-group-lg .select2-choice > span:first-child, /* 1 */
 .input-lg .select2-choices .select2-search-field input,
-.input-group-lg .select2-choices .select2-search-field input {
+.input-group-lg .select2-choices .select2-search-field input,
+.form-group-lg .select2-choices .select2-search-field input {
   padding: $padding-large-vertical $padding-large-horizontal;
 }
 
@@ -141,13 +153,15 @@
 }
 
 .select2-container-multi.input-sm .select2-choices .select2-search-choice,
-.input-group-sm .select2-container-multi .select2-choices .select2-search-choice {
+.input-group-sm .select2-container-multi .select2-choices .select2-search-choice,
+.form-group-sm .select2-container-multi .select2-choices .select2-search-choice {
   margin-top: 3px;
   margin-bottom: 2px;
 }
 
 .select2-container-multi.input-lg .select2-choices .select2-search-choice,
-.input-group-lg .select2-container-multi .select2-choices .select2-search-choice {
+.input-group-lg .select2-container-multi .select2-choices .select2-search-choice,
+.form-group-lg .select2-container-multi .select2-choices .select2-search-choice {
   line-height: 24px;
 }
 
@@ -190,29 +204,37 @@
 
 .select2-container.input-sm .select2-choice .select2-arrow b,
 .input-group-sm .select2-container .select2-choice .select2-arrow b,
+.form-group-sm .select2-container .select2-choice .select2-arrow b,
 .select2-container.input-sm .select2-choice div b, /* 1 */
-.input-group-sm .select2-container .select2-choice div b /* 1 */ {
+.input-group-sm .select2-container .select2-choice div b /* 1 */,
+.form-group-sm .select2-container .select2-choice div b /* 1 */ {
   background-position: 0 1px;
 }
 
 .select2-dropdown-open.input-sm .select2-choice .select2-arrow b,
 .input-group-sm .select2-dropdown-open .select2-choice .select2-arrow b,
+.form-group-sm .select2-dropdown-open .select2-choice .select2-arrow b,
 .select2-dropdown-open.input-sm .select2-choice div b, /* 1 */
-.input-group-sm .select2-dropdown-open .select2-choice div b /* 1 */ {
+.input-group-sm .select2-dropdown-open .select2-choice div b /* 1 */ ,
+.form-group-sm .select2-dropdown-open .select2-choice div b /* 1 */ {
   background-position: -18px 1px;
 }
 
 .select2-container.input-lg .select2-choice .select2-arrow b,
 .input-group-lg .select2-container .select2-choice .select2-arrow b,
+.form-group-lg .select2-container .select2-choice .select2-arrow b,
 .select2-container.input-lg .select2-choice div b, /* 1 */
-.input-group-lg .select2-container .select2-choice div b /* 1 */ {
+.input-group-lg .select2-container .select2-choice div b /* 1 */,
+.form-group-lg .select2-container .select2-choice div b /* 1 */ {
   background-position: 0 9px;
 }
 
 .select2-dropdown-open.input-lg .select2-choice .select2-arrow b,
 .input-group-lg .select2-dropdown-open .select2-choice .select2-arrow b,
+.form-group-lg .select2-dropdown-open .select2-choice .select2-arrow b,
 .select2-dropdown-open.input-lg .select2-choice div b, /* 1 */
-.input-group-lg .select2-dropdown-open .select2-choice div b /* 1 */ {
+.input-group-lg .select2-dropdown-open .select2-choice div b, /* 1 */
+.form-group-lg .select2-dropdown-open .select2-choice div b /* 1 */ {
   background-position: -18px 9px;
 }
 

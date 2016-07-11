@@ -1,0 +1,8 @@
+{
+  "appConfig": {
+    "backend": "http://monitor.k-int.com/api",
+    "datepicker": {
+      "format": "YYYY-MM-DD"
+    }
+  }
+}

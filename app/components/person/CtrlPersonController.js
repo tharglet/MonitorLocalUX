@@ -5,24 +5,13 @@ define (
   function(app) {
     app.registerController('PersonController', [ '$scope', function($scope) {
 
-      console.log("PersonController");
-
-      $scope.editContactDetails = function (item) {
-        console.log("Contact Details");
-        var callingScope = this;
-        callingScope.openModal('components/person/partials/_modal_contact_details_edit.html').result.then(function () {
-          callingScope.confirmEditMultiProperty(item);
-        }, function () {
-          callingScope.cancelEditMultiProperty(item);
-        });
-      };
-      
-      $scope.addOrganisation = function(item) {
-        console.log("Add Organisation");
-        var callingScope = this;
-        callingScope.openModal('components/person/partials/_modal_organisation.html').result.then(function () {
-          callingScope.saveChanges();
-        });
+      console.log("PersonController");      
+      $scope.editContactDetails = function(item) {
+        if (typeof item === 'string') {
+          this.editListItem ('components/person/partials/_modal_contact_details_edit.html', item, arguments[1], 'person');
+        } else {
+          this.editListItem ('components/person/partials/_modal_contact_details_edit.html', item, 'person');
+        }
       };
     }]);
   }

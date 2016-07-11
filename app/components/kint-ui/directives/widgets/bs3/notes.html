@@ -1,0 +1,31 @@
+<ul>
+  <li data-ng-repeat="note in object[property] | filter: {typeString : type} : filterMatcher | orderBy: '-created' " data-ng-class="{'editable' : (note.createdBy.id === user.id)}" >
+    <span data-ng-if="!note.$editMode"><span>
+      <img data-ng-if="note.createdBy.profilePic" class="profile-icon-sm" data-ng-src="{{note.createdBy.profilePic}}" alt="{{note.createdBy.name ? note.createdBy.name :  note.createdBy.username}}">
+      <span data-ng-if="!note.createdBy.profilePic" class="glyphicon glyphicon-user profile-icon-sm"></span>
+    </span></span>
+    <div data-ng-if="!note.$editMode">
+      <p data-ng-bind="note.note"></p>
+      <p class="info-text small">
+        <span data-ng-if="note.createdBy" >by {{note.createdBy.name || note.createdBy.username}}</span> 
+        <span data-ng-if="!note.createdBy">by Unknown</span>
+        <span data-ng-if="note.created" >- {{note.created | date : 'MMM d, y h:mm a' }}</span>
+      </p>
+      <div class="controls" >
+        <a class="btn btn-xs btn-link" data-ng-click="editNote(note)">Edit</a>
+        <a class="btn btn-xs btn-danger" data-ng-click="removeNote(note)" >Delete</a>
+      </div>
+    </div>
+    <form data-ng-if="note.$editMode" name="{{name || id}}EditNoteForm" >
+      <textarea data-ng-model="note.note"></textarea>
+      <div class="controls" >
+        <a class="btn btn-xs btn-success" data-ng-click="saveNote(note)">Save</a>
+        <a class="btn btn-xs btn-default" data-ng-click="cancelNote(note)" >Cancel</a>
+      </div>
+    </form>
+  </li>
+</ul>
+ <form class="add-new" name="{{name || id}}Form" >
+  <textarea id="{{id}}" name="{{name || id}}" rows="3" aria-labelledby="{{id}}Label" data-ng-model="$newNote.note" ></textarea>
+  <span data-ng-click="addNote()"> Add</span>
+</form>

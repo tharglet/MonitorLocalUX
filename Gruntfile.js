@@ -17,6 +17,8 @@ module.exports = function (grunt) {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates'
   });
+  
+  grunt.loadNpmTasks('grunt-ng-constant');
 
   // Configurable paths for the application
   var appConfig = {
@@ -25,9 +27,22 @@ module.exports = function (grunt) {
   };
 
   // Define the configuration for all the tasks
-  grunt.initConfig({
+  var gConf = {
 	  
-	appConfig: (appConfig),
+  	appConfig: (appConfig),
+  	
+  	ngconstant: {
+      options: {
+        name: 'config',
+        dest: '<%= appConfig.app %>/components/app/config.js',
+        wrap: '"use strict";define(["angular"], function() { \n return {%= __ngModule %} \n\n});',
+        constants: grunt.file.readJSON('config.json')
+      },
+      dev: {
+        constants: (grunt.file.isFile('_config.json') ? grunt.file.readJSON('_config.json') : {}) 
+      },
+      dist: { /* Distribution uses global config above. */ }
+    },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -50,11 +65,18 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= appConfig.app %>/styles/{,**/}*.{scss,sass}',
-                '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
+                   '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
         tasks: ['compass:server', 'postcss:server']
       },
       gruntfile: {
         files: ['Gruntfile.js']
+      },
+      config: {
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        },
+        files: ['config.js'],
+        tasks: ['ngconstant:dev']
       },
       livereload: {
         options: {
@@ -494,8 +516,15 @@ module.exports = function (grunt) {
         singleRun: true
       }
     }
-  });
-
+  };
+  
+  // We can conditionally add other elements here.
+  if (grunt.file.isFile('_config.json')) {
+    gConf['watch']['config']['files'].push('_config.json');
+  }
+  
+  // Init with the config.
+  grunt.initConfig(gConf);
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -504,6 +533,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:dev',
       'wiredep',
       'concurrent:server',
       'postcss:server',
@@ -519,6 +549,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'ngconstant:dev',
     'wiredep',
     'concurrent:test',
     'postcss',
@@ -528,6 +559,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:dist',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

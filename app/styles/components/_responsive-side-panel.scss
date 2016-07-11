@@ -1,0 +1,52 @@
+$side-panel-cols-xs: $grid-columns / 2;
+$side-panel-cols-md: $grid-columns / 3;
+$side-panel-cols-lg: 3;
+
+#side-panel {
+    @extend .col-xs-#{$side-panel-cols-xs};
+    @extend .col-md-#{$side-panel-cols-md};
+    @extend .col-lg-#{$side-panel-cols-lg};
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: $body-bg;
+    z-index: 10000;
+    display:none;
+    
+    .controls {
+      float: right;
+      position: absolute;
+      top: $grid-gutter-width * 0.75;
+      right: ($grid-gutter-width * 1.4);
+      margin-right:10px;
+      z-index:10000000;
+    }
+    
+    &>.inner {
+       height: 100%;
+      .content {
+        height: 100%;
+        overflow-y: scroll;
+        padding-left: $grid-gutter-width / 2;
+        padding-right: $grid-gutter-width / 2;
+        
+        h2 {
+          margin-top: $grid-gutter-width * 1.5;
+          border-bottom: 1px solid $pagination-active-bg;
+        }
+      }
+    }
+}
+
+body.with-sidebar {
+  // When the sidebar is on, we should show the panel next to the main content on large displays. So we need to allocate the number of cols.
+  &> .inner {
+    @extend .col-lg-#{($grid-columns - $side-panel-cols-lg)};
+  }
+  
+  // The panel. 
+  #side-panel {
+    display:block;
+  }
+}

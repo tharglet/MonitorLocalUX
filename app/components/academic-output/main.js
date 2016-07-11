@@ -85,11 +85,16 @@ define(
         url: '/:id',
         deps: [
           'components/academic-output/CtrlAcademicOutputController.js',
+          'components/academic-output/CtrlAOSidebarController.js'
         ],
         views: {
           "@app": {
             templateUrl: 'components/academic-output/partials/view.html',
             controller: 'GrailsEditController'
+          },
+          "sidebar@": {
+            templateUrl: 'components/academic-output/partials/_sidebar.html',
+            controller: 'AOSidebarController'
           },
         },
         data : {
@@ -143,9 +148,13 @@ define(
       });
       $stateProvider.state('app.academicOutput.view.compliance', {
         url:          '/compliance',
+        deps: [
+          'components/academic-output/CtrlAOComplianceController.js',
+        ],
         views: {
           "": {
             templateUrl:  'components/academic-output/partials/_tab_compliance.html',
+            controller: 'AOComplianceController'
           },
         },
         data : {

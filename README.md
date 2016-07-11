@@ -52,7 +52,6 @@ This step will eventually be folded into the grunt build process.
 
  
 
-
 Example apache config to serve directly istead of grunt serve
         Alias /monitor/ /home/user/some/path/MonitorLocalUX/app/
 
@@ -72,4 +71,3 @@ Example apache config to serve directly istead of grunt serve
           # Rewrite everything else to index.html to allow html5 state links
           RewriteRule ^ index.html [L]
         </Directory>
-

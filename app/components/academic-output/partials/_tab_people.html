@@ -39,13 +39,13 @@
         </form>
       </div>
     </div>
-
+    
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
-        <h3 data-toggle="collapse" data-target="#workflow-body" aria-label="Expand/Collapse the main Workflow content" id="workflow-heading">Workflow</h3>
+        <h3 data-toggle="collapse" data-target="#allNotes-container" aria-label="Expand/Collapse notes" id="allNotesHeading">Notes</h3>
       </div>
-      <div id="workflow-body" class="panel-body form-horizontal in" aria-labelledby="workflow-heading">
-
+      <div class="panel-body form-horizontal in" id="allNotes"  data-object="context" data-property="notes" aria-labelledby="allNotesHeading"
+        kint-ui-notes blank="getBlank(notes)" type="people" user="application.user" >
       </div>
     </div>
   </article>

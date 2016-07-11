@@ -1,0 +1,13 @@
+<section id="org-grid" class="inner">
+  <form id="organisationSearchForm" name="organisationSearchForm" class="row" >
+    <div class="form-group form-group-sm">
+      <label id="orgNameLabel" for="id" class="span-2 control-label" aria-label="Org Name">Organisation Name</label>
+      <div class="span-4">
+        <input type="text" class="form-control" id="id" name="id" aria-labelledby="orgNameLabel" data-ng-model="queryParams.name" />
+      </div>
+    </div>
+    <div class="form-group pull-right">
+      <button type="button" class="btn btn-success" ng-click="doSearch()">Search</button>
+    </div>
+  </form>
+</section>

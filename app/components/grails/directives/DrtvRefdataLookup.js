@@ -15,9 +15,19 @@ define (
           
           // These allow for overrides on the object against which the query happens.
           contextObj:   "&",
-          contextPath:  "@"
+          contextPath:  "@",
+          disabled: "<ngDisabled",
+          required: "<ngRequired",
         },
         link: function ($scope, iElement, iAttr) {
+          
+          if (typeof $scope.disabled === 'undefined') {
+            $scope.disabled = typeof iAttr['disabled'] !== 'undefined';
+          }
+          
+          if (typeof $scope.required === 'undefined') {
+            $scope.required = typeof iAttr['required'] !== 'undefined';
+          }
           
           // Grab the object.
           var obj = $scope.contextObj();
@@ -88,7 +98,7 @@ define (
 
             var template = angular.element(html);
             
-            if (typeof iAttr.required === 'undefined') {
+            if ($scope.required === false) {
               $('ui-select-match', template).attr("allow-clear", "true");
             }
 

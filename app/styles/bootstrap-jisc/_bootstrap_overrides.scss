@@ -61,5 +61,10 @@
   }
 }
 
+.navbar-right {
+  float:right;
+  padding-right: $grid-gutter-width;
+}
+
 // Adds the jisk span notation as col-* 
 @include translate-grid ($grid-columns);

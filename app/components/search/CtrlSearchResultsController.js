@@ -1,10 +1,14 @@
-'use strict';
+'use strict'
 
 define (
   ['app'],
   function(app) {
     app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', function($scope, $state, resource) {
+
       var stateStringCache = {};
+
+      // queryParams will be populated when the search form broadcasts searchCriteriaChanged
+      $scope.queryParams = {}
       
       var cols = [
         { 'data' : 'id', 'title': "#" },
@@ -21,13 +25,13 @@ define (
           }
         }
       ];
+
       if (typeof $state.current.searchFields !== "undefined") {
         var extras = [];
         if (typeof $state.current.searchFields === 'function') {
           // Use the return of the function
           extras = $state.current.searchFields();
         } else {
-
           // Use the value
           extras = $state.current.searchFields;
         }
@@ -38,7 +42,7 @@ define (
       }
       
       var getDTKey = function () {
-     // Create a key for the state settings for the table.
+        // Create a key for the state settings for the table.
         var s = $state.current;
         
         // Grab from cache.
@@ -55,21 +59,35 @@ define (
         
         return key;
       }
-      
+
       // Create a table container, and add to the DOM first.
       var table = $("<table class='table table-striped table-hover' width='100%' />");
+
       $('.search-results' ).html("").append(table);
-      table.dataTable({
+      table = table.DataTable({
         pagingType: "full_numbers",
         buttons: [
-          'colvis'
+          {
+            text: '<i class="glyphicon glyphicon-plus" ></i> Add',
+            action: function ( e, dt, node, config ) {
+              $state.go(".view", {id: 'create'}, {inherit: true});
+            },
+            className: 'btn-xs btn-primary'
+          },
+          { 
+            extend: 'colvis',
+            text: '<i class="glyphicon glyphicon-eye-close" ></i> Show/Hide Columns',
+            className: 'btn-xs'
+          },
         ],
+        dom: '<"dt-button-groups"<"primary-buttons"B><"export-buttons">><"controls"lp>tip',
         processing: true,
         serverSide: true,
         searching: false,
         responsive: true,
         colReorder: true,
         stateSave: true,
+        fixedHeader: true,
         stateSaveCallback: function(settings,data) {
           localStorage.setItem( 'SearchTable_' + getDTKey(), JSON.stringify(data) );
         },
@@ -79,14 +97,37 @@ define (
         localStorage: 60 * 60 * 72,
         columns: cols,
         ajax : function (data, callback, settings) {
-          
           // Use the grails helper to get the resources.
+          data.queryParams = $scope.queryParams;
+          console.log("About to call resource.quey on %o %o %o",resource,data,settings);
           return resource.query(data, function(response){
             callback(response);
           });
         },
       });
+
+      new $.fn.dataTable.Buttons(table, {
+        buttons : [{
+          extend: 'csv',
+          className: 'btn-xs btn-info'
+        }]
+      });
+      
+      // Add exports.
+      $('.export-buttons', table.table().container())
+        .html("<span class='info' >Export as:&nbsp;</span>")
+        .append(table.buttons( 1, null ).container())
       ;
+
+      $scope.$on('searchCriteriaChanged', function(event, args) {
+        console.log("Notified that search criteria have changed -- rerun the search %o",args);
+        // table.clear();
+        // Set the criteria and then call table.draw()
+        $scope.queryParams = args;
+        table.draw();
+      });
+      
     }]);
+
   }
 );

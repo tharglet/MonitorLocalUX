@@ -123,6 +123,7 @@ define(
           },
           data : {
             title: "Person",
+            requireLogin:true,
           }
         });
         $stateProvider.state('app.person.view', {

@@ -1,0 +1,25 @@
+.navbar-profile {
+  @extend .span-5;
+  @extend .col-xs-12;
+  width: 305px;
+  padding: 10px;
+  padding-bottom: 0px;
+  
+  .navbar-login-session {
+      padding: 10px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+   }
+}
+
+.profile-icon-sm {
+  height: 1.2em;
+  font-size: 1.2em;
+  top: 0.2em;
+  padding-right: 0.25em;
+ }
+ 
+.profile-icon-lg {
+  height: 87px;
+  font-size: 87px;
+}

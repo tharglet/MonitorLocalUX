@@ -23,9 +23,9 @@
         </div>
 
         <div class="form-group form-group-sm" >
-          <label id="publisherURLLabel" for="publisherURL" class="span-3 control-label" aria-label="Publisher URL" >Gold Publisher URL</label>
+          <label id="publisherURLLabel" for="publisherURL" class="span-3 control-label" aria-label="Publisher URL" >URL of publisher copy</label>
           <div class="span-9">
-            <input type="text" class="form-control" id="publisherURL" name="publisherURL" placeholder="Gold Publisher URL" aria-labelledby="publisherURLLabel"
+            <input type="text" class="form-control" id="publisherURL" name="publisherURL" placeholder="URL of publisher copy" aria-labelledby="publisherURLLabel"
                    data-ng-model="context.publisherURL" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
                    data-kint-ui-input-feedback data-kint-validate />
           </div>
@@ -78,15 +78,6 @@
           <div class="span-4">
             <kint-identifier data-property="identifiers" data-namespace="pmid" class="form-control" data-ng-model="context.identifiers"
               id="PMID" name="PMID" aria-labelledby="PMIDLabel" ></kint-identifier>
-          </div>
-        </div>
-
-        <div class="form-group form-group-sm" >
-          <label id="localReferenceLabel" for="localReference" class="span-3 control-label" aria-label="Local Reference">Local reference</label>
-          <div class="span-9">
-            <input type="text" class="form-control" id="localReference" name="localReference" placeholder="Local Reference" aria-labelledby="localReferenceLabel"
-                   data-ng-model="context.localReference" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                   data-kint-ui-input-feedback data-kint-validate />
           </div>
         </div>
 
@@ -147,7 +138,8 @@
         <div class="form-group form-group-sm" >
           <label id="journalPublisherLabel" for="journalPublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
           <div class="span-5">
-            <kint-component-lookup name="journalPublisher" id="journalPublisher" data-object="context" data-property="publisher" class="form-control input-sm" data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+            <kint-component-lookup name="journalPublisher" id="journalPublisher" data-object="context" data-property="publisher"
+              class="form-control input-sm" data-params="{ match:['name'], perPage: 25, filters: ['type.value=Publisher']  }" ></kint-component-lookup>
           </div>
         </div>
 
@@ -200,13 +192,13 @@
 
         <div class="form-group form-group-sm" >
           <label id="conferenceISSNLabel" for="conferenceISSN" class="span-3 control-label" aria-label="ISSN" >ISSN</label>
-          <div class="span-4">                   
+          <div class="span-4">
             <kint-identifier id="conferenceISSN" name="conferenceISSN" data-property="identifiers" data-namespace="issn"
               class="form-control" data-ng-model="context.identifiers" aria-labelledby="conferenceISSNLabel" ></kint-identifier>
           </div>
 
           <label id="conferenceeISSNLabel" for="conferenceeISSN" class="span-1 control-label" aria-label="eISSN" >eISSN</label>
-          <div class="span-4">                   
+          <div class="span-4">
             <kint-identifier id="conferenceeISSN" name="conferenceeISSN" data-property="identifiers" data-namespace="eissn"
               class="form-control" data-ng-model="context.identifiers" aria-labelledby="conferenceeISSNLabel" ></kint-identifier>
           </div>
@@ -225,7 +217,8 @@
         <div class="form-group form-group-sm" >
           <label id="conferencePublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
           <div class="span-5">
-            <kint-refdata-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher" class="form-control input-sm" >
+             <kint-component-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher"
+                class="form-control input-sm" data-params="{ match:['name'], perPage: 25, filters: ['type.value=Publisher']  }" ></kint-component-lookup>
           </div>
         </div>
 
@@ -384,7 +377,7 @@
         <h3 data-toggle="collapse" data-target="#deposit-body" aria-label="Expand/Collapse the main Deposit content" id="depositHeading">Deposit(s)</h3>
       </div>
       <div id="deposit-body" class="panel-body form-horizontal in" aria-labelledby="acknowledgementHeading">
-        
+
 
         <div class="form-group form-group-sm" >
           <label id="depositedLabel" for="deposited" class="span-3 control-label" aria-label="Actual Deposited in Repository">Is Deposited</label>
@@ -394,11 +387,19 @@
         </div>
 
         <h4 id="despositesHeading">Deposits</h4>
-        
+
         <form id="depositForm" name="depositForm" class="table-responsive" >
           <ng-include src="'components/academic-output/partials/_table_deposit.html'" ></ng-include>
         </form>
 
+      </div>
+    </div>
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#allNotes-container" aria-label="Expand/Collapse notes" id="allNotesHeading">Notes</h3>
+      </div>
+      <div class="panel-body form-horizontal in" id="allNotes"  data-object="context" data-property="notes" aria-labelledby="allNotesHeading"
+        kint-ui-notes blank="getBlank(notes)" type="publication" user="application.user" >
       </div>
     </div>
   </article>

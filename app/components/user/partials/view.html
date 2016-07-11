@@ -1,0 +1,25 @@
+<section id="org-grid" class="inner">
+  <form id="user" name="user" class="row" >
+    <article data-ui-view>
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#org-body" aria-label="Expand/Collapse the main User content" id="org-heading">User details</h3>
+        </div>
+        <div id="org-body" class="panel-body form-horizontal in" aria-labelledby="org-heading">
+
+          <div class="form-group form-group-sm">
+            <label id="userIdLabel" for="id" class="span-3 control-label" aria-label="User ID">User ID</label>
+            <div class="span-2">
+              <input type="text" class="form-control" id="id" name="id" aria-labelledby="userIdLabel" disabled="true" data-ng-model="context.id" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+    <div class="form-group pull-right">
+      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!user.$dirty || user.$invalid" >Save</button>
+      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!user.$dirty" >Cancel</button>
+    </div>
+  </form>
+</section>

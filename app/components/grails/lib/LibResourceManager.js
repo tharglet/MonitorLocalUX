@@ -18,7 +18,7 @@ ResourceManager.prototype.config = {
     resourceConfig : {
       defaults: { id: '@id' },
       actions: {
-        'list'  : {isArray:true},
+        'list'                : {isArray:true},
       }
     }
   }
@@ -79,6 +79,20 @@ ResourceManager.prototype.addRefdata = function ( res, conf, type ) {
   
   return conf;
 };
+
+//ResourceManager.prototype.addCheckRules = function ( res, conf, type ) {
+//  
+//  var _self = this;
+//  
+//  // Add the method.
+//  res.prototype["checkRules"] = function( ruleType ) {
+//    return _self.http({
+//      "url": _self.baseUrl + "/ref/checkRules/" + type + "/" +_self.id + "/" + ruleType,
+//      "headers": { "Accept": "application/json;charset=UTF-8" },
+//      "method": "GET"
+//    });
+//  }
+//};
 
 ResourceManager.prototype.addGenericLookup = function ( res, type ) {
   
@@ -187,7 +201,7 @@ ResourceManager.prototype.r = function ( type ) {
       var conf = _self.getConfig( type );
       
       if ( conf ) {
-        res = _self.ngResource (_self.baseUrl + conf['uri'] , conf['defaults'] || {}, conf['actions']);
+        res = _self.ngResource (conf['url'] , conf['defaults'] || {}, conf['actions']);
         _self.resourceCache[_self.baseUrl+type] = res;
         _self.addRefdata(res, conf, type);
         _self.addLookup(res, type);

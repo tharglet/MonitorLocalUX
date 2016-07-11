@@ -1,19 +1,28 @@
 /**
  * JISC themeing using bootstrap goes here.
  */
+@import "compass/utilities/general/clearfix";
+
+html {
+  height: 100%;
+  background-color: $body-bg;
+}
 
 // Body...
 body {
   background-color: $jLightContentBlue;
   background-repeat: no-repeat;
-  @include background-image(linear-gradient(to right, $body-bg, $body-bg));
-  @include background-size(50% 100%);
-  padding-bottom: 60px;
+  // @include background-image(linear-gradient(to right, $body-bg, $body-bg));
+  // @include background-size(50% 100%);
+  @pie-clearfix();
+  min-height: 100%;
   & > .inner {
-    @extend .container;
+    // @extend .container;
+    @extend .container-fluid;
     background-color: $body-bg;
-    margin-top: -((12 * $grid-gutter-width) - ($grid-gutter-width * 0.25));
-    min-height: (12 * $grid-gutter-width) - ($grid-gutter-width * 0.25); 
+    margin-top: -(($grid-columns * $grid-gutter-width) - ($grid-gutter-width * 0.25));
+    padding-bottom: 2 * $grid-gutter-width;
+    // min-height: ($grid-columns * $grid-gutter-width) - ($grid-gutter-width * 0.25); 
     .inner {
       @extend .container-fluid;
     }
@@ -28,7 +37,7 @@ body {
     margin: $grid-gutter-width ($grid-gutter-width / 2) ($grid-gutter-width * 1.5) ($grid-gutter-width / 2);
     margin-top: $breadcrumb-padding-vertical;
   }
-  padding-bottom: 125px;
+  padding-bottom: $grid-gutter-width;
 }
 
 .l-gutter--right {

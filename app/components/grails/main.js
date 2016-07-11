@@ -28,11 +28,10 @@ define (
     
     // Register the constant.
     ngGr.constant("grailsResourceProviderName", grailsResourceProviderName);
-
     
     // The functions for the below are stored in different files. They are included above using
     // requirejs and they should return a method. That method can then be accessed by applied var name.
-    ngGr.controller('GrailsEditController', ['$rootScope', '$scope', contextVariableName, ComponentEditController]);
+    ngGr.controller('GrailsEditController', ['$rootScope', '$scope', '$injector', contextVariableName, ComponentEditController]);
     ngGr.directive(directiveNamespace + 'ComponentLookup', ['$compile', '$templateRequest', '$parse', ComponentLookupDirective]);
     ngGr.directive(directiveNamespace + 'RefdataLookup', ['$compile', '$templateRequest', RefdataLookupDirective]);
     ngGr.directive(directiveNamespace + 'Identifier', ['$compile', '$templateRequest', '$parse', '$filter', IdentifierDirective]);
@@ -93,14 +92,20 @@ define (
         });
       }
     }])
+  ;
     
-//    .run(['$http', function($http){
-//      $http.defaults.transformResponse.unshift(function(response){//        
-//        return response;
-//      });
-//    }])
-    ;
+  // Debounce method for ensuring we only run a method once.
+  ngGr.factory('debounce', function($timeout) {
+    return function(callback, interval) {
+      var timeout = null;
+      return function() {
+        $timeout.cancel(timeout);
+        timeout = $timeout(function() {
+          callback.apply(this, arguments);
+        }, interval);
+      };
+    };
+  });
     
-    return ngGr;
-  }
-);
+  return ngGr;
+});

@@ -4,7 +4,13 @@
 define (
   ['notifications'],
   function () {
-    return function ($rootScope, $scope, context) {
+    return function ($rootScope, $scope, $injector, context) {
+      
+      // Get the router state provider if present.
+      var $state = $injector.has('$state') ? $injector.get('$state') : null;
+      
+      // Add a "filers" element for none binding filter values.
+      $scope.filters = {};
       
       if (typeof $scope.context === 'undefined') {
         // Create a holder for the original model.
@@ -36,11 +42,15 @@ define (
         // Only add if we can push to it.
         if (res[propertyName] && typeof res[propertyName].push === 'function' ) {
           return $scope.getBlank(propertyName).then(function ( blank ) {
-            $scope.context[propertyName].push( blank );
+            $scope.addTo( propertyName, blank );
           });
         }
         
         return null;
+      };
+      
+      $scope.addTo = function (propertyName, item) {
+        $scope.context[propertyName].push( item );
       };
       
       $scope.removeFrom = function (propertyName, item) {
@@ -105,7 +115,13 @@ define (
           res.$update();
         } else {
           // Save new.
-          res.$save();
+          res.$save(function(){
+            
+            if ($state && res.id) {
+              // Refresh the current state. Helps with passsed references into directives.
+              $state.go($state.current, {id: res.id});
+            }
+          });
         }
       };
       

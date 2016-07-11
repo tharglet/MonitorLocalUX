@@ -4,7 +4,6 @@ define(
   'app',
   [ // Add all the dependencies.
     'angular-couch-potato',
-    './config',
     'notifications',
     'moment',
     'html5shiv',
@@ -12,6 +11,7 @@ define(
     'angular-ui-router',
     'bootstrap-js',
     'angular-bootstrap-datetimepicker-directive',
+    './config',
 
     // Component modules.
     'auth',
@@ -20,11 +20,17 @@ define(
     'invoice',
     'person',
     'grant',
-    'budget'
+    'budget',
+    'profile',
+    'user'
   ],
-  function (couchPotato, conf, notify, moment) {
+  function (couchPotato, notify, moment) {
+    
+    // Default application object. We can use these references throughout to keep in sync.
+    var applicationData = {};
 
     var app = angular.module('app', [
+      'config',
       'scs.couch-potato',
       'satellizer',
       'ui.router',
@@ -36,14 +42,16 @@ define(
       'invoice',
       'person',
       'grant',
-      'budget'
+      'budget',
+      'profile',
+      'user'
     ])
 
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
-    .constant( 'NO_AUTH', true )
-    .constant( "appConfig", conf )
+    // .constant( 'NO_AUTH', false )
 
-    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'appConfig', function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, appConf) {
+    .config(['$stateProvider','$urlRouterProvider', '$couchPotatoProvider', '$authProvider', '$httpProvider', 'datetimepickerProvider', 'userServiceProvider', 'appConfig', 
+             function($stateProvider, $urlRouterProvider, $couchPotatoProvider, $authProvider, $httpProvider, datetimepicker, userServiceProvider, appConf) {
 
       $httpProvider.interceptors.push(['$q', '$notifications', function($q, $notifications) {
         return {
@@ -176,16 +184,10 @@ define(
       // app from //monitorlocal.jisc.ac.uk/redirect but when we're developing the odds are that we are serving from localhost:9090. So we switch the URL
       // AND the clientId [Since the ShibOauth bridge *currently* only allows one callback URL per registered client.
       // var callback_url = 'http://monitorlocal.jisc.ac.uk/redirect';
-      var callback_url = 'http://localhost:9090/redirect/';
+      var callback_url = appConf.backend + '/jwt/callback/';
 
       console.log("Using callback URL %s",callback_url);
 
-
-      console.log("Config google");
-      $authProvider.google({
-        clientId: 'GooglelientId',
-        url: callback_url + "google"
-      });
 
       console.log("Config twitter");
       $authProvider.twitter({
@@ -194,14 +196,16 @@ define(
       });
 
       // See OAuth2 RFC:: http://tools.ietf.org/html/rfc6749
+      // See also -- K-Int internal documentaiton::
+      // https://docs.google.com/document/d/18BOD9i4-Fiy-2dWgsh9SKwsUOgjyseGTGbbTk8Yf6Fc/edit
       $authProvider.oauth2({
-        name: 'sob',  // K-int Shib-OAuth2 GW
+        name: 'Knowint Shib Auth Bridge',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
-        url: 'http://localhost:8080/jwt/callback/sob',
+        url: callback_url + 'sob',
         // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
-        clientId: 'monitorLocalDev',
+        clientId: 'monitor-local-svc',
         // OAuth2 Endpoint
-        authorizationEndpoint: 'https://www.kbplus.ac.uk/sobtest/oauth/authorize',
+        authorizationEndpoint: 'https://authsvc.k-int.com/uaa/oauth/authorize',
         // responseType:'token',
         responseType:'code',
         requiredUrlParams: ['scope','responseType'],
@@ -211,12 +215,31 @@ define(
         scope:['read']
       });
 
+      $authProvider.google({
+        clientId: '186678964269-tajnf5mojsdsa4mk66846apd0d0adc9q.apps.googleusercontent.com',
+        // This is where google will redirect the browser after the user authenticates. For development it's localhost,
+        // for production, the live server and for test the test server
+        // redirectUri: 'http://localhost:8080/cesvc/oauth/callback/google'
+        // url: 'http://localhost:8080/cesvc/oauth/callback/google'
+        url: callback_url + "google",
+        scope:['openid', 'profile', 'email']
+      });
 
       console.log("OK");
+      
+      // Add some basic settings..
+      angular.merge(applicationData, {
+        config: angular.copy(appConf),
+        user : {
+          name: "Guest"
+        }
+      });
+      userServiceProvider.setStorage ( applicationData );
 
       // Default app abstract state.
       $stateProvider.state('app', {
         abstract: true,
+        authRequired: true,
         deps: [
           'app/CtrlAppController'
         ],
@@ -226,14 +249,22 @@ define(
           }
         },
         resolve: {
-          applicationSettings: ['$http', 'appConfig', function ($http, appConfig) {
-            return $http({
-              method: 'GET',
-              url: appConfig.backend + '/application/settings',
-              headers: {
-                'Accept': 'application/json'
-              },
-            });
+          applicationSettings: ['$rootScope', '$http', 'appConfig', function ($rootScope, $http, appConfig) {
+            
+            // Grab straight from the root scope.
+            if ( typeof $rootScope.application.currency == 'undefined' ) {
+              return $http({
+                method: 'GET',
+                url: appConfig.backend + '/application/settings',
+                headers: {
+                  'Accept': 'application/json'
+                },
+              }).then (function (applicationSettings) {
+                angular.merge($rootScope.application, applicationSettings.data);
+              });
+            } else {
+              return $rootScope.application;
+            }
           }]
         }
       });
@@ -249,10 +280,13 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$log', 'satellizer.shared', 'NO_AUTH',
-      function($couchPotato, $state, $stateParams, $rootScope, $log, shared, NO_AUTH) {
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 'satellizer.shared', 
+      function($couchPotato, $state, $stateParams, $rootScope, $http) {
 
-        // Use lazy run-time registration.
+
+        $http.defaults.headers.common["Binding-Source"] = 'ng-app';
+
+        // Use lazy run-time registration
         app.lazy = $couchPotato;
 
         // These params are used regularly. Including them within the root scope will,
@@ -261,41 +295,7 @@ define(
         $rootScope.$stateParams = $stateParams;
         console.log("main run");
 
-        // Watch for state changes -- if we switch to a protected state, check that the user is authenticated.
-        // If not - send to the login page and store the toState so we can go back to it once auth has completed.
-        $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
-          $log.debug('routeChangeStart %o', toState);
-          if (toState) {
-            console.log("toState.data:%o",toState.data);
-            if ( !NO_AUTH && toState.data && toState.data.requireLogin) {
-              if (shared.isAuthenticated()) {
-                $log.debug('User Logged In for secured resource');
-              } else {
-                $log.debug('user not logged in for secured resource');
-                ev.preventDefault();
-                $rootScope.pendingPath = toState;
-                $state.go('app.login');
-                // $location.path('/login');
-              }
-            }
-            else {
-              $log.debug('Non-secured resource');
-            }
-          }
-
-          $rootScope.isAuthenticated = shared.isAuthenticated();
-
-          // If the user is authenticated, grab the current user and stash in rootScope so we can access it in partials, for
-          // example
-          if ($rootScope.isAuthenticated) {
-            // $log.debug("Set current user to %o",userService.currentUser());
-            $log.debug("user is authenticated -- payload %o",shared.getPayload());
-            $rootScope.currentUser = shared.getPayload();
-          }
-          else {
-            $rootScope.currentUser = { name : '', profilePic:'' };
-          }
-        });
+        $rootScope.application = applicationData;
       }
     ]);
 

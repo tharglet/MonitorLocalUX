@@ -6,19 +6,19 @@
   <form id="contactDetailsForm" name="contactDetailsForm" novalidate class="simple-form form-horizontal" role="form" >
 
     <div class="form-group">
-      <label id="organisationLabel" for="organisation" class="span-3 control-label" >Organisation</label>
+      <label id="organisationLabel" for="organisation" class="span-3 control-label" >Organisation*</label>
       <div class="span-9">
-        <kint-component-lookup name="organisation" id="organisation" data-object="contactDetails" data-property="organisation" data-params="{ match:['name'], perPage: 25}"
-                               data-context-obj="context" data-context-path="personContactDetails.organisation" class="form-control input-sm" ></kint-component-lookup>
+        <kint-component-lookup name="organisation" id="organisation" data-object="contactDetails" data-property="organisation"
+          data-params="{ match:['name'], perPage: 25, filters: ['type.value=HEI'] }"
+          data-context-obj="context" data-context-path="personContactDetails.organisation" class="form-control input-sm" required></kint-component-lookup>
       </div>
     </div>
 
     <div class="form-group">
-      <label id="departmentLabel" for="department" class="span-3 control-label" >Department</label>
+      <label id="departmentLabel" for="department" class="span-3 control-label" >Department*</label>
       <div class="span-9">
         <input type="text" class="form-control" id="department" name="department" placeholder="Department" aria-labelledby="departmentLabel"
-               data-ng-model="contactDetails.department" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-               data-kint-ui-input-feedback />
+               data-ng-model="contactDetails.department" required />
       </div>
     </div>
 
@@ -26,8 +26,7 @@
       <label id="jobTitleLabel" for="jobTitle" class="span-3 control-label" aria-label="Contact Details Job Title" >Position/ Job title</label>
       <div class="span-9">
         <input type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Position/ Job title" aria-labelledby="jobTitleLabel"
-               data-ng-model="contactDetails.jobTitle" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-               data-kint-ui-input-feedback />
+               data-ng-model="contactDetails.jobTitle"  />
       </div>
     </div>
 
@@ -51,10 +50,10 @@
 
     <div class="form-group">
       <div class="span-12" >
-        <button type="button" ng-click="$dismiss()" class="btn btn-default btn-sm" >
+        <button type="button" ng-click="$dismiss(contactDetails)" class="btn btn-default btn-sm" >
           Cancel
         </button>
-        <button type="button" ng-click="$close()" class="btn btn-success btn-sm" >
+        <button type="button" ng-click="$close(contactDetails)" class="btn btn-success btn-sm"  data-ng-disabled="!contactDetailsForm.$dirty || contactDetailsForm.$invalid" >
           Save
         </button>
       </div>

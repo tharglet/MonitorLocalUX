@@ -1,4 +1,4 @@
-<ui-select data-ng-model="object[property]" on-select="checkUndefined($item, $model)" >
+<ui-select data-ng-model="object[property]" on-select="checkUndefined($item, $model)" ng-disabled="disabled" ng-required="required">
   <ui-select-match>
     <span>{{$select.selected.name}} ( {{$select.selected.code}} )</span>
   </ui-select-match>

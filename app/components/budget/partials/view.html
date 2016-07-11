@@ -32,10 +32,10 @@
           </div>
 
           <div class="form-group form-group-sm">
-            <label id="sourceLabel" for="source" class="control-label span-3" aria-label="Source">Source</label>
+            <label id="sourceLabel" for="source" class="control-label span-3" aria-label="Source">Source*</label>
             <div class="span-9">
-              <kint-component-lookup name="source" id="source" data-object="context" data-property="source" class="form-control input-sm" 
-                data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+              <kint-component-lookup name="source" id="source" data-object="context" data-property="source" class="form-control input-sm"
+                data-params="{ match:['name'], perPage: 25 }" required></kint-component-lookup>
             </div>
           </div>
 
@@ -43,7 +43,7 @@
             <label id="totalFundsLabel" for="totalFunds" class="control-label span-3" aria-label="Rremaing funds">Total funds</label>
             <div class="input-group input-group-sm span-9">
               <span class="input-group-addon">{{context.totalFunds.symbol}}</span>
-              <input type="number" class="form-control" id="totalFunds" name="totalFunds" placeholder="0.00" aria-labelledby="totalFundsLabel" 
+              <input type="number" class="form-control" id="totalFunds" name="totalFunds" placeholder="0.00" aria-labelledby="totalFundsLabel"
               data-ng-model="context.totalFunds.value" step="0.01" min="0" />
             </div>
           </div>
@@ -58,11 +58,27 @@
           </div>
 
           <div class="form-group form-group-sm">
-            <label id="prepayLabel" for="prepay" class="control-label span-3" aria-label="Prepay">Prepay</label>
+            <label id="creditLabel" for="credit" class="control-label span-3" aria-label="Credit">Credit account</label>
+            <div class="span-9">
+              <kint-refdata-lookup name="credit" id="credit" data-object="context" data-property="credit" class="form-control input-sm" required >
+            </div>
+          </div>
+
+          <div class="form-group form-group-sm">
+            <label id="prepayLabel" for="prepay" class="control-label span-3" aria-label="Prepay">Pre-pay account*</label>
             <div class="span-9">
               <kint-refdata-lookup name="prepay" id="prepay" data-object="context" data-property="prepay" class="form-control input-sm" required >
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="panel panel-collapsible panel-default">
+        <div class="panel-heading">
+          <h3 data-toggle="collapse" data-target="#allNotes-container" aria-label="Expand/Collapse notes" id="allNotesHeading">Notes</h3>
+        </div>
+        <div class="panel-body form-horizontal in" id="allNotes"  data-object="context" data-property="notes" aria-labelledby="allNotesHeading"
+          kint-ui-notes blank="getBlank(notes)" type="general" user="application.user" >
         </div>
       </div>
     </article>

@@ -1,39 +1,33 @@
 <div class="modal-header">
-  <h3 class="modal-title">Assign Funding</h3>
+  <h3 class="modal-title">Assign Grant Funding</h3>
 </div>
 
 <div class="modal-body">
   <form id="funderForm" name="funderForm" novalidate class="simple-form form-horizontal" role="form" >
 
     <div class="form-group">
-      <label id="funderLabel" for="funder" class="span-3 control-label" >Funder</label>
-      <div class="span-9">
+      <label id="funderLabel" for="funder" class="span-5 control-label" >Funder *</label>
+      <div class="span-7">
         <kint-component-lookup name="funder" id="funder" data-object="filters" data-property="funder"
         	data-context-obj="context" data-context-path="funds.grant.funder" class="form-control input-sm"
-        	data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
-      </div>
-    </div>
-
-    <div class="form-group" data-ng-if="fund.funder.type == 'Funder'">
-      <label id="fundingGroupLabel" for="fundingGroup" class="span-3 control-label" >Funding Group</label>
-      <div class="span-9">
-        {{fund.funder.fundingGroup}}
+        	data-params="{ match:['name'], perPage: 25, filters: ['type.value=Funder'] }" required ></kint-component-lookup>
       </div>
     </div>
 
     <div class="form-group">
-      <label id="grantLabel" for="grant" class="span-3 control-label" >Grant</label>
-      <div class="span-9">
+      <label id="grantLabel" for="grant" class="span-5 control-label" data-ng-disabled="!filters.funder" >Grant *</label>
+      <div class="span-7">
         <kint-component-lookup name="grant" id="grant" data-object="fund" data-property="grant" data-context-obj="context"
-          data-context-path="funds.grant" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+          data-context-path="funds.grant" e-class="form-control input-sm"  data-filter-vals="filters"
+          data-params="{ match:['name'], perPage: 25, filters: ['funder.id=' + filterVals.funder.id] }" data-ng-disabled="!filters.funder" required ></kint-component-lookup>
       </div>
     </div>
 
     <div class="form-group">
-      <label id="apcChargeLabel" for="apcCharge" class="span-3 control-label" >% of research funding</label>
+      <label id="apcChargeLabel" for="apcCharge" class="span-5 control-label" data-ng-disabled="!filters.funder"  >% of research funding *</label>
       <div class="span-3 inline">
         <input type="number" class="form-control" id="apcCharge" name="apcCharge"
-          aria-labelledby="apcChargeLabel" data-ng-model="fund.apcCharge" step="0.01" min="0.00" max="100.00" />
+          aria-labelledby="apcChargeLabel" data-ng-model="fund.apcCharge" step="0.01" min="0.00" max="100.00" data-ng-disabled="!filters.funder" required />
       </div>
     </div>
 
@@ -42,7 +36,7 @@
         <button type="button" ng-click="$dismiss(fund)" class="btn btn-default btn-sm" >
           Cancel
         </button>
-        <button type="button" ng-click="$close(fund)" class="btn btn-success btn-sm" >
+        <button type="button" ng-click="$close(fund)" class="btn btn-success btn-sm" data-ng-disabled="!funderForm.$dirty || funderForm.$invalid" >
           Save
         </button>
       </div>
