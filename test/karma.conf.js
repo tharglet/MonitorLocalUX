@@ -62,11 +62,13 @@ module.exports = function(config) {
       'bower_components/moment/moment.js',
       'bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js',
       'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+      'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.js',
       'bower_components/datatables.net-colreorder/js/dataTables.colReorder.js',
       'bower_components/datatables.net-responsive/js/dataTables.responsive.js',
       'bower_components/datatables.net-responsive-bs/js/responsive.bootstrap.js',
       'bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader.js',
+      'bower_components/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

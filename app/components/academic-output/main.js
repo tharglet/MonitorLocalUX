@@ -71,6 +71,10 @@ define(
           "" : {
             controller: 'SearchResultsController',
           },
+          "search":{
+            controller: 'SearchController',
+            templateUrl: 'components/academic-output/partials/search.html',
+          },
           "ao-nav@app" : {
             templateUrl: "components/academic-output/partials/_nav.html",
           }

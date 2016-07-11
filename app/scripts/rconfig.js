@@ -37,7 +37,6 @@ requirejs.config({
     "pnotify.callbacks": "../bower_components/pnotify/dist/pnotify.callbacks",
     "angular-bootstrap": "../bower_components/angular-bootstrap/ui-bootstrap-tpls",
     "angular-messages": "../bower_components/angular-messages/angular-messages",
-
     "datatables.net-buttons": "../bower_components/datatables.net-buttons/js/dataTables.buttons",
     "datatables.net-buttons-bs": "../bower_components/datatables.net-buttons-bs/js/buttons.bootstrap",
     "datatables.net-buttons.colVis": "../bower_components/datatables.net-buttons/js/buttons.colVis",
@@ -48,11 +47,16 @@ requirejs.config({
     "datatables.net-responsive": "../bower_components/datatables.net-responsive/js/dataTables.responsive",
     "datatables.net-responsive-bs": "../bower_components/datatables.net-responsive-bs/js/responsive.bootstrap",
     "datatables.net-fixedheader": "../bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader",
-    
     "angular-datetime": "../bower_components/angular-datetime/dist/datetime",
     "eonasdan-bootstrap-datetimepicker": "../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min",
     moment: "../bower_components/moment/min/moment.min",
-    "angular-bootstrap-datetimepicker-directive": "../bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive"
+    "angular-bootstrap-datetimepicker-directive": "../bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive",
+    "angular-bootstrap-confirm": "../bower_components/angular-bootstrap-confirm/dist/angular-bootstrap-confirm",
+    "dataTables.buttons": "../bower_components/datatables.net-buttons/js/dataTables.buttons",
+    "buttons.colVis": "../bower_components/datatables.net-buttons/js/buttons.colVis",
+    "buttons.flash": "../bower_components/datatables.net-buttons/js/buttons.flash",
+    "buttons.html5": "../bower_components/datatables.net-buttons/js/buttons.html5",
+    "buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print"
   },
   baseUrl: "components",
   packages: [
@@ -231,22 +235,22 @@ requirejs.config({
     },
     "datatables.net-buttons.colVis": {
       deps: [
-        "datatables.net-buttons",
+        "datatables.net-buttons"
       ]
     },
     "datatables.net-buttons.html5": {
       deps: [
-        "datatables.net-buttons",
+        "datatables.net-buttons"
       ]
     },
     "datatables.net-buttons.flash": {
       deps: [
-        "datatables.net-buttons",
+        "datatables.net-buttons"
       ]
     },
     "datatables.net-buttons.print": {
       deps: [
-        "datatables.net-buttons",
+        "datatables.net-buttons"
       ]
     },
     "datatables.net-colreorder": {
@@ -290,6 +294,26 @@ requirejs.config({
       deps: [
         "angular",
         "eonasdan-bootstrap-datetimepicker",
+        "jquery"
+      ]
+    },
+    "angular-bootstrap-confirm": {
+      deps: [
+        "angular",
+        "angular-sanitize"
+      ]
+    },
+    "datatables.net-colreorder-bs": {
+      deps: [
+        "datatables.net-bs",
+        "datatables.net-colreorder",
+        "jquery"
+      ]
+    },
+    "datatables.net-fixedheader-bs": {
+      deps: [
+        "datatables.net-bs",
+        "datatables.net-fixedheader",
         "jquery"
       ]
     }
