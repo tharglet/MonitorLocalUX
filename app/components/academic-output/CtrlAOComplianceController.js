@@ -20,7 +20,7 @@ define (
           'License' :  'CC BY'
         },
         'green' :  {
-          'Deposit' : 'At least one deposite where the version deposited is "Accepted Manuscript".'
+          'Deposit' : 'At least one deposit where the version deposited is "Accepted Manuscript".'
         }
       };
 
