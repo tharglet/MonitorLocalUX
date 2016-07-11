@@ -96,12 +96,10 @@
           </div>
 
           <div class="form-group form-group-sm" >
-            <label id="approvalNoteLabel" for="approvalNote" class="control-label span-3" aria-label="Approval Note" >APC funding approval note</label>
-            <div class="span-9">
-              <textarea type="text" class="form-control" id="approvalNote" name="approvalNote" placeholder="Approval Note" aria-labelledby="approvalNoteLabel"
-                      data-ng-model="context.apcFundingNote" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                      data-kint-ui-input-feedback data-kint-validate></textarea>
-            </div>
+            <label id="approvalNoteLabel" for="approvalNote" class="control-label span-3" aria-label="Approval Note" >APC funding approval notes</label>
+            <div class="span-9" id="approvalNote"  data-object="context" data-property="notes" 
+                kint-ui-notes blank="getBlank(notes)" type="general.approval" user="application.user" >
+              </div>
           </div>
 
           <h4 id="fundingAssignmentsHeading">Grant assignments</h4>
