@@ -1,6 +1,7 @@
 <table class="table table-striped table-hover table-condensed">
   <thead>
   <tr>
+    <th>Primary Contact?</th>
     <th>Firstname</th>
     <th>Surname</th>
     <th>Role</th>
@@ -9,12 +10,18 @@
   </thead>
 
   <tbody>
-  <tr ng-repeat="aoName in people" ng-form="aoName{{$index}}" data-ng-init="person = aoName.person">
+  <tr ng-repeat="aoName in people" ng-form="aoName{{$index}}" data-ng-init="person = aoName.person" data-ng-class="{'info' : aoName.keyContact}">
+    <td>
+      <span data-ng-if="aoName.keyContact === true" class="glyphicon glyphicon-star"></span>
+      <a data-ng-if="aoName.keyContact === false" data-ng-click="makeKeyContact(aoName)" title="Set as primary contact" >
+        <span class="glyphicon glyphicon-star-empty"></span>
+      </a>
+    </td>
     <td><a data-ui-sref="app.person.view ({id: person.id})" >{{person.firstName}}</a></td>
     <td><a data-ui-sref="app.person.view ({id: person.id})" >{{person.surname}}</a></td>
     <td>{{aoName.namerel.value}}</td>
     <td>
-      <button type="button" ng-click="removeFrom('names', aoName)" class="btn btn-danger btn-sm" >Del</button>
+      <button type="button" ng-click="removeContact(aoName)" class="btn btn-danger btn-sm" title="{{aoName.keyContact ? 'You can not remove the primary contact.' : 'Remove this contact'}}" data-ng-disabled="aoName.keyContact === true" >Del</button>
     </td>
   </tr>
   </tbody>

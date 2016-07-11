@@ -1,4 +1,4 @@
-<form id="aoPerson" name="aoPerson" class="row" >
+<div class="row" >
   <article data-ui-view>
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
@@ -8,35 +8,35 @@
         <ng-include data-ng-if="people && people.length > 0" src="'components/academic-output/partials/_table_people.html'" ></ng-include>
         <p data-ng-if="!people || people.length == 0" >There are currently no people assigned. Please use the form below.</p>
         
-        <form id="managePeople" name="managePeople">
-          <!--div class="form-group form-group-sm" >
-            <label id="organisationLabel" for="organisation" class="control-label span-3" aria-label="Organisation">Organisation</label>
+          <div class="form-group form-group-sm" >
+            <label id="organisationLabel" for="organisation" class="control-label span-3" aria-label="Organisation">Filter by Organisation</label>
             <div class="span-9">
               <kint-component-lookup name="organisation" id="organisation" class="form-control input-sm"
-                data-object="data" data-property="orgFilter" data-context-obj="context" data-context-path="ownerInstitution"
-                data-params="{ match:['name'], perPage: 25 }" >
+                data-object="filters" data-property="personOrg"
+                data-context-obj="context" data-context-path="names.person.personContactDetails.organisation"
+                data-params="{ match:['name'], perPage: 25, filters: ['type.value=HEI'] }" >
             </div>
-          </div -->
+          </div>
           <div class="form-group form-group-sm" >
             <label id="personLabel" for="person" class="control-label span-3" aria-label="Person">Person*</label>
             <div class="span-9">
               <kint-component-lookup name="person" id="person" class="form-control input-sm"
                 data-object="data" data-property="person" data-context-obj="context" data-context-path="names.person"
-                data-params="{ match:['name'], perPage: 25 }" data-ng-disabled="data.orgFilter.id < 1" >
+                data-template="components/academic-output/partials/person-lookup.html"  data-filter-vals="filters"
+                data-params="{ match:['name'], perPage: 25, filters: ['personContactDetails.organisation.id=' + filterVals.personOrg.id] }" >
             </div>
           </div>
           <div class="form-group form-group-sm" >
             <label id="roleLabel" for="role" class="control-label span-3" aria-label="Person">Role*</label>
             <div class="span-9">
               <kint-refdata-lookup name="role" id="role" data-object="data" data-property="role"
-                data-context-obj="context" data-context-path="names.namerel" class="form-control input-sm" required ></kint-refdata-lookup>
+                data-context-obj="context" data-context-path="names.namerel" class="form-control input-sm" ></kint-refdata-lookup>
             </div>
           </div>
 
           <div class="form-group pull-right">
-            <button type="button" class="btn btn-success" data-ng-click="addAOPerson(data.person, data.role)" data-ng-disabled="!data.person || !data.role" >Add Person</button>
+            <button type="button" class="btn btn-success" data-ng-click="addAOPerson(data.person, data.role)" data-ng-disabled="!(data.person && data.role)" >Add Person</button>
           </div>
-        </form>
       </div>
     </div>
     
@@ -49,5 +49,5 @@
       </div>
     </div>
   </article>
-</form>
+</div>
 

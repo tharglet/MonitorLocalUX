@@ -125,6 +125,22 @@ define (
         }
       };
       
+      // Set a couple of methods against the scope.
+      $scope.deleteObject = function() {
+        
+        // This is current scope of the button press.
+        var res = this.context;
+        if (res.id) {
+          // Update...
+          res.$delete(function(){
+            if ($state) {
+              // Refresh the current state. Helps with passsed references into directives.
+              $state.go("^", {}, {inherit: true});
+            }
+          });
+        }
+      };
+      
       $scope.cancelChanges = function(e) {
         
         // First we should reset teh model.

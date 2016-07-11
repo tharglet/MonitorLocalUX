@@ -9,10 +9,12 @@
       <th class="info" >NET</th>
       <th>Academic Output</th>
       <th>Budget</th>
+      <th>Payee</th>
+      <th>PO</th>
       <th>Action</th>
     </tr>
   </thead>
-  
+
   <tbody>
     <tr ng-repeat="costItem in context.invoiceCosts" ng-form="costItem{{$index}}" ng-include="'components/invoice/partials/_table_cost_items_row.html'" >
     </tr>
@@ -23,7 +25,7 @@
       <td class="info" >{{(totals['grossValueGBP'] || 0) | number : 2}}</td>
       <td class="info" >{{(totals['tax'] || 0) | number : 2}}</td>
       <td class="info" >{{(totals['net'] || 0) | number : 2}}</td>
-      <td colspan="2"></td>
+      <td colspan="4"></td>
       <td>
         <button type="button" class="btn btn-warning btn-sm" ng-click="editCost('invoiceCosts', 'costItem')" >Add</button>
       </td>
