@@ -52,8 +52,15 @@
           <td></td>
         </tr>
         <tr>
-          <td><input type="text" placeholder="Request new affiliation with....." class="form-control" id="reqOrgName" name="reqOrgName" /></td>
-          <td><select class="c-select form-control" name="role"><option value="User">Standard User</option><option value="Admin">Admin</option></select></td>
+          <td>
+            <kint-component-lookup name="reqOrgName" id="reqOrgName" class="form-control input-sm"
+               data-object="affiliationRequestData " data-property="institution"
+               data-context-obj="context" data-context-path="orgAffiliations"
+               data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
+          </td>
+          <td>
+            <select class="c-select form-control" name="role"><option value="User">Standard User</option><option value="Admin">Admin</option></select>
+          </td>
           <td><button type="button" class="btn btn-success" data-ng-click="requestAffiliation()">Request</button></td>
         </tr>
       </table>

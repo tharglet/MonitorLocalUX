@@ -14,9 +14,9 @@ define(
     return angular.module('profile', ['grails', 'kintUi'])
     .config(['$stateProvider', function($stateProvider) {
       // State for search.
-
       $stateProvider.state('app.profile', {
         url: '/profile',
+        grailsResource: 'Org',
         templateUrl: 'components/profile/partials/view.html',
         controller: 'ctrlProfile',
         deps:[

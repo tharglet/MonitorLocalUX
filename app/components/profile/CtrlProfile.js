@@ -12,6 +12,9 @@ define (
         console.log("requestAffiliation");
       }
 
+      $scope.affiliationRequestData = {
+      }
+
     }]);
   }
 );
