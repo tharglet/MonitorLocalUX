@@ -16,7 +16,7 @@ define(
       // State for search.
       $stateProvider.state('app.profile', {
         url: '/profile',
-        grailsResource: 'Org',
+        grailsResource: 'Person',
         templateUrl: 'components/profile/partials/view.html',
         controller: 'ctrlProfile',
         deps:[
