@@ -40,7 +40,13 @@ define (
       $scope.validate = function(){
         console.log("validate");
 
-        var config = {};
+        // Config for http. Remove our custom header 'binding-source' and also flag satelizer to not add authorization headers.
+        var config = {
+            skipAuthorization: true,
+            headers :{
+              "binding-source" : undefined
+            }
+        };
         // $http.get('http://api.crossref.org/works/'+'10.1037/0003-066X.59.1.29', config)
         $http.get('http://api.crossref.org/works/'+ $scope.doi_data['identifiers'][0].identifier.value, config)
           .then(function success(response) {

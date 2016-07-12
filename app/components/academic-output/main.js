@@ -89,7 +89,8 @@ define(
         url: '/:id',
         deps: [
           'components/academic-output/CtrlAcademicOutputController.js',
-          'components/academic-output/CtrlAOSidebarController.js'
+          'components/academic-output/CtrlAOSidebarController.js',
+          'components/academic-output/CtrlDOIValidationController.js'
         ],
         views: {
           "@app": {
@@ -122,9 +123,6 @@ define(
       });
       $stateProvider.state('app.academicOutput.view.publication', {
         url:          '/publication',
-        deps: [
-          'components/academic-output/CtrlDOIValidationController.js'
-        ],
         views: {
           "": {
             templateUrl:  'components/academic-output/partials/_tab_publication.html',
