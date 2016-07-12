@@ -74,7 +74,7 @@ define(
         }]);
       }])
       
-      .run(['$rootScope', 'userService', '$state', function($rootScope, userService, $state) {
+      .run(['$rootScope', 'userService', '$state', '$auth', '$log', function($rootScope, userService, $state, $auth, $log) {
         
         var checkLoginPage = function(from, fromParams, to) {
           if (to.name == 'app.login' && !from.name == 'app.login') {
@@ -82,7 +82,7 @@ define(
             $rootScope.loginRedirect = {
                 state: from,
                 params: fromParams
-            }
+            };
           }
         };
         
@@ -106,9 +106,17 @@ define(
           console.log(error);
         });
         
-        $rootScope.logout = function () {
-          userService.logout();
-        }
+        $rootScope.logout =  function() {
+          $auth.logout()
+          .then(function(response) {
+            // delete $scope.currentUser;
+             userService.logout();
+            $log.debug('Logged out');
+          })
+          .catch(function(err) {
+            $log.error("failed to logout", err);
+          });
+        };
       }])
     ;
   }
