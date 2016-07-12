@@ -209,6 +209,10 @@ ResourceManager.prototype.r = function ( type ) {
         _self.addBlankFetching(res, type);
         _self.addGenericLookup(res, type);
         res.prototype.$$isResource = true;
+        
+        res.staticInst = function() {
+          return new res ( type );
+        }
       }
     }
     
