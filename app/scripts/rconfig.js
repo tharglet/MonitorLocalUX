@@ -56,7 +56,8 @@ requirejs.config({
     "buttons.colVis": "../bower_components/datatables.net-buttons/js/buttons.colVis",
     "buttons.flash": "../bower_components/datatables.net-buttons/js/buttons.flash",
     "buttons.html5": "../bower_components/datatables.net-buttons/js/buttons.html5",
-    "buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print"
+    "buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print",
+    "angular-confirm-modal": "../bower_components/angular-confirm-modal/angular-confirm"
   },
   baseUrl: "components",
   packages: [

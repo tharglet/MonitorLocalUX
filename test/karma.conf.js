@@ -68,7 +68,7 @@ module.exports = function(config) {
       'bower_components/datatables.net-responsive/js/dataTables.responsive.js',
       'bower_components/datatables.net-responsive-bs/js/responsive.bootstrap.js',
       'bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader.js',
-      'bower_components/angular-bootstrap-confirm/dist/angular-bootstrap-confirm.js',
+      'bower_components/angular-confirm-modal/angular-confirm.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
