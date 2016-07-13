@@ -31,14 +31,11 @@ define (
             // console.log('Injecting context values and defaults, blank=%o',blank)
             // If the blank has an ownerInstitution property, set it
             
-            var theBlank = blank;
             if ( ( $scope.application.user ) && ( $scope.application.user.userOrg ) ) {
-              if ( "ownerInstitution" in blank ) {
-                theBlank = (theBlank, { ownerInstitution : $scope.application.user.userOrg});
-              }
+              blank.ownerInstitution = $scope.application.user.userOrg;
             }
-            
-            return theBlank;
+          
+            return blank;
           });
         }
         

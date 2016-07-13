@@ -75,13 +75,11 @@ define (
                 if (id == "create") {
                   
                   return resource.create().$promise.then(function( blank ){
-                    var theBlank = blank;
                     if ( ( $scope.application.user ) && ( $scope.application.user.userOrg ) ) {
-                      if ( "ownerInstitution" in blank ) {
-                        theBlank = (theBlank, { ownerInstitution : $scope.application.user.userOrg});
-                      }
+                      blank.ownerInstitution = $scope.application.user.userOrg;
                     }
-                    return theBlank; 
+                  
+                    return blank;
                   });
                   
                 } else {
