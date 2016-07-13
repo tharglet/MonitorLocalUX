@@ -27,7 +27,17 @@ define (
         var res = this.context;
         
         if (res && "getBlankProperty" in res && typeof res.getBlankProperty === 'function') {
-          return res.getBlankProperty(propertyName);
+          return res.getBlankProperty(propertyName).then( function( blank ) {
+            // console.log('Injecting context values and defaults, blank=%o',blank)
+            // If the blank has an ownerInstitution property, set it
+            if ( ( $scope.application.user ) && ( $scope.application.user.userOrg ) ) {
+              if ( blank.ownerInstitution == null ) {
+                blank.ownerInstitution = {};
+              }
+              blank.ownerInstitution.id = $scope.application.user.userOrg.id;
+              // $q.defer().resolve( blank );
+            }
+          });
         }
         
         // Just return null.
