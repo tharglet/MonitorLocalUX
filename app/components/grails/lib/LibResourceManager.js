@@ -149,7 +149,8 @@ ResourceManager.prototype.addBlankFetching = function ( res, type ) {
       _self.http({
         "url": _self.baseUrl + "/ref/blank/" + type + "/" + propName,
         "headers": { "Accept": "application/json;charset=UTF-8" },
-        "method": "GET"
+        "method": "GET",
+        cache: true
       }).then(function (response) {
         
         // Add to the cache and then return.

@@ -23,7 +23,7 @@
     "angular-xeditable": "~0.1.11",
     "pnotify": "~3.0.0",
     "angular-sanitize": "~1.5.3",
-    "ui-select": "git://github.com/angular-ui/ui-select.git#0.16.1",
+    "ui-select": "git://github.com/angular-ui/ui-select.git#0.18.1",
     "angular-bootstrap": "~1.2.5",
     "datatables.net-buttons": "~1.1.2",
     "datatables.net-buttons-bs": "~1.1.2",

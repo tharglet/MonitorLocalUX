@@ -60,6 +60,18 @@ define (
             }
           };
           
+          var blank = {};
+          if (typeof iAttr['tagging'] !== 'undefined') {
+            obj.getBlankProperty ($scope.contextPath).then(function( rdata ) {
+              angular.merge ( blank, rdata );
+            });
+          }
+          
+          // Method that is responsible for a blanks.
+          $scope.newTagValue = function (newValue) {
+            return angular.merge (angular.copy(blank), { value: newValue }) ;
+          };
+          
           // Register a watch function to update when the module changes.
           $scope.rdw = $scope.$watch("object", function(newVal, oldVal){
             if (!angular.equals({}, newVal)) {
@@ -70,21 +82,27 @@ define (
             }
           });
 
-          var addAttributes = function(atrrs, template) {
-            angular.forEach(iAttr, function(val, name) {
-              if (!name.indexOf('$') === 0) {
+          var addAttributes = function(attr, template) {
+            angular.forEach(attr, function(val, name) {
+              if (name.indexOf('$') !== 0) {
                 switch ( name ) {
-                case "object":
-                case "property":
-                  // ignore these 2.
-                  break;
-                case "class":
-                  // Add classes rather than setting.
-                  template.addClass(val);
-                  break;
-                default:
-                  // Copy the value over.
-                  template.attr(name, val);
+                  case "object":
+                  case "property":
+                    // ignore these.
+                    break;
+                  case "class":
+                    // Add classes rather than setting.
+                    template.addClass(val);
+                    break;
+  
+                  case "tagging":
+                     // Add the tagging method.
+                    template.attr(name, 'newTagValue');
+                    template.attr('tagging-label', "false");
+                    break;
+                  default:
+                    // Copy the value over.
+                    template.attr(name, val);
                 }
               }
             });
