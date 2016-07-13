@@ -37,7 +37,7 @@ define (
               console.log("No user in %o",rootScope);
             }
             
-            console.log("returning the blank %o",theBlank);
+            console.log("returning the blank %o",blank);
             return blank;
           });
         }
