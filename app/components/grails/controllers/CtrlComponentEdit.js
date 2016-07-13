@@ -28,16 +28,14 @@ define (
         
         if (res && "getBlankProperty" in res && typeof res.getBlankProperty === 'function') {
           return res.getBlankProperty(propertyName).then( function( blank ) {
-            console.log('Injecting context values and defaults, prop is %o blank=%o',propertyName,blank)
+            // console.log('Injecting context values and defaults, prop is %o blank=%o',propertyName,blank)
             // If the blank has an ownerInstitution property, set it
             
-            if ( ( $scope.application.user ) && ( $scope.application.user.userOrg ) ) {
-              blank.ownerInstitution = $scope.application.user.userOrg;
-            }  else {
-              console.log("No user in %o",rootScope);
-            }
-            
-            console.log("returning the blank %o",blank);
+            // if ( ( $scope.application.user ) && ( $scope.application.user.userOrg ) ) {
+            //   blank.ownerInstitution = $scope.application.user.userOrg;
+            // }  else {
+            // }
+            // console.log("returning the blank %o",blank);
             return blank;
           });
         }

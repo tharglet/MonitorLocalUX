@@ -75,9 +75,12 @@ define (
                 if (id == "create") {
                   
                   return resource.create().$promise.then(function( blank ){
+                    console.log("blank %o",blank);
                     if ( ( $scope.application.user ) && ( $scope.application.user.userOrg ) ) {
+                      console.log("got user, set ownerInstitution");
                       blank.ownerInstitution = $scope.application.user.userOrg;
                     }
+                    console.log("blank : %o",blank);
                   
                     return blank;
                   });

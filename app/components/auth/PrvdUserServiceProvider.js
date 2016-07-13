@@ -31,7 +31,7 @@ define(
            * @description get the current user object.
            */
           currentUser : function() {
-              $log.debug("UserService::Parsing current user");
+              $log.debug("UserService::Parsing current user from storage %o",storage.user);
               var user = storage.user;
               return user;
           },
