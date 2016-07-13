@@ -101,7 +101,9 @@ define (
           data.queryParams = $scope.queryParams;
 
           // Inject the users default home institution here if present
-          data.queryParams.instCtx = $scope.application.user.instCtx;
+          if (  $scope.application.user.userOrg ) {
+            data.queryParams.instCtx = ''+$scope.application.user.userOrg.id;
+          }
 
           console.log("About to call resource.quey on %o %o %o",resource,data,settings);
           return resource.query(data, function(response){
