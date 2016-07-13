@@ -3,7 +3,7 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('DOIValidationController', [ '$scope', '$http', '$filter', function($scope, $http, $filter) {
+    app.registerController('DOIValidationController', [ '$scope', '$http', '$filter', 'appConfig', function($scope, $http, $filter, appConfig) {
 
       console.log("DOIValidationController");
       
@@ -47,30 +47,55 @@ define (
               "binding-source" : undefined
             }
         };
-        // $http.get('http://api.crossref.org/works/'+'10.1037/0003-066X.59.1.29', config)
-        $http.get('http://api.crossref.org/works/'+ $scope.doi_data['identifiers'][0].identifier.value, config)
-          .then(function success(response) {
-          console.log("OK %o",response);
-          $scope.item_container_title = response.data.message['container-title'][0];
-          $scope.doi_data['name'] = response.data.message.title[0];
-          $scope.item_type = response.data.message.type;
-          $scope.item_identifiers = response.data.message.ISSN;
-          $scope.item_authors = response.data.message.author;
+
+        
+        // A/B Switching of different DOI lookup methods
+        if ( 1==1 ) {
+          // Talk to the Monitor app instead of going directly to crossref
+          $http.post(appConfig.backend+'/application/crossrefLookup', {doi:$scope.doi_data['identifiers'][0].identifier.value}).
+            then(function(response) {
+              console.log("DOI Lookup response %o",response);
+              $scope.item_container_title = response.data.containerTitle;
+              $scope.doi_data['name'] = response.data.itemTitle;
+              $scope.doi_data['publicationTitle'] = response.data.containerTitle;
+              $scope.doi_data['outputType'] = null; // refdata item type
+              $scope.item_title = response.data.itemTitle;
+              $scope.item_type = response.data.containerType;
+              $scope.item_identifiers = response.data.identifiers;
+              $scope.item_authors = response.data.authorNames;
+              $scope.message = response.data.message;
+              $scope.valid = true;
+              // return response.data;
+            });
+        }
+        else {
+          // $http.get('http://api.crossref.org/works/'+'10.1037/0003-066X.59.1.29', config)
+          $http.get('http://api.crossref.org/works/'+ $scope.doi_data['identifiers'][0].identifier.value, config)
+            .then(function success(response) {
+            console.log("OK %o",response);
+            $scope.item_container_title = response.data.message['container-title'][0];
+            $scope.doi_data['name'] = response.data.message.title[0];
+            $scope.item_type = response.data.message.type;
+            $scope.item_identifiers = response.data.message.ISSN;
+            $scope.item_authors = response.data.message.author;
           
-          // Also add a simple list.
-          // SO: This will need to change to create, or match names.
-          var names = "";
-          angular.forEach (response.data.message.author, function (author) {
-            names += (author['given'] + ' ' + author['family']) + "\n";
+            // Also add a simple list.
+            // SO: This will need to change to create, or match names.
+            var names = "";
+            angular.forEach (response.data.message.author, function (author) {
+              names += (author['given'] + ' ' + author['family']) + "\n";
+            });
+          
+            $scope.doi_data['authorNameList'] = names.replace(/^\s+|\s+$/gm,'');
+            $scope.valid = true;
+          }, 
+          function error(response) {
+            console.log("Error");
+            $scope.valid = false;
           });
-          
-          $scope.doi_data['authorNameList'] = names.replace(/^\s+|\s+$/gm,'');
-          $scope.valid = true;
-        }, 
-        function error(response) {
-          console.log("Error");
-          $scope.valid = false;
-        });
+        }
+
+
       };
 
       // Validate by cross ref : issue GET to http://api.crossref.org/works/ + DOI -- eg "10.1037/0003-066X.59.1.29"

@@ -9,6 +9,7 @@ define (
         var callingScope = this;
         return callingScope.openModal('components/academic-output/partials/_modal_doi.html', 'DOIValidationController').result.then(function (res) {
           // Merge into the context.
+          console.log("Merge DOI data %o %o",callingScope.context,res);
           angular.merge(callingScope.context, res);
         },function (){
           // Do nothing...

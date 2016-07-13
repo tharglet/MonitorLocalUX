@@ -32,8 +32,8 @@
         </div>
 
         <h4 id="licenceEvidenceHeading" data-toggle="collapse" data-target="#licenceEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
-        <div data-ng-form id="licenceEvidence" name="licenceEvidence" class="table-responsive collapse out" aria-labelledby="licenceEvidenceHeading"
-          data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
+        <div class="span-12" id="licenceNote"  data-object="context" data-property="notes"
+             kint-ui-notes blank="getBlank(notes)" type="publication.licence" user="application.user" >
         </div>
       </div>
     </div>
@@ -70,6 +70,12 @@
           </div>
         </div>
       </div>
+      <div class="form-group form-group-sm" >
+        <label id="embargoNoteLabel" for="embargoNote" class="control-label span-3" aria-label="Embargo Note" >Embargo period evidence</label>
+        <div class="span-12" id="embargoNote"  data-object="context" data-property="notes"
+             kint-ui-notes blank="getBlank(notes)" type="publication.embargo" user="application.user" >
+        </div>
+      </div>
     </div>
 
     <!-- Funder Acknowledgement -->
@@ -104,8 +110,8 @@
         </div>
 
         <h4 id="acknowledgementEvidenceHeading" data-toggle="collapse" data-target="#acknowledgementEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
-        <div data-ng-form id="acknowledgementEvidence" name="acknowledgementEvidence" class="table-responsive collapse out" aria-labelledby="acknowledgementEvidenceHeading"
-          data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
+        <div class="span-12" id="acknowledgementNote"  data-object="context" data-property="notes"
+             kint-ui-notes blank="getBlank(notes)" type="publication.acknowledgement" user="application.user" >
         </div>
       </div>
     </div>
@@ -142,8 +148,8 @@
         </div>
 
         <h4 id="accessStatementEvidenceHeading" data-toggle="collapse" data-target="#accessStatementEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
-        <div data-ng-form id="accessStatementEvidence" name="accessStatementEvidence" class="table-responsive collapse out" aria-labelledby="accessStatementEvidenceHeading"
-          data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
+        <div class="span-12" id="materialsNote"  data-object="context" data-property="notes"
+             kint-ui-notes blank="getBlank(notes)" type="publication.materials" user="application.user" >
         </div>
       </div>
     </div>
@@ -185,6 +191,16 @@
         <div data-ng-form id="depositedEvidence" name="depositedEvidence" class="table-responsive collapse out" aria-labelledby="depositedEvidenceHeading"
           data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
         </div>
+      </div>
+    </div>
+
+    <div class="panel panel-collapsible panel-default">
+      <div class="panel-heading">
+        <h3 data-toggle="collapse" data-target="#allNotes-container" aria-label="Expand/Collapse notes" id="allNotesHeading">Notes</h3>
+      </div>
+
+      <div class="panel-body form-horizontal in" id="allNotes" data-object="context" data-property="notes" aria-labelledby="allNotesHeading"
+           kint-ui-notes blank="getBlank(notes)" type="publication" user="application.user" >
       </div>
     </div>
   </article>
