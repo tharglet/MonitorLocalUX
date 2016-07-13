@@ -1,6 +1,6 @@
 {
   "appConfig": {
-    "backend": "http://monitor.k-int.com/api",
+    "backend": "http://monitor.k-int.com/monitorLocalSvc",
     "datepicker": {
       "format": "YYYY-MM-DD"
     }
