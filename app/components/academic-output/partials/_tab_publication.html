@@ -32,11 +32,9 @@
         </div>
 
         <div class="form-group form-group-sm" >
-          <label id="publicationStatusNoteLabel" for="publicationStatusNote" class="control-label span-3" aria-label="Publication Status Note" >Publication status note</label>
-          <div class="span-9">
-            <textarea type="text" class="form-control" id="publicationStatusNote" name="publicationStatusNote" placeholder="Publication Status Note" aria-labelledby="publicationStatusNoteLabel"
-                      data-ng-model="context.publicationStatusNote" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                      data-kint-ui-input-feedback data-kint-validate></textarea>
+          <label id="statusNoteLabel" for="statusNote" class="control-label span-3" aria-label="Status Note" >Publication status note</label>
+          <div class="span-9" id="statusNote"  data-object="context" data-property="notes"
+               kint-ui-notes blank="getBlank(notes)" type="publication.status" user="application.user" >
           </div>
         </div>
       </div>
@@ -284,12 +282,12 @@
           </div>
         </div>
 
-        <h4 id="licenceAppliedEvidenceHeading">Evidence</h4>
-
-        <form id="licenceEvidence" name="licenceEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_compliance_evidence.html'" ></ng-include>
-        </form>
-
+        <div class="form-group form-group-sm" >
+          <label id="licenceNoteLabel" for="licenceNote" class="control-label span-3" aria-label="Licence Note" >Publication licence evidence</label>
+          <div class="span-9" id="licenceNote"  data-object="context" data-property="notes"
+               kint-ui-notes blank="getBlank(notes)" type="publication.licence" user="application.user" >
+          </div>
+        </div>
       </div>
     </div>
 
@@ -318,11 +316,12 @@
           </div>
         </div>
 
-        <h4 id="embargoAppliedEvidenceHeading">Evidence</h4>
-
-        <form id="embargoEvidence" name="embargoEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_compliance_evidence.html'" ></ng-include>
-        </form>
+        <div class="form-group form-group-sm" >
+          <label id="embargoNoteLabel" for="embargoNote" class="control-label span-3" aria-label="Embargo Note" >Embargo period evidence</label>
+          <div class="span-9" id="embargoNote"  data-object="context" data-property="notes"
+               kint-ui-notes blank="getBlank(notes)" type="publication.embargo" user="application.user" >
+          </div>
+        </div>
 
       </div>
     </div>
@@ -340,11 +339,12 @@
           </div>
         </div>
 
-        <h4 id="acknowledgementEvidenceHeading">Evidence</h4>
-
-        <form id="funderAcknowledgement" name="funderAcknowledgement" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_compliance_evidence.html'" ></ng-include>
-        </form>
+        <div class="form-group form-group-sm" >
+          <label id="acknowledgementNoteLabel" for="acknowledgementNote" class="control-label span-3" aria-label="Acknowledgement Note" >Funder acknowledgement evidence</label>
+          <div class="span-9" id="acknowledgementNote"  data-object="context" data-property="notes"
+               kint-ui-notes blank="getBlank(notes)" type="publication.acknowledgement" user="application.user" >
+          </div>
+        </div>
 
       </div>
     </div>
@@ -362,11 +362,12 @@
           </div>
         </div>
 
-        <h4 id="researchEvidenceHeading">Evidence</h4>
-
-        <form id="researchEvidence" name="researchEvidence" class="table-responsive" >
-          <ng-include src="'components/academic-output/partials/_table_compliance_evidence.html'" ></ng-include>
-        </form>
+        <div class="form-group form-group-sm" >
+          <label id="materialsNoteLabel" for="materialsNote" class="control-label span-3" aria-label="Materials Note" >Research materials evidence</label>
+          <div class="span-9" id="materialsNote"  data-object="context" data-property="notes"
+               kint-ui-notes blank="getBlank(notes)" type="publication.materials" user="application.user" >
+          </div>
+        </div>
 
       </div>
     </div>
