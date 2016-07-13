@@ -71,3 +71,8 @@ Example apache config to serve directly istead of grunt serve
           # Rewrite everything else to index.html to allow html5 state links
           RewriteRule ^ index.html [L]
         </Directory>
+
+
+
+Test DOIs
+10.1037/0003-066X.59.1.29
