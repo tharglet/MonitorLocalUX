@@ -272,7 +272,7 @@ define(
       $stateProvider.state('app.dash', {
         url: '/',
         data: {
-          title: "Dashboard",
+          title: "Welcome",
         },
         templateUrl: 'components/app/partials/home.html',
       });
