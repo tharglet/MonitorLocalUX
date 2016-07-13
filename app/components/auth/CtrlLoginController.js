@@ -16,7 +16,7 @@ define (
           if (response && response.data && response.data.user) {
             $log.debug("Set rootScope(%o) user to %o", $scope, response.data.user);
     
-            // userService.update(response.data.user);
+             userService.update(response.data.user);
             if ($scope.loginRedirect) {
               // Transition.
               $state.go($scope.loginRedirect.state, $scope.loginRedirect.params);
