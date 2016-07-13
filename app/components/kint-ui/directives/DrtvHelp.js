@@ -29,13 +29,14 @@ define (
               [$templateRequest(template),
               $http({
                 method: 'GET',
-                url: theUrl + '/' + page
+                url: theUrl + '/' + page,
+                cache: true // Cache the HTTP response to avoid multiple hits to the GH pages. 
               })
             ]).then(function (results) {
               
               // Parse into JQ-like objects.
               var tpl = angular.element(results[0]);
-//              var htmlTxt = results[1].data.replace(/(^\s*|\s*$)/g, '');
+
               var helpContents =angular.element(results[1].data);
               
               // Create a temporary div to add the stuff to.
