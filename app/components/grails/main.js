@@ -68,13 +68,21 @@ define (
 
           // Add another property that fetches a resource if the state param of ID is set.
           if (state.ownParams && "id" in state.ownParams && !(state.ownParams.$$parent && "id" in state.ownParams.$$parent)) {
-            state.resolve[contextVariableName] = ['$stateParams', grailsResourceProviderName, function ($stateParams, resource) {
+            state.resolve[contextVariableName] = ['$stateParams', grailsResourceProviderName, '$rootScope', function ($stateParams, resource, $scope) {
               
               if (resource) {
                 var id = $stateParams.id;
                 if (id == "create") {
                   
-                  return resource.create().$promise;
+                  return resource.create().$promise.then(function( blank ){
+                    var theBlank = blank;
+                    if ( ( $scope.application.user ) && ( $scope.application.user.userOrg ) ) {
+                      if ( "ownerInstitution" in blank ) {
+                        theBlank = (theBlank, { ownerInstitution : $scope.application.user.userOrg});
+                      }
+                    }
+                    return theBlank; 
+                  });
                   
                 } else {
                 

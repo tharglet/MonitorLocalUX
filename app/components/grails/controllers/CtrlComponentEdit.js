@@ -30,13 +30,15 @@ define (
           return res.getBlankProperty(propertyName).then( function( blank ) {
             // console.log('Injecting context values and defaults, blank=%o',blank)
             // If the blank has an ownerInstitution property, set it
+            
+            var theBlank = blank;
             if ( ( $scope.application.user ) && ( $scope.application.user.userOrg ) ) {
-              if ( blank.ownerInstitution == null ) {
-                blank.ownerInstitution = {};
+              if ( "ownerInstitution" in blank ) {
+                theBlank = (theBlank, { ownerInstitution : $scope.application.user.userOrg});
               }
-              blank.ownerInstitution.id = $scope.application.user.userOrg.id;
-              // $q.defer().resolve( blank );
             }
+            
+            return theBlank;
           });
         }
         
