@@ -47,9 +47,12 @@
           <th>Status</th>
         </tr>
         <tr ng-repeat="affiliation in application.user.affiliations">
-          <td>{{affiliation}}</td>
-          <td></td>
-          <td></td>
+          <td>{{affiliation.org}}</td>
+          <td>{{affiliation.role}}</td>
+          <td ng-switch="affiliation.status">
+            <span ng-switch-when="1">Approved</span>
+            <span ng-switch-default>Unknown</span>
+          </td>
         </tr>
         <tr>
           <td>
