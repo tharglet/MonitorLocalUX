@@ -38,7 +38,7 @@ define (
             }
             
             console.log("returning the blank %o",theBlank);
-            return theBlank;
+            return blank;
           });
         }
         
