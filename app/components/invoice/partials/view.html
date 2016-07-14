@@ -55,7 +55,7 @@
             <div class="form-group form-group-sm span-3" data-ng-class="{'has-error': (invoice.dueDate.$dirty && invoice.dueDate.$invalid), 'has-success': (invoice.dueDate.$dirty && invoice.dueDate.$valid)}" >
               <label id="supplierLabel" for="supplier" class="control-label" aria-label="Supplier" >Supplier</label>
               <kint-refdata-lookup name="supplier" id="supplier" data-object="invoice" data-property="supplier" aria-labelledby="supplierLabel"
-                                   data-context-obj="context" data-context-path="invoice" class="form-control" tagging/>
+                                   data-context-obj="context" data-context-path="invoice" class="form-control" ></kint-refdata-lookup>
           </div>
         </div>
       </div>
@@ -182,16 +182,20 @@
           kint-ui-notes blank="getBlank(notes)" type="general" user="application.user" >
         </div>
       </div>
-
     </article>
-
-    <div class="form-group pull-right">
-      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!invoice.$dirty || invoice.$invalid" >
-        Save
+    
+    <div class="form-group">
+      <button type="button" class="btn btn-danger" data-ng-click="doDelete()" data-ng-disabled="!context.id" >
+        Delete
       </button>
-      <button type="button" class="btn btn-link" data-ng-disabled="!invoice.$dirty" >
-        Cancel
-      </button>
+      <div class="pull-right" >
+        <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!invoice.$dirty || invoice.$invalid" >
+          Save
+        </button>
+        <button type="button" class="btn btn-link" data-ng-disabled="!invoice.$dirty" >
+          Cancel
+        </button>
+      </div>
     </div>
   </form>
 </section>
