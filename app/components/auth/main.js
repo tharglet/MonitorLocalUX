@@ -52,7 +52,7 @@ define(
           },
           url: '^/login',
           data : {
-            title: "Login",
+            title: "Monitor Local Login",
             requireLogin: false
           },
         });
