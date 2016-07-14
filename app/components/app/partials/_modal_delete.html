@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h3 class="modal-title">Confirm delete</h3>
+</div>
+
+  <div class="modal-body">
+    <p class="lead">
+      Are you sure you wish to permanently remove &quot;{{context.name}}&quot;
+    </p>
+    <p>
+      <strong>Warning:</strong> This action cannot be undone.
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" ng-click="$dismiss()" class="btn btn-default btn-sm" >
+      Cancel
+    </button>
+    <button type="button" ng-click="$close()" class="btn btn-danger btn-sm"  >
+      Delete
+    </button>
+  </div>

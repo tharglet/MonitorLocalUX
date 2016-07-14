@@ -3,7 +3,7 @@
 define (
 ['app'],
 function(app) {
-  return app.registerController ('AppController', ['$rootScope', '$scope', '$state', '$uibModal', function ($rootScope, $scope, $stateProvider, $modal) {
+  return app.registerController ('AppController', ['$rootScope', '$scope', '$state', '$uibModal', '$notifications', function ($rootScope, $scope, $stateProvider, $modal, $notifications) {
     
     /**
      * Method to set the title.
@@ -193,6 +193,20 @@ function(app) {
         // Assume editing ob existing object.
         callingScope.openModal(modalTmp, modalCtrl).result.then(cbConfirm, cbCancel);
       }
-    }
+    };
+    
+    $scope.doDelete = function () {
+      var callingScope = this;
+      return callingScope.openModal('components/app/partials/_modal_delete.html').result.then(function () {
+        callingScope.deleteObject(function(resource){
+          $notifications.showSuccess ({
+            'title':  "Successfully deleted resource",
+            'text':   "'" + resource.name + "'has been permanently deleted.."
+          });
+        });
+      },function (){
+        // Do nothing...
+      });
+    };
   }]);
 });

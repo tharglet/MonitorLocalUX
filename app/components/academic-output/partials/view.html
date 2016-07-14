@@ -204,14 +204,19 @@
         </div>
       </div>
     </article>
-
-    <div class="form-group pull-right">
-      <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!academicOutput.$dirty || academicOutput.$invalid" >
-        Save
+    
+    <div class="form-group">
+      <button type="button" class="btn btn-danger" data-ng-click="doDelete()" data-ng-disabled="!context.id" >
+        Delete
       </button>
-      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!academicOutput.$dirty" >
-        Cancel
-      </button>
+      <div class="pull-right" >
+        <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!academicOutput.$dirty || academicOutput.$invalid" >
+          Save
+        </button>
+        <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!academicOutput.$dirty" >
+          Cancel
+        </button>
+      </div>
     </div>
   </form>
 </section>

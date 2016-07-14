@@ -62,10 +62,6 @@ define(
                 $notifications.showError ({
                   'title':  "Service Unreachable",
                   'text':   "The Monitor Local service is unreachable.",
-                  hide: false,
-                  buttons: {
-                    closer: false,
-                  }
                 });
                 break;
                 
@@ -138,6 +134,15 @@ define(
                         'text':   "Changes to '" + el.name + "' successfully saved."
                       });
                     }
+                  }
+                  break;
+                case 'DELETE'   :
+                  // No content. Now that the resource has gone we don't know anything about it..
+                  if (response.status === 204) {
+                    $notifications.showSuccess ({
+                      'title':  "Successfully deleted resource",
+                      'text':   "Resource has been permanently deleted.."
+                    });
                   }
                   break;
               }

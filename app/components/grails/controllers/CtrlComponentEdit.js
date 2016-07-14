@@ -136,16 +136,20 @@ define (
       };
       
       // Set a couple of methods against the scope.
-      $scope.deleteObject = function() {
+      $scope.deleteObject = function(callback) {
         
         // This is current scope of the button press.
         var res = this.context;
         if (res.id) {
-          // Update...
+          // Delete...
           res.$delete(function(){
             if ($state) {
-              // Refresh the current state. Helps with passsed references into directives.
               $state.go("^", {}, {inherit: true});
+            }
+            
+            // If we have a callback then execute that here too.
+            if (typeof callback === 'function') {
+              callback(res);
             }
           });
         }
