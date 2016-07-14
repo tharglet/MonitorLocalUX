@@ -101,7 +101,7 @@ define (
           data.queryParams = $scope.queryParams;
 
           // Inject the users default home institution here if present
-          if (  $scope.application.user.userOrg ) {
+          if ( $scope.application && $scope.application.user && $scope.application.user.userOrg ) {
             data.queryParams.instCtx = ''+$scope.application.user.userOrg.id;
           }
 
