@@ -9,11 +9,12 @@
       <th class="info" >NET</th>
       <th>Invoice</th>
       <th>Budget</th>
+      <th>PO</th>
       <th>Paid</th>
       <th>Action</th>
     </tr>
   </thead>
-  
+
   <tbody>
     <tr ng-repeat="costItem in costs['Actual']" ng-form="costItem{{$index}}" ng-include="'components/academic-output/partials/_table_cost_items_actual_row.html'" >
     </tr>
@@ -24,7 +25,7 @@
       <td class="info" >{{totals['Actual']['grossValueGBP'] | number : 2}}</td>
       <td class="info" >{{totals['Actual']['tax'] | number : 2}}</td>
       <td class="info" >{{totals['Actual']['net'] | number : 2}}</td>
-      <td colspan="3"></td>
+      <td colspan="4"></td>
       <td>
         <button type="button" class="btn btn-warning btn-sm" ng-click="editCost('academicOutputCosts', 'Actual', 'costItem')" >Add</button>
       </td>
