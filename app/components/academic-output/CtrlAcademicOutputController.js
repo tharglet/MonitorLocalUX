@@ -11,6 +11,7 @@ define (
           // Merge into the context.
           console.log("Merge DOI data %o %o",callingScope.context,res);
           angular.merge(callingScope.context, res);
+          $scope.academicOutput.$setDirty();
         },function (){
           // Do nothing...
         });

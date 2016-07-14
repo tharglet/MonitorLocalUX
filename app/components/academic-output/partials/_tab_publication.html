@@ -105,39 +105,45 @@
     </div>
 
     <div class="panel panel-collapsible panel-default" ng-if="context.outputType.value == 'Journal Article'">
+
       <div class="panel-heading">
         <h3 data-toggle="collapse" data-target="#journalDetails-body" aria-label="Expand/Collapse the main Journal Details content" id="journalDetailsHeading">Journal details</h3>
       </div>
+
       <div id="journalDetails-body" class="panel-body form-horizontal in" aria-labelledby="journalDetailsHeading">
 
         <div class="form-group form-group-sm" >
-          <label id="journalISSNLabel" for="journalISSN" class="span-3 control-label" aria-label="ISSN" >ISSN</label>
-          <div class="span-4">
-            <kint-identifier id="journalISSN" name="journalISSN" data-property="identifiers" data-namespace="issn"
-                class="form-control" data-ng-model="context.identifiers" aria-labelledby="journalISSNLabel" ></kint-identifier>
-          </div>
-
-          <label id="journaleISSNLabel" for="journaleISSN" class="span-1 control-label" aria-label="eISSN" >eISSN</label>
-          <div class="span-4">
-            <kint-identifier id="journaleISSN" name="journaleISSN" data-property="identifiers" data-namespace="eissn"
-              class="form-control" data-ng-model="context.identifiers" aria-labelledby="journaleISSNLabel" ></kint-identifier>
-          </div>
-        </div>
-        <div class="form-group form-group-sm" >
           <label id="journalPublicationTitleLabel" for="journalPublicationTitle" class="span-3 control-label" aria-label="Publication Title">Journal title</label>
           <div class="span-9">
-            <input type="text" class="form-control" id="journalPublicationTitle" name="journalPublicationTitle" placeholder="Publication title" aria-labelledby="journalPublicationTitleLabel"
-                   data-ng-model="context.publicationTitle" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                   data-kint-ui-input-feedback data-kint-validate />
+            <kint-component-lookup name="assignedTo" id="assignedTo" data-object="context" data-property="publishedIn" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" >
+            </kint-component-lookup>
           </div>
         </div>
 
-        <div class="form-group form-group-sm" >
-          <label id="journalPublisherLabel" for="journalPublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
-          <div class="span-5">
-            <kint-component-lookup name="journalPublisher" id="journalPublisher" data-object="context" data-property="publisher"
-              class="form-control input-sm" data-params="{ match:['name'], perPage: 25, filters: ['type.value=Publisher']  }" ></kint-component-lookup>
+        <input type="text" class="form-control" id="journalPublicationTitle" name="journalPublicationTitle" placeholder="Publication title" aria-labelledby="journalPublicationTitleLabel"
+                   data-ng-model="context.publicationTitle" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                   data-kint-ui-input-feedback data-kint-validate />
+
+        <div ng-if="context.publishedIn != null">
+
+          <div class="form-group form-group-sm" >
+            <label id="journalPublicationTitleLabel" for="journalPublicationTitle" class="span-3 control-label" aria-label="Publication Identifiers">Journal Identifiers</label>
+            <div class="span-9">
+              <ul>
+                 <li ng-repeat="id in context.publishedIn.identifiers">
+                   {{id.identifier.namespace.value}}: {{id.identifier.value}}
+                 </li>
+              </ul>
+            </div>
           </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="PublisherLabel" class="span-3 control-label" aria-label="Publisher">Official Publisher</label>
+            <div class="span-9">
+              {{context.publishedIn.publisher.name}}
+            </div>
+          </div>
+                    
         </div>
 
         <div class="form-group form-group-sm" >
@@ -187,36 +193,39 @@
       </div>
       <div id="conferenceDetails-body" class="panel-body form-horizontal in" aria-labelledby="conferenceDetailsHeading">
 
-        <div class="form-group form-group-sm" >
-          <label id="conferenceISSNLabel" for="conferenceISSN" class="span-3 control-label" aria-label="ISSN" >ISSN</label>
-          <div class="span-4">
-            <kint-identifier id="conferenceISSN" name="conferenceISSN" data-property="identifiers" data-namespace="issn"
-              class="form-control" data-ng-model="context.identifiers" aria-labelledby="conferenceISSNLabel" ></kint-identifier>
-          </div>
 
-          <label id="conferenceeISSNLabel" for="conferenceeISSN" class="span-1 control-label" aria-label="eISSN" >eISSN</label>
-          <div class="span-4">
-            <kint-identifier id="conferenceeISSN" name="conferenceeISSN" data-property="identifiers" data-namespace="eissn"
-              class="form-control" data-ng-model="context.identifiers" aria-labelledby="conferenceeISSNLabel" ></kint-identifier>
+        <div class="form-group form-group-sm" >
+          <label id="conferenceTitleLabel" for="conferenceTitle" class="span-3 control-label" aria-label="Conference Title">Conference Title</label>
+          <div class="span-9">
+            <kint-component-lookup name="assignedTo" id="assignedTo" data-object="context" data-property="publishedIn" class="form-control input-sm"  data-params="{ match:['name'], perPage: 25 }" >
+            </kint-component-lookup>
           </div>
         </div>
 
-
-        <div class="form-group form-group-sm" >
-          <label id="conferencePublicationTitleLabel" for="conferencePublicationTitle" class="span-3 control-label" aria-label="Publication Title">Conference title</label>
-          <div class="span-9">
-            <input type="text" class="form-control" id="conferencePublicationTitle" name="conferencePublicationTitle" placeholder="Publication title" aria-labelledby="conferencePublicationTitleLabel"
+        <input type="text" class="form-control" id="journalPublicationTitle" name="journalPublicationTitle" placeholder="Publication title" aria-labelledby="journalPublicationTitleLabel"
                    data-ng-model="context.publicationTitle" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
                    data-kint-ui-input-feedback data-kint-validate />
-          </div>
-        </div>
 
-        <div class="form-group form-group-sm" >
-          <label id="conferencePublisherLabel" for="conferencePublisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
-          <div class="span-5">
-             <kint-component-lookup name="conferencePublisher" id="conferencePublisher" data-object="context" data-property="publisher"
-                class="form-control input-sm" data-params="{ match:['name'], perPage: 25, filters: ['type.value=Publisher']  }" ></kint-component-lookup>
+        <div ng-if="context.publishedIn != null">
+
+          <div class="form-group form-group-sm" >
+            <label id="journalPublicationTitleLabel" for="journalPublicationTitle" class="span-3 control-label" aria-label="Publication Identifiers">Journal Identifiers</label>
+            <div class="span-9">
+              <ul>
+                 <li ng-repeat="id in context.publishedIn.identifiers">
+                   {{id.identifier.namespace.value}}: {{id.identifier.value}}
+                 </li>
+              </ul>
+            </div>
           </div>
+
+          <div class="form-group form-group-sm" >
+            <label id="PublisherLabel" class="span-3 control-label" aria-label="Publisher">Official Publisher</label>
+            <div class="span-9">
+              {{context.publishedIn.publisher.name}}
+            </div>
+          </div>
+
         </div>
 
         <div class="form-group form-group-sm" >

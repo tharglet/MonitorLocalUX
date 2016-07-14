@@ -55,17 +55,30 @@ define (
           $http.post(appConfig.backend+'/application/crossrefLookup', {doi:$scope.doi_data['identifiers'][0].identifier.value}).
             then(function(response) {
               console.log("DOI Lookup response %o",response);
-              $scope.item_container_title = response.data.containerTitle;
-              $scope.doi_data['name'] = response.data.itemTitle;
-              $scope.doi_data['publicationTitle'] = response.data.containerTitle;
-              $scope.doi_data['outputType'] = null; // refdata item type
-              $scope.item_title = response.data.itemTitle;
-              $scope.item_type = response.data.containerType;
-              $scope.item_identifiers = response.data.identifiers;
-              $scope.item_authors = response.data.authorNames;
-              $scope.message = response.data.message;
-              $scope.valid = true;
-              // return response.data;
+              if ( response.data.containerTitle ) {
+                $scope.item_container_title = response.data.containerTitle;
+                $scope.doi_data['name'] = response.data.itemTitle;
+                $scope.doi_data['publicationTitle'] = response.data.containerTitle;
+                $scope.doi_data['outputType'] = response.data.type; // refdata item type
+                var publication_info = { id:response.data.publication_id, identifiers:[], name:response.data.containerTitle };
+                $scope.doi_data['publishedIn'] = publication_info;
+                $scope.item_title = response.data.itemTitle;
+                $scope.item_type = response.data.containerType;
+                $scope.item_identifiers = response.data.identifiers;
+                $scope.item_authors = response.data.authorNames;
+                $scope.message = response.data.message;
+                $scope.valid = true;
+
+                // Add each member of response.data.identifiers to $scope.doi_data['identifiers'] IF it's not already present
+                angular.forEach(response.data.identifiers, function(entry) {
+                  // this.push(key + ': ' + value);
+                  console.log("Consider %o",entry);
+                  var present = false
+                  angular.forEach($scope.doi_data['identifiers'], function(li) {
+                    publication_info.identifiers.push( { identifier : { namespace : { value :  entry.namespace }, value: entry.value } } );
+                  }, null);
+                }, null);
+              }
             });
         }
         else {
