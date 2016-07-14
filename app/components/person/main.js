@@ -113,6 +113,10 @@ define(
             "" : {
               controller: 'SearchResultsController',
             },
+            "search":{
+              controller: 'SearchController',
+              templateUrl: 'components/person/partials/search.html',
+            },
             "person-nav@app" : {
               templateUrl: "components/person/partials/_nav.html",
             }
