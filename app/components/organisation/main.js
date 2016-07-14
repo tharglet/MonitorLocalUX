@@ -19,7 +19,7 @@ define(
       // State for search.
       $stateProvider.state('app.organisation', {
         parent: 'app.componentSearch',
-        authRequired: 'ROLE_ADMIN',
+        authRequired: 'ROLE_USER',
         url:   '^/organisation',
         grailsResource: 'Org',
         searchFields: [
