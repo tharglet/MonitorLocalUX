@@ -37,20 +37,16 @@ define(
               'render'    : function ( sData, type, oData, meta ) {
 
                 if (type === 'display') {
-                  var val = "";
+                  var val = null;
                   if (sData && sData.length > 0) {
-                    var list = $("<ul />");
                     // Output each identifier.
-                    $.each (sData, function () {
-                      var cid = this;
-                      list.append($("<li />").html(
-                        "<strong>" + cid.identifier.namespace.value + ":</strong>&nbsp;" + cid.identifier.value
-                      ));
-                    });
-
-                    val = list.html();
+                    for (var i=0; i<sData.length && !val; i++) {
+                      var cid = sData[i];
+                      if (cid.identifier.namespace.value == 'orcid') {
+                        val = cid.identifier.value;
+                      }
+                    }
                   }
-
                   return val;
                 } else {
                   return sData;

@@ -10,14 +10,13 @@
           <div class="form-group form-group-sm">
             <div class="span-4">
             <label id="personIdLabel" for="personId" class="control-label" aria-label="Person ID">Person ID</label>
-              <input type="text" class="form-control" id="personId" name="personId" aria-labelledby="personIdLabel" disabled="true"
-                     data-ng-model="context.id" />
+              <input type="text" class="form-control" id="personId" name="personId" aria-labelledby="personIdLabel" disabled="true" data-ng-model="context.id" />
             </div>
 
             <div class="span-4">
             <label id="orcIdLabel" for="orcId" class="control-label" aria-label="ORCID">ORCID</label>
-              <input type="text" class="form-control" id="orcId" name="orcId" aria-labelledby="orcIdLabel"
-                     data-ng-model="context.orcId" />
+            <kint-identifier data-property="identifiers" data-namespace="orcid" class="form-control" data-ng-model="context.identifiers"
+                id="ORCID" name="ORCID" aria-labelledby="orcIdLabel" ></kint-identifier>
             </div>
           </div>
 
