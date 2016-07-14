@@ -30,10 +30,10 @@ define(
               'data'  : 'funder.name',
               'title' : 'Funder'
             },
-            {
-              'data'  : '',
-              'title' : 'Funder group'
-            },
+//            {
+//              'data'  : '',
+//              'title' : 'Funder group'
+//            },
 //            {
 //              'data'  : 'lastUpdated',
 //              'title' : 'Last updated'
