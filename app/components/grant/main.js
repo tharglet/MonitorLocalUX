@@ -23,6 +23,10 @@ define(
           grailsResource: 'AoGrant',
           searchFields: [
             {
+              'data'  : 'grantId',
+              'title' : 'Grant code'
+            },
+            {
               'data'  : 'internalGrantId',
               'title' : "Internal project code"
             },
