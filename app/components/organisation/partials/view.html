@@ -61,10 +61,11 @@
             </div>
           </div>
 
-          <div class="form-group form-group-sm" data-ng-if="context.type.value === 'Funder'" data-ng-class="{'has-error': (organisation.fundingGroup.$dirty && organisation.fundingGroup.$invalid), 'has-success': (organisation.fundingGroup.$dirty && organisation.fundingGroup.$valid)}">
-            <label id="orgFundingGroupLabel" for="fundingGroup" class="span-3 control-label" aria-label="Org Funding Group">Funding Group</label>
+          <div class="form-group form-group-sm" data-ng-if="context.type.value === 'Funder'" >
+            <label id="orgFundingGroupLabel" for="fundingGroup" class="span-3 control-label" aria-label="Org Funding Group">Funder Group</label>
             <div class="span-9">
-              <kint-refdata-lookup name="fundingGroup" id="fundingGroup" data-object="context" data-property="fundingGroup" class="form-control input-sm" >
+              <kint-component-lookup name="funderGroup" id="funderGroup" data-object="context" data-property="funderGroup" class="form-control input-sm"
+                data-params="{ match:['name'], perPage: 25, filters: ['type.value=Funder Group'] }"  ></kint-component-lookup>
             </div>
           </div>
         </div>
