@@ -27,9 +27,6 @@ define (
           ],
           'Finance' : [
             'Add a cost item for the actual expenditure'
-          ],
-          'Compliance' : [
-            'Compliance checks for review'
           ]
       };
 
@@ -58,7 +55,6 @@ define (
       $scope.$watch('context.identifiers', refreshRules, true);
       $scope.$watch('context.academicOutputCosts', refreshRules, true);
       $scope.$watch('context.funds', refreshRules, true);
-      $scope.$watch('context.complianceRules', refreshRules, true);
     }]);
   }
 );
