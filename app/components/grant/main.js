@@ -34,10 +34,10 @@ define(
               'data'  : '',
               'title' : 'Funder group'
             },
-            {
-              'data'  : 'lastUpdated',
-              'title' : 'Last updated'
-            },
+//            {
+//              'data'  : 'lastUpdated',
+//              'title' : 'Last updated'
+//            },
 //            {
 //              'data'  : 'funder.fundingGroup',
 //              'title' : 'Funding Group'

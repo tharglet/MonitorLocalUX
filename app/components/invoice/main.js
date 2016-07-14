@@ -22,29 +22,29 @@ define(
         url:   '^/invoice',
         grailsResource: 'Invoice',
         searchFields: [
+//          {
+//            'data'  : 'receivedDate',
+//            'title' : "Date received"
+//          },
           {
-            'data'  : 'receivedDate',
-            'title' : "Date received"
-          },
-          {
-            'data'  : 'passedToFinance',
+            'data'  : 'passedToFinance.value',
             'title' : "Passed to finance"
           },
           {
-            'data'  : 'paidInFull',
+            'data'  : 'paidInFull.value',
             'title' : "Payment status"
           },
           {
-            'data'  : 'paymentType',
+            'data'  : 'paymentType.value',
             'title' : "Payment method"
           },
           {
             'data'  : 'filename',
             'title' : "Invoice file name"
-          },
-          {
-            'data'  : 'lastUpdated',
-            'title' : "Last updated"
+//          },
+//          {
+//            'data'  : 'lastUpdated',
+//            'title' : "Last updated"
           },
         ],
         views: {
