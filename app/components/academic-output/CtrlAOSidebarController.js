@@ -55,6 +55,7 @@ define (
       $scope.$watch('context.identifiers', refreshRules, true);
       $scope.$watch('context.academicOutputCosts', refreshRules, true);
       $scope.$watch('context.funds', refreshRules, true);
+      $scope.$watch('context.names', refreshRules, true);
     }]);
   }
 );
