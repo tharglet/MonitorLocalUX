@@ -60,7 +60,9 @@ define (
             }
           };
           
-          var blank = {};
+          var blank = {
+              id : "__new__"
+          };
           if (typeof iAttr['tagging'] !== 'undefined') {
             obj.getBlankProperty ($scope.contextPath).then(function( rdata ) {
               angular.merge ( blank, rdata );
@@ -69,7 +71,11 @@ define (
           
           // Method that is responsible for a blanks.
           $scope.newTagValue = function (newValue) {
-            return angular.merge (angular.copy(blank), { value: newValue }) ;
+            if (newValue && newValue.trim() != "") {
+              return angular.merge (angular.copy(blank), { value: newValue }) ;
+            } else {
+              $scope.object[$scope.property] = null;
+            }
           };
           
           // Register a watch function to update when the module changes.
