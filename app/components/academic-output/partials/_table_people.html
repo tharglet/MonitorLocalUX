@@ -21,7 +21,7 @@
     <td><a data-ui-sref="app.person.view ({id: person.id})" >{{person.surname}}</a></td>
     <td>{{aoName.namerel.value}}</td>
     <td>
-      <button type="button" ng-click="removeContact(aoName)" class="btn btn-danger btn-sm" title="{{aoName.keyContact ? 'You can not remove the primary contact.' : 'Remove this contact'}}" data-ng-disabled="aoName.keyContact === true" >Del</button>
+      <button type="button" ng-click="removeContact(aoName)" class="btn btn-danger btn-sm" title="Remove this contact"  >Del</button>
     </td>
   </tr>
   </tbody>
