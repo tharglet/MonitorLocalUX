@@ -6,6 +6,8 @@
 html {
   height: 100%;
   background-color: $body-bg;
+  //Added because differnce between strong and regular text is not perceptible:
+  -webkit-font-smoothing: antialiased;
 }
 
 // Body...
@@ -22,6 +24,7 @@ body {
     background-color: $body-bg;
     margin-top: -(($grid-columns * $grid-gutter-width) - ($grid-gutter-width * 0.25));
     padding-bottom: 2 * $grid-gutter-width;
+    padding-left: 0;
     // min-height: ($grid-columns * $grid-gutter-width) - ($grid-gutter-width * 0.25); 
     .inner {
       @extend .container-fluid;
@@ -56,3 +59,6 @@ body {
 .visuallyhidden {
   @extend .sr-only;
 }
+
+
+
