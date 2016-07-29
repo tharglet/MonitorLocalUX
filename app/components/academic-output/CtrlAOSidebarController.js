@@ -3,8 +3,11 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('AOSidebarController', [ '$scope', 'context', 'grailsResource', 'debounce', function ($scope, context, resource, debounce) {
+    app.registerController('AOSidebarController', ['$rootScope',  '$scope', 'context', 'grailsResource', 'debounce', function ($rootScope, $scope, context, resource, debounce) {
 
+      // Enable the sidebar.
+      $rootScope.sidebar.enable();
+      
       // The context will not exist in this scope. We need it for watches.
       $scope.context = context;
       
@@ -83,6 +86,10 @@ define (
           $scope.workflow['Compliance']['Compliance checks for review'] = !found;
         }
       }, true);
+      
+      $scope.$on('$destroy', function(){
+        $rootScope.sidebar.disable();
+      });
     }]);
   }
 );

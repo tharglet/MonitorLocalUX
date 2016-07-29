@@ -10,7 +10,6 @@
 require(
   [
    'app',
-   'globals/responsive-side-panel.js'
   ],
   function () {
     angular.element(document).ready(function() {

@@ -18,7 +18,6 @@ requirejs.config({
     "deep-diff": "../bower_components/deep-diff/index",
     "datatables.net": "../bower_components/datatables.net/js/jquery.dataTables",
     "datatables.net-bs": "../bower_components/datatables.net-bs/js/dataTables.bootstrap",
-    ngRAMLResources: "../globals/ngRAMLResources",
     "raml-parser": "../bower_components/raml-parser/dist/*",
     "responsive-bootstrap-toolkit": "../bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit",
     "angular-ui-sortable": "../bower_components/angular-ui-sortable/sortable",
