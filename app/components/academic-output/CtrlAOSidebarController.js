@@ -32,7 +32,7 @@ define (
 
       // Grab the workflow status.
       var refreshRules = debounce(function () {
-        resource.checkRules({ id: 'workflow' }, context).$promise.then(function (workflowData) {
+        resource.checkRules({ id: 'workflow-workflow' }, context).$promise.then(function (workflowData) {
           var wf = $scope.workflow;
           angular.forEach(workflowGrouping, function (rules, group) {
             if ( typeof wf[group] == 'undefined' ) {
