@@ -133,7 +133,18 @@ define (
         table.draw();
       });
       
+      $scope.$on("$destroy", function() {
+        console.log("Cleaning search scope.");
+        
+        // Disable the fixed header.
+        table.fixedHeader.disable();
+        
+        // Do some cleanup.
+        table.destroy( true );
+        
+        // Remove the annoying headers if in the dom.
+        $('table.dataTable.fixedHeader,table.dataTable.fixedHeader-locked').remove();
+      });
     }]);
-
   }
 );
