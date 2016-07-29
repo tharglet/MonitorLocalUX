@@ -67,6 +67,14 @@ define (
                 $scope.item_identifiers = response.data.identifiers;
                 $scope.item_authors = response.data.authorNames;
                 $scope.message = response.data.message;
+                
+                // Import the names.
+                var names = "";
+                angular.forEach (response.data.authorNames, function (author) {
+                  names += (author['given'] + ' ' + author['family']) + "\n";
+                });
+              
+                $scope.doi_data['authorNameList'] = names.replace(/^\s+|\s+$/gm,'');
                 $scope.valid = true;
 
                 // Add each member of response.data.identifiers to $scope.doi_data['identifiers'] IF it's not already present
