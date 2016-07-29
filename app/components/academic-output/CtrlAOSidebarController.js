@@ -7,9 +7,18 @@ define (
 
       // The context will not exist in this scope. We need it for watches.
       $scope.context = context;
+      
+      // Let's store this against the context object we also need a view of the compliance data,
+      // which might not be available yet.
+     if (typeof $scope.context.$$compliance === 'undefined') {
+       $scope.context.$$compliance = {status : {}};
+     }
+     if (typeof $scope.context.$$workflow === 'undefined') {
+       $scope.context.$$workflow = {};
+     }
 
       // Use the contextual resource and check the rules for workflow.
-      $scope.workflow = {};
+      $scope.workflow = $scope.context.$$workflow;
       var workflowGrouping = {
           'General' : [
             'Add a title',
@@ -27,6 +36,9 @@ define (
           ],
           'Finance' : [
             'Add a cost item for the actual expenditure'
+          ],
+          'Compliance' : [
+            'Compliance checks for review'
           ]
       };
 
@@ -56,6 +68,21 @@ define (
       $scope.$watch('context.academicOutputCosts', refreshRules, true);
       $scope.$watch('context.funds', refreshRules, true);
       $scope.$watch('context.names', refreshRules, true);
+      
+      $scope.$watch('context.$$compliance.status', function(newVal) {
+        if ($scope.workflow['Compliance']) {
+          var found = false;
+          for ( var k in newVal) {
+            if (newVal.hasOwnProperty(k)) {
+              found = (newVal[k] === null);
+            }
+            if (found) break;
+          }
+          
+          // We should add the compliance data here.
+          $scope.workflow['Compliance']['Compliance checks for review'] = !found;
+        }
+      }, true);
     }]);
   }
 );
