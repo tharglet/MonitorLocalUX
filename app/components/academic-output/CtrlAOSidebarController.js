@@ -41,7 +41,7 @@ define (
             'Add a cost item for the actual expenditure'
           ],
           'Compliance' : [
-            'Compliance checks for review'
+            'No compliance checks require review'
           ]
       };
 
@@ -83,7 +83,7 @@ define (
           }
           
           // We should add the compliance data here.
-          $scope.workflow['Compliance']['Compliance checks for review'] = !found;
+          $scope.workflow['Compliance']['No compliance checks require review'] = !found;
         }
       }, true);
       
