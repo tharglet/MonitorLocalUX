@@ -111,7 +111,7 @@
       </div>
 
       <div id="journalDetails-body" class="panel-body form-horizontal in" aria-labelledby="journalDetailsHeading">
-        
+
         <div class="form-group form-group-sm" >
           <label id="publisherLabel" for="publisher" class="span-3 control-label" aria-label="Publisher">Publisher</label>
           <div class="span-5">
@@ -127,10 +127,20 @@
             </kint-component-lookup>
           </div>
         </div>
-        
+
         <div ng-repeat="id in context.publishedIn.identifiers" class="form-group form-group-sm" >
           <label  class="span-3 control-label" aria-label="Publication Identifiers" >Journal {{id.identifier.namespace.value}}</label>
           <p class="form-control-static span-9" data-ng-bind="id.identifier.value" ></p>
+        </div>
+
+        <div data-ng-if="issn" class="form-group form-group-sm" >
+          <label  class="span-3 control-label" aria-label="Publication Identifiers" >Sherpa Romeo ISSN link</label>
+          <p class="form-control-static span-9">http://www.sherpa.ac.uk/romeo/search.php?issn={{issn}}&fIDnum=all</p>
+        </div>
+
+        <div data-ng-if="eissn" class="form-group form-group-sm" >
+          <label  class="span-3 control-label" aria-label="Publication Identifiers" >Sherpa Romeo eISSN link</label>
+          <p class="form-control-static span-9">http://www.sherpa.ac.uk/romeo/search.php?eissn={{eissn}}&fIDnum=all</p>
         </div>
 
         <div class="form-group form-group-sm" >
@@ -196,7 +206,7 @@
             </kint-component-lookup>
           </div>
         </div>
-        
+
         <div ng-repeat="id in context.publishedIn.identifiers" class="form-group form-group-sm" >
           <label  class="span-3 control-label" aria-label="Publication Identifiers" >Conference  {{id.identifier.namespace.value}}</label>
           <p class="form-control-static span-9" data-ng-bind="id.identifier.value" ></p>
@@ -386,4 +396,5 @@
       </div>
     </div>
   </article>
+
 </form>
