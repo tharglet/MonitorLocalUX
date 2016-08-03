@@ -22,42 +22,14 @@ define (
 
       // Use the contextual resource and check the rules for workflow.
       $scope.workflow = $scope.context.$$workflow;
-      var workflowGrouping = {
-          'General' : [
-            'Add a title',
-            'Set the publication route',
-            'Set APC funding approval',
-            'Attach a grant'
-          ],
-          'People' : [
-            'Add a main contact'
-          ],
-          'Publication' : [
-            'Add an identifier (DOI/PMID/PMCID)',
-            'Add a journal/conference title',
-            'Add a publisher'
-          ],
-          'Finance' : [
-            'Add a cost item for the actual expenditure'
-          ],
-          'Compliance' : [
-            'No compliance checks require review'
-          ]
-      };
 
       // Grab the workflow status.
       var refreshRules = debounce(function () {
-        resource.checkRules({ id: 'workflow-workflow' }, context).$promise.then(function (workflowData) {
-          var wf = $scope.workflow;
-          angular.forEach(workflowGrouping, function (rules, group) {
-            if ( typeof wf[group] == 'undefined' ) {
-              wf[group] = {};
-            }
-
-            angular.forEach(rules, function (rule) {
-              wf[group][rule] = workflowData[rule];
-            });
-          });
+        resource.checkRules({ id: 'workflow*' }, context).$promise.then(function (workflowData) {
+          if ("workflow" in workflowData ) {
+            var wf = $scope.workflow;
+            angular.copy(workflowData['workflow'], wf);
+          }
         });
       }, 500);
 
