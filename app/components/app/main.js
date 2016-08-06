@@ -208,7 +208,7 @@ define(
         name: 'sob',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
         url: callback_url + 'sob',
-        // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
+        redirectUri: 'http://localhost:9090/redirect',
         clientId: 'monitorLocal',
         // OAuth2 Endpoint
         // authorizationEndpoint: 'https://authsvc.k-int.com/uaa/oauth/authorize',
@@ -219,8 +219,10 @@ define(
         // The URI that the OAuth service will redirect us to when completed.
         // redirectUri: 'http://localhost:9090/redirect',
         // Tell sattelizer about this particular endpoint -- what the required, optional and  default URL Params are
-        scope:['read', 'write', 'delete']
+        // scope:['read', 'write', 'delete'],
+        // scopeDelimiter: ',',
         // scope:['openid', 'profile', 'email']
+        scope:['write'],
       });
 
       console.log("Configure google");
