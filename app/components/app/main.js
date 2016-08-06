@@ -200,11 +200,12 @@ define(
         url: callback_url + "twitter"
       });
 
+      console.log("Config SOB");
       // See OAuth2 RFC:: http://tools.ietf.org/html/rfc6749
       // See also -- K-Int internal documentaiton::
       // https://docs.google.com/document/d/18BOD9i4-Fiy-2dWgsh9SKwsUOgjyseGTGbbTk8Yf6Fc/edit
-      $authProvider.sob({
-        name: 'Knowint Shib Auth Bridge',  // K-int Shib-OAuth2 GW
+      $authProvider.oauth2({
+        name: 'sob',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
         url: callback_url + 'sob',
         // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
@@ -218,10 +219,11 @@ define(
         // The URI that the OAuth service will redirect us to when completed.
         // redirectUri: 'http://localhost:9090/redirect',
         // Tell sattelizer about this particular endpoint -- what the required, optional and  default URL Params are
-        // scope:['read']
-        scope:['openid', 'profile', 'email']
+        scope:['read', 'write', 'delete']
+        // scope:['openid', 'profile', 'email']
       });
 
+      console.log("Configure google");
       $authProvider.google({
         clientId: '186678964269-tajnf5mojsdsa4mk66846apd0d0adc9q.apps.googleusercontent.com',
         // This is where google will redirect the browser after the user authenticates. For development it's localhost,
