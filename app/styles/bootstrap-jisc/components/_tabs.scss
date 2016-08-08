@@ -1,6 +1,7 @@
 .tab-content {
   padding: $grid-gutter-width $grid-gutter-width 0 $grid-gutter-width;
   margin-bottom: $grid-gutter-width;
-  border: 1px solid $nav-tabs-border-color;
-  border-top: 0;
+  border: none;
+  background: $jWhite;
+  box-shadow: 0 0 6px $jBlueShadow;
 }

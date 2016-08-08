@@ -14,7 +14,6 @@
     @extend .navbar;
     @extend .navbar-default;
     margin-bottom: 0;
-    border-bottom: 1px solid $navbar-default-link-color;
     
     .inner {
       // @extend .container;
@@ -32,11 +31,17 @@
       @extend .navbar-header;
       float:left;
       padding-left: $grid-gutter-width / 2;
-      @include font-weight(300);
+      //@include font-weight(300);
+
+      font-family: $font-stack-normal;
+      font-weight: normal;
+      font-size: 0.9em;
     
       .badge {
-        font-size: 0.6em;
-        margin-left: 0.5em;
+            font-size: 0.4em;
+            margin-left: .5em;
+            border-radius: 2px;
+            text-transform: uppercase;
       }
       
       a {

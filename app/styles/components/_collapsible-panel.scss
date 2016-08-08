@@ -5,16 +5,22 @@
     margin:0;
     padding:0;
     cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.2em;
     
     &:after {
       font-family:'Glyphicons Halflings';
       content:"\e113";
       float: right;
-      color: grey;
+      color: $jCopyB;
+      font-size: 0.8em;
+      opacity: 0.8;
       &:hover,
       &:active,
       &focus {
         cursor: pointer;
+        opacity: 1;
       }
     }
     

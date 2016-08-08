@@ -1,0 +1,1 @@
+"use strict";define(["angular"],function(){return angular.module("config",[]).constant("appConfig",{backend:"http://localhost:8080/monitorLocalSvc",datepicker:{format:"YYYY-MM-DD"}})});
