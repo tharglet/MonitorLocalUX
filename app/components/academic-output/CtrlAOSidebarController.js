@@ -13,12 +13,12 @@ define (
       
       // Let's store this against the context object we also need a view of the compliance data,
       // which might not be available yet.
-     if (typeof $scope.context.$$compliance === 'undefined') {
-       $scope.context.$$compliance = {status : {}};
-     }
-     if (typeof $scope.context.$$workflow === 'undefined') {
-       $scope.context.$$workflow = {};
-     }
+      if (typeof $scope.context.$$compliance === 'undefined') {
+        $scope.context.$$compliance = {status : {}};
+      }
+      if (typeof $scope.context.$$workflow === 'undefined') {
+        $scope.context.$$workflow = {};
+      }
 
       // Use the contextual resource and check the rules for workflow.
       $scope.workflow = $scope.context.$$workflow;
