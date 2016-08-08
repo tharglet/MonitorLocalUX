@@ -67,7 +67,7 @@ define(
                     $.each (sData, function () {
                       var pcd = this;
                       list.append($("<li />").html(
-                        "<strong>" + pcd.organisation.name + ":</strong>&nbsp;" + pcd.department
+                        "<strong>" + pcd.organisation.name + ":</strong>&nbsp;" + pcd.department.value
                       ));
                     });
 
@@ -93,12 +93,16 @@ define(
                     // Output each identifier.
                     $.each (sData, function () {
                       var pcd = this;
-                      list.append($("<li />").html(
-                        pcd.emailAddress
-                      ));
+                      if (pcd.emailAddress) {
+                        list.append($("<li />").html(
+                          pcd.emailAddress
+                        ));
+                      }
                     });
 
-                    val = list.html();
+                    if (list.children().length > 0) {
+                      val = list.html();
+                    }
                   }
 
                   return val;

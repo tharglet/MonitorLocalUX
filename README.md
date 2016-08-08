@@ -46,31 +46,40 @@ grunt build
 ```
 Creates a folder named "dist" in the root of the project. Compress and upload this folder to the server.
 
-__note:__ There is a temporary change needed for teh app to work properly.
-Navigate into your newly created dist folder and then components/app/config.js and change the backend to point to the correct place. (Without the trailing slash)
-This step will eventually be folded into the grunt build process. 
+## App Settings
+There is a json file containing config in the root directory named config.js. This file is copied to the app module
+when building and this is where you should modify settings for the production environment.
+Sometimes we wish to override these settings for dev, i.e. To point at a local instance of the monitor local service,
+and to do this you should create a file named \_config.js at the same level. These get merged with the production values when using 'grunt serve'.
+My \_config.js contains a single entry to change the location of the backend application to one running on my local machine on port 8080
+```
+{
+  "appConfig": {
+    "backend": "http://localhost:8080/monitorLocalSvc"
+  }
+}
+```   
 
- 
-
+## Apache Config
 Example apache config to serve directly istead of grunt serve
-        Alias /monitor/ /home/user/some/path/MonitorLocalUX/app/
+Alias /monitor/ /home/user/some/path/MonitorLocalUX/app/
 
-        <Directory /home/user/some/path/MonitorLocalUX/app/>
-          Order allow,deny
-          Allow from all
+<Directory /home/user/some/path/MonitorLocalUX/app/>
+  Order allow,deny
+  Allow from all
 
-          RewriteEngine on
+  RewriteEngine on
 
-          Require local
+  Require local
 
-          # Don't rewrite files or directories
-          RewriteCond %{REQUEST_FILENAME} -f [OR]
-          RewriteCond %{REQUEST_FILENAME} -d
-          RewriteRule ^ - [L]
+  # Don't rewrite files or directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
 
-          # Rewrite everything else to index.html to allow html5 state links
-          RewriteRule ^ index.html [L]
-        </Directory>
+  # Rewrite everything else to index.html to allow html5 state links
+  RewriteRule ^ index.html [L]
+</Directory>
 
 
 

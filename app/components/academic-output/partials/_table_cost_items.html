@@ -9,6 +9,7 @@
       <th class="info" >NET</th>
       <th>Budget</th>
       <!-- th>PO</th -->
+      <th>Debit/ Credit</th>
       <th>Estimated</th>
       <th>Action</th>
     </tr>
@@ -24,7 +25,7 @@
       <td class="info" >{{totals['Committed']['grossValueGBP'] | number : 2}}</td>
       <td class="info" >{{totals['Committed']['tax'] | number : 2}}</td>
       <td class="info" >{{totals['Committed']['net'] | number : 2}}</td>
-      <td colspan="2"></td>
+      <td colspan="3"></td>
       <td>
         <button type="button" class="btn btn-default btn-sm" ng-click="editCost('academicOutputCosts', 'Committed', 'costItem')" >Add</button>
       </td>

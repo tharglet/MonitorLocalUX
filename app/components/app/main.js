@@ -200,26 +200,32 @@ define(
         url: callback_url + "twitter"
       });
 
+      console.log("Config SOB");
       // See OAuth2 RFC:: http://tools.ietf.org/html/rfc6749
       // See also -- K-Int internal documentaiton::
       // https://docs.google.com/document/d/18BOD9i4-Fiy-2dWgsh9SKwsUOgjyseGTGbbTk8Yf6Fc/edit
       $authProvider.oauth2({
-        name: 'Knowint Shib Auth Bridge',  // K-int Shib-OAuth2 GW
+        name: 'sob',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
         url: callback_url + 'sob',
-        // redirectUri: 'http://monitorlocal.jisc.ac.uk/monitorLocalSvc/redirect',
-        clientId: 'monitor-local-svc',
+        redirectUri: 'http://localhost:9090/redirect',
+        clientId: 'monitorLocal',
         // OAuth2 Endpoint
-        authorizationEndpoint: 'https://authsvc.k-int.com/uaa/oauth/authorize',
+        // authorizationEndpoint: 'https://authsvc.k-int.com/uaa/oauth/authorize',
+        authorizationEndpoint: 'https://www.kbplus.ac.uk/sob/oauth/authorize',
         // responseType:'token',
         responseType:'code',
         requiredUrlParams: ['scope','responseType'],
         // The URI that the OAuth service will redirect us to when completed.
-        redirectUri: 'http://localhost:9090/redirect',
+        // redirectUri: 'http://localhost:9090/redirect',
         // Tell sattelizer about this particular endpoint -- what the required, optional and  default URL Params are
-        scope:['read']
+        // scope:['read', 'write', 'delete'],
+        // scopeDelimiter: ',',
+        // scope:['openid', 'profile', 'email']
+        scope:['write'],
       });
 
+      console.log("Configure google");
       $authProvider.google({
         clientId: '186678964269-tajnf5mojsdsa4mk66846apd0d0adc9q.apps.googleusercontent.com',
         // This is where google will redirect the browser after the user authenticates. For development it's localhost,

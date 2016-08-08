@@ -1,5 +1,5 @@
 <h2>Workflow</h2>
 <h3 ng-repeat-start="(group, rules) in workflow" >{{group}}</h3>
 <ul class="check-list" ng-repeat-end>
-  <li ng-repeat="(rule, success) in rules" data-ng-class="{ checked : success }" >{{rule}}</li>
+  <li ng-repeat="(rule, success) in rules" ng-if="success !== null" data-ng-class="{ checked : success }" >{{rule}}</li>
 </ul>

@@ -35,18 +35,18 @@
 
     <title>{{$state.current.data.title}}</title>
   </head>
-  <body class="{{bodyClasses ? bodyClasses : ''}}" data-ng-cloak>
+  <body class="{{ bodyClasses ? bodyClasses : ''}}" data-ng-class="{'with-sidebar' : (sidebar.visible && sidebar.enabled)}"  data-ng-cloak>
     <header class="site-header">
-      <div class="masthead" role="banner" >
+      <div class="masthead" role="banner"  >
         <div class="inner">
           <a class="visuallyhidden" href="#main" tabindex="1" target="_self" > <span>Skip to main content</span> </a>
           <a class="logo" href="//jisc.ac.uk"> <img alt="Jisc logo" src="images/jisc-logo.png"> </a>
           <div class="title-nav">
             <a data-ui-sref="app.dash" >Monitor Local <span class="badge">beta</span></a>
           </div>
-          <ul class="nav navbar-nav navbar-right">
+          <ul data-ng-if="sidebar.enabled" class="nav navbar-nav navbar-right">
             <li>
-              <button type="button" class="btn btn-sm navbar-btn side-panel-button" title="Show side panel" >
+              <button type="button" class="btn btn-sm navbar-btn side-panel-button" title="Show side panel" data-ng-click="sidebar.show()" >
                 <i class="glyphicon glyphicon-tasks" ></i>
               </button>
             </li>
@@ -148,10 +148,10 @@
       <!--/ main -->
     </div>
     <!--/ .inner -->
-    <asside id="side-panel">
+    <asside id="side-panel" >
       <div class="inner" >
         <div class="controls" >
-          <button type="button" class="btn btn-primary btn-sm side-panel-button" title="Close" >
+          <button type="button" class="btn btn-primary btn-sm side-panel-button" title="Close" data-ng-click="sidebar.hide()" >
             <i class="glyphicon glyphicon-remove" ></i>
           </button>
         </div>

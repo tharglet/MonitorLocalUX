@@ -6,6 +6,29 @@ function(app) {
   return app.registerController ('AppController', ['$rootScope', '$scope', '$state', '$uibModal', '$notifications', function ($rootScope, $scope, $stateProvider, $modal, $notifications) {
     
     /**
+     * Adding the sidebar flags
+     */
+    $rootScope.sidebar = {
+       visible : false,
+       enabled : false,
+       toggle : function () {
+         $rootScope.sidebar.visible = !visible;
+       },
+       show : function () {
+         $rootScope.sidebar.visible = true;
+       },
+       hide : function () {
+         $rootScope.sidebar.visible = false;
+       },
+       enable : function () {
+         $rootScope.sidebar.enabled = true;
+       },
+       disable : function () {
+         $rootScope.sidebar.enabled = false;
+       }
+    };
+    
+    /**
      * Method to set the title.
      */
     function setTitle () {
