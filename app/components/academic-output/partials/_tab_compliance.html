@@ -1,6 +1,6 @@
 <form id="compliance" name="compliance" class="form-inline" >
-  <article data-ng-repeat="(ruleSet, rules) in compliance" >
-    <div data-ng-repeat="(rule, config) in rules"
+  <article data-ng-repeat="(ruleSet, rules) in compliance" ng-init="counter = '' + $index" >
+    <div data-ng-repeat="(rule, config) in rules" ng-init="counter = counter + $index"
       data-ng-include="'components/academic-output/partials/compliance/_' + config['details']['type'] + '_rule.html'"></ng-include>
   </article>
 </form>
