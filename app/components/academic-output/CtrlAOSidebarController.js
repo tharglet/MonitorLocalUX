@@ -3,7 +3,7 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('AOSidebarController', ['$rootScope',  '$scope', 'context', 'grailsResource', 'debounce', function ($rootScope, $scope, context, resource, debounce) {
+    app.registerController('AOSidebarController', ['$rootScope', '$scope', 'context', 'grailsResource', 'debounce', function ($rootScope, $scope, context, resource, debounce) {
 
       // Enable the sidebar.
       $rootScope.sidebar.enable();
