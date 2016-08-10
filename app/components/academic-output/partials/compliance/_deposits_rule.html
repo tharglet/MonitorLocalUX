@@ -1,0 +1,36 @@
+<div class="panel panel-collapsible panel-default panel-{{config['result'] == null ? 'warning' : config['result'] == false ? 'danger' : 'success'}}" >
+  <div class="panel-heading">
+    <h3 data-toggle="collapse" data-target="#depositedRule" aria-label="Expand/Collapse the main Licence Applied content" id="depositedRuleHeading">
+      <i class="glyphicon" data-ng-class="{'glyphicon-warning-sign' : (config['result'] == null), 'glyphicon-remove-circle' : (config['result'] == false), 'glyphicon-ok' : (config['result'] == true)}"></i>
+      {{rule}}: {{ruleSet}}
+    </h3>
+  </div>
+  <div id="depositedRule" class="panel-body in" aria-labelledby="depositedRuleHeading">
+
+    <div class="row form-group" >
+      <div class="span-4" >
+        <label id="depositedRuleResultLabel" for="depositedRuleResult" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+        <p class="form-control-static" id="depositedRuleResult" name="depositedRuleResult" aria-labelledby="depositedRuleResultLabel" >
+          {{config['result'] ? 'PASS' : (config['result'] == null ? 'NEEDS REVIEW' : 'FAIL')}}
+        </p>
+      </div>
+      <div class="span-8">
+        <label id="depositedRuleRequiredLabel" for="depositedRuleRequired" class="control-label" aria-label="Description of Requirement for Deposits">Description of Requirement</label>
+        <p class="form-control-static" id="depositedRuleRequired" name="depositedRuleRequired" aria-labelledby="depositedRuleRequiredLabel" >
+          {{config['details']['description']}}
+        </p>
+      </div>
+      <div class="span-12">
+        <label id="depositedRuleRequiredLabel" for="depositedRuleRequired" class="control-label" aria-label="Current Deposits">Current Deposits</label>
+        <form id="depositForm" name="depositForm" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_deposit.html'" ></ng-include>
+        </form>
+      </div>
+    </div>
+
+    <h4 id="depositedEvidenceHeading" data-toggle="collapse" data-target="#depositedEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
+    <div data-ng-form id="depositedEvidence" name="depositedEvidence" class="table-responsive collapse out" aria-labelledby="depositedEvidenceHeading"
+      data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
+    </div>
+  </div>
+</div>
