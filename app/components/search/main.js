@@ -10,10 +10,11 @@ define(
    'datatables.net-fixedheader',
    'datatables.net-colreorder',
    'datatables.net-responsive-bs',
-   'grails'
+   'grails',
+   'angular-formly-templates-bootstrap'
   ],
   function () {
-    var mod = angular.module('search', ['ui.router', 'grails']);
+    var mod = angular.module('search', ['ui.router', 'grails', 'formly']);
     mod.config(['$stateProvider', function($stateProvider) {
       $stateProvider.state('app.componentSearch', {
         abstract: true,

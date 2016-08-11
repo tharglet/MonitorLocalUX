@@ -56,7 +56,10 @@ requirejs.config({
     "buttons.flash": "../bower_components/datatables.net-buttons/js/buttons.flash",
     "buttons.html5": "../bower_components/datatables.net-buttons/js/buttons.html5",
     "buttons.print": "../bower_components/datatables.net-buttons/js/buttons.print",
-    "angular-confirm-modal": "../bower_components/angular-confirm-modal/angular-confirm"
+    "angular-confirm-modal": "../bower_components/angular-confirm-modal/angular-confirm",
+    "angular-formly": "../bower_components/angular-formly/dist/formly",
+    "api-check": "../bower_components/api-check/dist/api-check",
+    "angular-formly-templates-bootstrap": "../bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap"
   },
   baseUrl: "components",
   packages: [
@@ -77,6 +80,7 @@ requirejs.config({
   ],
   shim: {
     angular: {
+      exports: 'angular',
       deps: [
         "jquery"
       ]
@@ -315,6 +319,19 @@ requirejs.config({
         "datatables.net-bs",
         "datatables.net-fixedheader",
         "jquery"
+      ]
+    },
+    "angular-formly": {
+      exports: 'formly',
+      deps: [
+        "angular",
+        "api-check"
+      ]
+    },
+    "angular-formly-templates-bootstrap": {
+      exports: 'formlyBootstrap',
+      deps: [
+        "angular-formly"
       ]
     }
   }
