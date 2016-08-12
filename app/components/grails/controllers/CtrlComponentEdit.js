@@ -122,8 +122,9 @@ define (
         var res = this.context;
         if (res.id) {
           // Update...
-          res.$update();
-          $state.reload();
+          res.$update(function(){
+            $state.reload();
+          });
         } else {
           // Save new.
           res.$save(function(){
