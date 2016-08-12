@@ -74,6 +74,7 @@ define(
       });
       $stateProvider.state('app.organisation.view', {
         url: '/:id',
+        authRequired: 'ROLE_ADMIN',
         views: {
           "@app": {
             templateUrl: 'components/organisation/partials/view.html',
