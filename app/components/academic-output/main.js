@@ -22,12 +22,12 @@ define(
         url:   '^/academic-output',
         grailsResource: 'AcademicOutput',
         searchFields: [
-          { 
+          {
             'data'      : 'identifiers',
             'title'     : "IDs",
             'orderable' : false,
             'render'    : function ( sData, type, oData, meta ) {
-              
+
               if (type === 'display') {
                 var val = "";
                 if (sData && sData.length > 0) {
@@ -39,10 +39,10 @@ define(
                       "<strong>" + cid.identifier.namespace.value + ":</strong>&nbsp;" + cid.identifier.value
                     ));
                   });
-                  
+
                   val = $('<div />').append(list).html();
                 }
-                
+
                 return val;
               } else {
                 return sData;
@@ -53,15 +53,15 @@ define(
             'data'  : 'publicationTitle',
             'title' : "Journal/Conference Title"
           },
-          { 
+          {
             'data'          : 'publisher.name',
             'title'         : 'Publisher',
             'orderable'     : false,
             "defaultContent": ''
           },
-          { 
+          {
             'data'          : 'funder.name',
-            'title'         : 'funder',
+            'title'         : 'Funder',
             'orderable'     : false,
             "defaultContent": ''
           }
