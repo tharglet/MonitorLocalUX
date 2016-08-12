@@ -27,10 +27,9 @@
         </form>
       </div>
     </div>
-
-    <h4 id="depositedEvidenceHeading" data-toggle="collapse" data-target="#depositedEvidence" aria-label="Expand/Collapse the Evidence" >Evidence</h4>
-    <div data-ng-form id="depositedEvidence{{counter}}" class="table-responsive collapse out" aria-labelledby="depositedEvidenceHeading"
-      data-ng-include="'components/academic-output/partials/_table_compliance_evidence.html'" >
+    <h4 aria-label="Evidence" >Evidence</h4>
+    <div class="span-12" id="depositedNote{{counter}}" data-object="context" data-property="notes"
+      kint-ui-notes blank="getBlank(notes)" type="publication.deposits" user="application.user" >
     </div>
   </div>
 </div>

@@ -34,7 +34,7 @@
         <div class="form-group form-group-sm" >
           <label id="statusNoteLabel" for="statusNote" class="control-label span-3" aria-label="Status Note" >Publication status note</label>
           <div class="span-9" id="statusNote"  data-object="context" data-property="notes"
-               kint-ui-notes blank="getBlank(notes)" type="publication.status" user="application.user" >
+               kint-ui-notes blank="getBlank(notes)" type="publication.publicationStatus" user="application.user" >
           </div>
         </div>
       </div>
@@ -312,7 +312,7 @@
         <div class="form-group form-group-sm" >
           <label id="embargoNoteLabel" for="embargoNote" class="control-label span-3" aria-label="Embargo Note" >Embargo period evidence</label>
           <div class="span-9" id="embargoNote"  data-object="context" data-property="notes"
-               kint-ui-notes blank="getBlank(notes)" type="publication.embargo" user="application.user" >
+               kint-ui-notes blank="getBlank(notes)" type="publication.embargoPeriod" user="application.user" >
           </div>
         </div>
 
@@ -334,7 +334,7 @@
 
         <div class="form-group form-group-sm" >
           <label id="acknowledgementNoteLabel" for="acknowledgementNote" class="control-label span-3" aria-label="Acknowledgement Note" >Funder acknowledgement evidence</label>
-          <div class="span-9" id="acknowledgementNote"  data-object="context" data-property="notes"
+          <div class="span-9" id="acknowledgementNote" data-object="context" data-property="notes"
                kint-ui-notes blank="getBlank(notes)" type="publication.acknowledgement" user="application.user" >
           </div>
         </div>
@@ -358,7 +358,7 @@
         <div class="form-group form-group-sm" >
           <label id="materialsNoteLabel" for="materialsNote" class="control-label span-3" aria-label="Materials Note" >Research materials evidence</label>
           <div class="span-9" id="materialsNote"  data-object="context" data-property="notes"
-               kint-ui-notes blank="getBlank(notes)" type="publication.materials" user="application.user" >
+               kint-ui-notes blank="getBlank(notes)" type="publication.accessStatement" user="application.user" >
           </div>
         </div>
 
@@ -380,11 +380,14 @@
         </div>
 
         <h4 id="despositesHeading">Deposits</h4>
-
         <form id="depositForm" name="depositForm" class="table-responsive" >
           <ng-include src="'components/academic-output/partials/_table_deposit.html'" ></ng-include>
         </form>
-
+        
+        <h4 aria-label="Evidence" >Evidence</h4>
+        <div class="span-12" id="depositedNote{{counter}}" data-object="context" data-property="notes"
+          kint-ui-notes blank="getBlank(notes)" type="publication.deposits" user="application.user" >
+        </div>
       </div>
     </div>
     <div class="panel panel-collapsible panel-default">
