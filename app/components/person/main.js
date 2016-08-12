@@ -67,7 +67,7 @@ define(
                     $.each (sData, function () {
                       var pcd = this;
                       list.append($("<li />").html(
-                        "<strong>" + pcd.organisation.name + ":</strong>&nbsp;" + pcd.department.value
+                        (pcd.organisation ? "<strong>" + pcd.organisation.name + ":</strong>" : "") + (pcd.department ? "&nbsp;" + pcd.department.value : "")
                       ));
                     });
 
