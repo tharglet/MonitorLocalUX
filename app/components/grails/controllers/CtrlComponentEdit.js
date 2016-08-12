@@ -123,12 +123,13 @@ define (
         if (res.id) {
           // Update...
           res.$update();
+          $state.reload();
         } else {
           // Save new.
           res.$save(function(){
             
             if ($state && res.id) {
-              // Refresh the current state. Helps with passsed references into directives.
+              // Refresh the current state. Helps with passed references into directives.
               $state.go($state.current, {id: res.id});
             }
           });
