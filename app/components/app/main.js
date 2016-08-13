@@ -208,7 +208,7 @@ define(
         name: 'sob',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
         url: callback_url + 'sob',
-        redirectUri: 'http://localhost:9090/redirect',
+        // redirectUri: 'http://localhost:9090/redirect',
         clientId: 'monitorLocal',
         // OAuth2 Endpoint
         // authorizationEndpoint: 'https://authsvc.k-int.com/uaa/oauth/authorize',
