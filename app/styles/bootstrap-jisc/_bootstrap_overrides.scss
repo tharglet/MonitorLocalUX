@@ -147,10 +147,21 @@
     }
 
     &-link {
+      background: none; 
+      text-decoration: underline;
+      border: none;
+      color: $jCopyB;
+
       &:focus, &:hover {
         box-shadow: none;
+        text-decoration: none;
+      }
+      &[disabled]{
+
       }
     }
+
+
 
 
   &-success, &-primary {
@@ -168,15 +179,14 @@
   }
 
   &-danger {
-    background: none; 
-    text-decoration: underline;
-    border: none;
+    @extend .btn-link;
     color: $jRed;
 
     &:focus, &:hover {
         box-shadow: none;
         background: $jRed;
         color: $jWhite;
+        text-decoration: none;
       }
   }
 
