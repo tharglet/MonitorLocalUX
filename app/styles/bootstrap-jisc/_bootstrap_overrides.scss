@@ -5,6 +5,8 @@
   // @include background-image(linear-gradient($jBrightBlue, $primaryButtonBottom));
 // }
 
+
+
 .breadcrumb {
   @extend .push-#{$side-nav-cols};
   pdding-right: 0;
@@ -212,6 +214,36 @@
     }
 }
 
+
+
+//Tables
+
+table.dataTable {
+
+  font-size: 0.9em;
+  @include jBoxShadow;
+  
+
+  thead {
+    font-size: 1.15em;
+    background: $jWhite;
+    //box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.74);
+  }
+
+
+  td ul {
+    @include no-bullets();
+  }
+}
+
+table.dataTable.fixedHeader-floating{
+  box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.74);
+}
+
+th {
+  font-weight: normal;
+  color: $jBlack;
+}
 
 
 //Panels

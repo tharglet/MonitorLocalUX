@@ -79,8 +79,8 @@
           &:active,
           &:hover,
           &:focus {
-            background-color: $link-color;
-            color: $btn-primary-color;
+            //background-color: $link-color;
+            //color: $btn-primary-color;
             text-decoration:none;
           }
         }
@@ -92,6 +92,8 @@
             &:visited {
               //background-color: $link-color;
               //color: $btn-primary-color;
+              background: none;
+              background: none;
               color: $jCopy;
               text-decoration:none;
             }
