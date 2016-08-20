@@ -208,6 +208,7 @@ define(
         name: 'sob',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
         url: callback_url + 'sob',
+        redirectUri: ( window.location.origin || window.location.protocol + '//' + window.location.host ) + '/redirect',
         // redirectUri: 'http://localhost:9090/redirect',
         clientId: 'monitorLocal',
         // OAuth2 Endpoint

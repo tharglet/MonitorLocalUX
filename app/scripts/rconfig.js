@@ -80,7 +80,7 @@ requirejs.config({
   ],
   shim: {
     angular: {
-      exports: 'angular',
+      exports: "angular",
       deps: [
         "jquery"
       ]
@@ -322,16 +322,18 @@ requirejs.config({
       ]
     },
     "angular-formly": {
-      exports: 'formly',
+      exports: "formly",
       deps: [
         "angular",
         "api-check"
       ]
     },
     "angular-formly-templates-bootstrap": {
-      exports: 'formlyBootstrap',
+      exports: "formlyBootstrap",
       deps: [
-        "angular-formly"
+        "angular",
+        "angular-formly",
+        "api-check"
       ]
     }
   }
