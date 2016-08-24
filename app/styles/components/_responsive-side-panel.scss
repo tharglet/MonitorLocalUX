@@ -43,6 +43,8 @@ body.with-sidebar {
   // When the sidebar is on, we should show the panel next to the main content on large displays. So we need to allocate the number of cols.
   &> .inner {
     @extend .col-lg-#{($grid-columns - $side-panel-cols-lg)};
+    //Override left-padding back down to zero, so that it doesn't jump around.
+    padding-left: 0;
   }
   
   // The panel. 
