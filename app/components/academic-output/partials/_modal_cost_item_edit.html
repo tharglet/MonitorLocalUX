@@ -4,14 +4,14 @@
 
 <div class="modal-body" >
   <form name="costItemForm" id="costItemForm" novalidate class="simple-form form-horizontal" role="form">
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label class="span-3 control-label" for="category">Category*</label>
       <div class="span-9" >
         <kint-refdata-lookup name="category" id="category" data-object="costItem" data-property="category" data-context-obj="context"
-          data-context-path="academicOutputCosts.category" class="form-control input-sm" required ></kint-refdata-lookup>
+          data-context-path="academicOutputCosts.category" class="form-control" required ></kint-refdata-lookup>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label class="span-3 control-label" id="currencyLabel" for="currency">Currency*</label>
       <div class="span-9">
         <ui-select on-select="updateBaseCurrencyValue()" data-ng-model="costItem.currency" class="form-control" id="currency" name="currency" aria-labelledby="currencyLabel" required >
@@ -30,7 +30,7 @@
         </ui-select>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label class="span-3 control-label" id="grossValueLabel" for="grossValue">Gross Value*</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="grossValue" name="grossValue" placeholder="0.00" aria-labelledby="grossValueLabel"
@@ -38,67 +38,67 @@
           data-ng-model="costItem.grossValue.value" step="0.01" min="0" required />
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label class="span-3 control-label" id="grossValueGBPLabel" for="grossValueGBP">Gross Value GBP*</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="grossValueGBP" name="grossValueGBP" placeholder="0.00" aria-labelledby="grossValueGBPLabel"
           data-ng-model="costItem.grossValueGBP.value" step="0.01" min="0" data-ng-disabled="costItem.currency === application.currency.base" required />
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label class="span-3 control-label" id="taxLabel" for="tax">Tax*</label>
       <div class="span-9" >
         <input type="number" class="form-control" id="tax" name="tax" placeholder="0.00" aria-labelledby="taxLabel"
           data-ng-model="costItem.tax.value" step="0.01" min="0" required />
       </div>
     </div>
-    <div class="form-group" data-ng-if="costItem.status.value === 'Actual'" >
+    <div class="form-group form-group-sm" data-ng-if="costItem.status.value === 'Actual'" >
       <label class="span-3 control-label" for="invoice">Invoice</label>
       <div class="span-9" >
-        <kint-component-lookup name="invoice" id="invoice" class="form-control input-sm"
+        <kint-component-lookup name="invoice" id="invoice" class="form-control"
           data-object="costItem" data-property="invoice"
           data-context-obj="context" data-context-path="academicOutputCosts.invoice"
           data-params="{ match:['name'], perPage: 25 }" ></kint-component-lookup>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label class="span-3 control-label" for="doi">Budget</label>
       <div class="span-9" >
-        <kint-component-lookup name="budget" id="budget" class="form-control input-sm"
+        <kint-component-lookup name="budget" id="budget" class="form-control"
           data-object="costItem" data-property="budget"
           data-context-obj="context" data-context-path="academicOutputCosts.budget"
           data-params="{ match:['name', 'code'], perPage: 25 }"
           data-template="components/budget/partials/budget-lookup.html" ></kint-component-lookup>
       </div>
     </div>
-    <!-- div class="form-group">
+    <div class="form-group form-group-sm">
       <label class="span-3 control-label" id="purchaseOrderLabel" for="purchaseOrder">Purchase Order</label>
       <div class="span-9" >
         <kint-refdata-lookup name="purchaseOrder" id="purchaseOrder" data-object="costItem" data-property="purchaseOrder" aria-labelledby="purchaseOrderLabel"
-          data-context-obj="context" data-context-path="invoiceCosts.purchaseOrder" class="form-control" tagging></kint-refdata-lookup>
+          data-context-obj="context" data-context-path="invoiceCosts.purchaseOrder" class="form-control" tagging ></kint-refdata-lookup>
       </div>
-    </div -->
-    <div class="form-group">
+    </div>
+    <div class="form-group form-group-sm">
       <label class="span-3 control-label" id="typeLabel" for="type">Debit/ Credit</label>
       <div class="span-9" >
         <kint-refdata-lookup name="type" id="type" data-object="costItem" data-property="type" aria-labelledby="typeLabel"
                  data-context-obj="context" data-context-path="academicOutputCosts.type" class="form-control"></kint-refdata-lookup>
       </div>
     </div>
-    <div data-ng-if="costItem.status.value === 'Committed'" class="form-group">
+    <div data-ng-if="costItem.status.value === 'Committed'" class="form-group form-group-sm">
       <label class="span-3 control-label" for="estimated">Estimated *</label>
       <div class="span-9" >
         <kint-refdata-lookup name="estimated" id="estimated" data-object="costItem" data-property="estimated" data-context-obj="context"
-          data-context-path="academicOutputCosts.estimated" class="form-control input-sm" required ></kint-refdata-lookup>
+          data-context-path="academicOutputCosts.estimated" class="form-control" required ></kint-refdata-lookup>
       </div>
     </div>
-    <div data-ng-if="costItem.status.value === 'Actual'" class="form-group">
+    <div data-ng-if="costItem.status.value === 'Actual'" class="form-group form-group-sm">
       <label class="span-3 control-label" for="paid">Paid*</label>
       <div class="span-9" >
-        <kint-refdata-lookup name="paid" id="paid" data-object="costItem" data-property="paid" data-context-obj="context" data-context-path="academicOutputCosts.paid" class="form-control input-sm" required ></kint-refdata-lookup>
+        <kint-refdata-lookup name="paid" id="paid" data-object="costItem" data-property="paid" data-context-obj="context" data-context-path="academicOutputCosts.paid" class="form-control" required ></kint-refdata-lookup>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <div class="span-12" >
         <button type="button" ng-click="$dismiss(costItem)" class="btn btn-default btn-sm" >
           Cancel
