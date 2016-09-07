@@ -63,7 +63,7 @@
       </button>
       <div class="pull-right" >
         <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="person.$invalid" >Save</button>
-        <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" >Cancel</button>
+        <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!person.$dirty" >Cancel</button>
       </div>
     </div>
   </form>
