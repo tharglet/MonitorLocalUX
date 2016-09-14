@@ -53,8 +53,7 @@ define(
             controller: 'SearchResultsController',
           },
           "search":{
-            controller: 'SearchController',
-            templateUrl: 'components/invoice/partials/search.html',
+            controller: 'SearchController'
           },
           "invoice-nav@app" : {
             templateUrl: "components/invoice/partials/_nav.html",

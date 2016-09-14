@@ -118,8 +118,7 @@ define(
               controller: 'SearchResultsController',
             },
             "search":{
-              controller: 'SearchController',
-              templateUrl: 'components/person/partials/search.html',
+              controller: 'SearchController'
             },
             "person-nav@app" : {
               templateUrl: "components/person/partials/_nav.html",

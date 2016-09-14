@@ -61,8 +61,7 @@ define(
             controller: 'SearchResultsController',
           },
           "search":{
-            controller: 'SearchController',
-            templateUrl: 'components/organisation/partials/search.html',
+            controller: 'SearchController'
           },
           "org-nav@app" : {
             templateUrl: "components/organisation/partials/_nav.html",

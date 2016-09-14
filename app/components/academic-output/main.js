@@ -64,6 +64,19 @@ define(
             'title'         : 'Funder',
             'orderable'     : false,
             "defaultContent": ''
+          },
+          {
+            'data'          : 'workflowStatus',
+            'title'         : 'Workflow Complete',
+            'orderable'     : true,
+            'render'        : function ( sData, type, oData, meta ) {
+
+              if (type === 'display') {
+                return sData === false ? "No" : "Yes";  
+              } else {
+                return sData;
+              }
+            }
           }
         ],
         views: {
@@ -71,9 +84,8 @@ define(
           "" : {
             controller: 'SearchResultsController',
           },
-          "search":{
+          "search": {
             controller: 'SearchController',
-            templateUrl: 'components/academic-output/partials/search.html',
           },
           "ao-nav@app" : {
             templateUrl: "components/academic-output/partials/_nav.html",
