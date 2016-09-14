@@ -213,7 +213,7 @@ define(
         clientId: 'monitorLocal',
         // OAuth2 Endpoint
         // authorizationEndpoint: 'https://authsvc.k-int.com/uaa/oauth/authorize',
-        authorizationEndpoint: 'https://www.kbplus.ac.uk/sob/oauth/authorize',
+        authorizationEndpoint: 'https://monitor.jisc.ac.uk/sob/oauth/authorize',
         // responseType:'token',
         responseType:'code',
         requiredUrlParams: ['scope','responseType'],
