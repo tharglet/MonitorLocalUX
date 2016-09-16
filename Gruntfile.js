@@ -65,7 +65,7 @@ module.exports = function (grunt) {
       },
       compass: {
         files: ['<%= appConfig.app %>/styles/{,**/}*.{scss,sass}',
-                   '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
+                '<%= appConfig.app %>/components/*/_styles.{scss,sass}'],
         tasks: ['compass:server', 'postcss:server']
       },
       gruntfile: {
@@ -419,12 +419,12 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'monitorLocalUxApp',
+          module: 'app',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= appConfig.app %>',
-        src: 'views/{,**/}*.html',
+        src: '**/partials/{,**/}*.html',
         dest: '.tmp/templateCache.js'
       }
     },
@@ -564,7 +564,7 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'postcss',
-    'ngtemplates',
+    // 'ngtemplates',
     'concat',
     'ngAnnotate',
     'copy:dist',
