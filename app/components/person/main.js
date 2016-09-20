@@ -55,7 +55,7 @@ define(
             },
             {
               'data'      : 'personContactDetails',
-              'title'     : "Depts",
+              'title'     : "Organisations",
               'orderable' : false,
               'render'    : function ( sData, type, oData, meta ) {
 

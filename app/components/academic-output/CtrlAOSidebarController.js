@@ -90,7 +90,7 @@ define (
   
       // Shallow watches. Only change if reference changes not the properties.
       $scope.$watchGroup(
-        ['context.publicationRoute', 'context.embargoPeriod','context.licence', 'context.acknowledgement', 'context.accessStatement'], refreshComplianceRules
+        ['context.publicationRoute', 'context.embargoPeriod','context.licence', 'context.acknowledgement', 'context.accessStatement', 'context.apcFundingApproval'], refreshComplianceRules
       );
       
       // Deep watches. Watch for items added to the collection as well as properties of each items changing.

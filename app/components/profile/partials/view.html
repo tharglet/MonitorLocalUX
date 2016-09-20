@@ -1,28 +1,34 @@
-<section id="org-grid" class="inner">
+<section id="profile-grid" class="inner">
   <form id="userProfile" name="userProfile" class="row" >
     <article data-ui-view>
       <div class="panel panel-collapsible panel-default">
 
         <div class="panel-heading">
-          <h3 data-toggle="collapse" data-target="#org-body" aria-label="Expand/Collapse the main Org content" id="org-heading">User Profile</h3>
+          <h3 data-toggle="collapse" data-target="#profile-body" aria-label="Expand/Collapse the main Org content" id="profile-heading">User Profile</h3>
         </div>
 
-        <div id="org-body" class="panel-body form-horizontal in" aria-labelledby="user-displayName">
+        <div id="profile-body" class="panel-body form-horizontal in" aria-labelledby="user-displayName">
 
           <div class="form-group form-group-sm">
             <label id="userDisplayNameLabel" for="id" class="span-3 control-label" aria-label="userDisplayName">Display Name</label>
-            <div class="span-2">
-              <input type="text" class="form-control" id="userDisplayName" name="userDisplayName" aria-labelledby="userDisplayNameLabel" data-ng-model="application.user.name" />
+            <div class="span-9">
+              <p type="text" class="form-control-static" id="userDisplayName" name="userDisplayName" aria-labelledby="userDisplayNameLabel" data-ng-bind="application.user.name"></p>
             </div>
           </div>
 
           <div class="form-group form-group-sm">
             <label id="userBioLabel" for="id" class="span-3 control-label" aria-label="userBio">User Biography / Note</label>
-            <div class="span-7">
-              <textarea type="text" class="form-control" id="userBio" name="userBio" aria-labelledby="userBioLabel" data-ng-model="application.user.bio"></textarea>
+            <div class="span-9">
+              <pre class="form-control-static" id="userBio" name="userBio" aria-labelledby="userBioLabel" data-ng-bind="application.user.bio"></pre>
             </div>
           </div>
-
+          
+          <div class="form-group form-group-sm">
+            <label id="orgLabel" for="id" class="span-3 control-label" aria-label="Organisation">Organisation</label>
+            <div class="span-9">
+              <p type="text" class="form-control-static" id="org" name="org" aria-labelledby="orgLabel" data-ng-bind="application.user.userOrg.name"></p>
+            </div>
+          </div>
         </div>
       </div>
     </article>
@@ -31,47 +37,4 @@
       <button type="button" class="btn btn-link" data-ng-click="cancelChanges()">Cancel</button>
     </div>
   </form>
-
-
-  <div class="panel panel-collapsible panel-default">
-
-    <div class="panel-heading">
-      <h3 data-toggle="collapse" data-target="#org-body" aria-label="Expand/Collapse the main Org content" id="org-heading">Current Organisational Affiliations</h3>
-    </div>
-
-    <div id="org-body" class="panel-body form-horizontal in" aria-labelledby="user-displayName">
-      <table class="table table-striped">
-        <tr>
-          <th>Organisation</th>
-          <th>Role</th>
-          <th>Status</th>
-        </tr>
-        <tr ng-repeat="affiliation in application.user.affiliations">
-          <td>{{affiliation.org}}</td>
-          <td>{{affiliation.role}}</td>
-          <td ng-switch="affiliation.status">
-            <span ng-switch-when="1">Approved</span>
-            <span ng-switch-default>Unknown</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kint-component-lookup name="reqOrgName" id="reqOrgName" class="form-control input-sm"
-               data-object="affiliationRequestData " data-property="institution"
-               data-context-obj="context" data-context-path="ownerInstitution"
-               data-params="{ match:['name'], perPage: 25, filters: ['type.value=HEI'] }" ></kint-component-lookup>
-          </td>
-          <td>
-            <select class="c-select form-control" name="role" data-ng-model="affiliationRequestData.role"><option value="User">Standard User</option><option value="Admin">Admin</option></select>
-          </td>
-          <td><button type="button" class="btn btn-success" data-ng-click="requestAffiliation()">Request</button></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
 </section>
-
-<pre>
-  {{application.user}}
-</pre>

@@ -60,12 +60,6 @@ define(
             "defaultContent": ''
           },
           {
-            'data'          : 'funder.name',
-            'title'         : 'Funder',
-            'orderable'     : false,
-            "defaultContent": ''
-          },
-          {
             'data'          : 'workflowStatus',
             'title'         : 'Workflow Complete',
             'orderable'     : true,
