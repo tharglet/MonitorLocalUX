@@ -30,10 +30,11 @@ define(
               'data'  : 'internalGrantId',
               'title' : "Internal project code"
             },
-//            {
-//              'data'  : 'funder.name',
-//              'title' : 'Funder'
-//            },
+            {
+              'data'  : 'funder.name',
+              'title' : 'Funder',
+              'defaultContent' : ''
+            },
 //            {
 //              'data'  : '',
 //              'title' : 'Funder group'
