@@ -292,7 +292,7 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 'satellizer.shared', 
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 
       function($couchPotato, $state, $stateParams, $rootScope, $http) {
 
 

@@ -8,7 +8,7 @@ requirejs.config({
     "angular-mocks": "../bower_components/angular-mocks/angular-mocks",
     "angular-resource": "../bower_components/angular-resource/angular-resource",
     "angular-ui-router": "../bower_components/angular-ui-router/release/angular-ui-router",
-    satellizer: "../bower_components/satellizer/satellizer",
+    satellizer: "../bower_components/satellizer/dist/satellizer",
     html5shiv: "../bower_components/html5shiv/dist/html5shiv",
     "jisc-patterns-head": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-head.min",
     "jisc-patterns-foot": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-foot.min",

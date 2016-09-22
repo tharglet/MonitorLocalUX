@@ -10,7 +10,7 @@
     "angular-ui-router": "~0.2.15",
     "angular-couch-potato": "~0.2.3",
     "requirejs": "~2.1.22",
-    "satellizer": "~0.11.3",
+    "satellizer": "~0.15.5",
     "font-awesome": "~4.4.0",
     "html5shiv": "~3.7.3",
     "jquery-touchswipe": "~1.6.15",

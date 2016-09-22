@@ -31,7 +31,7 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-couch-potato/dist/angular-couch-potato.js',
       'bower_components/requirejs/require.js',
-      'bower_components/satellizer/satellizer.js',
+      'bower_components/satellizer/dist/satellizer.js',
       'bower_components/html5shiv/dist/html5shiv.js',
       'bower_components/jquery-touchswipe/jquery.touchSwipe.js',
       'bower_components/datatables.net/js/jquery.dataTables.js',
