@@ -87,10 +87,26 @@ define (
             
             // Set a count.
             $scope.context.$$complianceCount = 0;
+            $scope.context.$$complianceFail = 0;
+            $scope.context.$$complianceReview = 0;
+            
             for(var key in complianceData) {
               if (complianceData.hasOwnProperty(key) && !key.startsWith("$")) {
-                $scope.context.$$complianceCount++;
-                $scope.compliance[key] = complianceData[key];
+                $scope.context.$$complianceCount ++;
+                
+                // Grab the rule.
+                var rule = complianceData[key];
+                $scope.compliance[key] = rule;
+                
+                // Counters.
+                angular.forEach (rule, function(item){
+                  var val = item.result;
+                  if (val == null) {
+                    $scope.context.$$complianceReview ++;
+                  } else if  (val == false) {
+                    $scope.context.$$complianceFail ++;
+                  }
+                });
               }
             }
           }
