@@ -83,10 +83,19 @@ define (
       var refreshComplianceRules = debounce(function () {
         resource.checkRules ({ id: null }, context).$promise.then(
           function (complianceData) {
-            angular.copy(complianceData, $scope.compliance);
+            angular.copy({}, $scope.compliance);
+            
+            // Set a count.
+            $scope.context.$$complianceCount = 0;
+            for(var key in complianceData) {
+              if (complianceData.hasOwnProperty(key) && !key.startsWith("$")) {
+                $scope.context.$$complianceCount++;
+                $scope.compliance[key] = complianceData[key];
+              }
+            }
           }
         );
-      }, 20);
+      }, 150);
   
       // Shallow watches. Only change if reference changes not the properties.
       $scope.$watchGroup(
@@ -95,6 +104,7 @@ define (
       
       // Deep watches. Watch for items added to the collection as well as properties of each items changing.
       $scope.$watch('context.deposits', refreshComplianceRules, true);
+      $scope.$watch('context.funds', refreshComplianceRules, true);
     }]);
   }
 );
