@@ -34,23 +34,21 @@ define(
               'data'      : 'identifiers',
               'title'     : "ORCID",
               'orderable' : false,
-              'render'    : function ( sData, type, oData, meta ) {
-
-                if (type === 'display') {
-                  var val = null;
-                  if (sData && sData.length > 0) {
-                    // Output each identifier.
-                    for (var i=0; i<sData.length && !val; i++) {
-                      var cid = sData[i];
-                      if (cid.identifier.namespace.value == 'orcid') {
-                        val = cid.identifier.value;
+              'render'    : function ( sData, type, oData, meta ) {                
+                var val = "";
+                switch(type) {
+                  default:
+                    if (sData && sData.length > 0) {
+                      // Output each identifier.
+                      for (var i=0; i<sData.length && !val; i++) {
+                        var cid = sData[i];
+                        if (cid.identifier.namespace.value == 'orcid') {
+                          val = cid.identifier.value;
+                        }
                       }
                     }
-                  }
-                  return val;
-                } else {
-                  return sData;
                 }
+                return val;
               }
             },
             {

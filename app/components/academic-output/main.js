@@ -47,7 +47,7 @@ define(
                 case 'export':
                 default:
                   $.each (sData, function () {
-                    var pcd = this;
+                    var cid = this;
                     val += (val.length > 0 ? "\n" : "") + cid.identifier.namespace.value + ": " + cid.identifier.value;
                   });
               }
