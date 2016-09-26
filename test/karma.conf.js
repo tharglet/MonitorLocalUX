@@ -31,7 +31,7 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-couch-potato/dist/angular-couch-potato.js',
       'bower_components/requirejs/require.js',
-      'bower_components/satellizer/satellizer.js',
+      'bower_components/satellizer/dist/satellizer.js',
       'bower_components/html5shiv/dist/html5shiv.js',
       'bower_components/jquery-touchswipe/jquery.touchSwipe.js',
       'bower_components/datatables.net/js/jquery.dataTables.js',
@@ -69,6 +69,9 @@ module.exports = function(config) {
       'bower_components/datatables.net-responsive-bs/js/responsive.bootstrap.js',
       'bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader.js',
       'bower_components/angular-confirm-modal/angular-confirm.js',
+      'bower_components/api-check/dist/api-check.js',
+      'bower_components/angular-formly/dist/formly.js',
+      'bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

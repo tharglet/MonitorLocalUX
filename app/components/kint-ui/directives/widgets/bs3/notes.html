@@ -16,13 +16,15 @@
         <a class="btn btn-xs btn-danger" data-ng-click="removeNote(note)" >Delete</a>
       </div>
     </div>
-    <form data-ng-if="note.$editMode" name="{{name || id}}EditNoteForm" >
-      <textarea data-ng-model="note.note"></textarea>
-      <div class="controls" >
-        <a class="btn btn-xs btn-success" data-ng-click="saveNote(note)">Save</a>
-        <a class="btn btn-xs btn-default" data-ng-click="cancelNote(note)" >Cancel</a>
-      </div>
-    </form>
+    <div data-ng-if="note.$editMode == true" >
+      <form name="{{name || id}}EditNoteForm" >
+        <textarea data-ng-model="note.note"></textarea>
+        <div class="controls" >
+          <a class="btn btn-xs btn-success" data-ng-click="saveNote(note)">Save</a>
+          <a class="btn btn-xs btn-default" data-ng-click="cancelNote(note)" >Cancel</a>
+        </div>
+      </form>
+    </div>
   </li>
 </ul>
  <form class="add-new" name="{{name || id}}Form" >

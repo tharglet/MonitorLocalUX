@@ -2,12 +2,12 @@
   <article data-ui-view>
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
-        <h3 data-toggle="collapse" data-target="#assignedPerson-body" aria-label="Expand/Collapse the main assigned Person content" id="assignedPerson-heading">People assigned to this academic output</h3>
+        <h3 data-toggle="collapse" data-target="#assignedPerson-body" aria-label="Expand/Collapse the main assigned Person content" id="assignedPerson-heading">People associated with this academic output</h3>
       </div>
       <div id="assignedPerson-body" class="panel-body form-horizontal in" aria-labelledby="assignedPerson-heading" >
         <ng-include data-ng-if="people && people.length > 0" src="'components/academic-output/partials/_table_people.html'" ></ng-include>
-        <p data-ng-if="!people || people.length == 0" >There are currently no people assigned. Please use the form below.</p>
-        
+        <p data-ng-if="!people || people.length == 0" >There are currently no people associated with this academic output. Please use the form below.</p>
+
           <div class="form-group form-group-sm" >
             <label id="organisationLabel" for="organisation" class="control-label span-3" aria-label="Organisation">Filter by Organisation</label>
             <div class="span-9">
@@ -39,7 +39,7 @@
           </div>
       </div>
     </div>
-    
+
     <div class="panel panel-collapsible panel-default">
       <div class="panel-heading">
         <h3 data-toggle="collapse" data-target="#allNotes-container" aria-label="Expand/Collapse notes" id="allNotesHeading">Notes</h3>

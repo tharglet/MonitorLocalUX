@@ -61,8 +61,7 @@ define(
             controller: 'SearchResultsController',
           },
           "search":{
-            controller: 'SearchController',
-            templateUrl: 'components/organisation/partials/search.html',
+            controller: 'SearchController'
           },
           "org-nav@app" : {
             templateUrl: "components/organisation/partials/_nav.html",
@@ -74,6 +73,7 @@ define(
       });
       $stateProvider.state('app.organisation.view', {
         url: '/:id',
+        authRequired: 'ROLE_ADMIN',
         views: {
           "@app": {
             templateUrl: 'components/organisation/partials/view.html',

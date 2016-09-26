@@ -20,20 +20,16 @@
             <label id="internalGrantIdLabel" for="internalGrantId" class="control-label span-3" aria-label="Grant ">Internal project code</label>
             <div class="span-3">
               <input type="text" class="form-control" id="internalGrantId" name="internalGrantId" aria-labelledby="internalGrantIdLabel"
-                     data-ng-model="context.internalGrantId" data-kint-validate />
+                     data-ng-model="context.internalGrantId" />
             </div>
           </div>
 
           <div class="form-group form-group-sm" data-ng-class="{'has-error': (grant.name.$dirty && grant.name.$invalid), 'has-success': (grant.name.$dirty && grant.name.$valid)}" >
-            <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Grant Name" >Grant Name*</label>
+            <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Grant Name" >Grant Name</label>
             <div class="span-9">
               <input type="text" class="form-control" id="name" name="name" placeholder="Grant name" aria-labelledby="nameLabel"
                      data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                     data-kint-ui-input-feedback data-kint-validate required />
-              <div data-ng-if="grant.name.$dirty" data-ng-messages="grant.name.$error" class="help-block" role="alert">
-                <p data-ng-message="required">Please enter a name</p>
-                <p data-ng-message="kintValidate">{{grant.name.kintValidate.message}}</p>
-              </div>
+                     data-kint-ui-input-feedback data-kint-validate />
             </div>
           </div>
 
@@ -41,7 +37,7 @@
             <label id="groupLabel" for="group" class="control-label span-3" aria-label="Funder Group">Filter by funder group</label>
             <div class="span-9">
               <kint-component-lookup name="group" id="group" data-object="filters" data-property="funderGroup"
-                data-context-obj="context" data-context-path="funder" class="form-control input-sm"
+                data-context-obj="context" data-context-path="funder.funderGroup" class="form-control input-sm"
                 data-params="{ match:['name'], perPage: 25, filters: ['type.value=Funder Group'] }"  ></kint-component-lookup>
             </div>
           </div>
@@ -64,7 +60,7 @@
 
         </div>
       </div>
-      
+
       <div class="panel panel-collapsible panel-default">
         <div class="panel-heading">
           <h3 data-toggle="collapse" data-target="#allNotes-container" aria-label="Expand/Collapse notes" id="allNotesHeading">Notes</h3>
@@ -74,13 +70,13 @@
         </div>
       </div>
     </article>
-    
+
     <div class="form-group">
       <button type="button" class="btn btn-danger" data-ng-click="doDelete()" data-ng-disabled="!context.id" >
         Delete
       </button>
       <div class="pull-right" >
-        <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="!grant.$dirty || grant.$invalid" >Save</button>
+        <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="grant.$invalid" >Save</button>
         <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!grant.$dirty" >Cancel</button>
       </div>
     </div>

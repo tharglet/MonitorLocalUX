@@ -10,7 +10,7 @@
     "angular-ui-router": "~0.2.15",
     "angular-couch-potato": "~0.2.3",
     "requirejs": "~2.1.22",
-    "satellizer": "~0.11.3",
+    "satellizer": "~0.15.5",
     "font-awesome": "~4.4.0",
     "html5shiv": "~3.7.3",
     "jquery-touchswipe": "~1.6.15",
@@ -23,7 +23,7 @@
     "angular-xeditable": "~0.1.11",
     "pnotify": "~3.0.0",
     "angular-sanitize": "~1.5.3",
-    "ui-select": "https://github.com/kfedorov/ui-select.git#11e24d155f6de4dddb8f0c41489aa080091e5f24",
+    "ui-select": "git://github.com/k-int/ui-select#0.19.4.1",
     "angular-bootstrap": "~1.2.5",
     "datatables.net-buttons": "~1.1.2",
     "datatables.net-buttons-bs": "~1.1.2",
@@ -36,7 +36,10 @@
     "datatables.net-responsive-bs": "^2.1.0",
     "datatables.net-fixedheader": "^3.1.2",
     "datatables.net-fixedheader-bs": "^3.1.2",
-    "angular-confirm-modal": "^1.2.5"
+    "angular-confirm-modal": "^1.2.5",
+    "api-check": "^7.5.5",
+    "angular-formly": "^8.3.0",
+    "angular-formly-templates-bootstrap": "^6.3.2"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

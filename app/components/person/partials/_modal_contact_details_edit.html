@@ -5,7 +5,7 @@
 <div class="modal-body">
   <form id="contactDetailsForm" name="contactDetailsForm" novalidate class="simple-form form-horizontal" role="form" >
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label id="organisationLabel" for="organisation" class="span-3 control-label" >Organisation*</label>
       <div class="span-9">
         <kint-component-lookup name="organisation" id="organisation" data-object="contactDetails" data-property="organisation"
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label id="departmentLabel" for="department" class="span-3 control-label" >Department*</label>
       <div class="span-9">
         <kint-refdata-lookup name="department" id="department" data-object="contactDetails" data-property="department" aria-labelledby="departmentLabel"
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label id="divisionLabel" for="division" class="span-3 control-label" >Division</label>
       <div class="span-9">
         <kint-refdata-lookup name="division" id="division" data-object="contactDetails" data-property="division" aria-labelledby="divisionLabel"
@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label id="jobTitleLabel" for="jobTitle" class="span-3 control-label" aria-label="Contact Details Job Title" >Position/ Job title</label>
       <div class="span-9">
         <input type="text" class="form-control" id="jobTitle" name="jobTitle" placeholder="Position/ Job title" aria-labelledby="jobTitleLabel"
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label id="emailAddressLabel" for="emailAddress" class="span-3 control-label" aria-label="Email Address" >Primary email address</label>
       <div class="span-9">
         <input type="text" class="form-control" id="emailAddress" name="emailAddress" placeholder="Primary email address" aria-labelledby="emailAddressLabel"
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <label id="telephoneNumberLabel" for="telephoneNumber" class="span-3 control-label" aria-label="Telephone Number" >Primary telephone</label>
       <div class="span-9">
         <input type="text" class="form-control" id="telephoneNumber" name="telephoneNumber" placeholder="Primary telephone" aria-labelledby="telephoneNumberLabel"
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <div class="span-12" >
         <button type="button" ng-click="$dismiss(contactDetails)" class="btn btn-default btn-sm" >
           Cancel

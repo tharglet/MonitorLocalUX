@@ -1,0 +1,35 @@
+<div class="panel panel-collapsible panel-default panel-{{config['result'] == null ? 'warning' : config['result'] == false ? 'danger' : 'success'}}" >
+  <div class="panel-heading">
+    <h3 data-toggle="collapse" data-target="#depositedRule{{counter}}" aria-label="Expand/Collapse the main Licence Applied content" id="depositedRule{{counter}}Heading">
+      <i class="glyphicon" data-ng-class="{'glyphicon-warning-sign' : (config['result'] == null), 'glyphicon-remove-circle' : (config['result'] == false), 'glyphicon-ok' : (config['result'] == true)}"></i>
+      {{rule}}: {{ruleSet}}
+    </h3>
+  </div>
+  <div id="depositedRule{{counter}}" class="panel-body in" aria-labelledby="depositedRule{{counter}}Heading">
+
+    <div class="row form-group" >
+      <div class="span-4" >
+        <label id="depositedRule{{counter}}ResultLabel" for="depositedRule{{counter}}Result" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+        <p class="form-control-static" id="depositedRule{{counter}}Result" name="depositedRule{{counter}}Result" aria-labelledby="depositedRule{{counter}}ResultLabel" >
+          {{config['result'] ? 'PASS' : (config['result'] == null ? 'NEEDS REVIEW' : 'FAIL')}}
+        </p>
+      </div>
+      <div class="span-8">
+        <label id="depositedRule{{counter}}RequiredLabel" for="depositedRule{{counter}}Required" class="control-label" aria-label="Description of Requirement for Deposits">Description of Requirement</label>
+        <p class="form-control-static" id="depositedRule{{counter}}Required" name="depositedRule{{counter}}Required" aria-labelledby="depositedRule{{counter}}RequiredLabel" >
+          {{config['details']['description']}}
+        </p>
+      </div>
+      <div class="span-12">
+        <label id="depositedRule{{counter}}RequiredLabel" for="depositedRule{{counter}}Required" class="control-label" aria-label="Current Deposits">Current Deposits</label>
+        <form id="depositForm{{counter}}" name="depositForm{{counter}}" class="table-responsive" >
+          <ng-include src="'components/academic-output/partials/_table_deposit.html'" ></ng-include>
+        </form>
+      </div>
+    </div>
+    <h4 aria-label="Evidence" >Evidence</h4>
+    <div class="span-12" id="depositedNote{{counter}}" data-object="context" data-property="notes"
+      kint-ui-notes blank="getBlank(notes)" type="publication.deposits" user="application.user" >
+    </div>
+  </div>
+</div>

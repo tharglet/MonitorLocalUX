@@ -10,10 +10,11 @@ define(
    'datatables.net-fixedheader',
    'datatables.net-colreorder',
    'datatables.net-responsive-bs',
-   'grails'
+   'grails',
+   'angular-formly-templates-bootstrap'
   ],
   function () {
-    var mod = angular.module('search', ['ui.router', 'grails']);
+    var mod = angular.module('search', ['ui.router', 'grails', 'formly', 'formlyBootstrap', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
     mod.config(['$stateProvider', function($stateProvider) {
       $stateProvider.state('app.componentSearch', {
         abstract: true,
@@ -30,6 +31,34 @@ define(
             templateUrl: 'components/search/partials/search_results.html'
           }
         },        
+      });
+    }]);
+    
+    mod.run(['formlyConfig', function(formlyConfig) {
+      // NOTE: This next line is highly recommended. Otherwise Chrome's autocomplete will appear over your options!
+      formlyConfig.extras.removeChromeAutoComplete = true;
+      
+      // Configure custom types.
+      formlyConfig.setType({
+        name: 'ui-select-single',
+        extends: 'select',
+        templateUrl: 'ui-select-single.html'
+      });
+      formlyConfig.setType({
+        name: 'ui-select-single-select2',
+        extends: 'select',
+        templateUrl: 'ui-select-single-select2.html'
+      });
+      formlyConfig.setType({
+        name: 'ui-select-single-search',
+        extends: 'select',
+        templateUrl: 'ui-select-single-async-search.html'
+      });
+
+      formlyConfig.setType({
+        name: 'ui-select-multiple',
+        extends: 'select',
+        templateUrl: 'ui-select-multiple.html'
       });
     }]);
     

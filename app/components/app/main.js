@@ -208,11 +208,12 @@ define(
         name: 'sob',  // K-int Shib-OAuth2 GW
         // URL of the service the user is trying to authenticate for. Pass on info after closing OAuth2 popup window.
         url: callback_url + 'sob',
-        redirectUri: 'http://localhost:9090/redirect',
+        redirectUri: ( window.location.origin || window.location.protocol + '//' + window.location.host ) + '/redirect',
+        // redirectUri: 'http://localhost:9090/redirect',
         clientId: 'monitorLocal',
         // OAuth2 Endpoint
         // authorizationEndpoint: 'https://authsvc.k-int.com/uaa/oauth/authorize',
-        authorizationEndpoint: 'https://www.kbplus.ac.uk/sob/oauth/authorize',
+        authorizationEndpoint: 'https://monitor.jisc.ac.uk/sob/oauth/authorize',
         // responseType:'token',
         responseType:'code',
         requiredUrlParams: ['scope','responseType'],
@@ -291,7 +292,7 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 'satellizer.shared', 
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 
       function($couchPotato, $state, $stateParams, $rootScope, $http) {
 
 

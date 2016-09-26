@@ -5,19 +5,19 @@
 <div class="modal-body">
   <form novalidate class="simple-form form-horizontal" name="doiLookup" role="form">
 
-    <div class="form-group" data-ng-class="{'has-error': (doiLookup.doi.$dirty && valid===false), 'has-success' : (valid===true)}" >
+    <div class="form-group form-group-sm" data-ng-class="{'has-error': (doiLookup.doi.$dirty && valid===false), 'has-success' : (valid===true)}" >
       <label class="span-3 control-label" for="doi">DOI</label>
       <div class="span-9">
 
-        <div class="input-group">
-          <input id="doi" name="doi"type="text" placeholder="Enter DOI" class="form-control input-md" data-ng-change="valid = null" data-ng-model="doi_data['identifiers'][0].identifier.value">
+        <div class="input-group input-group-sm">
+          <input id="doi" name="doi"type="text" placeholder="Enter DOI" class="form-control" data-ng-change="valid = null" data-ng-model="doi_data['identifiers'][0].identifier.value">
           <span class="btn btn-default btn-primary btn-sm input-group-addon" data-ng-click="validate()">Validate</span>
         </div>
         <span data-ng-if="doiLookup.doi.$dirty && valid==false" class="help-block">Please enter valid doi</span>
         <span class="help-block">DOI Name Help Text</span>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-sm">
       <div class="span-12" >
         <button type="button" ng-click="$dismiss()" class="btn btn-default btn-sm" >
           Cancel

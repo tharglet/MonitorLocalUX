@@ -32,7 +32,8 @@ define(
             },
             {
               'data'  : 'funder.name',
-              'title' : 'Funder'
+              'title' : 'Funder',
+              'defaultContent' : ''
             },
 //            {
 //              'data'  : '',
@@ -54,7 +55,6 @@ define(
             },
             "search":{
               controller: 'SearchController',
-              templateUrl: 'components/invoice/partials/search.html',
             },
             "grant-nav@app" : {
               templateUrl: "components/grant/partials/_nav.html",

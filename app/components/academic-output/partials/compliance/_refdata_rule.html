@@ -1,0 +1,33 @@
+<div class="panel panel-collapsible panel-default panel-{{config['result'] == null ? 'warning' : config['result'] == false ? 'danger' : 'success'}}" >
+  <div class="panel-heading">
+    <h3 data-toggle="collapse" data-target="#{{config['details']['field'] + counter}}Rule" aria-label="Expand/Collapse the main {{rule}} content" id="{{config['details']['field'] + counter}}RuleHeading">
+      <i class="glyphicon" data-ng-class="{'glyphicon-warning-sign' : (config['result'] == null), 'glyphicon-remove-circle' : (config['result'] == false), 'glyphicon-ok' : (config['result'] == true)}"></i>
+      {{rule}}: {{ruleSet}}
+    </h3>
+  </div>
+  <div id="{{config['details']['field'] + counter}}Rule" class="panel-body in" aria-labelledby="{{config['details']['field'] + counter}}RuleHeading">
+    <div class="row form-group" >
+      <div class="span-4" >
+        <label id="{{config['details']['field'] + counter}}ResultLabel" for="{{config['details']['field'] + counter}}Result" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+        <p class="form-control-static" id="{{config['details']['field'] + counter}}Result" name="{{config['details']['field'] + counter}}Result" aria-labelledby="{{config['details']['field'] + counter}}ResultLabel" >
+          {{config['result'] ? 'PASS' : (config['result'] == null ? 'NEEDS REVIEW' : 'FAIL')}}
+        </p>
+      </div>
+      <div class="span-4">
+        <label id="{{config['details']['field'] + counter}}RequiredLabel" for="{{config['details']['field'] + counter}}Required" class="control-label" aria-label="Required Licence">Required {{rule}}</label>
+        <p class="form-control-static" id="{{config['details']['field'] + counter}}Required" name="{{config['details']['field'] + counter}}Required" aria-labelledby="{{config['details']['field'] + counter}}RequiredLabel" >
+          {{config['details']['expected']}}
+        </p>
+      </div>
+      <div class="span-4" >
+        <label id="{{config['details']['field'] + counter}}Label" for="{{config['details']['field'] + counter}}" class="control-label" aria-label="Current Access Statement">Current {{rule}}</label>
+        <kint-refdata-lookup name="{{config['details']['field'] + counter}}" id="{{config['details']['field'] + counter}}" data-object="context" data-property="{{config['details']['field']}}" class="form-control" ></kint-refdata-lookup>
+      </div>
+    </div>
+
+    <h4 aria-label="Evidence" >Evidence</h4>
+    <div class="span-12" id="{{config['details']['field']}}Note{{counter}}" data-object="context" data-property="notes"
+         kint-ui-notes blank="getBlank(notes)" type="publication.{{config['details']['field']}}" user="application.user" >
+    </div>
+  </div>
+</div>

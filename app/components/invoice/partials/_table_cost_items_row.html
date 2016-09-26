@@ -4,10 +4,10 @@
 <td class="info" >{{costItem.grossValueGBP.value | number : 2}}</td>
 <td class="info" >{{costItem.tax.value | number : 2}}</td>
 <td class="info" >{{costItem.net.value | number : 2}}</td>
-<td>{{costItem.academicOutput.name}}</td>
+<td><a data-ui-sref="app.academicOutput.view ({id: costItem.academicOutput.id})" >{{costItem.academicOutput.name}}</a></td>
 <td>{{costItem.budget.name}}</td>
-<!-- td>{{costItem.purchaseOrder}}</td -->
-<td>{{costItem.debit.value}}</td>
+<td>{{costItem.purchaseOrder.value}}</td>
+<td>{{costItem.type.value}}</td>
 <td>
   <button type="button" ng-click="editCost(costItem)" class="btn btn-default btn-sm" >Edit</button>
   <button type="button" ng-click="removeFrom('invoiceCosts', costItem)" class="btn btn-danger btn-sm" >Del</button>

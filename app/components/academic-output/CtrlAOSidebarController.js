@@ -3,65 +3,124 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('AOSidebarController', ['$rootScope',  '$scope', 'context', 'grailsResource', 'debounce', function ($rootScope, $scope, context, resource, debounce) {
+    app.registerController('AOSidebarController', ['$rootScope', '$scope', 'context', 'grailsResource', 'debounce', function ($rootScope, $scope, context, resource, debounce) {
 
       // Enable the sidebar.
       $rootScope.sidebar.enable();
       
       // The context will not exist in this scope. We need it for watches.
       $scope.context = context;
-      
-      // Let's store this against the context object we also need a view of the compliance data,
-      // which might not be available yet.
-     if (typeof $scope.context.$$compliance === 'undefined') {
-       $scope.context.$$compliance = {status : {}};
-     }
-     if (typeof $scope.context.$$workflow === 'undefined') {
-       $scope.context.$$workflow = {};
-     }
 
-      // Use the contextual resource and check the rules for workflow.
+      // Workflow and compliance objects.
+      if (!$scope.context.$$compliance) {
+        $scope.context.$$compliance = {};
+      }
+      if (!$scope.context.$$workflow) {
+        $scope.context.$$workflow = {
+          'Compliance' : {
+            'All compliance checks have been reviewed' : context.workflowStatus
+          }
+        };
+      }
       $scope.workflow = $scope.context.$$workflow;
+      $scope.compliance = $scope.context.$$compliance;
 
       // Grab the workflow status.
-      var refreshRules = debounce(function () {
+      var refreshWorkflowRules = debounce(function () {
         resource.checkRules({ id: 'workflow*' }, context).$promise.then(function (workflowData) {
+          
+          var complianceValue = $scope.workflow['Compliance'];
+          
           if ("workflow" in workflowData ) {
-            var wf = $scope.workflow;
-            angular.copy(workflowData['workflow'], wf);
+            angular.copy(workflowData['workflow'], $scope.workflow);
           }
+          
+          // Add the compliance rule here to ensure that it is the last item in the list.
+          $scope.workflow['Compliance'] = complianceValue;
         });
-      }, 500);
+      }, 20);
+      
+      // Call now. If the model updates within 20 milliseconds then the method will be queued.
+      refreshWorkflowRules();
 
       // Shallow watches. Only change if reference changes not the properties.
       $scope.$watchGroup(
-        ['context.name','context.publicationRoute', 'context.publicationTitle', 'context.apcFundingApproval', 'context.publisher'], refreshRules
+        ['context.name','context.publicationRoute', 'context.publicationTitle', 'context.apcFundingApproval', 'context.publisher'], refreshWorkflowRules
       );
 
       // Deep watches. Watch for items added to the collection as well as properties of each items changing.
-      $scope.$watch('context.identifiers', refreshRules, true);
-      $scope.$watch('context.academicOutputCosts', refreshRules, true);
-      $scope.$watch('context.funds', refreshRules, true);
-      $scope.$watch('context.names', refreshRules, true);
+      $scope.$watch('context.identifiers', refreshWorkflowRules, true);
+      $scope.$watch('context.academicOutputCosts', refreshWorkflowRules, true);
+      $scope.$watch('context.funds', refreshWorkflowRules, true);
+      $scope.$watch('context.names', refreshWorkflowRules, true);
       
-      $scope.$watch('context.$$compliance.status', function(newVal) {
-        if ($scope.workflow['Compliance']) {
+      $scope.$watch('compliance', function(newVal) {
+        
+        if (!angular.equals(newVal, {})) {
           var found = false;
           for ( var k in newVal) {
-            if (newVal.hasOwnProperty(k)) {
-              found = (newVal[k] === null);
+            if (k.indexOf('$') !== 0 && newVal.hasOwnProperty(k)) {
+              for ( var r in newVal[k]) {
+                if (r.indexOf('$') !== 0 && newVal[k].hasOwnProperty(r)) {
+                  found = (typeof newVal[k][r]['result'] === 'undefined' || newVal[k][r]['result'] === null);
+                }
+                if (found) break;
+              }
             }
             if (found) break;
           }
-          
           // We should add the compliance data here.
-          $scope.workflow['Compliance']['No compliance checks require review'] = !found;
+          $scope.workflow['Compliance']['All compliance checks have been reviewed'] = !found;
         }
       }, true);
       
       $scope.$on('$destroy', function(){
         $rootScope.sidebar.disable();
       });
+      
+      
+      /*** Compliance ***/      
+      var refreshComplianceRules = debounce(function () {
+        resource.checkRules ({ id: null }, context).$promise.then(
+          function (complianceData) {
+            angular.copy({}, $scope.compliance);
+            
+            // Set a count.
+            $scope.context.$$complianceCount = 0;
+            $scope.context.$$complianceFail = 0;
+            $scope.context.$$complianceReview = 0;
+            
+            for(var key in complianceData) {
+              if (complianceData.hasOwnProperty(key) && !key.startsWith("$")) {
+                $scope.context.$$complianceCount ++;
+                
+                // Grab the rule.
+                var rule = complianceData[key];
+                $scope.compliance[key] = rule;
+                
+                // Counters.
+                angular.forEach (rule, function(item){
+                  var val = item.result;
+                  if (val == null) {
+                    $scope.context.$$complianceReview ++;
+                  } else if  (val == false) {
+                    $scope.context.$$complianceFail ++;
+                  }
+                });
+              }
+            }
+          }
+        );
+      }, 150);
+  
+      // Shallow watches. Only change if reference changes not the properties.
+      $scope.$watchGroup(
+        ['context.publicationRoute', 'context.embargoPeriod','context.licence', 'context.acknowledgement', 'context.accessStatement', 'context.apcFundingApproval'], refreshComplianceRules
+      );
+      
+      // Deep watches. Watch for items added to the collection as well as properties of each items changing.
+      $scope.$watch('context.deposits', refreshComplianceRules, true);
+      $scope.$watch('context.funds', refreshComplianceRules, true);
     }]);
   }
 );

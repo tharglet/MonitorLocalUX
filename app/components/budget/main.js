@@ -50,6 +50,9 @@ define(
             "" : {
               controller: 'SearchResultsController',
             },
+            "search": {
+              controller: 'SearchController',
+            },
             "budget-nav@app" : {
               templateUrl: "components/budget/partials/_nav.html",
             }

@@ -42,7 +42,7 @@ define (
           angular.forEach (totalCats, function (cat) {
             
             var val = row[cat].value;
-            if (row.category && row.category.value == 'Refund') {
+            if (row.type && row.type.value == 'Credit') {
               val = -val;
             }
             

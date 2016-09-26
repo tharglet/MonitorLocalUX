@@ -1,0 +1,34 @@
+<div class="panel panel-collapsible panel-default panel-{{config['result'] == null ? 'warning' : config['result'] == false ? 'danger' : 'success'}}" >
+  <div class="panel-heading">
+    <h3 data-toggle="collapse" data-target="#embargoPeriod{{counter}}Rule" aria-label="Expand/Collapse the main {{rule}} content" id="embargoPeriod{{counter}}RuleHeading">
+      <i class="glyphicon" data-ng-class="{'glyphicon-warning-sign' : (config['result'] == null), 'glyphicon-remove-circle' : (config['result'] == false), 'glyphicon-ok' : (config['result'] == true)}"></i>
+      {{rule}}: {{ruleSet}}
+    </h3>
+  </div>
+  <div id="embargoPeriod{{counter}}Rule" class="panel-body in" aria-labelledby="embargoPeriod{{counter}}RuleHeading">
+    <div class="row form-group" >
+      <div class="span-4" >
+        <label id="embargoPeriod{{counter}}ResultLabel" for="embargoPeriod{{counter}}Result" class="control-label" aria-label="Compliance Result">Compliance Result</label>
+        <p class="form-control-static" id="embargoPeriod{{counter}}Result" name="embargoPeriod{{counter}}Result" aria-labelledby="embargoPeriod{{counter}}ResultLabel" >
+          {{config['result'] ? 'PASS' : (config['result'] == null ? 'NEEDS REVIEW' : 'FAIL')}}
+        </p>
+      </div>
+      <div class="span-4">
+        <label id="embargoPeriod{{counter}}RequiredLabel" for="embargoPeriod{{counter}}Required" class="control-label" aria-label="Required Licence">Required {{rule}}</label>
+        <p class="form-control-static" id="embargoPeriod{{counter}}Required" name="embargoPeriod{{counter}}Required" aria-labelledby="embargoPeriod{{counter}}RequiredLabel" >
+          {{config['details']['description']}}
+        </p>
+      </div>
+      <div class="span-4" >
+        <label id="embargoPeriod{{counter}}Label" for="embargoPeriod{{counter}}" class="control-label" aria-label="Current Access Statement">Current {{rule}}</label>
+        <input type="number" class="form-control" id="embargoPeriod{{counter}}" name="embargoPeriod{{counter}}" placeholder="0" aria-labelledby="embargoPeriod{{counter}}Label"
+           data-ng-model="context.embargoPeriod" step="1" min="0" />
+      </div>
+    </div>
+
+    <h4 aria-label="Evidence" >Evidence</h4>
+    <div class="span-12" id="embargoPeriodNote{{counter}}" data-object="context" data-property="notes"
+      kint-ui-notes blank="getBlank(notes)" type="publication.embargo" user="application.user" >
+    </div>
+  </div>
+</div>
