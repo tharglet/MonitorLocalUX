@@ -109,6 +109,11 @@
 }
 
 
+//
+//CONSIDER DOING THIS IN _theme_variables.scss INSTEAD
+//Look up _buttons.scss and maybe replace that code.
+//
+
 
 //Button overrides
 .btn {
@@ -122,15 +127,15 @@
     line-height: 2rem;
     border-radius: 3px;
     cursor: pointer;
-    border-color: $jBlueShadow;
-    color: $jCopyB;
-    background-color: $jBlueShadow;
+    // border-color: $jBlueShadow;
+    // color: $jCopyB;
+    // background-color: $jBlueShadow;
 
 
 
-    border-color: #5791ad;
-    background-color: #5791ad;
-    color: $jWhite;
+    // border-color: #5791ad;
+    // background-color: #5791ad;
+    // color: $jWhite;
 
     &:focus {
       outline-offset: -3px;
@@ -144,6 +149,15 @@
     }
     &:active {
       box-shadow: none;
+      border-color: $jCopyB;
+      color: $jWhite;
+      background-color: $jCopyB;
+    }
+
+    &[disabled] {
+      opacity: 0.8;
+      background: $gray-dark;
+      border: $gray-dark;
     }
 
     &-link {
@@ -157,7 +171,8 @@
         text-decoration: none;
       }
       &[disabled]{
-
+        background: none;
+        color: $gray-dark;
       }
     }
 
@@ -200,6 +215,8 @@
         color: $jWhite;
         background-color: lighten($jCopyB, 10);
       }
+
+
     }
 
     &-default {
@@ -221,6 +238,10 @@
           color: $jWhite;
           background-color: lighten($jCopyB, 10);
       }
+    }
+
+    &-danger[disabled]{
+      opacity: 0.8;
     }
 }
 
@@ -273,4 +294,10 @@ th {
   border: 2px solid $jMidContentBlue;
 }
 
+
+//Forms
+
+label {
+  font-weight: normal;
+}
 

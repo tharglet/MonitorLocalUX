@@ -146,17 +146,28 @@ $table-border-color:            $gray-lighter !default;
 
 $btn-font-weight:                normal !default;
 
-$btn-default-color:              #fff !default;
-$btn-default-bg:                 $gray !default;
-$btn-default-border:             $btn-default-bg !default;
+// $btn-default-color:              #fff !default;
+// $btn-default-bg:                 $gray !default;
+// $btn-default-border:             $btn-default-bg !default;
+
+$btn-default-color:              $jWhite ;
+$btn-default-bg:                 $jBlueShadow ;
+$btn-default-border:             $jBlueShadow ;
+
 
 $btn-primary-color:              $btn-default-color !default;
 $btn-primary-bg:                 $brand-primary !default;
 $btn-primary-border:             $btn-primary-bg !default;
 
-$btn-success-color:              $btn-default-color !default;
-$btn-success-bg:                 $brand-success !default;
-$btn-success-border:             $btn-success-bg !default;
+// $btn-success-color:              $btn-default-color !default;
+// $btn-success-bg:                 $brand-success !default;
+// $btn-success-border:             $btn-success-bg !default;
+
+$btn-success-color:              $jCopyB ;
+$btn-success-bg:                 $jBlueShadow ;
+$btn-success-border:             $jBlueShadow ;
+
+
 
 $btn-info-color:                 $btn-default-color !default;
 $btn-info-bg:                    $brand-info !default;

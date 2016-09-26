@@ -79,8 +79,9 @@
           &:active,
           &:hover,
           &:focus {
-            //background-color: $link-color;
-            //color: $btn-primary-color;
+            background-color: $link-color;
+            color: $btn-primary-color;
+            //color: $link-hover-color;
             text-decoration:none;
           }
         }
@@ -133,6 +134,34 @@
           // // }
         // // }
       // // }
+    }
+  }
+
+  //If we add more links below, use this class
+  ul.nav__website-links {
+    font-size: 0.75em;
+    border-top: 2px solid rgba(0, 85, 127, 0.23);
+    margin-top: 1em;
+    width: auto;
+    width: 70%;
+    padding-top: 0.5em;
+    opacity: 0.7;
+    transition: all 0.3s ease-in;
+
+    li {
+      padding-bottom: 0;
+    }
+
+    a {
+      //opacity: .7;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &:hover {
+      opacity: 1;
     }
   }
 }

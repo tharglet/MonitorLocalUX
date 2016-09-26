@@ -43,6 +43,13 @@ body {
   padding-bottom: $grid-gutter-width;
 }
 
+// @media (min-width: $screen-lg-min) { 
+//   #main {
+//     @extend .span-#{$main-cols - 2};
+//   }
+// }
+
+
 .l-gutter--right {
   margin-right: $grid-gutter-width / 2;
 }

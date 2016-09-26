@@ -51,4 +51,8 @@ body.with-sidebar {
   #side-panel {
     display:block;
   }
+
+  // #main {
+  //   @extend .span-#{$main-cols};
+  // }
 }
