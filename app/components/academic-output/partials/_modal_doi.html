@@ -13,8 +13,8 @@
           <input id="doi" name="doi"type="text" placeholder="Enter DOI" class="form-control" data-ng-change="valid = null" data-ng-model="doi_data['identifiers'][0].identifier.value">
           <span class="btn btn-default btn-primary btn-sm input-group-addon" data-ng-click="validate()">Validate</span>
         </div>
-        <span data-ng-if="doiLookup.doi.$dirty && valid==false" class="help-block">Please enter valid doi</span>
-        <span class="help-block">DOI Name Help Text</span>
+        <span data-ng-if="valid==false" class="help-block">No results found. Please ensure your DOI is valid.</span>
+        <!-- span class="help-block">DOI Name Help Text</span -->
       </div>
     </div>
     <div class="form-group form-group-sm">
