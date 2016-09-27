@@ -7,13 +7,17 @@
         </div>
         <div id="budget-body" class="panel-body form-horizontal in" aria-labelledby="budget-heading">
 
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-sm" data-ng-class="{'has-error': (budget.budgetCode.$dirty && budget.budgetCode.$invalid), 'has-success': (budget.budgetCode.$dirty && budget.budgetCode.$valid)}">
             <label id="budgetCodeLabel" for="budgetCode" class="control-label span-3" aria-label="Budget Code">Budget code*</label>
             <div class="span-3">
               <input type="text" class="form-control" id="budgetCode" name="budgetCode" aria-labelledby="budgetCodeLabel"
-                     data-ng-model="context.code" required />
-              <div data-ng-if="budget.code.$dirty" data-ng-messages="budget.code.$error" class="help-block" role="alert">
-                <p data-ng-message="required">Please enter a code</p>
+                  data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
+                  data-ng-model="context.code" data-kint-ui-input-feedback data-kint-validate required />
+              <div data-ng-if="budget.budgetCode.$dirty" data-ng-messages="budget.budgetCode.$error" class="help-block" role="alert">
+                <p data-ng-message="required">Please enter a code.</p>
+                <p data-ng-message="kintValidate">
+                  {{budget.budgetCode.kintValidate.message}}
+                </p>
               </div>
             </div>
           </div>
