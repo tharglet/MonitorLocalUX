@@ -14,7 +14,7 @@
     @extend .navbar;
     @extend .navbar-default;
     margin-bottom: 0;
-    border-bottom: 1px solid $navbar-default-link-color;
+    border-bottom: none;
     
     .inner {
       // @extend .container;
