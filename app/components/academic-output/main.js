@@ -55,8 +55,9 @@ define(
             }
           },
           {
-            'data'  : 'publicationTitle',
-            'title' : "Journal/Conference Title"
+            'data'          : 'publishedIn.name',
+            'title'         : "Journal/Conference Title",
+            "defaultContent": ''
           },
           {
             'data'          : 'publisher.name',
