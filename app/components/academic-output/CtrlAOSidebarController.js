@@ -45,7 +45,7 @@ define (
 
       // Shallow watches. Only change if reference changes not the properties.
       $scope.$watchGroup(
-        ['context.name','context.publicationRoute', 'context.publicationTitle', 'context.apcFundingApproval', 'context.publisher'], refreshWorkflowRules
+        ['context.name','context.publicationRoute', 'context.publishedIn', 'context.apcFundingApproval', 'context.publisher'], refreshWorkflowRules
       );
 
       // Deep watches. Watch for items added to the collection as well as properties of each items changing.

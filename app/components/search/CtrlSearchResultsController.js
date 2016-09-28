@@ -115,6 +115,7 @@ define (
       new $.fn.dataTable.Buttons(table, {
         buttons : [{
           extend: 'csv',
+          bom: true,
           className: 'btn-xs btn-info',
           exportOptions: {
             orthogonal : 'export',
