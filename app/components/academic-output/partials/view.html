@@ -11,7 +11,7 @@
   <li role="presentation" data-ui-sref-active-eq="active" >
     <a data-ui-sref="app.academicOutput.view.finance" >Finance</a>
   </li>
-  <li data-ng-if="context.$$complianceCount < 1" role="presentation" class="disabled" title="No compliance rules for any of the applied funders." ><a>Compliance</a></li>
+  <li data-ng-if="!(context.$$complianceCount > 0)" role="presentation" class="disabled" title="No compliance rules for any of the applied funders." ><a>Compliance</a></li>
   <li data-ng-if="context.$$complianceCount > 0" role="presentation" data-ui-sref-active-eq="active" >
     <a data-ui-sref="app.academicOutput.view.compliance" >Compliance&nbsp;&nbsp;<span class="badge">{{context.$$complianceReview}}</span></a>
   </li>
