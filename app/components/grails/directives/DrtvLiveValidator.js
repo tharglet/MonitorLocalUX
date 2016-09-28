@@ -35,6 +35,11 @@ define (
                 
                 // Data object to post.
                 var data = {};
+                
+                if (root['id']) {
+                  data['id'] = root['id'];
+                }
+                
                 data[elName] = modelValue;
   
                 // Do the validation.
