@@ -31,6 +31,10 @@ define (
           $log.debug("login failed", err);
         });
       };
+      
+      $scope.loginPage =  function() {
+        $state.go('app.login');
+      };
     }]);
   }
 );
