@@ -122,11 +122,21 @@ define (
             stripNewlines : false,
           }
         },{
-          extend: 'excel (xlsx)',
+          extend: 'excelHtml5',
+          text: 'Excel (xlsx)',
           className: 'btn-xs btn-info',
           exportOptions: {
             orthogonal : 'export',
             stripNewlines : false,
+          },
+          customize: function( xlsx ) {
+            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+            
+            // Heading colour.
+            $('row:first c', sheet).attr( 's', '42' );
+            
+            // Wrapped text to all inline strings.
+            $('c[t="inlineStr"]', sheet).attr( 's', '55' );
           }
         }]
       });

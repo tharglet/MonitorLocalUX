@@ -238,14 +238,7 @@ define(
       });
 
       console.log("OK");
-      
-      // Add some basic settings..
-      angular.merge(applicationData, {
-        config: angular.copy(appConf),
-        user : {
-          name: "Guest"
-        }
-      });
+
       userServiceProvider.setStorage ( applicationData );
 
       // Default app abstract state.
@@ -272,7 +265,9 @@ define(
                   'Accept': 'application/json'
                 },
               }).then (function (applicationSettings) {
-                angular.merge($rootScope.application, applicationSettings.data);
+                angular.merge($rootScope.application, applicationSettings.data, {
+                  config: angular.copy(appConfig)
+                });
               });
             } else {
               return $rootScope.application;

@@ -14,8 +14,8 @@
     "font-awesome": "~4.4.0",
     "html5shiv": "~3.7.3",
     "jquery-touchswipe": "~1.6.15",
-    "datatables.net": "~1.10.11",
-    "datatables.net-bs": "~1.10.11",
+    "datatables.net": "~1.10",
+    "datatables.net-bs": "~1.10",
     "angular-ui-sortable": "~0.13.4",
     "jquery-ui": "~1.11.4",
     "jquery": "~2.2.1",
@@ -25,8 +25,8 @@
     "angular-sanitize": "~1.5.3",
     "ui-select": "git://github.com/k-int/ui-select#0.19.4.1",
     "angular-bootstrap": "~1.2.5",
-    "datatables.net-buttons": "~1.1.2",
-    "datatables.net-buttons-bs": "~1.1.2",
+    "datatables.net-buttons": "~1.2",
+    "datatables.net-buttons-bs": "~1.2",
     "angular-datetime": "~3.0.0",
     "eonasdan-bootstrap-datetimepicker": "git://github.com/Eonasdan/bootstrap-datetimepicker.git#master",
     "angular-bootstrap-datetimepicker-directive": "git://github.com/k-int/angular-bootstrap-datetimepicker-directive#0.2.4",
@@ -40,7 +40,7 @@
     "api-check": "^7.5.5",
     "angular-formly": "^8.3.0",
     "angular-formly-templates-bootstrap": "^6.3.2",
-    "jszip": "Stuk/jszip#~2.6.1"
+    "jszip": "Stuk/jszip#~3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
@@ -58,6 +58,7 @@
   },
   "resolutions": {
     "angular": "^1.4.0",
-    "pnotify": "~3.0.0"
+    "pnotify": "~3.0.0",
+    "eonasdan-bootstrap-datetimepicker": "master"
   }
 }

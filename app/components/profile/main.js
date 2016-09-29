@@ -16,12 +16,17 @@ define(
       // State for search.
       $stateProvider.state('app.profile', {
         url: '/profile',
-        grailsResource: 'Person',
+        grailsResource: 'User',
         templateUrl: 'components/profile/partials/view.html',
-        controller: 'ctrlProfile',
+        controller: 'ProfileController',
         deps:[
           'components/profile/CtrlProfile.js',
-        ]
+        ],
+        resolve:{
+          context: ['grailsResource', function (grailsResource) {
+            return grailsResource.current().$promise;
+          }]
+        }
       });
     }]);
   }
