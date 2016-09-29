@@ -121,6 +121,13 @@ define (
             orthogonal : 'export',
             stripNewlines : false,
           }
+        },{
+          extend: 'excel (xlsx)',
+          className: 'btn-xs btn-info',
+          exportOptions: {
+            orthogonal : 'export',
+            stripNewlines : false,
+          }
         }]
       });
       
