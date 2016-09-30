@@ -86,13 +86,13 @@ define (
             angular.copy({}, $scope.compliance);
             
             // Set a count.
-            $scope.context.$$complianceCount = 0;
+            $scope.context.$complianceCount = 0;
             $scope.context.$$complianceFail = 0;
             $scope.context.$$complianceReview = 0;
             
             for(var key in complianceData) {
               if (complianceData.hasOwnProperty(key) && !key.startsWith("$")) {
-                $scope.context.$$complianceCount ++;
+                $scope.context.$complianceCount ++;
                 
                 // Grab the rule.
                 var rule = complianceData[key];
