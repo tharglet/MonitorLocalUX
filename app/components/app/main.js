@@ -279,7 +279,7 @@ define(
       $stateProvider.state('app.dash', {
         url: '/',
         data: {
-          title: "Welcome",
+          title: "Jisc Monitor Local",
         },
         templateUrl: 'components/app/partials/home.html',
       });
