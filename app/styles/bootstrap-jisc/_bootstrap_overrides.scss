@@ -117,36 +117,26 @@
 
 //Button overrides
 .btn {
-    //display: inline-block;
     box-sizing: border-box;
     border-width: 1px;
     border-style: solid;
     padding: 0.5rem 1.5rem;
     font-family: $font-stack-normal;
-    //font-size: 1.8rem;
     line-height: 2rem;
     border-radius: 3px;
-    cursor: pointer;
-    // border-color: $jBlueShadow;
-    // color: $jCopyB;
-    // background-color: $jBlueShadow;
 
-
-
-    // border-color: #5791ad;
-    // background-color: #5791ad;
-    // color: $jWhite;
 
     &:focus {
       outline-offset: -3px;
     }
+
     &:focus, &:hover {
       @include shadow(2);
-
-        border-color: lighten($jCopyB, 10);
-        color: $jWhite;
-        background-color: lighten($jCopyB, 10);
+      border-color: lighten($jCopyB, 10);
+      color: $jWhite;
+      background-color: lighten($jCopyB, 10);
     }
+
     &:active {
       box-shadow: none;
       border-color: $jCopyB;
@@ -154,10 +144,17 @@
       background-color: $jCopyB;
     }
 
+    &.disabled,
     &[disabled] {
       opacity: 0.8;
       background: $gray-dark;
       border: $gray-dark;
+
+      &:hover {
+        box-shadow: none;
+        opacity: 1;
+      }
+
     }
 
     &-link {
@@ -175,8 +172,6 @@
         color: $gray-dark;
       }
     }
-
-
 
 
   &-success, &-primary {
@@ -198,10 +193,10 @@
     color: $jRed;
 
     &:focus, &:hover {
-        box-shadow: none;
+        //box-shadow: none;
         background: $jRed;
         color: $jWhite;
-        text-decoration: none;
+        //text-decoration: none;
       }
   }
 
@@ -241,8 +236,25 @@
     }
 
     &-danger[disabled]{
-      opacity: 0.8;
+      //opacity: 0.8;
     }
+}
+
+//Fix the hover states for disabled buttons, which is not modifiable by tweaking vars
+.btn {
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      opacity: 1;
+      background: $gray;
+      color: white;
+      //
+      //
+    }
+  }
 }
 
 

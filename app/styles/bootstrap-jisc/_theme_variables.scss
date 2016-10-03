@@ -169,6 +169,9 @@ $btn-success-border:             $jBlueShadow ;
 
 
 
+
+
+
 $btn-info-color:                 $btn-default-color !default;
 $btn-info-bg:                    $brand-info !default;
 $btn-info-border:                $btn-info-bg !default;
@@ -181,7 +184,7 @@ $btn-danger-color:               $btn-default-color !default;
 $btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              $btn-danger-bg !default;
 
-$btn-link-disabled-color:        $gray-light !default;
+$btn-link-disabled-color:        $gray !default;
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius-base:         $border-radius-base !default;
