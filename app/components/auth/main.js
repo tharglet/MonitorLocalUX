@@ -117,6 +117,10 @@ define(
             $log.error("failed to logout", err);
           });
         };
+
+        $rootScope.loginPage =  function() {
+          $state.go('app.login');
+        };
       }])
     ;
   }

@@ -32,7 +32,8 @@ define(
             },
             {
               'data'  : 'funder.name',
-              'title' : 'Funder'
+              'title' : 'Funder',
+              'defaultContent' : ''
             },
 //            {
 //              'data'  : '',

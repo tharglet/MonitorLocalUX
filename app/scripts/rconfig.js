@@ -8,7 +8,7 @@ requirejs.config({
     "angular-mocks": "../bower_components/angular-mocks/angular-mocks",
     "angular-resource": "../bower_components/angular-resource/angular-resource",
     "angular-ui-router": "../bower_components/angular-ui-router/release/angular-ui-router",
-    satellizer: "../bower_components/satellizer/satellizer",
+    satellizer: "../bower_components/satellizer/dist/satellizer",
     html5shiv: "../bower_components/html5shiv/dist/html5shiv",
     "jisc-patterns-head": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-head.min",
     "jisc-patterns-foot": "https://ux.jisc.ac.uk/1.2.0/js/ux.jisc-1.2.0.script-foot.min",
@@ -59,7 +59,9 @@ requirejs.config({
     "angular-confirm-modal": "../bower_components/angular-confirm-modal/angular-confirm",
     "angular-formly": "../bower_components/angular-formly/dist/formly",
     "api-check": "../bower_components/api-check/dist/api-check",
-    "angular-formly-templates-bootstrap": "../bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap"
+    "angular-formly-templates-bootstrap": "../bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap",
+    jszip: "../bower_components/jszip/dist/jszip",
+    "moment-timezone": "../bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020"
   },
   baseUrl: "components",
   packages: [
@@ -244,7 +246,8 @@ requirejs.config({
     },
     "datatables.net-buttons.html5": {
       deps: [
-        "datatables.net-buttons"
+        "datatables.net-buttons",
+        "jszip"
       ]
     },
     "datatables.net-buttons.flash": {
@@ -335,6 +338,9 @@ requirejs.config({
         "angular-formly",
         "api-check"
       ]
+    },
+    jszip: {
+      exports: "JSZip"
     }
   }
 });

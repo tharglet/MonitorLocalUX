@@ -22,7 +22,7 @@ define(
     'grant',
     'budget',
     'profile',
-    'user'
+//    'user'
   ],
   function (couchPotato, notify, moment) {
     
@@ -44,7 +44,7 @@ define(
       'grant',
       'budget',
       'profile',
-      'user'
+//      'user'
     ])
 
     // CONSTANT USED TO GLOBALLY DISABLE AUTH
@@ -238,14 +238,7 @@ define(
       });
 
       console.log("OK");
-      
-      // Add some basic settings..
-      angular.merge(applicationData, {
-        config: angular.copy(appConf),
-        user : {
-          name: "Guest"
-        }
-      });
+
       userServiceProvider.setStorage ( applicationData );
 
       // Default app abstract state.
@@ -272,7 +265,9 @@ define(
                   'Accept': 'application/json'
                 },
               }).then (function (applicationSettings) {
-                angular.merge($rootScope.application, applicationSettings.data);
+                angular.merge($rootScope.application, applicationSettings.data, {
+                  config: angular.copy(appConfig)
+                });
               });
             } else {
               return $rootScope.application;
@@ -284,7 +279,7 @@ define(
       $stateProvider.state('app.dash', {
         url: '/',
         data: {
-          title: "Welcome",
+          title: "Jisc Monitor Local",
         },
         templateUrl: 'components/app/partials/home.html',
       });
@@ -292,7 +287,7 @@ define(
       // Default to the homepage.
       $urlRouterProvider.otherwise('/');
     }])
-    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 'satellizer.shared', 
+    .run(['$couchPotato', '$state', '$stateParams', '$rootScope', '$http', 
       function($couchPotato, $state, $stateParams, $rootScope, $http) {
 
 

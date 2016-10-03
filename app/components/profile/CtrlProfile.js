@@ -3,27 +3,28 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('ctrlProfile', [ '$scope', '$http', 'grailsResource', 'appConfig', function($scope, $http, grailsResource, appConfig) {
+    app.registerController('ProfileController', ['$rootScope', '$scope', 'userService', 'context', '$controller', '$state', function($rootScope, $scope, userService, context, $controller, $state) {
       
-      $scope.context = grailsResource.staticInst();
-
-      console.log("ProfileController");
-      console.log("User:%o",$scope.application.user);
-
-      $scope.requestAffiliation = function() {
-        console.log("requestAffiliation");
-        console.log("App config %o %o",appConfig,$scope.affiliationRequestData);
-        return $http.post(appConfig.backend+'/application/requestAffiliation', {details:$scope.affiliationRequestData}).
-            then(function(response) {
-              console.log("Requested affiliation %o",response);
-              // return response.data;
-            });
-
-      }
-
-      $scope.affiliationRequestData = {
-      }
-
+      // Initialize the super class and extend it.
+      angular.extend(this, $controller('GrailsEditController', {
+        $scope: $scope,
+        context: context
+      }));
+      
+      // We can also exchange the application user object for this Resource.
+      $scope.saveChanges = function() {
+        
+        // This is current scope of the button press.
+        var res = this.context;
+        if (res.id) {
+          // Update...
+          res.$update(function(){
+            // Ensure the username gets updated.
+            angular.copy({}, $rootScope.application);
+            $state.reload();
+          });
+        }
+      };
     }]);
   }
 );

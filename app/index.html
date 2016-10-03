@@ -42,7 +42,7 @@
           <a class="visuallyhidden" href="#main" tabindex="1" target="_self" > <span>Skip to main content</span> </a>
           <a class="logo" href="//jisc.ac.uk"> <img alt="Jisc logo" src="images/jisc-logo.png"> </a>
           <div class="title-nav">
-            <a data-ui-sref="app.dash" >Monitor Local <span class="badge">beta</span></a>
+            <a data-ui-sref="app.dash" >Monitor Local</a>
           </div>
           <ul data-ng-if="sidebar.enabled" class="nav navbar-nav navbar-right">
             <li>
@@ -52,11 +52,11 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-             <li class="dropdown">
+             <li data-ng-if="application.user.roles.length > 0" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img data-ng-if="application.user.profilePic" class="profile-icon-sm" data-ng-src="{{application.user.profilePic}}" alt="{{application.user.name ? application.user.name :  application.user.username}}">
                     <span data-ng-if="!application.user.profilePic" class="glyphicon glyphicon-user profile-icon-sm"></span>
-                    <strong>{{ application.user.name ? application.user.name :  application.user.username }}</strong>
+                    <strong>{{ application.user.name ? application.user.name :  application.user.username }}&nbsp;</strong>
                     <span class="glyphicon glyphicon-chevron-down"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -93,6 +93,11 @@
                     </li>
                 </ul>
              </li>
+             <li data-ng-if="!(application.user.roles.length > 0)" >
+               <button type="button" class="btn btn-primary navbar-btn" title="Login" data-ng-click="loginPage()" >
+                <i class="glyphicon glyphicon-user" ></i> Login
+              </button>
+             </li>
           </ul>
         </div>
       </div>
@@ -124,11 +129,11 @@
             </li>
           </ul>
           <!-- Only shown if user has been granted ROLE_ADMIN. Should correspond to staticRules for admin paths -->
-          <ul kint-access-state="app.user" >
+          <!-- ul kint-access-state="app.user" >
             <li data-ui-view="user-nav" data-ui-sref-active-eq="active" class="parent">
               <a data-ui-sref="app.user">User</a>
             </li>
-          </ul>
+          </ul -->
         </nav>
       </asside>
       <div class="crumb-wrapper" data-ui-view='breadcrumb' role="navigation" >

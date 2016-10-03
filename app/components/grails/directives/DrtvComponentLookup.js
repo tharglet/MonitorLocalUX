@@ -70,7 +70,7 @@ define (
             if ( obj && $scope.contextPath && typeof lookupMethod === 'function') {
               // Push if through the lookup method on the resource.
               lookupMethod ($scope.contextPath, searchParam, params).then(function( rdata ){
-                $scope.data = rdata.data;
+                 angular.copy(rdata.data, $scope.data);
               });
             }
           };

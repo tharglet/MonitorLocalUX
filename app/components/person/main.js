@@ -34,50 +34,53 @@ define(
               'data'      : 'identifiers',
               'title'     : "ORCID",
               'orderable' : false,
-              'render'    : function ( sData, type, oData, meta ) {
-
-                if (type === 'display') {
-                  var val = null;
-                  if (sData && sData.length > 0) {
-                    // Output each identifier.
-                    for (var i=0; i<sData.length && !val; i++) {
-                      var cid = sData[i];
-                      if (cid.identifier.namespace.value == 'orcid') {
-                        val = cid.identifier.value;
+              'render'    : function ( sData, type, oData, meta ) {                
+                var val = "";
+                switch(type) {
+                  default:
+                    if (sData && sData.length > 0) {
+                      // Output each identifier.
+                      for (var i=0; i<sData.length && !val; i++) {
+                        var cid = sData[i];
+                        if (cid.identifier.namespace.value == 'orcid') {
+                          val = cid.identifier.value;
+                        }
                       }
                     }
-                  }
-                  return val;
-                } else {
-                  return sData;
                 }
+                return val;
               }
             },
             {
               'data'      : 'personContactDetails',
-              'title'     : "Depts",
+              'title'     : "Organisations",
               'orderable' : false,
               'render'    : function ( sData, type, oData, meta ) {
 
-                if (type === 'display') {
-                  var val = "";
-                  if (sData && sData.length > 0) {
-                    var list = $("<ul />");
-                    // Output each identifier.
+                var val = "";
+                switch(type) {
+                  case 'display':
+                    if (sData && sData.length > 0) {
+                      var list = $("<ul />");
+                      // Output each identifier.
+                      $.each (sData, function () {
+                        var pcd = this;
+                        list.append($("<li />").html(
+                          (pcd.organisation ? "<strong>" + pcd.organisation.name + (pcd.department ? ":" : "") + "</strong>" : "") + (pcd.department ? "&nbsp;" + pcd.department.value : "")
+                        ));
+                      });
+
+                      val = list.html();
+                    }
+                    break;
+                  case 'export':
+                  default:
                     $.each (sData, function () {
                       var pcd = this;
-                      list.append($("<li />").html(
-                        (pcd.organisation ? "<strong>" + pcd.organisation.name + (pcd.department ? ":" : "") + "</strong>" : "") + (pcd.department ? "&nbsp;" + pcd.department.value : "")
-                      ));
+                      val += (val.length > 0 ? "\n" : "") + (pcd.organisation ? pcd.organisation.name : "") + (pcd.department ? ": " + pcd.department.value : "");
                     });
-
-                    val = list.html();
-                  }
-
-                  return val;
-                } else {
-                  return sData;
                 }
+                return val;
               }
             },
             {
@@ -86,29 +89,35 @@ define(
               'orderable' : false,
               'render'    : function ( sData, type, oData, meta ) {
 
-                if (type === 'display') {
-                  var val = "";
-                  if (sData && sData.length > 0) {
-                    var list = $("<ul />");
-                    // Output each identifier.
+                var val = "";
+                switch(type) {
+                  case 'display':
+                    var val = "";
+                    if (sData && sData.length > 0) {
+                      var list = $("<ul />");
+                      // Output each identifier.
+                      $.each (sData, function () {
+                        var pcd = this;
+                        if (pcd.emailAddress) {
+                          list.append($("<li />").html(
+                            pcd.emailAddress
+                          ));
+                        }
+                      });
+  
+                      if (list.children().length > 0) {
+                        val = list.html();
+                      }
+                    }
+                    break;
+                  case 'export':
+                  default:
                     $.each (sData, function () {
                       var pcd = this;
-                      if (pcd.emailAddress) {
-                        list.append($("<li />").html(
-                          pcd.emailAddress
-                        ));
-                      }
+                      val += (val.length > 0 ? "\n" : "") + (pcd.emailAddress ? pcd.emailAddress : "");
                     });
-
-                    if (list.children().length > 0) {
-                      val = list.html();
-                    }
-                  }
-
-                  return val;
-                } else {
-                  return sData;
                 }
+                return val;
               }
             }
           ],

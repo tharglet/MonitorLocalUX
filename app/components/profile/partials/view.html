@@ -1,77 +1,50 @@
-<section id="org-grid" class="inner">
+<section id="profile-grid" class="inner">
   <form id="userProfile" name="userProfile" class="row" >
     <article data-ui-view>
       <div class="panel panel-collapsible panel-default">
 
         <div class="panel-heading">
-          <h3 data-toggle="collapse" data-target="#org-body" aria-label="Expand/Collapse the main Org content" id="org-heading">User Profile</h3>
+          <h3 data-toggle="collapse" data-target="#profile-body" aria-label="Expand/Collapse the main Profile content" id="profile-heading">User Profile</h3>
         </div>
 
-        <div id="org-body" class="panel-body form-horizontal in" aria-labelledby="user-displayName">
-
-          <div class="form-group form-group-sm">
-            <label id="userDisplayNameLabel" for="id" class="span-3 control-label" aria-label="userDisplayName">Display Name</label>
-            <div class="span-2">
-              <input type="text" class="form-control" id="userDisplayName" name="userDisplayName" aria-labelledby="userDisplayNameLabel" data-ng-model="application.user.name" />
+        <div id="profile-body" class="panel-body form-horizontal in" aria-labelledby="user-displayName">
+          
+          <div class="form-group form-group-sm" data-ng-class="{'has-error': (userProfile.name.$dirty && userProfile.name.$invalid)}" >
+            <label id="nameLabel" for="name" class="span-3 control-label" aria-label="AO Name" >Display Name*</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Display name" aria-labelledby="nameLabel"
+              data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }" data-kint-ui-input-feedback required />
+              <div data-ng-if="userProfile.name.$dirty && userProfile.name.$invalid" data-ng-messages="userProfile.name.$error" class="help-block" role="alert">
+                <p data-ng-message="required">
+                  Please enter a display name
+                </p>
+              </div>
             </div>
           </div>
-
           <div class="form-group form-group-sm">
-            <label id="userBioLabel" for="id" class="span-3 control-label" aria-label="userBio">User Biography / Note</label>
-            <div class="span-7">
-              <textarea type="text" class="form-control" id="userBio" name="userBio" aria-labelledby="userBioLabel" data-ng-model="application.user.bio"></textarea>
+            <label id="emailAddressLabel" for="emailAddress" class="span-3 control-label" aria-label="Email Address" >Email address</label>
+            <div class="span-9">
+              <input type="text" class="form-control" id="emailAddress" name="emailAddress" placeholder="Email address" aria-labelledby="emailAddressLabel"
+                data-ng-model="context.email" data-kint-ui-input-feedback />
             </div>
           </div>
-
+          
+          <div class="form-group form-group-sm">
+            <label id="orgLabel" for="id" class="span-3 control-label" aria-label="Organisation">Organisation</label>
+            <div class="span-9">
+              <p type="text" class="form-control-static" id="org" name="org" aria-labelledby="orgLabel" data-ng-bind="context.userOrg.name"></p>
+            </div>
+          </div>
         </div>
       </div>
     </article>
     <div class="form-group pull-right">
-      <button type="button" class="btn btn-success" data-ng-click="saveChanges()">Save</button>
-      <button type="button" class="btn btn-link" data-ng-click="cancelChanges()">Cancel</button>
+        <button type="button" class="btn btn-success" data-ng-click="saveChanges()" data-ng-disabled="userProfile.$invalid" >
+          Save
+        </button>
+        <button type="button" class="btn btn-link" data-ng-click="cancelChanges()" data-ng-disabled="!userProfile.$dirty" >
+          Cancel edits
+        </button>
     </div>
   </form>
-
-
-  <div class="panel panel-collapsible panel-default">
-
-    <div class="panel-heading">
-      <h3 data-toggle="collapse" data-target="#org-body" aria-label="Expand/Collapse the main Org content" id="org-heading">Current Organisational Affiliations</h3>
-    </div>
-
-    <div id="org-body" class="panel-body form-horizontal in" aria-labelledby="user-displayName">
-      <table class="table table-striped">
-        <tr>
-          <th>Organisation</th>
-          <th>Role</th>
-          <th>Status</th>
-        </tr>
-        <tr ng-repeat="affiliation in application.user.affiliations">
-          <td>{{affiliation.org}}</td>
-          <td>{{affiliation.role}}</td>
-          <td ng-switch="affiliation.status">
-            <span ng-switch-when="1">Approved</span>
-            <span ng-switch-default>Unknown</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kint-component-lookup name="reqOrgName" id="reqOrgName" class="form-control input-sm"
-               data-object="affiliationRequestData " data-property="institution"
-               data-context-obj="context" data-context-path="institution"
-               data-params="{ match:['name'], perPage: 25, filters: ['type.value=HEI'] }" ></kint-component-lookup>
-          </td>
-          <td>
-            <select class="c-select form-control" name="role" data-ng-model="affiliationRequestData.role"><option value="User">Standard User</option><option value="Admin">Admin</option></select>
-          </td>
-          <td><button type="button" class="btn btn-success" data-ng-click="requestAffiliation()">Request</button></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
 </section>
-
-<pre>
-  {{application.user}}
-</pre>

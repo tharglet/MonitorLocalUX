@@ -14,7 +14,7 @@ define(
       this.setStorage = function (val) {
         storage = val;
       }; 
-      this.$get = ['$log', '$injector', function($log, $injector) {
+      this.$get = ['$injector', function($injector) {
         
         // Use the injector service to conditionally get the state provider.
         var $state = $injector.has('$state') ? $injector.get('$state') : null;
@@ -31,7 +31,6 @@ define(
            * @description get the current user object.
            */
           currentUser : function() {
-              $log.debug("UserService::Parsing current user from storage %o",storage.user);
               var user = storage.user;
               return user;
           },
@@ -43,22 +42,27 @@ define(
            * @description logout the current user.
            */
           logout : function() {
-              $log.debug("UserService::Logout");
-              
-              // Do the logout.
-              $auth && $auth.logout();
-              
-              // Keeps the reference alive but removes the data.
-              angular.copy({}, storage.user);
+            // Do the logout.
+            $auth && $auth.logout();
+            
+            // Keeps the reference alive but removes the data.
+            this.replaceWith({});
           },
     
           update : function(user) {
-              $log.debug("UserService::update %o",user);
-              if (!storage.user) {
-                storage.user = {};
-              }
-              angular.merge(storage.user, user);
-              return storage.user;
+            if (!storage.user) {
+              storage.user = {};
+            }
+            angular.merge(storage.user, user);
+            return storage.user;
+          },
+          
+          replaceWith : function(user) {
+            if (!storage.user) {
+              storage.user = {};
+            }
+            angular.copy(user, storage.user);
+            return storage.user;
           },
           
           isAnonymous : function (user) {

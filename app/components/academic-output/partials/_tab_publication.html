@@ -15,8 +15,7 @@
           <div class="span-3">
             <div class="input-group input-group-sm date" data-datetimepicker >
               <input type="text" class="form-control" id="publishedDate" name="publishedDate" aria-labelledby="publishedDateLabel"
-                     data-ng-model="context.publishedDate" data-ng-model-options="{ updateOn: 'blur' }"
-                     data-kint-ui-input-feedback data-kint-validate />
+                     data-ng-model="context.publishedDate" data-ng-model-options="{ updateOn: 'blur' }" />
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </div>
@@ -26,8 +25,7 @@
           <label id="publisherURLLabel" for="publisherURL" class="span-3 control-label" aria-label="Publisher URL" >URL of publisher copy</label>
           <div class="span-9">
             <input type="text" class="form-control" id="publisherURL" name="publisherURL" placeholder="URL of publisher copy" aria-labelledby="publisherURLLabel"
-                   data-ng-model="context.publisherURL" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                   data-kint-ui-input-feedback data-kint-validate />
+                   data-ng-model="context.publisherURL" />
           </div>
         </div>
 
@@ -49,7 +47,7 @@
         <div class="form-group form-group-sm" >
           <label id="outputTypeLabel" for="outputType" class="span-3 control-label" aria-label="Output Type">Output type</label>
           <div class="span-3">
-            <kint-refdata-lookup name="outputType" id="outputType" data-object="context" data-property="outputType" class="form-control input-sm" required >
+            <kint-refdata-lookup name="outputType" id="outputType" data-object="context" data-property="outputType" class="form-control input-sm" >
           </div>
 
           <label id="DOILabel" for="DOI" class="span-2 control-label" aria-label="DOI" >DOI</label>
@@ -82,13 +80,7 @@
           <label id="nameLabel" for="name" class="span-3 control-label" aria-label="Publication Title" >Title</label>
           <div class="span-9">
             <textarea class="form-control" id="name" name="name" placeholder="Publication Title" aria-labelledby="nameLabel"
-                      data-ng-model="context.name" data-ng-model-options="{ updateOn: 'default', debounce: { default: 650} }"
-                      data-kint-ui-input-feedback data-kint-validate required></textarea>
-
-            <div data-ng-if="academicOutput.name.$dirty" data-ng-messages="academicOutput.name.$error" class="help-block" role="alert">
-              <p data-ng-message="required">Please enter a name</p>
-              <p data-ng-message="kintValidate">{{academicOutput.name.kintValidate.message}}</p>
-            </div>
+                      data-ng-model="context.name" ></textarea>
           </div>
         </div>
 
@@ -294,16 +286,15 @@
           <label id="embargoPeriodLabel" for="embargoPeriod" class="span-3 control-label" aria-label="Embargo Period">Embargo period (months)</label>
           <div class="span-3">
             <input type="number" class="form-control" id="embargoPeriod" name="embargoPeriod" placeholder="0" aria-labelledby="embargoPeriodLabel"
-                   data-ng-model="context.embargoPeriod" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-                   step="1" min="0" data-kint-ui-input-feedback required />
+                   data-ng-model="context.embargoPeriod"
+                   step="1" min="0" required />
           </div>
 
           <label id="embargoEndDateLabel" for="embargoEndDate" class="control-label span-3" aria-label="Embargo end date" >Embargo end date</label>
           <div class="span-3">
             <div class="input-group input-group-sm date" data-datetimepicker >
               <input type="text" class="form-control" id="embargoEndDate" name="embargoEndDate" aria-labelledby="embargoEndDateLabel"
-                     data-ng-model="context.embargoEndDate" data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 650, blur: 0} }"
-                     data-kint-ui-input-feedback data-kint-validate />
+                     data-ng-model="context.embargoEndDate" />
               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
           </div>
@@ -399,5 +390,4 @@
       </div>
     </div>
   </article>
-
 </form>

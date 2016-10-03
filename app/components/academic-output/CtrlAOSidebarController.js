@@ -45,7 +45,7 @@ define (
 
       // Shallow watches. Only change if reference changes not the properties.
       $scope.$watchGroup(
-        ['context.name','context.publicationRoute', 'context.publicationTitle', 'context.apcFundingApproval', 'context.publisher'], refreshWorkflowRules
+        ['context.name','context.publicationRoute', 'context.publishedIn', 'context.apcFundingApproval', 'context.publisher'], refreshWorkflowRules
       );
 
       // Deep watches. Watch for items added to the collection as well as properties of each items changing.
@@ -83,18 +83,44 @@ define (
       var refreshComplianceRules = debounce(function () {
         resource.checkRules ({ id: null }, context).$promise.then(
           function (complianceData) {
-            angular.copy(complianceData, $scope.compliance);
+            angular.copy({}, $scope.compliance);
+            
+            // Set a count.
+            $scope.context.$complianceCount = 0;
+            $scope.context.$$complianceFail = 0;
+            $scope.context.$$complianceReview = 0;
+            
+            for(var key in complianceData) {
+              if (complianceData.hasOwnProperty(key) && !key.startsWith("$")) {
+                $scope.context.$complianceCount ++;
+                
+                // Grab the rule.
+                var rule = complianceData[key];
+                $scope.compliance[key] = rule;
+                
+                // Counters.
+                angular.forEach (rule, function(item){
+                  var val = item.result;
+                  if (val == null) {
+                    $scope.context.$$complianceReview ++;
+                  } else if  (val == false) {
+                    $scope.context.$$complianceFail ++;
+                  }
+                });
+              }
+            }
           }
         );
-      }, 20);
+      }, 150);
   
       // Shallow watches. Only change if reference changes not the properties.
       $scope.$watchGroup(
-        ['context.publicationRoute', 'context.embargoPeriod','context.licence', 'context.acknowledgement', 'context.accessStatement'], refreshComplianceRules
+        ['context.publicationRoute', 'context.embargoPeriod','context.licence', 'context.acknowledgement', 'context.accessStatement', 'context.apcFundingApproval'], refreshComplianceRules
       );
       
       // Deep watches. Watch for items added to the collection as well as properties of each items changing.
       $scope.$watch('context.deposits', refreshComplianceRules, true);
+      $scope.$watch('context.funds', refreshComplianceRules, true);
     }]);
   }
 );

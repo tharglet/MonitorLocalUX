@@ -27,41 +27,41 @@ define(
             'title'     : "IDs",
             'orderable' : false,
             'render'    : function ( sData, type, oData, meta ) {
+              
+              var val = "";
+              switch(type) {
+                case 'display':
+                  if (sData && sData.length > 0) {
+                    var list = $("<ul />");
+                    // Output each identifier.
+                    $.each (sData, function () {
+                      var cid = this;
+                      list.append($("<li />").html(
+                        "<strong>" + cid.identifier.namespace.value + ":</strong>&nbsp;" + cid.identifier.value
+                      ));
+                    });
 
-              if (type === 'display') {
-                var val = "";
-                if (sData && sData.length > 0) {
-                  var list = $("<ul />");
-                  // Output each identifier.
+                    val = $('<div />').append(list).html();
+                  }
+                  break;
+                case 'export':
+                default:
                   $.each (sData, function () {
                     var cid = this;
-                    list.append($("<li />").html(
-                      "<strong>" + cid.identifier.namespace.value + ":</strong>&nbsp;" + cid.identifier.value
-                    ));
+                    val += (val.length > 0 ? "\n" : "") + cid.identifier.namespace.value + ": " + cid.identifier.value;
                   });
-
-                  val = $('<div />').append(list).html();
-                }
-
-                return val;
-              } else {
-                return sData;
               }
+              return val;
             }
           },
           {
-            'data'  : 'publicationTitle',
-            'title' : "Journal/Conference Title"
+            'data'          : 'publishedIn.name',
+            'title'         : "Journal/Conference Title",
+            "defaultContent": ''
           },
           {
             'data'          : 'publisher.name',
             'title'         : 'Publisher',
-            'orderable'     : false,
-            "defaultContent": ''
-          },
-          {
-            'data'          : 'funder.name',
-            'title'         : 'Funder',
             'orderable'     : false,
             "defaultContent": ''
           },

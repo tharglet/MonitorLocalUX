@@ -4,7 +4,7 @@
 define (
   ['notifications'],
   function () {
-    return function ($rootScope, $scope, $injector, context) {
+    return function ($scope, $injector, context) {
       
       // Get the router state provider if present.
       var $state = $injector.has('$state') ? $injector.get('$state') : null;
