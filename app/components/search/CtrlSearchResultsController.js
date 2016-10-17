@@ -8,7 +8,7 @@ define (
       var stateStringCache = {};
 
       // queryParams will be populated when the search form broadcasts searchCriteriaChanged
-      $scope.queryParams = {}
+      $scope.queryParams = {};
       
       var cols = [
         { 'data' : 'id', 'title': "#" },
@@ -58,7 +58,7 @@ define (
         }
         
         return key;
-      }
+      };
 
       // Create a table container, and add to the DOM first.
       var table = $("<table class='table table-striped table-hover' width='100%' />");

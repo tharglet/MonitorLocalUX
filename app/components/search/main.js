@@ -28,9 +28,6 @@ define(
           "components/search/CtrlSearchController.js",
           "components/search/CtrlSearchResultsController.js"
         ],
-        data: {
-          requirelogin:false,
-        },
         views: {
           // Unnamed view at app state level...
           "@app" : {
