@@ -7,7 +7,7 @@
  */
 define(
   "auth",
-  [ './PrvdUserServiceProvider', './DrtvUserCanAccessState', 'angular-ui-router'],
+  ['./PrvdUserServiceProvider', './DrtvUserCanAccessState', 'angular-ui-router'],
   function (userServiceProvider, accessStateDirective) {
     
     // Create our angular module here.

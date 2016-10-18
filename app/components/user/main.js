@@ -15,7 +15,7 @@ define(
 
     // Create our angular module here.
     return angular.module('user', ['grails', 'search', 'kintUi'])
-    .config(['$stateProvider', function($stateProvider) {
+    .config(['$stateProvider', '$injector', function($stateProvider, $injector) {
       // State for search.
       $stateProvider.state('app.user', {
         parent: 'app.componentSearch',
@@ -24,16 +24,43 @@ define(
         grailsResource: 'User',
         searchFields: [
           {
-            'data'  : 'type.value',
-            'title' : "Type"
+            'data'            : 'affiliations[0].org',
+            'title'           : "Affiliations",
+            "defaultContent"  : 'None'
+          },
+          {
+            'data'            : 'affiliations[0].status',
+            'title'           : "Approved?",
+            "defaultContent"  : 'N/A',
+            'orderable'       : true,
+            'render'          : function ( sData, type, oData, meta ) {
+              if (oData['affiliations'] && oData['affiliations'][0]) {
+                if (type === 'display') {
+                  if (sData === true || sData === "1") {
+                    return "Yes";
+                  } else {
+                    return "<a class='approval-link' title='Click to approve this affiliation' data-approval-id='" + oData.affiliations[0]['id'] + "' >No</a>";
+                  }
+                } else {
+                  return sData;
+                }
+              }
+            }
           }
         ],
+        extendSearch: ['searchResults', '$http', function(searchResults, $http) {
+          
+          // Add the click events to all the links.
+          searchResults.on( 'click', 'a.approval-link', function (e) {
+            e.preventDefault();
+          });
+        }],
         views: {
           // Unnamed view.
           "" : {
             controller: 'SearchResultsController',
           },
-          "org-nav@app" : {
+          "user-nav@app" : {
             templateUrl: "components/user/partials/_nav.html",
           }
         },

@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
 define (
   ['app'],
   function(app) {
-    app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', function($scope, $state, resource) {
+    app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', '$injector', function($scope, $state, resource, $injector) {
 
       var stateStringCache = {};
 
@@ -154,6 +154,14 @@ define (
         $scope.queryParams = args;
         table.draw();
       });
+      
+      
+      // We use angular's injector to invoke the method, searchResults is also added as a reference to the dataTable itself.
+      if ($state.current.extendSearch) {
+        
+        // Attempt to invoke the function using the injector.
+        $injector.invoke($state.current.extendSearch, $scope, {'$scope': $scope, 'searchResults' : table});
+      }
       
       $scope.$on("$destroy", function() {
         console.log("Cleaning search scope.");
