@@ -19,6 +19,7 @@ define(
       // State for search.
       $stateProvider.state('app.academicOutput', {
         parent: 'app.componentSearch',
+        authRequired: 'ROLE_VERIFIED_USER',
         url:   '^/academic-output',
         grailsResource: 'AcademicOutput',
         searchFields: [

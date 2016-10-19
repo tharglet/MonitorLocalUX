@@ -19,6 +19,7 @@ define(
         // State for search.
         $stateProvider.state('app.grant', {
           parent: 'app.componentSearch',
+          authRequired: 'ROLE_VERIFIED_USER',
           url:   '^/grant',
           grailsResource: 'AoGrant',
           searchFields: [

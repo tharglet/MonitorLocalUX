@@ -19,6 +19,7 @@ define(
       // State for search.
       $stateProvider.state('app.invoice', {
         parent: 'app.componentSearch',
+        authRequired: 'ROLE_VERIFIED_USER',
         url:   '^/invoice',
         grailsResource: 'Invoice',
         searchFields: [

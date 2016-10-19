@@ -13,7 +13,7 @@ define(
       
       this.setStorage = function (val) {
         storage = val;
-      }; 
+      };
       this.$get = ['$injector', function($injector) {
         
         // Use the injector service to conditionally get the state provider.

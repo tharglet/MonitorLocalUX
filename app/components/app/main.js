@@ -27,7 +27,7 @@ define(
   function (couchPotato, notify, moment) {
     
     // Default application object. We can use these references throughout to keep in sync.
-    var applicationData = {};
+    var applicationData = { user : {} };
 
     var app = angular.module('app', [
       'config',
@@ -282,6 +282,13 @@ define(
           title: "Jisc Monitor Local",
         },
         templateUrl: 'components/app/partials/home.html',
+      });
+      
+      $stateProvider.state('app.inactive', {
+        data: {
+          title: "Jisc Monitor Local",
+        },
+        templateUrl: 'components/app/partials/inactive.html',
       });
 
       // Default to the homepage.
