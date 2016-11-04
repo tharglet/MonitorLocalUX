@@ -1,14 +1,14 @@
-'use strict'
+'use strict';
 
 define (
   ['app'],
   function(app) {
-    app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', function($scope, $state, resource) {
+    app.registerController('SearchResultsController', [ '$scope', '$state', 'grailsResource', '$injector', function($scope, $state, resource, $injector) {
 
       var stateStringCache = {};
 
       // queryParams will be populated when the search form broadcasts searchCriteriaChanged
-      $scope.queryParams = {}
+      $scope.queryParams = {};
       
       var cols = [
         { 'data' : 'id', 'title': "#" },
@@ -58,7 +58,7 @@ define (
         }
         
         return key;
-      }
+      };
 
       // Create a table container, and add to the DOM first.
       var table = $("<table class='table table-striped table-hover' width='100%' />");
@@ -115,10 +115,28 @@ define (
       new $.fn.dataTable.Buttons(table, {
         buttons : [{
           extend: 'csv',
+          bom: true,
           className: 'btn-xs btn-info',
           exportOptions: {
             orthogonal : 'export',
             stripNewlines : false,
+          }
+        },{
+          extend: 'excelHtml5',
+          text: 'Excel (xlsx)',
+          className: 'btn-xs btn-info',
+          exportOptions: {
+            orthogonal : 'export',
+            stripNewlines : false,
+          },
+          customize: function( xlsx ) {
+            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+            
+            // Heading colour.
+            $('row:first c', sheet).attr( 's', '42' );
+            
+            // Wrapped text to all inline strings.
+            $('c[t="inlineStr"]', sheet).attr( 's', '55' );
           }
         }]
       });
@@ -136,6 +154,14 @@ define (
         $scope.queryParams = args;
         table.draw();
       });
+      
+      
+      // We use angular's injector to invoke the method, searchResults is also added as a reference to the dataTable itself.
+      if ($state.current.extendSearch) {
+        
+        // Attempt to invoke the function using the injector.
+        $injector.invoke($state.current.extendSearch, $scope, {'$scope': $scope, 'searchResults' : table});
+      }
       
       $scope.$on("$destroy", function() {
         console.log("Cleaning search scope.");

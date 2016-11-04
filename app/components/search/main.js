@@ -2,6 +2,7 @@
 define(
   "search",
   [
+   'jszip',
    'angular-ui-router',
    'datatables.net-bs',
    'datatables.net-buttons-bs',
@@ -13,18 +14,20 @@ define(
    'grails',
    'angular-formly-templates-bootstrap'
   ],
-  function () {
+  function (JSZip) {
+    
+    // The data-tables lib requires the JSZip library to be on the global path. Set it here.
+    window.JSZip = JSZip;
+    
     var mod = angular.module('search', ['ui.router', 'grails', 'formly', 'formlyBootstrap', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
     mod.config(['$stateProvider', function($stateProvider) {
+      
       $stateProvider.state('app.componentSearch', {
         abstract: true,
         deps: [
           "components/search/CtrlSearchController.js",
           "components/search/CtrlSearchResultsController.js"
         ],
-        data: {
-          requirelogin:false,
-        },
         views: {
           // Unnamed view at app state level...
           "@app" : {

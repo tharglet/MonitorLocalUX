@@ -3,7 +3,7 @@
 define (
   ['app'],
   function(app) {
-    app.registerController('LoginCtrl', [ '$rootScope', '$auth', '$log', '$state', 'userService', function($scope, $auth, $log, $state, userService) {
+    app.registerController('LoginCtrl', [ '$rootScope', '$window', '$auth', '$log', '$state', 'userService', function($scope, $window, $auth, $log, $state, userService) {
 
       $scope.alerts = [];
 
@@ -16,14 +16,17 @@ define (
           if (response && response.data && response.data.user) {
             $log.debug("Set rootScope(%o) user to %o", $scope, response.data.user);
     
-             userService.update(response.data.user);
-            if ($scope.loginRedirect) {
-              // Transition.
-              $state.go($scope.loginRedirect.state, $scope.loginRedirect.params);
-              delete $scope.loginRedirect;
-            } else {
-              $state.go("app.dash");
-            }
+            userService.update(response.data.user);
+            
+            $window.location.href = '/';
+            
+//            if ($scope.loginRedirect) {
+//              // Transition.
+//              $state.go($scope.loginRedirect.state, $scope.loginRedirect.params);
+//              delete $scope.loginRedirect;
+//            } else {
+//              $state.go("app.dash");
+//            }
           }
         })
         .catch(function(err) {

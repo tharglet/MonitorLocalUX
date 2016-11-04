@@ -213,7 +213,7 @@ ResourceManager.prototype.r = function ( type ) {
         
         res.staticInst = function() {
           return new res ( type );
-        }
+        };
       }
     }
     

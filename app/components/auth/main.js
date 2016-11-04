@@ -7,7 +7,7 @@
  */
 define(
   "auth",
-  [ './PrvdUserServiceProvider', './DrtvUserCanAccessState', 'angular-ui-router'],
+  ['./PrvdUserServiceProvider', './DrtvUserCanAccessState', 'angular-ui-router'],
   function (userServiceProvider, accessStateDirective) {
     
     // Create our angular module here.
@@ -57,14 +57,24 @@ define(
           },
         });
         
+        $stateProvider.state('app.denied', {
+          data: {
+            title: "Jisc Monitor Local",
+          },
+          templateUrl: 'components/auth/partials/denied.html',
+        });
+        
         $httpProvider.interceptors.push(['$q', '$injector',  function($q, $injector) {
           return {
             responseError: function(error) {
 
               switch (error.status) {
-              case 401:
-                $injector.get('$state').transitionTo('app.login');
-                break;
+                case 401:
+                  $injector.get('$state').transitionTo('app.login');
+                  break;
+                case 403:
+                  $injector.get('$state').transitionTo('app.denied');
+                  break;
               }
 
               // We should still reject the request.
@@ -80,8 +90,8 @@ define(
           if (to.name == 'app.login' && !from.name == 'app.login') {
             // Save the state ref for redirect on successful login.
             $rootScope.loginRedirect = {
-                state: from,
-                params: fromParams
+              state: from,
+              params: fromParams
             };
           }
         };
@@ -95,8 +105,22 @@ define(
             // Stop the state change happening...
             e.preventDefault();
             
-            // Transition to the login state.
-            $state.transitionTo('app.login');
+            var cu = userService.currentUser();
+            
+            if (cu && typeof cu.status !== 'undefined') {
+              
+              if (cu.status == 1) {
+                // Transition to the denied state.
+                $state.transitionTo('app.denied');
+              } else {
+                $state.transitionTo('app.inactive');
+              }
+              
+            } else {
+              
+              // Transition to the login state.
+              $state.transitionTo('app.login');
+            }
           }
         });
         
@@ -116,6 +140,10 @@ define(
           .catch(function(err) {
             $log.error("failed to logout", err);
           });
+        };
+
+        $rootScope.loginPage =  function() {
+          $state.go('app.login');
         };
       }])
     ;

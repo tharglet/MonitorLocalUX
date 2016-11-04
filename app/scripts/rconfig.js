@@ -59,7 +59,9 @@ requirejs.config({
     "angular-confirm-modal": "../bower_components/angular-confirm-modal/angular-confirm",
     "angular-formly": "../bower_components/angular-formly/dist/formly",
     "api-check": "../bower_components/api-check/dist/api-check",
-    "angular-formly-templates-bootstrap": "../bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap"
+    "angular-formly-templates-bootstrap": "../bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap",
+    jszip: "../bower_components/jszip/dist/jszip",
+    "moment-timezone": "../bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020"
   },
   baseUrl: "components",
   packages: [
@@ -244,7 +246,8 @@ requirejs.config({
     },
     "datatables.net-buttons.html5": {
       deps: [
-        "datatables.net-buttons"
+        "datatables.net-buttons",
+        "jszip"
       ]
     },
     "datatables.net-buttons.flash": {
@@ -335,6 +338,9 @@ requirejs.config({
         "angular-formly",
         "api-check"
       ]
+    },
+    jszip: {
+      exports: "JSZip"
     }
   }
 });

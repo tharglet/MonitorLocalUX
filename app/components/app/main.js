@@ -27,7 +27,7 @@ define(
   function (couchPotato, notify, moment) {
     
     // Default application object. We can use these references throughout to keep in sync.
-    var applicationData = {};
+    var applicationData = { user : {} };
 
     var app = angular.module('app', [
       'config',
@@ -238,14 +238,7 @@ define(
       });
 
       console.log("OK");
-      
-      // Add some basic settings..
-      angular.merge(applicationData, {
-        config: angular.copy(appConf),
-        user : {
-          name: "Guest"
-        }
-      });
+
       userServiceProvider.setStorage ( applicationData );
 
       // Default app abstract state.
@@ -272,7 +265,9 @@ define(
                   'Accept': 'application/json'
                 },
               }).then (function (applicationSettings) {
-                angular.merge($rootScope.application, applicationSettings.data);
+                angular.merge($rootScope.application, applicationSettings.data, {
+                  config: angular.copy(appConfig)
+                });
               });
             } else {
               return $rootScope.application;
@@ -284,9 +279,16 @@ define(
       $stateProvider.state('app.dash', {
         url: '/',
         data: {
-          title: "Welcome",
+          title: "Jisc Monitor Local",
         },
         templateUrl: 'components/app/partials/home.html',
+      });
+      
+      $stateProvider.state('app.inactive', {
+        data: {
+          title: "Jisc Monitor Local",
+        },
+        templateUrl: 'components/app/partials/inactive.html',
       });
 
       // Default to the homepage.
